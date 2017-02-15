@@ -40,14 +40,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Movimento D");
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("Prendo la risorsa Popolo con Q");
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("Tolgo la risorsa Popolo con E");
-        }
+       
     }
     void InputPLayerTwo()
     {
@@ -67,14 +60,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Movimento P2 L");
         }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("Prendo la risorsa Popolo con U");
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log("Tolgo la risorsa Popolo con o");
-        }
+      
     }
     void InputPLayerThree()
     {
@@ -94,14 +80,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Movimento P3 RightArrow");
         }
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            Debug.Log("Prendo la risorsa Popolo con PageUp");
-        }
-        if (Input.GetKeyDown(KeyCode.PageDown))
-        {
-            Debug.Log("Tolgo la risorsa Popolo con PageDown");
-        }
+    
     }
     void InputPLayerFour()
     {
@@ -121,15 +100,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Movimento P4 Keypad6");
         }
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
-        {
-            Debug.Log("Prendo la risorsa Popolo con KeypadPlus");
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
-        {
-            Debug.Log("Tolgo la risorsa Popolo con KeypadMinus");
-
-        }
+      
     } 
     #endregion
 }
