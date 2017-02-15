@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectBase : MonoBehaviour
+public class BuildingBase : MonoBehaviour
 {
     public float dimension =0;
     public float timeMultiplier = 0.01f;
@@ -33,7 +33,6 @@ public class ObjectBase : MonoBehaviour
     /// </summary>
     void SetBuildingTime()
     {
-       
         timeMultiplier *= Labourers;
     }
 
