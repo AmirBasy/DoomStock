@@ -51,11 +51,5 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Gestice la velocita dello sviluppo delle costruzioni.
-    /// </summary>
-    /// <param name="_population">The population.</param>
-    public void ConstructionTime(int _population) {
-
-    }
+   
 }

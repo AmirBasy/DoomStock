@@ -22,7 +22,7 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int y = 0; y < MapSize.y; y++)
             {
-                Vector3 tilePosition = new Vector3(-MapSize.x/2+0.5f+x, 0, -MapSize.y/2+0.5f+y);
+                Vector3 tilePosition = new Vector3(-MapSize.x+1+x, 0, -MapSize.y+1+y);
                 Transform newTile = Instantiate(TilePrefab, tilePosition, Quaternion.Euler(Vector3.right)) as Transform;
                 newTile.parent = mapHolder;
             }

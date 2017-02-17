@@ -5,8 +5,10 @@ using System;
 
 public class DragAndDrop : MonoBehaviour
 {
+    #region Events
     public delegate void TurretEvent(DragAndDrop t);
-    public static TurretEvent OnDropTurret;
+    public static TurretEvent OnDropTurret; 
+    #endregion
 
     Vector3 dist;
     float posX;

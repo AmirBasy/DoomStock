@@ -13,11 +13,11 @@ public class TurretBase : MonoBehaviour, IPositionable
 
     private void TurretDrop(DragAndDrop t)
     {
-        //transform.position = new Vector3(0, 0);
-        //prima di togliere il drag and drop dovrebbe controllare di essere stato posizionato giusto
-         Destroy(t);
-    }
 
+
+        //prima di togliere il drag and drop dovrebbe controllare di essere stato posizionato giusto
+        //Destroy(t);
+    }
 
 
     /// <summary>
@@ -27,18 +27,16 @@ public class TurretBase : MonoBehaviour, IPositionable
     public void SetPosition(Transform newPosition)
     {
         transform.SetParent(newPosition);
-        transform.position = newPosition.position;
-        
+        //transform.position = newPosition.position;
+        transform.position = new Vector3(newPosition.position.x, newPosition.position.y+1, newPosition.position.z+0.5f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
+        //se la torretta collide con uno slot di tipo terreno si posiziona nella sua pos e diventa suo figlio
         if (other.GetComponent<Ground>() != null)
         {
             SetPosition(other.transform);
-            
-
 
         }
        

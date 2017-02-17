@@ -5,6 +5,8 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
 
+    private Vector3 _movement;
+    public float speed = 10;
     // Use this for initialization
     void Start()
     {
@@ -18,12 +20,14 @@ public class InputManager : MonoBehaviour
         InputPLayerTwo();
         InputPLayerThree();
         InputPLayerFour();
+        PlayerMovement();
 
     }
 
     #region PlayerInput
     void InputPLayerOne()
     {
+        _movement = Vector3.zero;
         if (Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("Movimento W");
@@ -101,6 +105,16 @@ public class InputManager : MonoBehaviour
             Debug.Log("Movimento P4 Keypad6");
         }
       
-    } 
+    }
     #endregion
-}
+
+    public void PlayerMovement()
+    {
+
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+
+        transform.Translate(x, 0, 0);
+        transform.Translate(0, 0, z);
+    }
+    }

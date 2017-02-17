@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Material changeColor;
+    /// <summary>
+    /// Inutile,serve solo per aver un riscontro visivo sulle collisioni
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerStay(Collider other)
+    {
+        Renderer rend = GetComponent<Renderer>();
+        rend.material.shader = Shader.Find("Specular");
+        rend.material.SetColor("_SpecColor", Color.green);
+    }
+    
 }
