@@ -18,6 +18,7 @@ public class PlayerFour : PlayerBase {
         if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
             population -= 1;
+            GameManager.I.Population += 1;
             if (population <= 0)
                 population = 0;
             UpdateGraphic("people: " + population + " press + to add, - to remove");

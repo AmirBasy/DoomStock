@@ -20,6 +20,7 @@ public class PlayerOne : PlayerBase {
         if (Input.GetKeyDown(KeyCode.E))
         {
             population -= 1;
+            GameManager.I.Population += 1;
             if (population <= 0)
                 population = 0;
             UpdateGraphic("people: " + population + " press Q to add, E to remove");

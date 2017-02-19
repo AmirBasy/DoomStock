@@ -18,6 +18,7 @@ public class PlayerThree : PlayerBase {
         if (Input.GetKeyDown(KeyCode.PageDown))
         {
             population -= 1;
+            GameManager.I.Population += 1;
             if (population <= 0)
                 population = 0;
             UpdateGraphic("people: " + population + " press pageUP to add, pageDown to remove");

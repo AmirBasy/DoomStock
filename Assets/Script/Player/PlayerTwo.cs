@@ -18,6 +18,7 @@ public class PlayerTwo : PlayerBase {
         if (Input.GetKeyDown(KeyCode.O))
         {
             population -= 1;
+            GameManager.I.Population += 1;
             if (population <= 0)
                 population = 0;
             UpdateGraphic("people: " + population + " press U to add, O to remove");

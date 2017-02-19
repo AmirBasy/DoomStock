@@ -1,14 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager I;
-
+    public Text MainPeopleText;
 
     #region Variables
-
+    private void Start()
+    {
+        UpdateGraphic("Main People: " + population);
+    }
     /// <summary>
     /// Popolazione in comune tra i player
     /// </summary>
@@ -16,7 +21,21 @@ public class GameManager : MonoBehaviour {
     public int Population
     {
         get { return population; }
-        set { population = value; }
+        set {
+
+            population = value;
+           
+            if (population > 99)
+                population = 100;
+            if (population <= 0)
+                population = 0;
+            UpdateGraphic("Main People: " + population);
+        }
+    }
+
+    private void UpdateGraphic(string _newText)
+    {
+        MainPeopleText.text = _newText;
     }
 
 
