@@ -12,11 +12,15 @@ public class PlayerTwo : PlayerBase {
         {
             GameManager.I.Population -= 1;
             population += 1;
+            UpdateGraphic("people: " + population + " press U to add, O to remove");
         }
         //Con O tolgo 1 dalla mia popolazione
         if (Input.GetKeyDown(KeyCode.O))
         {
             population -= 1;
+            if (population <= 0)
+                population = 0;
+            UpdateGraphic("people: " + population + " press U to add, O to remove");
         }
     }
     void Update()
