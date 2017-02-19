@@ -12,9 +12,12 @@ public class PlayerOne : PlayerBase {
         //Con Q aggiungo a me 1 di popolazione e lo tolgo al GameManager
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameManager.I.Population -= 1;
-            population += 1;
-            UpdateGraphic("people: " + population + " press Q to add, E to remove");
+            if (GameManager.I.Population >0)
+            {
+                GameManager.I.Population -= 1;
+                population += 1;
+                UpdateGraphic("people: " + population + " press Q to add, E to remove"); 
+            }
         }
         //Con E tolgo 1 dalla mia popolazione
         if (Input.GetKeyDown(KeyCode.E))
