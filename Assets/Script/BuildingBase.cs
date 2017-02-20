@@ -48,6 +48,10 @@ public class BuildingBase : MonoBehaviour
         {
             Labourers += 1;
         }
+        if (dimension > 20)/// inserita solo per testare
+        {
+            this.transform.localScale = new Vector3(1,2,1);
+        }
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ public class PlayerThree : PlayerBase {
             }
         }
         //Con Freccia giù tolgo 1 dalla mia popolazione
-        if (Input.GetKeyDown(KeyCode.PageDown))
+        if (Input.GetKeyDown(KeyCode.PageDown) && population > 0)
         {
             population -= 1;
             GameManager.I.Population += 1;
