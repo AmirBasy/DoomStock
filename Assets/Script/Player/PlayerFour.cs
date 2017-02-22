@@ -18,7 +18,7 @@ public class PlayerFour : PlayerBase {
             }
         }
         //Con keypad - tolgo 1 dalla mia popolazione
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) && population > 0)
         {
             population -= 1;
             GameManager.I.Population += 1;

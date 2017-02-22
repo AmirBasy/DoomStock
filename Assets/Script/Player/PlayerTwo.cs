@@ -18,7 +18,7 @@ public class PlayerTwo : PlayerBase {
             }
         }
         //Con O tolgo 1 dalla mia popolazione
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && population > 0)
         {
             population -= 1;
             GameManager.I.Population += 1;
