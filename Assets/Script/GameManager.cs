@@ -72,14 +72,4 @@ public class GameManager : MonoBehaviour {
 
    
 }
-/// <summary>
-/// Enumeratore che differenzia la tipologia di Edificio edificabile per i Players.
-/// </summary>
-public enum BuildingType
-{
-    Player1,
-    Player2,
-    Player3,
-    Player4
-    
-}
+
