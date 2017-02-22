@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerBase : MonoBehaviour {
 
-   public Text PeopleText;
-   public int population = 0;
+    public BuildingType ActualPlayer;
+    public List<GameObject> MyBuilding;
+    public Text PeopleText;
+    public int population = 0;
 
 	public virtual void UsePopulation()
     {
@@ -17,4 +19,12 @@ public class PlayerBase : MonoBehaviour {
     {
         PeopleText.text = newText;
     }
+    /// <summary>
+    /// Istanzia un edificio
+    /// </summary>
+    public virtual void DeployBuilding() { }
+    /// <summary>
+    /// Aggiungie la popolazione all'edificio
+    /// </summary>
+    public virtual void AddPeopleOnBuilding() { }
 }

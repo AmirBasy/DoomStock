@@ -27,8 +27,27 @@ public class PlayerThree : PlayerBase {
             UpdateGraphic("people: " + population + " press pageUP to add, pageDown to remove");
         }
     }
+    public override void DeployBuilding()
+    {
+        base.DeployBuilding();
+        if (Input.GetKeyDown(KeyCode.End) && ActualPlayer == BuildingType.Player3)
+        {
+            Instantiate(MyBuilding[0], transform.position, transform.rotation);
+        }
+    }
+
+    public override void AddPeopleOnBuilding()
+    {
+        base.AddPeopleOnBuilding();
+        if (Input.GetKeyDown(KeyCode.Delete) && population > 0)
+        {
+            //Aggiungo la popolazione all'edificio
+
+        }
+    }
     void Update()
     {
         UsePopulation();
+        DeployBuilding();
     }
 }

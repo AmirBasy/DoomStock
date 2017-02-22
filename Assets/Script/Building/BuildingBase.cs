@@ -2,11 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingBase : MonoBehaviour
 {
+    public int MyPeopleLimit;
+    public Text PeopleOnBuilding;
     public float dimension =0;
     public float timeMultiplier = 0.01f;
+    public int MyResources;
 
     #region Labourers
     private int labourers = 1;
@@ -55,5 +59,7 @@ public class BuildingBase : MonoBehaviour
     /// </summary>
     void increaseDimension() { dimension += Time.deltaTime * timeMultiplier; }
 
-
+    public virtual void UpdateGraphic(string newText) {
+        PeopleOnBuilding.text = newText;
+    }
 }

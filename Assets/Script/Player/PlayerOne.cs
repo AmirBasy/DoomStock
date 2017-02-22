@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerOne : PlayerBase {
 
-   
     public override void UsePopulation()
     {
         base.UsePopulation();
@@ -29,8 +28,30 @@ public class PlayerOne : PlayerBase {
             UpdateGraphic("people: " + population + " press Q to add, E to remove");
         }
     }
-    void Update () {
+   
+
+    public override void DeployBuilding()
+    {
+        base.DeployBuilding();
+        if (Input.GetKeyDown(KeyCode.Z)&& ActualPlayer == BuildingType.Player1)
+        {
+            Instantiate(MyBuilding[0],transform.position, transform.rotation);
+        }
+    }
+
+    public override void AddPeopleOnBuilding()
+    {
+        base.AddPeopleOnBuilding();
+        if (Input.GetKeyDown(KeyCode.X) && population >0)
+        {
+            //Aggiungo la popolazione all'edificio
+            
+        }
+    }
+    void Update()
+    {
         UsePopulation();
-	}
+        DeployBuilding();
+    }
 
 }

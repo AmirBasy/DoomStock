@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretBase : MonoBehaviour, IPositionable
+public class TurretBase : BuildingView, IPositionable
 {
     
     private void OnEnable()
@@ -27,7 +27,7 @@ public class TurretBase : MonoBehaviour, IPositionable
     public void SetPosition(Transform newPosition)
     {
         transform.SetParent(newPosition);
-        //transform.position = newPosition.position;
+       
         transform.position = new Vector3(newPosition.position.x, newPosition.position.y+1, newPosition.position.z+0.5f);
     }
 
