@@ -9,9 +9,15 @@ public class GameManager : MonoBehaviour {
     public static GameManager I;
     public Text MainPeopleText;
 
+
+    #region Managers
+
+    public TimerManager TM; 
+    #endregion
+
     #region Variables
     private void Start()
-    {
+    {   
         UpdateGraphic("Main People: " + population);
     }
     /// <summary>
