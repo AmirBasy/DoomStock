@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cell {
+namespace Framework.Grid { 
 
-    public Vector3 WorldPosition;
-    public Vector2 GridPosition;
-    
+    public class Cell {
+
+        public Vector3 WorldPosition;
+        public Vector2 GridPosition;
+
+    }
+
 }
