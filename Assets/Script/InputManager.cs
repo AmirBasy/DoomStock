@@ -20,30 +20,30 @@ public class InputManager : MonoBehaviour
         InputPLayerTwo();
         InputPLayerThree();
         InputPLayerFour();
-        PlayerMovement();
+        MoveToGridposition();
 
     }
 
     #region PlayerInput
     void InputPLayerOne()
     {
-        _movement = Vector3.zero;
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("Movimento W");
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("Movimento A");
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("Movimento S");
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("Movimento D");
-        }
+        //_movement = Vector3.zero;
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    Debug.Log("Movimento W");
+        //}
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    Debug.Log("Movimento A");
+        //}
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    Debug.Log("Movimento S");
+        //}
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    Debug.Log("Movimento D");
+        //}
        
     }
     void InputPLayerTwo()
@@ -108,9 +108,9 @@ public class InputManager : MonoBehaviour
     }
     #endregion
 
-    public void PlayerMovement()
+    public void MoveToGridposition()
     {
-
+        
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 

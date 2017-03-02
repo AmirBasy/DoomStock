@@ -8,16 +8,21 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager I;
     public Text MainPeopleText;
-
+    public PlayerBase playerBase;
+    public GameObject PlayerPrefab;
+   
 
     #region Managers
+    public GridController GridController;
+    public TimeEventManager timeEventManager; 
 
-    public TimerManager TM; 
     #endregion
 
     #region Variables
     private void Start()
-    {   
+        
+    {
+        Instantiate(PlayerPrefab,playerBase.GetAllCellsFromGrid()[8].GridPosition, transform.rotation);
         UpdateGraphic("Main People: " + population);
     }
     /// <summary>

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerOne : PlayerBase {
 
+   
     public override void UsePopulation()
     {
         base.UsePopulation();
@@ -48,10 +50,55 @@ public class PlayerOne : PlayerBase {
             
         }
     }
+
+    public void MoveToGridPosition()
+    { 
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1),
+            0.7f).OnComplete(delegate
+            {
+                Debug.Log("Movimento W");
+            }).SetEase(Ease.OutBounce);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.DOMove(new Vector3(transform.position.x-1, transform.position.y, transform.position.z),
+                0.7f).OnComplete(delegate {
+                    Debug.Log("Movimento A");
+                }).SetEase(Ease.OutBounce);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.DOMove(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1),
+                0.7f).OnComplete(delegate {
+                    Debug.Log("Movimento S");
+                }).SetEase(Ease.OutBounce);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.DOMove(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z),
+                0.7f).OnComplete(delegate {
+                    Debug.Log("Movimento D");
+                }).SetEase(Ease.OutBounce);
+        }
+    }
     void Update()
     {
         UsePopulation();
         DeployBuilding();
+        MoveToGridPosition();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<GridController>() != null)
+        {
+            MoveToGridPosition();
+           
+        }
     }
 
 }

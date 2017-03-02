@@ -6,13 +6,14 @@ using DG.Tweening;
 public class GridController : MonoBehaviour {
 
     public Transform TilePrefab;
-    public Vector2 MapSize = new Vector2(3,3);
+    public Vector2 GridSize = new Vector2(3,3);
     public List<Cell> Cells = new List<Cell>();
-
+    public Cell cell = new Cell();
 
 
     // Use this for initialization
-    void Start() {
+    void Awake() {
+      
         GenerateMap();
         MoveToGridPosition(actualGridPosition);
     }
@@ -21,10 +22,9 @@ public class GridController : MonoBehaviour {
     /// </summary>
     public void GenerateMap() {
 
-        //Transform mapHolder = new GameObject("Griglia").transform;
-        for (int x = 0; x < MapSize.x; x++) {
-            for (int y = 0; y < MapSize.y; y++) {
-                Vector3 tilePosition = new Vector3(-MapSize.x + 1 + x, 0, -MapSize.y + 1 + y);
+        for (int x = 0; x < GridSize.x; x++) {
+            for (int y = 0; y < GridSize.y; y++) {
+                Vector3 tilePosition = new Vector3(-GridSize.x + 1 + x, 0, -GridSize.y + 1 + y);
                 Transform newTile = Instantiate(TilePrefab, tilePosition, Quaternion.Euler(Vector3.right)) as Transform;
                 newTile.parent = this.transform;
                 newTile.name = string.Format("({0},{1}) - ({2})",x,y, newTile.transform.position);
