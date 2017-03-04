@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.J,
                 Down = KeyCode.K,
                 Right = KeyCode.L,
-                AddBuilding = KeyCode.M,
+                AddBuilding = KeyCode.N,
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.J,
                 Down = KeyCode.K,
                 Right = KeyCode.L,
-                AddBuilding = KeyCode.M,
+                AddBuilding = KeyCode.F2,
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.J,
                 Down = KeyCode.K,
                 Right = KeyCode.L,
-                AddBuilding = KeyCode.M,
+                AddBuilding = KeyCode.F1,
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
