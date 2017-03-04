@@ -16,6 +16,7 @@ namespace Framework.Grid {
 
         // Use this for initialization
         void Awake() {
+            DontDestroyOnLoad(this.gameObject);
             GenerateMap();
         }
         /// <summary>
