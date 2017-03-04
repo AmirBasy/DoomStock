@@ -50,22 +50,22 @@ public class Player : PlayerBase {
     /// Controlla se l'input del player intende aggiungere 1 risorsa popolo alla mia popolazione o
     /// se l'input del player intende rimuovere 1 risorsa popolo alla mia popolazione.
     /// </summary>
-    public override void UsePopulation()
-    {
-        base.UsePopulation();
-        //Con Q aggiungo a me 1 di popolazione e lo tolgo al GameManager
+    //public override void UsePopulation()
+    //{
+    //    base.UsePopulation();
+    //    //Con Q aggiungo a me 1 di popolazione e lo tolgo al GameManager
         
 
-        //Con E tolgo 1 dalla mia popolazione
+    //    //Con E tolgo 1 dalla mia popolazione
 
-    }
+    //}
     #endregion
 
     #region Buildings
     public override void DeployBuilding()
     {
         base.DeployBuilding();
-        Instantiate(MyBuilding[0],transform.position, transform.rotation);
+        Instantiate(Building[0],transform.position, transform.rotation);
     }
 
     public override void AddPeopleOnBuilding()

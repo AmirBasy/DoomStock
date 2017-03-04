@@ -7,12 +7,11 @@ using Framework.Grid;
 
 public abstract class PlayerBase : MonoBehaviour {
 
-    //public GameObject PlayerPrefab;
-    public BuildingType ActualPlayer;
-    public List<GameObject> MyBuilding;
+    public string ID;
+    public List<GameObject> Building;
     public Text PeopleText;
     public int population = 0;
-    protected PlayerInputData inputData;
+    public PlayerInputData inputData;
     protected GridController grid;
     protected Vector2 currentGridPosition;
     
@@ -21,35 +20,22 @@ public abstract class PlayerBase : MonoBehaviour {
     /// <summary>
     /// Restituisce una lista di tutte le celle nella griglia
     /// </summary>
-    public List<Cell> GetAllCellsFromGrid(){
+    //public List<Cell> GetAllCellsFromGrid(){
 
-        List<Cell> ReturnList = new List<Cell>();
-        foreach (Cell c in GameManager.I.GridController.Cells){
-          //ReturnList.AddRange(GameManager.I.GridController.Cells);
-          ReturnList.Add(new Cell() { GridPosition = new Vector2(0,0), WorldPosition = GameManager.I.GridController.TilePrefab.transform.position});
-          //ReturnList.Add(new Cell() { GridPosition = new Vector2(0, 0), WorldPosition = new Vector3(-transform.position.x, 0, -transform.position.y) }); 
-        }
-        foreach (Cell c in ReturnList)
-        {
-            Debug.Log("esistooo");
-        }
-        return ReturnList;
-    }
-
-
-    void Start()
-    {
-       
-    }
+    //    List<Cell> ReturnList = new List<Cell>();
+    //    foreach (Cell c in GameManager.I.GridController.Cells){
+    //      //ReturnList.AddRange(GameManager.I.GridController.Cells);
+    //      ReturnList.Add(new Cell() { GridPosition = new Vector2(0,0), WorldPosition = GameManager.I.GridController.TilePrefab.transform.position});
+    //      //ReturnList.Add(new Cell() { GridPosition = new Vector2(0, 0), WorldPosition = new Vector3(-transform.position.x, 0, -transform.position.y) }); 
+    //    }
+    //    foreach (Cell c in ReturnList)
+    //    {
+    //        Debug.Log("esistooo");
+    //    }
+    //    return ReturnList;
+    //}
 
 
-
-
-    public virtual void UsePopulation()
-    {
-        
-        
-    }
 	public virtual void UpdateGraphic(string newText)
     {
         PeopleText.text = newText;
