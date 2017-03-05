@@ -42,7 +42,8 @@ public class BuildingManager : MonoBehaviour {
                 PeopleLimit = buildingPointer.PeopleLimit,
                 dimension = buildingPointer.dimension,
                 timeMultiplier = buildingPointer.dimension,
-                Population = buildingPointer.Population
+                Population = buildingPointer.Population,
+                Resource = new BaseResource(), 
             }
             );
         }

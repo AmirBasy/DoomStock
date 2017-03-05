@@ -21,7 +21,11 @@ public class BuildingData : ScriptableObject {
     /// la risorsa population che ha un building
     /// </summary>
     public int Population;
-
+    /// <summary>
+    /// Risorsa dell edificio
+    /// </summary>
+    [HideInInspector]
+    public BaseResource Resource = new BaseResource();
     
 }
 
