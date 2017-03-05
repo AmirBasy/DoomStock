@@ -65,7 +65,7 @@ public class Player : PlayerBase {
     public override void DeployBuilding()
     {
         base.DeployBuilding();
-        Instantiate(Building[0],transform.position, transform.rotation);
+        Instantiate(Building[0], FindObjectOfType<Canvas>().transform);
     }
 
     public override void AddPeopleOnBuilding()
