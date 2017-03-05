@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
                     Down = KeyCode.S,
                     Right = KeyCode.D,
                     AddBuilding = KeyCode.Z,
-                    AddPopulation = KeyCode.Q,
+                    AddPopulation = KeyCode.X,
                     RemovePopulation = KeyCode.E,
                 });
             Players[0].SetupGrid(GridController, new Vector2(0, 0));

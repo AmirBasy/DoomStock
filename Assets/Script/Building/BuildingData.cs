@@ -5,6 +5,7 @@ using System;
                  menuName = "Building/BuildingData", order = 1)]
 
 public class BuildingData : ScriptableObject {
+  
     /// <summary>
     /// Variabile che indica quanta Popolazione massima posso possedere
     /// </summary>

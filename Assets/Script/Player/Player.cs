@@ -7,6 +7,11 @@ using Framework.Grid;
 
 public class Player : PlayerBase {
 
+    private void Start()
+    {
+        population = 0;
+    }
+
     #region Setup
     /// <summary>
     /// Setto l'input per questo player.
@@ -33,7 +38,9 @@ public class Player : PlayerBase {
         if (GameManager.I.Population > 0) {
             GameManager.I.Population -= 1;
             population += 1;
-            UpdateGraphic("people: " + population + " press Q to add, E to remove");
+            // UpdateGraphic("people: " + population + " press Q to add, E to remove
+            if (Building[0] != null)
+                Building[0].GetComponent<BuildingView>().UpdateGraphic();
         }
     }
 
@@ -66,6 +73,7 @@ public class Player : PlayerBase {
     {
         base.DeployBuilding();
         Instantiate(Building[0]);
+        Building[0].GetComponent<BuildingView>().player = this;
     }
 
     public override void AddPeopleOnBuilding()
