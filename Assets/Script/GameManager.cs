@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Framework.Grid;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -139,13 +140,17 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         if (I == null)
         {
             I = this;
         }
     }
 
-
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
    
 }
