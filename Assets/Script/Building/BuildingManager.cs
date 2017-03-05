@@ -39,11 +39,11 @@ public class BuildingManager : MonoBehaviour {
         {
             newBuildingList.Add(new BuildingData
             {
-                MyPeopleLimit = buildingPointer.MyPeopleLimit,
+                PeopleLimit = buildingPointer.PeopleLimit,
                 dimension = buildingPointer.dimension,
                 timeMultiplier = buildingPointer.dimension,
                 MyResources = buildingPointer.MyResources,
-                TypeOfBuilding = buildingPointer.TypeOfBuilding,
+                Population = buildingPointer.Population
             }
             );
         }

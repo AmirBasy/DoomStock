@@ -8,7 +8,7 @@ public class BuildingData : ScriptableObject {
     /// <summary>
     /// Variabile che indica quanta Popolazione massima posso possedere
     /// </summary>
-    public int MyPeopleLimit;
+    public int PeopleLimit;
     /// <summary>
     /// Da ridefinire.
     /// </summary>
@@ -18,24 +18,10 @@ public class BuildingData : ScriptableObject {
     /// </summary>
     public float timeMultiplier = 0.01f;
     /// <summary>
-    /// La risorsa che l'edificio produce
+    /// la risorsa population che ha un building
     /// </summary>
-    public int MyResources;
+    public int Population;
 
-    /// <summary>
-    /// Definisce la tipologia di Building
-    /// </summary>
-    public BuildingType TypeOfBuilding;
+    
 }
 
-/// <summary>
-/// Enumeratore che differenzia la tipologia di Edificio edificabile per i Players.
-/// </summary>
-public enum BuildingType
-{
-    Player1,
-    Player2,
-    Player3,
-    Player4
-
-}
