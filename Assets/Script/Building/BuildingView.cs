@@ -16,6 +16,6 @@ public class BuildingView : MonoBehaviour {
     }
 
     public void UpdateGraphic(BuildingData bd) {
-        ActualPeople.text = bd.MyPeopleLimit.ToString();
+        ActualPeople.text = bd.PeopleLimit.ToString();
     }
 }
