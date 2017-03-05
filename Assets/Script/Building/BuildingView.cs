@@ -5,17 +5,25 @@ using UnityEngine.UI;
 
 public class BuildingView : MonoBehaviour {
 
-    public Text ActualPeople;
+    public TextMesh ActualPeople;
 
     public BuildingData Data;
 
+    public Player player;
+    private void Start()
+    {
+
+        UpdateGraphic();
+    }
     public void Init(BuildingData _buildingData)
     {
         Data = _buildingData;
-        UpdateGraphic(_buildingData);
+        //UpdateGraphic(_buildingData);
     }
 
-    public void UpdateGraphic(BuildingData bd) {
-        ActualPeople.text = bd.PeopleLimit.ToString();
+    public void UpdateGraphic() {
+        ActualPeople.text = "People: " + player.population;
     }
+
+
 }
