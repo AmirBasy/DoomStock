@@ -6,7 +6,7 @@ using DG.Tweening;
 using Framework.Grid;
 
 public class Player : PlayerBase {
-
+    public List<GameObject> BuildingsInScene;
     private void Start()
     {
         population = 0;
@@ -38,9 +38,10 @@ public class Player : PlayerBase {
         if (GameManager.I.Population > 0) {
             GameManager.I.Population -= 1;
             population += 1;
+
             // UpdateGraphic("people: " + population + " press Q to add, E to remove
-            if (Building[0] != null)
-                Building[0].GetComponent<BuildingView>().UpdateGraphic();
+            if (BuildingsInScene[0] != null)
+                BuildingsInScene[0].GetComponent<BuildingView>().UpdateGraphic();
         }
     }
 
@@ -72,8 +73,9 @@ public class Player : PlayerBase {
     public override void DeployBuilding()
     {
         base.DeployBuilding();
-        Instantiate(Building[0]);
-        Building[0].GetComponent<BuildingView>().player = this;
+        Instantiate(Building[0].gameObject);
+        BuildingsInScene.Add(Building[0]);
+        BuildingsInScene[0].GetComponent<BuildingView>().player = this;
     }
 
     public override void AddPeopleOnBuilding()
