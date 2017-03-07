@@ -6,10 +6,10 @@ using DG.Tweening;
 using Framework.Grid;
 
 public class Player : PlayerBase {
-    public List<GameObject> BuildingsInScene;
+    public List<BuildingView> BuildingsInScene;
     private void Start()
     {
-        population = 0;
+        Population = 0;
     }
 
     #region Setup
@@ -35,22 +35,21 @@ public class Player : PlayerBase {
 
 
     public void AddPopulation() {
-        if (GameManager.I.Population > 0) {
-            GameManager.I.Population -= 1;
-            population += 1;
-
-            // UpdateGraphic("people: " + population + " press Q to add, E to remove
+        if (GameManager.I.populationManager.MaxPopulation > 0) {
+            GameManager.I.populationManager.MaxPopulation -= 1;
+            Population++;
+            //// updategraphic("people: " + population + " press q to add, e to remove
             if (BuildingsInScene[0] != null)
-                BuildingsInScene[0].GetComponent<BuildingView>().UpdateGraphic();
+                BuildingsInScene[0].gameObject.GetComponent<BuildingView>().UpdateGraphic();
         }
     }
 
     public void RemovePopulation() {
-        population -= 1;
-        GameManager.I.Population += 1;
-        if (population <= 0)
-            population = 0;
-        UpdateGraphic("people: " + population + " press Q to add, E to remove");
+        Population -= 1;
+        GameManager.I.populationManager.MaxPopulation += 1;
+        if (Population <= 0)
+            Population = 0;
+        UpdateGraphic("people: " + Population + " press Q to add, E to remove");
     }
 
 
@@ -75,13 +74,13 @@ public class Player : PlayerBase {
         base.DeployBuilding();
         Instantiate(Building[0].gameObject);
         BuildingsInScene.Add(Building[0]);
-        BuildingsInScene[0].GetComponent<BuildingView>().player = this;
+        BuildingsInScene[0].player = this;
     }
 
     public override void AddPeopleOnBuilding()
     {
         base.AddPeopleOnBuilding();
-        if (Input.GetKeyDown(KeyCode.X) && population >0)
+        if (Input.GetKeyDown(KeyCode.X) && Population > 0)
         {
             //Aggiungo la popolazione all'edificio
             
@@ -130,7 +129,7 @@ public class Player : PlayerBase {
             DeployBuilding();
         }
         if (Input.GetKeyDown(inputData.AddPopulation)) {
-            AddPopulation();
+            AddPopulation();         
         }
         if (Input.GetKeyDown(inputData.RemovePopulation)) {
             RemovePopulation();

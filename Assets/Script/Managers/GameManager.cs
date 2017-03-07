@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager I;
-    public Text MainPeopleText;
+   // public Text MainPeopleText;
     public List<Player> Players;
     public GameObject PlayerPrefab;
    
@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour {
     #region Managers
     public GridController GridController;
     public TimeEventManager timeEventManager;
-
+    public PopulationManager populationManager;
+    public BuildingManager buildingManager;
     #endregion
 
     #region Players
@@ -81,63 +82,6 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
-    #region Variables
-    private void Start()
-    {
-        SetupPlayers();
-        UpdateGraphic("Main People: " + population);
-    }
-
-    /// <summary>
-    /// Popolazione in comune tra i player
-    /// </summary>
-    private int population = 100;
-
-    public int Population
-    {
-        get { return population; }
-        set {
-
-            population = value;
-           
-            if (population > 99)
-                population = 100;
-            if (population <= 0)
-                population = 0;
-            UpdateGraphic("Main People: " + population);
-        }
-    }
-
-    private void UpdateGraphic(string _newText)
-    {
-        if(MainPeopleText)
-            MainPeopleText.text = _newText;
-    }
-
-
-    #region Risorse
-    private int resource1;
-
-    public int Resource1
-    {
-        get { return resource1; }
-        set { resource1 = value; }
-    }
-    private int resource2;
-
-    public int Resource2
-    {
-        get { return resource2; }
-        set { resource2 = value; }
-    }
-
- 
-    #endregion Risorse
-
-
-    #endregion Variables
-
-
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -146,6 +90,19 @@ public class GameManager : MonoBehaviour {
             I = this;
         }
     }
+
+    private void Start()
+    {
+        SetupPlayers();
+        //UpdateGraphic("Main People: " + populationManager.MaxPopulation);
+    }
+
+    //private void UpdateGraphic(string _newText)
+    //{
+    //    if(MainPeopleText)
+    //        MainPeopleText.text = _newText;
+    //}
+
 
     public void BackToMenu()
     {

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimedEvent {
+[CreateAssetMenu(fileName = "TimedEventData",
+                 menuName = "TimedEvent/TimedEventData", order = 3)]
+
+public class TimedEventData : ScriptableObject
+{
     /// <summary>
     /// Identifica il tipo di evento.
     /// </summary>

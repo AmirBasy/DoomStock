@@ -28,7 +28,7 @@ public class BuildingManager : MonoBehaviour {
 
 
     /// <summary>
-    /// Prende tutti gli Edifici che stanno nella cartella Resources/Cards per evitare che i dati vengano salvati.
+    /// Prende tutti gli Edifici che stanno nella cartella Resources/Building per evitare che i dati vengano salvati.
     /// </summary>
     /// <returns></returns>
     public static List<BuildingData> GetAllBuildings()

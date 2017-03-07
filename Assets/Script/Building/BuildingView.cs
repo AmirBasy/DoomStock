@@ -12,17 +12,24 @@ public class BuildingView : MonoBehaviour {
     public Player player;
     private void Start()
     {
-        ActualPeople.text = "People: " + player.population;
+        
+        ActualPeople.text = "People: " + player.Population;
 
     }
     public void Init(BuildingData _buildingData)
     {
         Data = _buildingData;
-        //UpdateGraphic(_buildingData);
+        UpdateGraphic();
+    }
+
+    private void Update()
+    {
+        UpdateGraphic();
     }
 
     public void UpdateGraphic() {
-        ActualPeople.text = "Peopxxle: " + player.population;
+        ActualPeople.text = "People: " + player.Population;
+        
     }
 
 

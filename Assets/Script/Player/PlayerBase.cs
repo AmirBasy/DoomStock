@@ -8,9 +8,17 @@ using Framework.Grid;
 public abstract class PlayerBase : MonoBehaviour {
 
     public string ID;
-    public List<GameObject> Building;
+    public List<BuildingView> Building;
     public Text PeopleText;
-    public int population = 0;
+
+    private int population;
+
+    public int Population
+    {
+        get { return population; }
+        set { population = value; }
+    }
+
     public PlayerInputData inputData;
     protected GridController grid;
     protected Vector2 currentGridPosition;
