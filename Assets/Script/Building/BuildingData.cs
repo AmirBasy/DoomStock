@@ -23,6 +23,10 @@ public class BuildingData : ScriptableObject {
     /// </summary>
     public int Population;
     /// <summary>
+    /// variabile che aumenta la MaxPopulation una volta depositato un edificio
+    /// </summary>
+    public int IncreasePopulation;
+    /// <summary>
     /// Risorsa dell edificio
     /// </summary>
     [HideInInspector]

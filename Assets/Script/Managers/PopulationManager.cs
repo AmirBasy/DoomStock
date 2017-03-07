@@ -8,11 +8,11 @@ public class PopulationManager : MonoBehaviour {
     public Text MainPeopleText;
     public PopulationView PV;
 
-
+    
     /// <summary>
     /// Popolazione in comune tra i player
     /// </summary>
-    private int maxPopulation = 100;
+    private int maxPopulation;
 
     public int MaxPopulation
     {
@@ -21,11 +21,12 @@ public class PopulationManager : MonoBehaviour {
         {
             maxPopulation = value;
 
-            if (MaxPopulation > 99)
-                MaxPopulation = 100;
+            if (MaxPopulation > maxPopulation)
+                MaxPopulation = maxPopulation;
             if (MaxPopulation <= 0)
                 MaxPopulation = 0;
             UpdateGraphic("Main People: " + MaxPopulation);
+            IncreaseMaxPopulation();
         }
     }
 
@@ -34,24 +35,24 @@ public class PopulationManager : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     public static List<PopulationData> GetAllPopulation()
-    {   
+    {
         PopulationData[] allBuildingfromResources = Resources.LoadAll<PopulationData>("Population");
         List<PopulationData> newPopulationList = new List<PopulationData>();
         foreach (PopulationData populationPointer in newPopulationList)
         {
             newPopulationList.Add(new PopulationData
             {
-                  Food = populationPointer.Food,
-                  Happiness = populationPointer.Happiness,
-                  HealthCare = populationPointer.HealthCare,
-                  LifeDuration =populationPointer.LifeDuration,
-                  Name = populationPointer.Name,
-                  TypeOfWork = populationPointer.TypeOfWork
+                Food = populationPointer.Food,
+                Happiness = populationPointer.Happiness,
+                HealthCare = populationPointer.HealthCare,
+                LifeDuration = populationPointer.LifeDuration,
+                Name = populationPointer.Name,
+                TypeOfWork = populationPointer.TypeOfWork
             }
             );
         }
         return newPopulationList;
-        }
+    }
     #region Risorse
     private int resource1;
 
@@ -78,8 +79,8 @@ public class PopulationManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-       
+    void Start() {
+        maxPopulation = 100;
         UpdateGraphic("Main People: " + MaxPopulation);
     }
 
@@ -88,7 +89,15 @@ public class PopulationManager : MonoBehaviour {
         if (MainPeopleText)
             MainPeopleText.text = _newText;
     }
+    /// <summary>
+    /// Aumenta la MaxPopulation
+    /// </summary>
+    public void IncreaseMaxPopulation(){
+        foreach (BuildingView bulding in GameManager.I.buildingManager.GetAllBuildingInScene())
+        {
+          //  maxPopulation += 10;
+        }
+    }
 
 
-   
 }

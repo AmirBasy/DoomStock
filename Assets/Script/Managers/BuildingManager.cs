@@ -49,7 +49,22 @@ public class BuildingManager : MonoBehaviour {
         }
         return newBuildingList;
     }
+    /// <summary>
+    /// Lista di BuildingView che i player Istanziano nella scena.
+    /// </summary>
+    /// <returns></returns>
+    public List<BuildingView> GetAllBuildingInScene() {
+        List<BuildingView> newBuildingList = new List<BuildingView>();
+        if (GameManager.I.player.BuildingsInScene !=null)
+        {
+            foreach (BuildingView building in GameManager.I.player.BuildingsInScene)
+            {
+                newBuildingList.Add(building);
+            } 
+        }
 
+        return newBuildingList;
+    }
 
         /// <summary>
         /// Moltiplica i lavoratori per il multiplier del tempo
@@ -62,7 +77,7 @@ public class BuildingManager : MonoBehaviour {
 
     private void Update()
     {
-
+        GetAllBuildingInScene();   
         if (Labourers >= 1)
         {
             //increaseDimension();
@@ -86,5 +101,7 @@ public class BuildingManager : MonoBehaviour {
     {
         buildingViewPrefab.ActualPeople.text = newText;
     }
+
+    
 }
 

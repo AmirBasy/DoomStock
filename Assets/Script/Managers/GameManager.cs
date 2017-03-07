@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
    // public Text MainPeopleText;
     public List<Player> Players;
     public GameObject PlayerPrefab;
+    public Player player;
    
 
     #region Managers
