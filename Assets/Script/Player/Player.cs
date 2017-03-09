@@ -6,7 +6,12 @@ using DG.Tweening;
 using Framework.Grid;
 
 public class Player : PlayerBase {
-    public List<BuildingView> BuildingsInScene;
+    /// <summary>
+    /// Elenco dei BuildingView che sono stati istanziati nella scena di gioco
+    /// </summary>
+    [HideInInspector]public List<BuildingView> BuildingsInScene;
+    public List<BuildingData> BuildingsDataPrefabs;
+    public BuildingView CurrentBuildView;
     private void Start()
     {
         Population = 0;
@@ -34,13 +39,13 @@ public class Player : PlayerBase {
     #region population
 
 
-    public void AddPopulation() {
+    public void AddPopulation(BuildingView _buildingView) {
         if (GameManager.I.populationManager.MaxPopulation > 0) {
             GameManager.I.populationManager.MaxPopulation -= 1;
-            Population++;
+            _buildingView.Data.Population++;
             //// updategraphic("people: " + population + " press q to add, e to remove
-            if (BuildingsInScene[0] != null)
-                BuildingsInScene[0].gameObject.GetComponent<BuildingView>().UpdateGraphic();
+            if (_buildingView != null)
+                _buildingView.gameObject.GetComponent<BuildingView>().UpdateGraphic();
         }
     }
 
@@ -69,12 +74,15 @@ public class Player : PlayerBase {
     #endregion
 
     #region Buildings
+    
     public override void DeployBuilding()
     {
         base.DeployBuilding();
-        Instantiate(Building[0].gameObject);
-        BuildingsInScene.Add(Building[0]);
-        BuildingsInScene[0].player = this;
+        BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(BuildingsDataPrefabs[0]);
+        BuildingsInScene.Add(newInstanceOfView);
+        CurrentBuildView = newInstanceOfView;
+        CurrentBuildView.player = this;
+
     }
 
     public override void AddPeopleOnBuilding()
@@ -129,7 +137,7 @@ public class Player : PlayerBase {
             DeployBuilding();
         }
         if (Input.GetKeyDown(inputData.AddPopulation)) {
-            AddPopulation();         
+            AddPopulation(CurrentBuildView);         
         }
         if (Input.GetKeyDown(inputData.RemovePopulation)) {
             RemovePopulation();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuildingView : MonoBehaviour {
 
-    public TextMesh ActualPeople;
+    public TextMesh TextActualPeople;
 
     public BuildingData Data;
 
@@ -13,7 +13,7 @@ public class BuildingView : MonoBehaviour {
     private void Start()
     {
         
-        ActualPeople.text = "People: " + player.Population;
+        TextActualPeople.text = "People: " + player.Population;
 
     }
     public void Init(BuildingData _buildingData)
@@ -28,7 +28,7 @@ public class BuildingView : MonoBehaviour {
     }
 
     public void UpdateGraphic() {
-        ActualPeople.text = "People: " + player.Population;
+        TextActualPeople.text = "People: " + Data.Population;
         
     }
 

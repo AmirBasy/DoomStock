@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour {
 
-    public BuildingView buildingViewPrefab;
+    
 
     #region Labourers
     private int labourers = 1;
@@ -39,9 +39,8 @@ public class BuildingManager : MonoBehaviour {
         {
             newBuildingList.Add(new BuildingData
             {
-                PeopleLimit = buildingPointer.PeopleLimit,
-                dimension = buildingPointer.dimension,
-                timeMultiplier = buildingPointer.dimension,
+                PopulationLimit = buildingPointer.PopulationLimit,
+                
                 Population = buildingPointer.Population,
                 Resource = new BaseResource(), 
             }
@@ -71,9 +70,11 @@ public class BuildingManager : MonoBehaviour {
         /// </summary>
         void SetBuildingTime()
     {
-        buildingViewPrefab.Data.timeMultiplier *= Labourers;
+        //buildingViewPrefab.Data.timeMultiplier *= Labourers;
     }
-
+    private void Start() {
+        GetAllBuildings();
+    }
 
     private void Update()
     {
@@ -95,11 +96,21 @@ public class BuildingManager : MonoBehaviour {
     /// <summary>
     /// fa crescere la dimensione nel tempo
     /// </summary>
-    void increaseDimension() { buildingViewPrefab.Data.dimension += Time.deltaTime * buildingViewPrefab.Data.timeMultiplier; }
+    //void increaseDimension() { buildingViewPrefab.Data.dimension += Time.deltaTime * buildingViewPrefab.Data.timeMultiplier; }
 
     public virtual void UpdateGraphic(string newText)
     {
-        buildingViewPrefab.ActualPeople.text = newText;
+        //buildingViewPrefab.ActualPeople.text = newText;
+    }
+    /// <summary>
+    /// Crea una BuildData restituisce una nuova istanza appena creata
+    /// </summary>
+    public BuildingView CreateBuild(BuildingData _buildingDataPrefab){
+        BuildingData NewIstanceBuildingData;
+        NewIstanceBuildingData = Instantiate(_buildingDataPrefab);
+        BuildingView NewIstanceView = Instantiate(NewIstanceBuildingData.BuildPrefab);
+        NewIstanceView.Init(NewIstanceBuildingData);
+        return NewIstanceView;
     }
 
     

@@ -11,6 +11,7 @@ public abstract class PlayerBase : MonoBehaviour {
     public List<BuildingView> Building;
     public Text PeopleText;
 
+
     private int population;
 
     public int Population

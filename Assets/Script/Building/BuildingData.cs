@@ -5,32 +5,25 @@ using System;
                  menuName = "Building/BuildingData", order = 1)]
 
 public class BuildingData : ScriptableObject {
-  
+    /// <summary>
+    /// la risorsa population che ha è assegnata al
+    /// </summary>
+    [HideInInspector]
+    public int Population;
     /// <summary>
     /// Variabile che indica quanta Popolazione massima posso possedere
     /// </summary>
-    public int PeopleLimit;
+    public int PopulationLimit;
     /// <summary>
-    /// Da ridefinire.
-    /// </summary>
-    public float dimension = 0;
-    /// <summary>
-    /// Timer che gestisce l'evoluzione della costruzione
-    /// </summary>
-    public float timeMultiplier = 0.01f;
-    /// <summary>
-    /// la risorsa population che ha un building
-    /// </summary>
-    public int Population;
-    /// <summary>
-    /// variabile che aumenta la MaxPopulation una volta depositato un edificio
-    /// </summary>
-    public int IncreasePopulation;
-    /// <summary>
-    /// Risorsa dell edificio
-    /// </summary>
+    /// Oggetto prefab dell edificio
+    /// </summary> 
+    public BuildingView BuildPrefab;
     [HideInInspector]
     public BaseResource Resource = new BaseResource();
+    /// <summary>
+    /// identifica il tipo di edificio
+    /// </summary>
+    public String ID;
     
 }
 
