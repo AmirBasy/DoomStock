@@ -7,8 +7,7 @@ public class PopulationManager : MonoBehaviour {
 
     public Text MainPeopleText;
     public PopulationView PV;
-
-    
+    public int StandardNatality;
     /// <summary>
     /// Popolazione in comune tra i player
     /// </summary>
@@ -29,48 +28,16 @@ public class PopulationManager : MonoBehaviour {
             IncreaseMaxPopulation();
         }
     }
-
     /// <summary>
-    /// Prende tutti La Population che stanno nella cartella Resources/Population per evitare che i dati vengano salvati.
+    /// Aspettativa di vita che viene modifacata in base all'HealthCare
     /// </summary>
     /// <returns></returns>
-    public static List<PopulationData> GetAllPopulation()
-    {
-        PopulationData[] allBuildingfromResources = Resources.LoadAll<PopulationData>("Population");
-        List<PopulationData> newPopulationList = new List<PopulationData>();
-        foreach (PopulationData populationPointer in newPopulationList)
-        {
-            newPopulationList.Add(new PopulationData
-            {
-                Food = populationPointer.Food,
-                Happiness = populationPointer.Happiness,
-                HealthCare = populationPointer.HealthCare,
-                LifeDuration = populationPointer.LifeDuration,
-                Name = populationPointer.Name,
-                TypeOfWork = populationPointer.TypeOfWork
-            }
-            );
-        }
-        return newPopulationList;
-    }
-    #region Risorse
-    private int resource1;
-
-    public int Resource1
-    {
-        get { return resource1; }
-        set { resource1 = value; }
-    }
-    private int resource2;
-
-    public int Resource2
-    {
-        get { return resource2; }
-        set { resource2 = value; }
-    }
+    //public int LifeExpectancy() {
+    //    int PopulationLifeExpectancy;
 
 
-    #endregion Risorse
+    //    return PopulationLifeExpectancy;
+    //}
 
     void Awake()
     {

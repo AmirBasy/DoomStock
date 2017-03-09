@@ -9,10 +9,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager I;
-   // public Text MainPeopleText;
     public List<Player> Players;
     public GameObject PlayerPrefab;
     public Player player;
+    public int Happiness, HealthCare;
+    
    
 
     #region Managers
@@ -95,15 +96,8 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         SetupPlayers();
-        //UpdateGraphic("Main People: " + populationManager.MaxPopulation);
+        
     }
-
-    //private void UpdateGraphic(string _newText)
-    //{
-    //    if(MainPeopleText)
-    //        MainPeopleText.text = _newText;
-    //}
-
 
     public void BackToMenu()
     {

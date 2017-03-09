@@ -7,9 +7,9 @@ using System;
 public class PopulationData : ScriptableObject
 {
 
-    public String Name, TypeOfWork;
+    public String Name, Ambition;
 
-    public int LifeDuration, HealthCare, Food, Happiness ;
+    public int Age,StandardLifeExpectation, FoodRequirements, IndividualHappiness ;
 
     
 }
