@@ -8,9 +8,7 @@ using Framework.Grid;
 public abstract class PlayerBase : MonoBehaviour {
 
     public string ID;
-    public List<BuildingView> Building;
     public Text PeopleText;
-
 
     private int population;
 
@@ -33,10 +31,6 @@ public abstract class PlayerBase : MonoBehaviour {
     /// Istanzia un edificio
     /// </summary>
     public virtual void DeployBuilding() { }
-    /// <summary>
-    /// Aggiungie la popolazione all'edificio
-    /// </summary>
-    public virtual void AddPeopleOnBuilding() { }
 
     #region Move Ability
     public virtual void MoveTo(Vector3 _destination) {

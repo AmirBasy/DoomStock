@@ -11,5 +11,6 @@ public class PopulationData : ScriptableObject
 
     public int Age,StandardLifeExpectation, FoodRequirements, IndividualHappiness ;
 
+    public PopulationView PopulationPrefab;
     
 }

@@ -66,13 +66,13 @@ namespace Framework.Grid {
         public static Vector2 GetGridPositionByDirection(Vector2 _actualGridPosition, Direction _direction) {
             switch (_direction) {
                 case Direction.up:
-                    return new Vector2(_actualGridPosition.x - 1, _actualGridPosition.y);
+                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y+1);
                 case Direction.left:
-                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y +1);
+                    return new Vector2(_actualGridPosition.x -1, _actualGridPosition.y);
                 case Direction.down:
-                    return new Vector2(_actualGridPosition.x + 1, _actualGridPosition.y);
+                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y-1);
                 case Direction.right:
-                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y -1);
+                    return new Vector2(_actualGridPosition.x+1, _actualGridPosition.y);
                 default:
                     // non valida
                     return _actualGridPosition;

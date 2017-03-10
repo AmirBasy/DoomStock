@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2a606ef750d01b4bb9dbc26df131596, type: 3}
-  m_Name: PopulationTest
+  m_Name: PopulationTest 2
   m_EditorClassIdentifier: 
   Name: 
   Ambition: 

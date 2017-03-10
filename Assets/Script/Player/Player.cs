@@ -38,12 +38,14 @@ public class Player : PlayerBase {
 
     #region population
 
-
+    /// <summary>
+    /// Aggiungie la risorsa Population all'Edificio
+    /// </summary>
+    /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingView _buildingView) {
         if (GameManager.I.populationManager.MaxPopulation > 0) {
             GameManager.I.populationManager.MaxPopulation -= 1;
             _buildingView.Data.Population++;
-            //// updategraphic("people: " + population + " press q to add, e to remove
             if (_buildingView != null)
                 _buildingView.gameObject.GetComponent<BuildingView>().UpdateGraphic();
         }
@@ -62,7 +64,9 @@ public class Player : PlayerBase {
     #endregion
 
     #region Buildings
-    
+    /// <summary>
+    /// Istanzia una nuovo oggetto Building
+    /// </summary>
     public override void DeployBuilding()
     {
         base.DeployBuilding();
@@ -70,18 +74,10 @@ public class Player : PlayerBase {
         BuildingsInScene.Add(newInstanceOfView);
         CurrentBuildView = newInstanceOfView;
         CurrentBuildView.player = this;
+        GameManager.I.populationManager.IncreaseMaxPopulation();
 
     }
 
-    public override void AddPeopleOnBuilding()
-    {
-        base.AddPeopleOnBuilding();
-        if (Input.GetKeyDown(KeyCode.X) && Population > 0)
-        {
-            //Aggiungo la popolazione all'edificio
-            
-        }
-    }
     #endregion
 
     #region grid Movement

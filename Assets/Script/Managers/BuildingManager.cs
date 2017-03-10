@@ -21,14 +21,6 @@ public class BuildingManager : MonoBehaviour {
         return newBuildingList;
     }
 
- 
-    private void Start() {
-       
-    }
-
-    private void Update()
-    {
-    }
 
     /// <summary>
     /// Crea una BuildData restituisce una nuova istanza appena creata

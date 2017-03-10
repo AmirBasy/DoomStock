@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1374556731352996}
+  m_RootGameObject: {fileID: 1535616906650572}
   m_IsPrefabParent: 1
---- !u!1 &1374556731352996
+--- !u!1 &1535616906650572
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4497645643453024}
-  - component: {fileID: 114339023798415358}
+  - component: {fileID: 4872020119294294}
+  - component: {fileID: 114512866645299112}
   m_Layer: 0
-  m_Name: GridContainer 1
+  m_Name: BaseResources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4497645643453024
+--- !u!4 &4872020119294294
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1374556731352996}
+  m_GameObject: {fileID: 1535616906650572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.24, y: 6.54, z: 6.17}
+  m_LocalPosition: {x: -8.1, y: 1.0000002, z: -0.000000059604645}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114339023798415358
+--- !u!114 &114512866645299112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1374556731352996}
+  m_GameObject: {fileID: 1535616906650572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1e850b6108ae54ca597c268da7f347, type: 3}
+  m_Script: {fileID: 11500000, guid: 61e29ede33c30bb418af6e476919eff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 4772205775514382, guid: fc7114232712d7b4eaefcc441795fd6a, type: 2}
-  GridSize: {x: 10, y: 10}
+  ID: 
+  Value: 0

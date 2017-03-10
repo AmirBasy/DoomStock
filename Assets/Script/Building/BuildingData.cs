@@ -12,7 +12,6 @@ public class BuildingData : ScriptableObject {
     /// <summary>
     /// la risorsa population che ha è assegnata al
     /// </summary>
-    [HideInInspector]
     public int Population;
     /// <summary>
     /// Variabile che indica quanta Popolazione massima posso possedere
@@ -42,8 +41,12 @@ public class BuildingData : ScriptableObject {
     /// Variabile che indica il costo di Manuntenzione
     /// </summary>
     public int Maintenance;
-    [HideInInspector]
-    public BaseResource Resource = new BaseResource();
+    /// <summary>
+    /// Aumenta il LimiteMassimo della Popolazione
+    /// </summary>
+    public int IncraseMaxPopulation;
+    
+    public BaseResource Resource;
     
     
 }
