@@ -15,10 +15,20 @@ public class TimedEventData : ScriptableObject
     /// <summary>
     /// Segnala quando deve partire un evento.
     /// </summary>
-    public float TimeToInvoke;
+    public int TimeUnitsToInvoke;
+
+    /// <summary>
+    /// Contatore delle unità di tempo runtime per questo evento.
+    /// </summary>
+    [HideInInspector]
+    public int CurrentTimeUnit;
 
     /// <summary>
     /// Se è true si ripete.
     /// </summary>
     public bool isRepeating;
+
+    public TimedEventData() {
+        CurrentTimeUnit = TimeUnitsToInvoke;
+    }
 }

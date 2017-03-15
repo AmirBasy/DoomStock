@@ -19,8 +19,18 @@ public class BuildingView : MonoBehaviour {
     public void Init(BuildingData _buildingData)
     {
         Data = _buildingData;
+        TimeEventManager.OnEvent += OnUnitEvent;
         UpdateGraphic();
     }
+
+    void OnUnitEvent(string _eventName) {
+        foreach (string eventName in Data.TimedEvents) {
+            if (eventName == _eventName) {
+
+            }
+        } 
+    }
+
 
     public void UpdateGraphic() {
         TextActualPeople.text = "People: " + Data.Population;

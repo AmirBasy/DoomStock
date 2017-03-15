@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TimeEventManager : MonoBehaviour {
 
-    public delegate void GameTimedEvent();
+    public delegate void GameTimedEvent(string _eventName);
 
     public static GameTimedEvent OnEvent;
     public List<TimedEventData> Events;
@@ -15,13 +15,33 @@ public class TimeEventManager : MonoBehaviour {
         Events.Add(new TimedEventData() {
             ID = "Apocalisse",
             isRepeating = false,
-            TimeToInvoke = 10000.0f});
+            TimeUnitsToInvoke = 10000});
         Events.Add(new TimedEventData() {
             ID = "FineAnno",
             isRepeating = true,
-            TimeToInvoke = 365.0f
+            TimeUnitsToInvoke = 365
         });
     }
 
+    #region Time units
+
+    public float unitDuration = 1;
+    float currentTime = 0;
+    int unitsEnded = 0;
+    private void Update() {
+        currentTime += Time.deltaTime;
+        if (currentTime > unitDuration) {
+            currentTime = 0;
+            unitsEnded++;
+            UnitEnd();
+        }
+    }
+
+    void UnitEnd() {
+        if (OnEvent != null)
+            OnEvent("ssss");
+    }
+
+    #endregion
     ///appena viene aggiunto deve succedere qualcosa.
 }

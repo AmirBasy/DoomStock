@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Chiesa
   m_EditorClassIdentifier: 
-  ID: 
+  ID: Chiesa
   Population: 0
   PopulationLimit: 0
   BuildPrefab: {fileID: 114322596599644798, guid: c2d48951f9dce594c99750b2b3e3005e,
@@ -21,4 +21,5 @@ MonoBehaviour:
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
-  Resource: {fileID: 114512866645299112, guid: 78d5e7ca12541014fa9c3e726e746155, type: 2}
+  IncraseMaxPopulation: 0
+  TimedEvents: []

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "BuildingDataInfo", 
                  menuName = "Building/BuildingData", order = 1)]
@@ -45,8 +46,11 @@ public class BuildingData : ScriptableObject {
     /// Aumenta il LimiteMassimo della Popolazione
     /// </summary>
     public int IncraseMaxPopulation;
-    
-    public BaseResource Resource;
+
+    /// <summary>
+    /// Lista degli eventi a cui questo edificio risponde.
+    /// </summary>
+    public List<string> TimedEvents = new List<string>();
     
     
 }
