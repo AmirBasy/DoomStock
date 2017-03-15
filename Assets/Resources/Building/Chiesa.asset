@@ -22,4 +22,5 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncraseMaxPopulation: 0
-  TimedEvents: []
+  TimedEvents:
+  - FoodProduction

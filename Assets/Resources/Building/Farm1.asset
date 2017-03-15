@@ -22,4 +22,5 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncraseMaxPopulation: 10
-  Resource: {fileID: 114512866645299112, guid: 78d5e7ca12541014fa9c3e726e746155, type: 2}
+  TimedEvents:
+  - FoodProduction
