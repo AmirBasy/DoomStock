@@ -23,12 +23,24 @@ public class BuildingView : MonoBehaviour {
         UpdateGraphic();
     }
 
-    void OnUnitEvent(string _eventName) {
-        foreach (string eventName in Data.TimedEvents) {
-            if (eventName == _eventName) {
-
+    void OnUnitEvent(TimedEventData _eventData) {
+        foreach (TimedEventData ev in Data.TimedEvents) {
+            if (ev.ID == _eventData.ID) {
+                //Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
             }
-        } 
+        }
+
+        foreach (TimedEventData ev in Data.TimedEvents) {
+            switch (ev.ID) {
+                case "Mese":
+                    Data.BuildingLife = Data.BuildingLife - Data.DecreaseBuildingLife;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Debug.LogFormat("Edificio {0} si è decrementato di {1} ({2})", Data.ID, Data.DecreaseBuildingLife , Data.BuildingLife);
     }
 
 
@@ -37,5 +49,7 @@ public class BuildingView : MonoBehaviour {
         
     }
 
-
+    private void OnDisable() {
+        TimeEventManager.OnEvent -= OnUnitEvent;
+    }
 }

@@ -65,8 +65,8 @@ public class PopulationManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         maxPopulation = 100;
-        PopulationListInScene();
-        CreatePopulation(PopulationDataPrefabs[0]);
+        //PopulationListInScene();
+        //CreatePopulation(PopulationDataPrefabs[0]);
         UpdateGraphic("Main People: " + MaxPopulation);
     }
 

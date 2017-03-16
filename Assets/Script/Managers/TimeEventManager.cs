@@ -5,30 +5,37 @@ using UnityEngine;
 
 public class TimeEventManager : MonoBehaviour {
 
-    public delegate void GameTimedEvent(string _eventName);
+    #region Events
+    public delegate void GameTimedEvent(TimedEventData _eventData);
 
     public static GameTimedEvent OnEvent;
-    public List<TimedEventData> Events;
+    #endregion
+
+    public List<TimedEventData> EventsPrefab = new List<TimedEventData>();
+    [HideInInspector]
+    protected List<TimedEventData> Events = new List<TimedEventData>();
 
     private void Start() {
-        Events = new List<TimedEventData>();
-        Events.Add(new TimedEventData() {
-            ID = "Apocalisse",
-            isRepeating = false,
-            TimeUnitsToInvoke = 10000});
-        Events.Add(new TimedEventData() {
-            ID = "FineAnno",
-            isRepeating = true,
-            TimeUnitsToInvoke = 365
-        });
+        foreach (TimedEventData ev in EventsPrefab) {
+            Events.Add(Instantiate(ev));
+        }
     }
 
     #region Time units
-
-    public float unitDuration = 1;
-    float currentTime = 0;
+    /// <summary>
+    /// Decide quanto dura una unità di tempo.
+    /// </summary>
+    public float unitDuration = 1f;
+    /// <summary>
+    /// Contatore delle unità di tempo.
+    /// </summary>
     int unitsEnded = 0;
+
+    float currentTime = 0;
+    
     private void Update() {
+        if (Events == null)
+            return;
         currentTime += Time.deltaTime;
         if (currentTime > unitDuration) {
             currentTime = 0;
@@ -37,11 +44,22 @@ public class TimeEventManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Chiamata quando scade una unità di tempo. Controllo se è necessario invocare un timed event.
+    /// </summary>
     void UnitEnd() {
-        if (OnEvent != null)
-            OnEvent("ssss");
+        foreach (var ev in Events) {
+            if (ev.TimeUnitEnded()) {
+                // Scateno l'evento
+                if (OnEvent != null)
+                    OnEvent(ev);
+            }
+
+        }
+
     }
 
     #endregion
+
     ///appena viene aggiunto deve succedere qualcosa.
 }

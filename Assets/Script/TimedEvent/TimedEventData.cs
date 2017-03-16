@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TimedEventData",
-                 menuName = "TimedEvent/TimedEventData", order = 3)]
+                 menuName = "TimedEvent/New Timed Event", order = 3)]
 
 public class TimedEventData : ScriptableObject
 {
@@ -28,7 +28,20 @@ public class TimedEventData : ScriptableObject
     /// </summary>
     public bool isRepeating;
 
-    public TimedEventData() {
+    public void Awake() {
         CurrentTimeUnit = TimeUnitsToInvoke;
+    }
+
+    /// <summary>
+    /// Comunica che è passata una unità di tempo.
+    /// </summary>
+    public bool TimeUnitEnded() {
+        CurrentTimeUnit--;
+        if (CurrentTimeUnit == 0) {
+            if (isRepeating)
+                CurrentTimeUnit = TimeUnitsToInvoke;
+            return true;
+        }
+        return false;
     }
 }

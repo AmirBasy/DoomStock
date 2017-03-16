@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Torretta
   m_EditorClassIdentifier: 
-  ID: 
+  ID: Torre
   Population: 0
   PopulationLimit: 0
   BuildPrefab: {fileID: 114029765257987560, guid: 84e5c6ca0ede82346a25f86f02a0d7b0,
@@ -21,4 +21,9 @@ MonoBehaviour:
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
-  Resource: {fileID: 114512866645299112, guid: 78d5e7ca12541014fa9c3e726e746155, type: 2}
+  IncraseMaxPopulation: 0
+  BuildingLife: 200
+  DecreaseBuildingLife: 1
+  TimedEvents:
+  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}

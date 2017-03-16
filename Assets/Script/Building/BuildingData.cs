@@ -47,10 +47,14 @@ public class BuildingData : ScriptableObject {
     /// </summary>
     public int IncraseMaxPopulation;
 
+
+    public int BuildingLife;
+    public int DecreaseBuildingLife;
+
     /// <summary>
     /// Lista degli eventi a cui questo edificio risponde.
     /// </summary>
-    public List<string> TimedEvents = new List<string>();
+    public List<TimedEventData> TimedEvents;
     
     
 }

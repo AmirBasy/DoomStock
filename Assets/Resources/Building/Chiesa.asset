@@ -22,5 +22,7 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncraseMaxPopulation: 0
+  BuildingLife: 100
+  DecreaseBuildingLife: 2
   TimedEvents:
-  - FoodProduction
+  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
