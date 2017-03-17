@@ -93,6 +93,7 @@ public class Player : PlayerBase {
                         Debug.LogFormat("Movimento player {0} verso {1}", gameObject.name, _gridPosition);
                     }).SetEase(Ease.OutBounce);
         currentGridPosition = _gridPosition;
+        GridController.SetCurrentPlayerPosition(ID , currentGridPosition);
     }
     #endregion
 
