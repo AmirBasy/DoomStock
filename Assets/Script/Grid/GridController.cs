@@ -12,6 +12,7 @@ namespace Framework.Grid {
         public Vector2 GridSize = new Vector2(3, 3);
         public List<Cell> Cells = new List<Cell>();
         public Cell cell = new Cell();
+        public List<Vector2> GridInvalidPositions = new List<Vector2>();
 
 
         // Use this for initialization
@@ -60,6 +61,9 @@ namespace Framework.Grid {
                 return false;
             else if(_gridPosition.x > GridSize.x-1 || _gridPosition.y > GridSize.y-1)
                 // posizone del cursore oltre le dimensioni della griglia
+                return false;
+            else if (GridInvalidPositions.Contains(_gridPosition))
+                //posizone del cursore sulle celle disabiliatate
                 return false;
             else
                 return true;
