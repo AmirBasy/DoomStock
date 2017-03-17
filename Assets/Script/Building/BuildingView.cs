@@ -26,7 +26,7 @@ public class BuildingView : MonoBehaviour {
     void OnUnitEvent(TimedEventData _eventData) {
         foreach (TimedEventData ev in Data.TimedEvents) {
             if (ev.ID == _eventData.ID) {
-                //Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+                Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
             }
         }
 
@@ -34,6 +34,9 @@ public class BuildingView : MonoBehaviour {
             switch (ev.ID) {
                 case "Mese":
                     Data.BuildingLife = Data.BuildingLife - Data.DecreaseBuildingLife;
+                    break;
+                case "FoodProduction":
+                    GameManager.I.buildingManager.IncreaseResources(this);
                     break;
                 default:
                     break;
@@ -52,4 +55,5 @@ public class BuildingView : MonoBehaviour {
     private void OnDisable() {
         TimeEventManager.OnEvent -= OnUnitEvent;
     }
+    
 }

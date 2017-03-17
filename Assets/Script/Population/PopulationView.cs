@@ -15,6 +15,7 @@ public class PopulationView : MonoBehaviour {
     public void Init(PopulationData _buildingData)
     {
         Data = _buildingData;
+
         UpdateGraphic();
     }
 

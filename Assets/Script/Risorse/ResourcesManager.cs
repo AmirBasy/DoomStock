@@ -25,7 +25,7 @@ public class ResourcesManager : MonoBehaviour {
     }
     private void Start() {
         Init();
-        Debug.Log(GetResourceDataFromString("Food").ID);
+        //Debug.Log(GetResourceDataFromString("Food").ID);
 
     }
 }

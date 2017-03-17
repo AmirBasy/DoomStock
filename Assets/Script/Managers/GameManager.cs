@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     public List<Player> Players;
     public GameObject PlayerPrefab;
     public Player player;
-    public int Happiness, HealthCare;
+    public int Food;
     
    
 
@@ -61,26 +61,26 @@ public class GameManager : MonoBehaviour {
         if (Players[2] != null) {
             Players[2].SetupInput(
             new PlayerInputData() {
-                Up = KeyCode.I,
-                Left = KeyCode.J,
-                Down = KeyCode.K,
-                Right = KeyCode.L,
+                Up = KeyCode.UpArrow,
+                Left = KeyCode.LeftArrow,
+                Down = KeyCode.DownArrow,
+                Right = KeyCode.RightArrow,
                 AddBuilding = KeyCode.F2,
-                AddPopulation = KeyCode.U,
-                RemovePopulation = KeyCode.O,
+                AddPopulation = KeyCode.PageUp,
+                RemovePopulation = KeyCode.PageDown,
             });
             Players[2].SetupGrid(GridController, new Vector2(GridController.GridSize.x, GridController.GridSize.y));
         }
         if (Players[3] != null) {
             Players[3].SetupInput(
             new PlayerInputData() {
-                Up = KeyCode.I,
-                Left = KeyCode.J,
-                Down = KeyCode.K,
-                Right = KeyCode.L,
+                Up = KeyCode.Keypad8,
+                Left = KeyCode.Keypad4,
+                Down = KeyCode.Keypad5,
+                Right = KeyCode.Keypad6,
                 AddBuilding = KeyCode.F1,
-                AddPopulation = KeyCode.U,
-                RemovePopulation = KeyCode.O,
+                AddPopulation = KeyCode.KeypadPlus,
+                RemovePopulation = KeyCode.KeypadMinus,
             });
             Players[3].SetupGrid(GridController, new Vector2(GridController.GridSize.x, 0));
         }
