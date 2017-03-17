@@ -10,11 +10,12 @@ public class Player : PlayerBase {
     /// Elenco dei BuildingView che sono stati istanziati nella scena di gioco
     /// </summary>
     [HideInInspector]public List<BuildingView> BuildingsInScene;
-    public List<BuildingData> BuildingsDataPrefabs;
+    public List<BuildingData> BuildingsDataPrefabs = new List<BuildingData>();
     public BuildingView CurrentBuildView;
     private void Start()
     {
         Population = 0;
+        //GameManager.I.UIPlayerManager.SendBuildingDataToMenuBuilding(BuildingsDataPrefabs, this);
     }
 
     #region Setup
@@ -152,6 +153,7 @@ public class Player : PlayerBase {
     void ActiveMenuInUIManager()
     {
         GameManager.I.UIPlayerManager.ActiveMenu(this);
+        
     }
 
     #endregion

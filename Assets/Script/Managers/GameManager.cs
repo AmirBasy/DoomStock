@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
     //FulvioTestUI
-    public TestUIPlayer UIPlayerManager;
+    public TestUIManager UIPlayerManager;
     #endregion
 
     #region Players

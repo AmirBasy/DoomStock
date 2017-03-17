@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestUIPlayer : MonoBehaviour {
+public class TestUIManager : MonoBehaviour {
     public GameObject PlayerMenuPrefab;
-    List<Player> players = new List<Player>();
+    public List<BuildingData> UibuildingsList = new List<BuildingData>();
     public GameObject Player1UI;
     public GameObject Player2UI;
     public GameObject Player3UI;
     public GameObject Player4UI;
 
+    
     // Use this for initialization
     void Start () {
         
@@ -19,11 +20,8 @@ public class TestUIPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space))
-        {
-            
-        }
-	}
+        
+    }
 
     #region API
 
@@ -40,6 +38,7 @@ public class TestUIPlayer : MonoBehaviour {
             case "PlayerOne":
                 //tempMenu = Instantiate(PlayerMenuPrefab, Player1UI.transform, false);
                 //tempMenu.transform.position = new Vector3(Player1UI.transform.position.x + 95, Player1UI.transform.position.y - 45);
+                
                 if (Player1UI.active == true)
                 {
                     Player1UI.SetActive(false);
@@ -48,6 +47,7 @@ public class TestUIPlayer : MonoBehaviour {
                 {
                     Player1UI.SetActive(true);
                 }
+                
 
                 break;
             case "PlayerTwo":
@@ -65,9 +65,25 @@ public class TestUIPlayer : MonoBehaviour {
         }
     }
     
-    void DisplayInfo(BuildingData _buildingDataPrefabs)
+    public void SendBuildingDataToMenuBuilding(List<BuildingData> _buildingDataPrefabs, Player _player)
     {
-
+        switch (_player.ID)
+        {
+            case "PlayerOne":
+                //Player1UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
+                break;
+            case "PlayerTwo":
+                //Player2UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
+                break;
+            case "PlayerThree":
+                //Player3UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
+                break;
+            case "PlayerFour":
+                //Player4UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
+                break;
+            default:
+                break;
+        }
     }
 
     #endregion
