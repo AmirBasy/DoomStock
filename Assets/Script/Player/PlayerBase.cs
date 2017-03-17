@@ -52,5 +52,8 @@ public class PlayerInputData {
     public KeyCode AddPopulation;
     public KeyCode RemovePopulation;
     public KeyCode AddBuilding;
+
+    ///FulvioTestUI
+    public KeyCode OpenMenu;
 }
 

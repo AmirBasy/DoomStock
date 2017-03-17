@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
     public TimeEventManager timeEventManager;
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
+    //FulvioTestUI
+    public TestUIPlayer UIPlayerManager;
     #endregion
 
     #region Players
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour {
                     AddBuilding = KeyCode.Z,
                     AddPopulation = KeyCode.X,
                     RemovePopulation = KeyCode.E,
+                    //FulvioTestUI
+                    OpenMenu = KeyCode.Space,
                 });
             Players[0].SetupGrid(GridController, new Vector2(0, 0));
         }

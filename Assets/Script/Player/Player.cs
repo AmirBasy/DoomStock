@@ -126,6 +126,11 @@ public class Player : PlayerBase {
         if (Input.GetKeyDown(inputData.RemovePopulation)) {
             RemovePopulation();
         }
+        //FulvioTestUI
+        if (Input.GetKeyDown(inputData.OpenMenu))
+        {
+            ActiveMenuInUIManager();
+        }
     }
 
     #endregion
@@ -133,7 +138,24 @@ public class Player : PlayerBase {
     void Update()
     {
         checkInputs();
+        
     }
+
+
+
+    #region Fulvio Test UI
+    
+    /// <summary>
+    /// FulvioTestUI
+    /// Va a richiamare la funzione ActiveMenu, presente nel UIPlayer, passando se stesso.
+    /// </summary>
+    void ActiveMenuInUIManager()
+    {
+        GameManager.I.UIPlayerManager.ActiveMenu(this);
+    }
+
+    #endregion
+
 }
 
 
