@@ -33,6 +33,17 @@ public class BuildingManager : MonoBehaviour {
         return NewIstanceView;
     }
 
-    
+    /// <summary>
+    /// Aumento della risorsa
+    /// </summary>
+    /// <param name="_buildingData"></param>
+    public void IncreaseResources(BuildingView _buildingview)
+    {
+        if (_buildingview.Data.Population >0)
+        {
+            GameManager.I.Food += _buildingview.Data.Population * _buildingview.Data.Resources[0].Value;
+            Debug.Log("Actual food = " + GameManager.I.Food);
+        }
+    }
 }
 

@@ -320,6 +320,7 @@ MonoBehaviour:
   EventsPrefab:
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
+  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
   unitDuration: 1
 --- !u!4 &235444134
 Transform:
@@ -925,8 +926,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -55, y: -38}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -55, y: -17.25}
+  m_SizeDelta: {x: 160, y: 34.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &679986336
 MonoBehaviour:
@@ -1295,8 +1296,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -21}
-  m_SizeDelta: {x: 274, y: 62}
+  m_AnchoredPosition: {x: 0, y: -32.275}
+  m_SizeDelta: {x: 274, y: 71.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915771672
 MonoBehaviour:
@@ -1332,7 +1333,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Press F1 to add a Building
 
-    Press ENTER to add People to a Building.'
+    Press KeyPad+ to add People to a Building.
+
+    Press KeyPad- To Remove Peoploe from Building'
 --- !u!222 &915771673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1371,8 +1374,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 80, y: -30}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &921333191
 MonoBehaviour:
@@ -1445,8 +1448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.6999998, y: -45}
-  m_SizeDelta: {x: 263, y: 59}
+  m_AnchoredPosition: {x: 4.65, y: -45}
+  m_SizeDelta: {x: 277.7, y: 66.8}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &955116732
 MonoBehaviour:
@@ -1482,7 +1485,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Press N to add a Building
 
-    Press M to add People to a Building.'
+    Press U to add People to a Building.
+
+    Press O To Remove Peoploe from Building'
 --- !u!222 &955116733
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1644,8 +1649,6 @@ MonoBehaviour:
   - {fileID: 1716284524}
   PlayerPrefab: {fileID: 491136995}
   player: {fileID: 491136996}
-  Happiness: 0
-  HealthCare: 0
   GridController: {fileID: 1711031092}
   timeEventManager: {fileID: 0}
   populationManager: {fileID: 2036652841}
@@ -1696,8 +1699,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: -43}
-  m_SizeDelta: {x: 261, y: 61}
+  m_AnchoredPosition: {x: -65, y: -54.9}
+  m_SizeDelta: {x: 261, y: 60.4}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1298959999
 MonoBehaviour:
@@ -1733,7 +1736,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Press Z to add a Building
 
-    Press X to add People to a Building.'
+    Press X to add People to a Building.
+
+    Press E To Remove Peoploe from Building'
 --- !u!222 &1298960000
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1871,8 +1876,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -54, y: -15}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -54, y: -8.4}
+  m_SizeDelta: {x: 160, y: 25.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368694818
 MonoBehaviour:
@@ -2021,8 +2026,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 176, y: -52}
-  m_SizeDelta: {x: 258, y: 60}
+  m_AnchoredPosition: {x: 253.1, y: -57.3}
+  m_SizeDelta: {x: 335.1, y: 57.3}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1547564829
 MonoBehaviour:
@@ -2058,7 +2063,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Press F2 to add a Building
 
-    Press DEL to add People to a Building.'
+    Press PageUP to add People to a Building.
+
+    Press PageDown To Remove Peoploe from Building
+
+'
 --- !u!222 &1547564830
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -55,7 +55,10 @@ public class BuildingData : ScriptableObject {
     /// Lista degli eventi a cui questo edificio risponde.
     /// </summary>
     public List<TimedEventData> TimedEvents;
-    
-    
+
+    /// <summary>
+    /// Lista di Risorse che l'edifico puo creare.
+    /// </summary>
+    public List<BaseResourceData> Resources;
 }
 

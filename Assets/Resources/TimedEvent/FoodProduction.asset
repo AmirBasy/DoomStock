@@ -8,10 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e29ede33c30bb418af6e476919eff4, type: 3}
-  m_Name: Food
+  m_Script: {fileID: 11500000, guid: 005132d0c700d8444a48a1ed6e1db281, type: 3}
+  m_Name: FoodProduction
   m_EditorClassIdentifier: 
-  ID: Food
-  Value: 10
-  Limit: -1
-  HasNegativeValue: 0
+  ID: FoodProduction
+  TimeUnitsToInvoke: 5
+  CurrentTimeUnit: 0
+  isRepeating: 1
