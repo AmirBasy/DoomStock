@@ -55,7 +55,14 @@ namespace Framework.Grid {
         /// <param name="_gridPosition"></param>
         /// <returns></returns>
         public bool IsValidPosition(Vector2 _gridPosition) {
-            return true;
+            if (_gridPosition.x < 0 || _gridPosition.y < 0)
+                // posizone del cursore negativa
+                return false;
+            else if(_gridPosition.x > GridSize.x-1 || _gridPosition.y > GridSize.y-1)
+                // posizone del cursore oltre le dimensioni della griglia
+                return false;
+            else
+                return true;
         }
 
         #region helper 
