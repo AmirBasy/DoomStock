@@ -14,6 +14,15 @@ namespace Framework.Grid {
         public Cell cell = new Cell();
         public List<Vector2> GridInvalidPositions = new List<Vector2>();
 
+        static List<PlayerPosition> PlayerGridPostions = new List<PlayerPosition>()
+        {
+            new PlayerPosition("PlayerOne"),
+            new PlayerPosition("PlayerTwo"),
+            new PlayerPosition("PlayerThree"),
+            new PlayerPosition("PlayerFour"),
+        };
+
+        List<Queue> PlayersOnSamePositions = new List<Queue>();
 
         // Use this for initialization
         void Awake() {
@@ -59,7 +68,7 @@ namespace Framework.Grid {
             if (_gridPosition.x < 0 || _gridPosition.y < 0)
                 // posizone del cursore negativa
                 return false;
-            else if(_gridPosition.x > GridSize.x-1 || _gridPosition.y > GridSize.y-1)
+            else if (_gridPosition.x > GridSize.x - 1 || _gridPosition.y > GridSize.y - 1)
                 // posizone del cursore oltre le dimensioni della griglia
                 return false;
             else if (GridInvalidPositions.Contains(_gridPosition))
@@ -77,26 +86,73 @@ namespace Framework.Grid {
         public static Vector2 GetGridPositionByDirection(Vector2 _actualGridPosition, Direction _direction) {
             switch (_direction) {
                 case Direction.up:
-                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y+1);
+                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y + 1);
                 case Direction.left:
-                    return new Vector2(_actualGridPosition.x -1, _actualGridPosition.y);
+                    return new Vector2(_actualGridPosition.x - 1, _actualGridPosition.y);
                 case Direction.down:
-                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y-1);
+                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y - 1);
                 case Direction.right:
-                    return new Vector2(_actualGridPosition.x+1, _actualGridPosition.y);
+                    return new Vector2(_actualGridPosition.x + 1, _actualGridPosition.y);
                 default:
                     // non valida
                     return _actualGridPosition;
             }
         }
 
+        /// <summary>
+        /// Setta la posizone corrente del player sulla griglia
+        /// </summary>
+        /// <param name="_payerID"></param>
+        /// <param name="_currentGridPosition"></param>
+        public static void SetCurrentPlayerPosition(string _payerID, Vector2 _currentGridPosition)
+        {
+            foreach (PlayerPosition playerPosition in PlayerGridPostions)
+            {
+                if (playerPosition.PlayerID == _payerID)
+                {
+                    playerPosition.CurrentGridPosition = _currentGridPosition;
+                    CheckPlayerPostionOnGrid(_payerID);
+                }
+            }
+        }
         #endregion
+
+        static void CheckPlayerPostionOnGrid(string _payerID)
+        {
+            for (int i = 0; i < PlayerGridPostions.Count; i++)
+            {
+                for (int j = 0; j < PlayerGridPostions.Count; j++)
+                {
+                    if (PlayerGridPostions[i].PlayerID != PlayerGridPostions[j].PlayerID)
+                    {
+                        if (PlayerGridPostions[i].CurrentGridPosition == PlayerGridPostions[j].CurrentGridPosition)
+                        {
+                            
+                        }
+
+                    }
+                }
+            }
+
+        }
     }
 
-    public enum Direction { 
+    public enum Direction {
         up,
         left,
         down,
         right,
     }
+
+    class PlayerPosition
+    {
+        public string PlayerID;
+        public Vector2 CurrentGridPosition;
+    
+        public PlayerPosition(string _payerID)
+        {
+            PlayerID = _payerID;
+        }
+    }
+
 }
