@@ -61,11 +61,11 @@ public class GameManager : MonoBehaviour {
         if (Players[2] != null) {
             Players[2].SetupInput(
             new PlayerInputData() {
-                Up = KeyCode.I,
-                Left = KeyCode.J,
-                Down = KeyCode.K,
-                Right = KeyCode.L,
-                AddBuilding = KeyCode.F2,
+                Up = KeyCode.UpArrow,
+                Left = KeyCode.LeftArrow,
+                Down = KeyCode.DownArrow,
+                Right = KeyCode.RightArrow,
+                AddBuilding = KeyCode.F1,
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
@@ -74,10 +74,10 @@ public class GameManager : MonoBehaviour {
         if (Players[3] != null) {
             Players[3].SetupInput(
             new PlayerInputData() {
-                Up = KeyCode.I,
-                Left = KeyCode.J,
-                Down = KeyCode.K,
-                Right = KeyCode.L,
+                Up = KeyCode.Keypad8,
+                Left = KeyCode.Keypad4,
+                Down = KeyCode.Keypad5,
+                Right = KeyCode.Keypad6,
                 AddBuilding = KeyCode.F1,
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
