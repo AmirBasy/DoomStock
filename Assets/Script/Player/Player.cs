@@ -90,14 +90,18 @@ public class Player : PlayerBase {
         Cell target = GridController.Grid.Cells[_x, _y];
         if (!target.IsValidPosition)
             return;
-
+        
+        //Actual translation
         transform.DOMove(GridController.Grid.GetCellWorldPosition(_x,_y),
                     0.1f).OnComplete(delegate {
                         Debug.LogFormat("Movimento player {0} - [{1}, {2}]", ID, _x, _y);
                     }).SetEase(Ease.OutSine);
 
-        currentGridPosition[0] = _x;
-        currentGridPosition[1] = _y;
+        XpositionOnGrid = _x;
+        YpositionOnGrid = _y;
+
+        //Update of the ArrivalQueue
+        GridController.Grid.playersInQueue.SetArrivalOrder(this, _x, _y);
     }
     #endregion
 
@@ -111,16 +115,16 @@ public class Player : PlayerBase {
             return;
 
         if (Input.GetKeyDown(inputData.Up)) {
-            MoveToGridPosition(currentGridPosition[0],currentGridPosition[1] + 1);
+            MoveToGridPosition(XpositionOnGrid,YpositionOnGrid + 1);
         }
         if (Input.GetKeyDown(inputData.Left)) {
-            MoveToGridPosition(currentGridPosition[0] - 1, currentGridPosition[1]);
+            MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid);
         }
         if (Input.GetKeyDown(inputData.Down)) {
-            MoveToGridPosition(currentGridPosition[0], currentGridPosition[1] - 1);
+            MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1);
         }
         if (Input.GetKeyDown(inputData.Right)) {
-            MoveToGridPosition(currentGridPosition[0] + 1, currentGridPosition[1]);
+            MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
         }
         if (Input.GetKeyDown(inputData.AddBuilding)) {
             DeployBuilding();

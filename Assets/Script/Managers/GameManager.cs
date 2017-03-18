@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
                     //FulvioTestUI
                     OpenMenu = KeyCode.Space,
                 });
+            GridController.playersInQueue.AddPlayer(Players[0]);
             Players[0].SetupGrid(0,0);
         }
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
+            GridController.playersInQueue.AddPlayer(Players[1]);
             Players[1].SetupGrid(0,GridController.gridSize[1]-1);
         }
 
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.PageUp,
                 RemovePopulation = KeyCode.PageDown,
             });
+            GridController.playersInQueue.AddPlayer(Players[2]);
             Players[2].SetupGrid(GridController.gridSize[0]-1, GridController.gridSize[1]-1);
         }
         if (Players[3] != null) {
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.KeypadPlus,
                 RemovePopulation = KeyCode.KeypadMinus,
             });
+            GridController.playersInQueue.AddPlayer(Players[3]);
             Players[3].SetupGrid(GridController.gridSize[0]-1, 0);
         }
     }

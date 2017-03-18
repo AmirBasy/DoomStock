@@ -20,9 +20,10 @@ public abstract class PlayerBase : MonoBehaviour {
 
     public PlayerInputData inputData;
     protected GridController grid;
-    protected int[] currentGridPosition = new int[2];
+    protected int XpositionOnGrid;
+    protected int YpositionOnGrid;
 
-	public virtual void UpdateGraphic(string newText)
+    public virtual void UpdateGraphic(string newText)
     {
         PeopleText.text = newText;
     }
@@ -37,9 +38,9 @@ public abstract class PlayerBase : MonoBehaviour {
     }
     #endregion
 
-    public int[] GetCurrentGridPosition()
+    public Vector2 GetCurrentGridPosition()
     {
-        return currentGridPosition;
+        return new Vector2(XpositionOnGrid,YpositionOnGrid);
     }
 }
 
