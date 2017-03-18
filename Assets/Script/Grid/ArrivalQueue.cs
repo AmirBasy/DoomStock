@@ -18,16 +18,9 @@ namespace Framework.Grid {
         /// Add a player to track
         /// </summary>
         /// <param name="_player">Player to track</param>
-        void AddPlayer (Player _player)
+        public void AddPlayer (Player _player)
         {
-            for (int i = 0; i < playersPositions.Count; i++)
-            {
-                if (playersPositions[i].player != _player)
-                {
-                    playersPositions.Add(new PlayerPosition(_player));
-                    break;
-                }                     
-            }
+            playersPositions.Add(new PlayerPosition(_player));            
         }
 
         /// <summary>
@@ -38,15 +31,8 @@ namespace Framework.Grid {
         /// <param name="_y"></param>
         public void SetArrivalOrder(Player _player, int _x, int _y)
         {
-            //Add _player if not in playersPositions
-            for (int i = 0; i < playersPositions.Count; i++)
-            {
-                if (playersPositions[i].player = _player)
-                    break;
-                else
-                    AddPlayer(_player);
-            }
-
+            if (playersPositions.Count == 0)
+                return;
 
             Vector2 tmpPos;
             PlayerPosition tmp = null;
