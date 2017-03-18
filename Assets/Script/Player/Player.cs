@@ -31,9 +31,8 @@ public class Player : PlayerBase {
     /// Setta la griglia di pertinenza del player per i movimenti.
     /// </summary>
     /// <param name="_grid"></param>
-    public void SetupGrid(GridController _grid, Vector2 _gridStartPosition) {
-        grid = _grid;
-        MoveToGridPosition(_gridStartPosition);
+    public void SetupGrid(int _initialX, int _initialY) {
+        MoveToGridPosition(_initialX, _initialY);
     }
     #endregion
 
@@ -76,7 +75,6 @@ public class Player : PlayerBase {
         CurrentBuildView = newInstanceOfView;
         CurrentBuildView.player = this;
         GameManager.I.populationManager.IncreaseMaxPopulation();
-
     }
 
     #endregion
@@ -85,16 +83,19 @@ public class Player : PlayerBase {
     /// <summary>
     /// Muove il player sulla griglia alla posizione indicata.
     /// </summary>
-    /// <param name="_gridPosition"></param>
-    public void MoveToGridPosition(Vector2 _gridPosition) {
-        if (!grid.IsValidPosition(_gridPosition))
+    public void MoveToGridPosition(int _x, int _y) {
+        Cell target = GridController.Grid.Cells[_x, _y];
+        
+        if (!target.IsValidPosition)
             return;
-        transform.DOMove(grid.GetWorldCellPosition(_gridPosition),
-                    0.7f).OnComplete(delegate {
-                        Debug.LogFormat("Movimento player {0} verso {1}", gameObject.name, _gridPosition);
+
+        transform.DOMove(GridController.Grid.GetCellWorldPosition(_x,_y),
+                    0.1f).OnComplete(delegate {
+                        Debug.LogFormat("Movimento player {0} verso {1}", gameObject.name, target);
                     }).SetEase(Ease.OutBounce);
-        currentGridPosition = _gridPosition;
-        GridController.SetCurrentPlayerPosition(ID , currentGridPosition);
+
+        currentGridPosition[0] = _x;
+        currentGridPosition[1] = _y;
     }
     #endregion
 
@@ -108,16 +109,16 @@ public class Player : PlayerBase {
             return;
 
         if (Input.GetKeyDown(inputData.Up)) {
-            MoveToGridPosition(GridController.GetGridPositionByDirection(currentGridPosition, Direction.up));
+            MoveToGridPosition(currentGridPosition[0],currentGridPosition[1] + 1);
         }
         if (Input.GetKeyDown(inputData.Left)) {
-            MoveToGridPosition(GridController.GetGridPositionByDirection(currentGridPosition, Direction.left));
+            MoveToGridPosition(currentGridPosition[0] - 1, currentGridPosition[1]);
         }
         if (Input.GetKeyDown(inputData.Down)) {
-            MoveToGridPosition(GridController.GetGridPositionByDirection(currentGridPosition, Direction.down));
+            MoveToGridPosition(currentGridPosition[0], currentGridPosition[1] - 1);
         }
         if (Input.GetKeyDown(inputData.Right)) {
-            MoveToGridPosition(GridController.GetGridPositionByDirection(currentGridPosition, Direction.right));
+            MoveToGridPosition(currentGridPosition[0] + 1, currentGridPosition[1] + 1);
         }
         if (Input.GetKeyDown(inputData.AddBuilding)) {
             DeployBuilding();
@@ -139,8 +140,7 @@ public class Player : PlayerBase {
     
     void Update()
     {
-        checkInputs();
-        
+        checkInputs();        
     }
 
 

@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1649,6 +1649,7 @@ MonoBehaviour:
   - {fileID: 1716284524}
   PlayerPrefab: {fileID: 491136995}
   player: {fileID: 491136996}
+  Food: 0
   GridController: {fileID: 1711031092}
   timeEventManager: {fileID: 0}
   populationManager: {fileID: 2036652841}
@@ -1799,6 +1800,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39,
+        type: 2}
+      propertyPath: GridSize.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4497645643453024, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.24
@@ -1841,6 +1847,16 @@ Prefab:
       value: 
       objectReference: {fileID: 4476553913969040, guid: 46a7c3b71dbb54b4c88e5273641272fa,
         type: 2}
+    - target: {fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39,
+        type: 2}
+      propertyPath: GridSize.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39,
+        type: 2}
+      propertyPath: GridSize.y
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
   m_IsPrefabParent: 0

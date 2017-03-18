@@ -20,7 +20,7 @@ public abstract class PlayerBase : MonoBehaviour {
 
     public PlayerInputData inputData;
     protected GridController grid;
-    protected Vector2 currentGridPosition;
+    protected int[] currentGridPosition = new int[2];
 
 
 	public virtual void UpdateGraphic(string newText)

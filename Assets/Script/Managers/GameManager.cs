@@ -12,9 +12,7 @@ public class GameManager : MonoBehaviour {
     public List<Player> Players;
     public GameObject PlayerPrefab;
     public Player player;
-    public int Food;
-    
-   
+    public int Food;  
 
     #region Managers
     public GridController GridController;
@@ -41,7 +39,7 @@ public class GameManager : MonoBehaviour {
                     //FulvioTestUI
                     OpenMenu = KeyCode.Space,
                 });
-            Players[0].SetupGrid(GridController, new Vector2(0, 0));
+            Players[0].SetupGrid(0,0);
         }
 
         if (Players[1] != null) {
@@ -55,7 +53,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
-            Players[1].SetupGrid(GridController, new Vector2(0, GridController.GridSize.y));
+            Players[1].SetupGrid(0,GridController.gridSize[1]);
         }
 
         if (Players[2] != null) {
@@ -69,7 +67,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.PageUp,
                 RemovePopulation = KeyCode.PageDown,
             });
-            Players[2].SetupGrid(GridController, new Vector2(GridController.GridSize.x, GridController.GridSize.y));
+            Players[2].SetupGrid(GridController.gridSize[0], GridController.gridSize[1]);
         }
         if (Players[3] != null) {
             Players[3].SetupInput(
@@ -82,7 +80,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.KeypadPlus,
                 RemovePopulation = KeyCode.KeypadMinus,
             });
-            Players[3].SetupGrid(GridController, new Vector2(GridController.GridSize.x, 0));
+            Players[3].SetupGrid(GridController.gridSize[0], 0);
         }
     }
 
@@ -99,8 +97,7 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
-        SetupPlayers();
-        
+        SetupPlayers();        
     }
 
     public void BackToMenu()
