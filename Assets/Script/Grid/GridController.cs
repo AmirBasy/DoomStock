@@ -14,6 +14,7 @@ namespace Framework.Grid {
         public List<Vector2> GridInvalidPositions = new List<Vector2>();
         [HideInInspector]
         public int[] gridSize;
+        public ArrivalQueue playersInQueue = new ArrivalQueue();
 
         public static GridController Grid;
 

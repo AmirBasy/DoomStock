@@ -12,139 +12,109 @@ namespace Framework.Grid {
         /// <summary>
         /// Players tracked
         /// </summary>
-        PlayerPosition[] playersCurrentPositions = new PlayerPosition[4];
-        PlayerPosition[] playersOldPositions = new PlayerPosition[4];
-        PlayerQueue[][] playersQueue = new PlayerQueue[2][];
+        List<PlayerPosition> playersPositions = new List<PlayerPosition>();        
 
         /// <summary>
         /// Add a player to track
         /// </summary>
         /// <param name="_player">Player to track</param>
-        public void AddPlayer (Player _player)
+        void AddPlayer (Player _player)
         {
-            for (int i = 0; i < playersCurrentPositions.Length; i++)
+            for (int i = 0; i < playersPositions.Count; i++)
             {
-                if(playersCurrentPositions[i].ID == null)
+                if (playersPositions[i].player != _player)
                 {
-                    playersCurrentPositions[i].ID = _player.ID;
-                    playersCurrentPositions[i].coordinates = _player.GetCurrentGridPosition();
-                    return;
-                }
+                    playersPositions.Add(new PlayerPosition(_player));
+                    break;
+                }                     
             }
         }
 
-        void CheckOtherPlayerPosition(string _playerID)
+        /// <summary>
+        /// Set the arrival order of a certain player onto a certain coordinate
+        /// </summary>
+        /// <param name="_player">Player arrived</param>
+        /// <param name="_x"></param>
+        /// <param name="_y"></param>
+        public void SetArrivalOrder(Player _player, int _x, int _y)
         {
-            PlayerPosition player = new PlayerPosition();
-            // recupero informazioni del player che ha chiamato la funzione
-            for (int i = 0; i < playersCurrentPositions.Length; i++)
+            //Add _player if not in playersPositions
+            for (int i = 0; i < playersPositions.Count; i++)
             {
-                if (playersCurrentPositions[i].ID == _playerID)
-                {
-                    player = playersCurrentPositions[i];
-                }
+                if (playersPositions[i].player = _player)
+                    break;
+                else
+                    AddPlayer(_player);
             }
 
-            // controllo se ci sono altri player che hanno la stessa posizione
-            for (int i = 0; i < playersCurrentPositions.Length; i++)
+
+            Vector2 tmpPos;
+            PlayerPosition tmp = null;
+            int z=0; //Arrival position
+            //Count how many are arrived before
+            for (int i = 0; i < playersPositions.Count; i++)
             {
-                if (playersCurrentPositions[i].ID != _playerID)
+                tmpPos = playersPositions[i].player.GetCurrentGridPosition();
+                if (tmpPos.x == _x && tmpPos.y == _y && playersPositions[i].player != _player)
                 {
-                    if ((playersCurrentPositions[i].coordinates[0] == player.coordinates[0]) && (playersCurrentPositions[i].coordinates[1] == player.coordinates[1]))
+                    z++;
+                }else if(playersPositions[i].player == _player)
+                {
+                    tmp = playersPositions[i];
+                }
+            }
+            if(tmp != null)
+                tmp.QueuePosition = z;
+
+            TrimArrivalOrder();
+        }
+
+        /// <summary>
+        /// Trim all the playersPositions elements to fill the possible gaps
+        /// </summary>
+        public void TrimArrivalOrder()
+        {
+            for (int i = 0; i < playersPositions.Count; i++)
+            {
+                for (int j = 0; j < playersPositions.Count; j++)
+                {
+                    if (i != j
+                    && playersPositions[i].player.GetCurrentGridPosition() == playersPositions[j].player.GetCurrentGridPosition()
+                    && playersPositions[i].QueuePosition > 0 && playersPositions[i].QueuePosition <= playersPositions[j].QueuePosition)
                     {
-                        int queuePosition = CheckIfQueueAlreadyExist(player.coordinates[0], player.coordinates[1]);
-                        if (queuePosition == -1)
-                        {
-                            for (int j = 0; j < 4; j++)
-                            {
-                                if(playersQueue[queuePosition][j] == null)
-                                playersQueue[queuePosition][1] = new PlayerQueue() { ArrivalNumber = j + 1, PlayerPosition = player };
-                            }
-                        }
-                        else
-                        {
-                            queuePosition = GetFirstEmptyQueue();
-                            playersQueue[queuePosition] = new PlayerQueue[4];
-                            playersQueue[queuePosition][0] = new PlayerQueue() { ArrivalNumber = 1, PlayerPosition = playersCurrentPositions[i] };
-                            playersQueue[queuePosition][1] = new PlayerQueue() { ArrivalNumber = 2, PlayerPosition = player };
-                        }
+                        playersPositions[i].QueuePosition--;
                     }
                 }
+                Debug.Log(playersPositions[i].player.ID + playersPositions[i].player.GetCurrentGridPosition() + " ArrivalOrder:" + playersPositions[i].QueuePosition);
             }
         }
 
-        int CheckIfQueueAlreadyExist(int _x, int _y)
+        /// <summary>
+        /// Get how many players are arrived before where _player(parameter) is
+        /// </summary>
+        /// <param name="_player"></param>
+        /// <returns></returns>
+        public int GetArrivalOrder(Player _player)
         {
-            for (int i = 0; i < playersQueue.Length; i++)
+            foreach (PlayerPosition pPos in playersPositions)
             {
-                if ((playersQueue[i][0].PlayerPosition.coordinates[0] == _x) && (playersQueue[i][0].PlayerPosition.coordinates[1] == _y))
-                    return i;
+                if (pPos.player == _player)
+                    return pPos.QueuePosition;
             }
             return -1;
         }
 
-        int GetFirstEmptyQueue()
+        class PlayerPosition
         {
-            for (int i = 0; i < playersQueue.Length; i++)
-            {
-                if (playersQueue[i] == null)
-                    return i;
-            }
-            return -1;
-        }
+            public Player player = new Player();
+            public Vector2 playerPos = new Vector2();
+            public int QueuePosition=0;
 
-        public void SetNewPosition (string _playerID, int _x, int _y)
-        {
-            SaveOldPosition(_playerID);
-            for (int i = 0; i < playersCurrentPositions.Length; i++)
+            public PlayerPosition(Player _player)
             {
-                if(playersCurrentPositions[i].ID == _playerID)
-                {
-                    playersCurrentPositions[i].coordinates[0] = _x;
-                    playersCurrentPositions[i].coordinates[1] = _y;
-                    return;
-                }                    
+                player = _player;
+                playerPos = _player.GetCurrentGridPosition();
             }
-            CheckOtherPlayerPosition(_playerID);
-        }
-
-        void SaveOldPosition(string _playerID)
-        {
-            // se il player è gia nella lista delle precendi posizioni la aggiorna
-            for (int i = 0; i < playersCurrentPositions.Length; i++)
-            {
-                if (playersCurrentPositions[i].ID == _playerID)
-                {
-                    playersOldPositions[i].coordinates[0] = playersCurrentPositions[i].coordinates[0];
-                    playersOldPositions[i].coordinates[1] = playersCurrentPositions[i].coordinates[1];
-                    return;
-                }
-            }
-
-            // se invece non c'è aggiunge il player alla lista e salva la posizione attuale
-            for (int i = 0; i < playersCurrentPositions.Length; i++)
-            {
-                if (playersOldPositions[i].ID == null)
-                {
-                    playersOldPositions[i].ID = _playerID;
-                    playersOldPositions[i].coordinates[0] = playersCurrentPositions[i].coordinates[0];
-                    playersOldPositions[i].coordinates[1] = playersCurrentPositions[i].coordinates[1];
-                    return;
-                }
-            }
-        }
-        
-        struct PlayerPosition
-        {
-            public string ID;
-            // [0] = x ; [1] = y;
-            public int[] coordinates; 
-        }
-
-        class PlayerQueue
-        {
-            public int ArrivalNumber;
-            public PlayerPosition PlayerPosition;
         }
     }
 }
