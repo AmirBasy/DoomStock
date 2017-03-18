@@ -9,10 +9,9 @@ namespace Framework.Grid {
     public class GridController : MonoBehaviour {
 
         public Transform TilePrefab;
-        public Vector2 GridSize = new Vector2(3, 3);
-        public List<Cell> Cells = new List<Cell>();
-        public Cell cell = new Cell();
-        public List<Vector2> GridInvalidPositions = new List<Vector2>();
+        public int[] GridSize = new int[2] { 3, 3 };
+        public static Cell[,] Cells;
+        public List<Cell> GridInvalidPositions = new List<Cell>();
 
         static List<PlayerPosition> PlayerGridPostions = new List<PlayerPosition>()
         {
@@ -26,6 +25,7 @@ namespace Framework.Grid {
 
         // Use this for initialization
         void Awake() {
+            Cells = new Cell[GridSize[0],GridSize[1]];
             DontDestroyOnLoad(this.gameObject);
             GenerateMap();
         }
@@ -34,48 +34,39 @@ namespace Framework.Grid {
         /// </summary>
         public void GenerateMap() {
 
-            for (int x = 0; x < GridSize.x; x++) {
-                for (int y = 0; y < GridSize.y; y++) {
-                    Vector3 tilePosition = new Vector3(-GridSize.x + 1 + x, 0, -GridSize.y + 1 + y);
-                    Transform newTile = Instantiate(TilePrefab, tilePosition, Quaternion.Euler(Vector3.right)) as Transform;
-                    newTile.parent = this.transform;
-                    newTile.name = string.Format("({0},{1}) - ({2})", x, y, newTile.transform.position);
-                    Cells.Add(new Cell() { GridPosition = new Vector2(x, y), WorldPosition = newTile.transform.position });
+            for (int x = 0; x < GridSize[0]; x++) {
+                for (int y = 0; y < GridSize[1]; y++)
+                {
+                    Vector3 tilePosition = new Vector3(x, 0, y);
+                    Transform newTile = Instantiate(TilePrefab, tilePosition, Quaternion.identity, this.transform).transform;
+                    newTile.name = string.Format("{0}", Cells[x, y]);
+                    Cells[x, y].WorldPosition = newTile.position;
                 }
-
             }
         }
 
         /// <summary>
         /// Restituisce la posizione world della cella alla grid position richiesta
         /// </summary>
-        /// <param name="_gridPosition">grid position richiesta</param>
         /// <returns></returns>
-        public Vector3 GetWorldCellPosition(Vector2 _gridPosition) {
-            foreach (Cell cell in Cells) {
-                if (cell.GridPosition == _gridPosition)
-                    return cell.WorldPosition;
-            }
-            return Vector3.zero;
+        public Vector3 GetCellWorldPosition(int _x, int _y) {
+
+            return Cells[_x, _y].WorldPosition;
         }
 
         /// <summary>
         /// Restituisce true se la posizione richiesta è valida.
         /// </summary>
-        /// <param name="_gridPosition"></param>
         /// <returns></returns>
-        public bool IsValidPosition(Vector2 _gridPosition) {
-            if (_gridPosition.x < 0 || _gridPosition.y < 0)
+        public bool IsValidPosition(int _x, int _y) {
+            if (_x < 0 || _y < 0)
                 // posizone del cursore negativa
                 return false;
-            else if (_gridPosition.x > GridSize.x - 1 || _gridPosition.y > GridSize.y - 1)
+            else if (_x >= GridSize[0] || _y >= GridSize[1])
                 // posizone del cursore oltre le dimensioni della griglia
                 return false;
-            else if (GridInvalidPositions.Contains(_gridPosition))
-                //posizone del cursore sulle celle disabiliatate
-                return false;
             else
-                return true;
+                return Cells[_x, _y].IsValidPosition;
         }
 
         #region helper 
@@ -83,19 +74,18 @@ namespace Framework.Grid {
         /// <summary>
         /// Mi restituisce la posizione griglia secondo la direzione in cui voglio andare.
         /// </summary>
-        public static Vector2 GetGridPositionByDirection(Vector2 _actualGridPosition, Direction _direction) {
+        public static Cell GetGridPositionByDirection(int _x, int _y, Direction _direction) {
             switch (_direction) {
                 case Direction.up:
-                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y + 1);
+                    return Cells[_x,_y + 1];
                 case Direction.left:
-                    return new Vector2(_actualGridPosition.x - 1, _actualGridPosition.y);
+                    return Cells[_x - 1, _y];
                 case Direction.down:
-                    return new Vector2(_actualGridPosition.x, _actualGridPosition.y - 1);
+                    return Cells[_x, _y - 1];
                 case Direction.right:
-                    return new Vector2(_actualGridPosition.x + 1, _actualGridPosition.y);
+                    return Cells[_x + 1, _y];
                 default:
-                    // non valida
-                    return _actualGridPosition;
+                    return Cells[_x,_y];
             }
         }
 
@@ -104,13 +94,13 @@ namespace Framework.Grid {
         /// </summary>
         /// <param name="_payerID"></param>
         /// <param name="_currentGridPosition"></param>
-        public static void SetCurrentPlayerPosition(string _payerID, Vector2 _currentGridPosition)
+        public static void SetCurrentPlayerPosition(string _payerID, int _x, int _y)
         {
             foreach (PlayerPosition playerPosition in PlayerGridPostions)
             {
                 if (playerPosition.PlayerID == _payerID)
                 {
-                    playerPosition.CurrentGridPosition = _currentGridPosition;
+                    playerPosition.CurrentGridPosition = Cells[_x,_y];
                     CheckPlayerPostionOnGrid(_payerID);
                 }
             }
