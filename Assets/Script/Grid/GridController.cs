@@ -44,7 +44,6 @@ namespace Framework.Grid {
                     newTile.name = "Cell["+x+","+y+"]";
                     Cells[x, y].WorldPosition = newTile.position;
                     Cells[x, y].IsValidPosition = true;
-                    Cells[x, y].PlayerArrivalOrder = new string[4];
                 }
             }
             //Set the choosen invalid positions
