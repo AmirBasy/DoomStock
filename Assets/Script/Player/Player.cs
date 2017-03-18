@@ -84,8 +84,10 @@ public class Player : PlayerBase {
     /// Muove il player sulla griglia alla posizione indicata.
     /// </summary>
     public void MoveToGridPosition(int _x, int _y) {
+
+        if (_x < 0 || _y < 0 || _x > GridController.Grid.GridSize.x || _y > GridController.Grid.GridSize.y)
+            return;
         Cell target = GridController.Grid.Cells[_x, _y];
-        
         if (!target.IsValidPosition)
             return;
 

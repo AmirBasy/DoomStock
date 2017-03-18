@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
             });
-            Players[1].SetupGrid(0,GridController.gridSize[1]);
+            Players[1].SetupGrid(0,GridController.gridSize[1]-1);
         }
 
         if (Players[2] != null) {
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.PageUp,
                 RemovePopulation = KeyCode.PageDown,
             });
-            Players[2].SetupGrid(GridController.gridSize[0], GridController.gridSize[1]);
+            Players[2].SetupGrid(GridController.gridSize[0]-1, GridController.gridSize[1]-1);
         }
         if (Players[3] != null) {
             Players[3].SetupInput(
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
                 AddPopulation = KeyCode.KeypadPlus,
                 RemovePopulation = KeyCode.KeypadMinus,
             });
-            Players[3].SetupGrid(GridController.gridSize[0], 0);
+            Players[3].SetupGrid(GridController.gridSize[0]-1, 0);
         }
     }
 

@@ -11,7 +11,7 @@ namespace Framework.Grid {
         public Transform TilePrefab;
         public Vector2 GridSize = new Vector2(3,3);
         public Cell[,] Cells;
-        public List<Cell> GridInvalidPositions = new List<Cell>();
+        public List<Vector2> GridInvalidPositions = new List<Vector2>();
         [HideInInspector]
         public int[] gridSize;
 
@@ -41,11 +41,18 @@ namespace Framework.Grid {
                 {
                     Vector3 tilePosition = new Vector3(x, 0, y);
                     Transform newTile = Instantiate(TilePrefab, tilePosition, Quaternion.identity, this.transform).transform;
-                    newTile.name = string.Format("{0}", Cells[x, y]);
+                    newTile.name = "Cell["+x+","+y+"]";
                     Cells[x, y].WorldPosition = newTile.position;
+                    Cells[x, y].IsValidPosition = true;
                     Cells[x, y].PlayerArrivalOrder = new string[4];
                 }
             }
+            //Set the choosen invalid positions
+            foreach (Vector2 pos in GridInvalidPositions)
+            {
+                Cells[(int)pos.x, (int)pos.y].IsValidPosition = false;
+            }
+
         }
 
         /// <summary>
