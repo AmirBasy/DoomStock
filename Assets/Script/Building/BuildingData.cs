@@ -45,7 +45,7 @@ public class BuildingData : ScriptableObject {
     /// <summary>
     /// Aumenta il LimiteMassimo della Popolazione
     /// </summary>
-    public int IncraseMaxPopulation;
+    public int IncreaseMaxPopulation;
 
 
     public int BuildingLife;

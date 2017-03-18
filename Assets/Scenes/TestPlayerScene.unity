@@ -2638,6 +2638,10 @@ MonoBehaviour:
   StandardNatality: 0
   PopulationDataPrefabs:
   - {fileID: 11400000, guid: f79b239580bd8024680f39e9f403666a, type: 2}
+  - {fileID: 11400000, guid: 01c9088ee006ed449b9955407632171f, type: 2}
+  - {fileID: 11400000, guid: 813c92db4cc9a5548946097c18d4e9bb, type: 2}
+  - {fileID: 11400000, guid: e41a736c542026649b8fcd6b92fbc257, type: 2}
+  - {fileID: 11400000, guid: 4e9f5ef922d79ac48a8b5b98da5fbdf6, type: 2}
   TimedEvents:
   - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
 --- !u!4 &2036652842

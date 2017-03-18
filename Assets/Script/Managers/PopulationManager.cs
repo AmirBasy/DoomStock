@@ -4,26 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopulationManager : MonoBehaviour {
+public class PopulationManager : MonoBehaviour
+{
 
     public Text MainPeopleText;
     public PopulationView PV;
     public int StandardNatality;
-   
+
     public List<PopulationData> PopulationDataPrefabs;
-    /// <summary>
-    /// Lista di dell'Oggetto PopulationView in Scene
-    /// </summary>
-    /// <returns></returns>
-    public List<PopulationView> PopulationListInScene() {
-        List<PopulationView> newPopList = new List<PopulationView>();
-        foreach (PopulationData pd in GetAllPopulation())
-        {
-            newPopList.Add(pd.PopulationPrefab);
-        }
-        Debug.Log("PopulationList e' di " + newPopList.Count);
-        return newPopList;
-    }
+
+    ///// <summary>
+    ///// Lista di dell'Oggetto PopulationView in Scene
+    ///// </summary>
+    ///// <returns></returns>
+    //public List<PopulationView> PopulationListInScene()
+    //{
+    //    List<PopulationView> newPopList = new List<PopulationView>();
+    //    foreach (PopulationData pd in GetAllPopulation())
+    //    {
+    //        newPopList.Add(pd.PopulationPrefab);
+    //    }
+    //    Debug.Log("PopulationList e' di " + newPopList.Count);
+    //    return newPopList;
+    //}
+
     /// <summary>
     /// Popolazione in comune tra i player
     /// </summary>
@@ -41,7 +45,7 @@ public class PopulationManager : MonoBehaviour {
             if (MainPopulation <= 0)
                 MainPopulation = 0;
             UpdateGraphic("Main People: " + MainPopulation);
-            
+
         }
     }
 
@@ -50,14 +54,13 @@ public class PopulationManager : MonoBehaviour {
     {
         GetAllPopulation();
         DontDestroyOnLoad(this.gameObject);
-        
+
     }
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         mainPopulation = 100;
-        //PopulationListInScene();
-        //CreatePopulation(PopulationDataPrefabs[0]);
         UpdateGraphic("Main People: " + MainPopulation);
     }
 
@@ -69,12 +72,13 @@ public class PopulationManager : MonoBehaviour {
     /// <summary>
     /// Aumenta la MaxPopulation per ogni edificio istanziato
     /// </summary>
-    public void IncreaseMaxPopulation(){
+    public void IncreaseMaxPopulation()
+    {
         foreach (BuildingView building in GameManager.I.buildingManager.GetAllBuildingInScene())
         {
-            if (building.Data.IncraseMaxPopulation>0)
+            if (building.Data.IncreaseMaxPopulation > 0)
             {
-                mainPopulation += building.Data.IncraseMaxPopulation;
+                mainPopulation += building.Data.IncreaseMaxPopulation;
             }
         }
     }
@@ -88,7 +92,7 @@ public class PopulationManager : MonoBehaviour {
         List<PopulationData> newPopulationList = new List<PopulationData>();
         foreach (PopulationData populationPointer in allPopulationfromResources)
         {
-            newPopulationList.Add(ScriptableObject.CreateInstance<PopulationData>());
+            newPopulationList.Add(Instantiate(populationPointer));
             #region Costruttore
             //{
 
@@ -107,43 +111,34 @@ public class PopulationManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Crea una PopulationData e restituisce una nuova istanza appena creata
+    /// Crea una nuova istanza di un population data e ne restituisce la view
     /// </summary>
     /// <returns></returns>
-    public PopulationView CreatePopulation(PopulationData _populationData)
+    public void CreatePopulation(PopulationData _populationData)
     {
-        PopulationData NewIstancePopulationData;
-        NewIstancePopulationData = Instantiate(_populationData);
-
-        foreach (PopulationData populationData in GetAllPopulation())
-        {
-            PopulationView NewIstanceView = Instantiate(NewIstancePopulationData.PopulationPrefab);
-            for (int i = 0; i < mainPopulation; i++)
-            {
-                //PopulationDataPrefabs.Add(populationData);
-                Instantiate(NewIstancePopulationData.PopulationPrefab);
-                NewIstanceView.Init(NewIstancePopulationData); 
-            }
-            return NewIstanceView; 
-        }
-        return null;
-        
+        PopulationData NewIstancePopulationData = Instantiate(_populationData);
+        PopulationView NewIstanceView = Instantiate(NewIstancePopulationData.PopulationPrefab);
+        NewIstanceView.Init(NewIstancePopulationData);
     }
 
 
-
-    //public void GetPopulationRandom()
-    //{
-    //    for (int i = 0; i < maxPopulation; i++)
-    //    {
-    //        int RandomInd = Random.Range(0, GetAllPopulation().Count);
-    //        PopulationData newPopulation = GetAllPopulation()[RandomInd];
-
-    //    }
-    //}
+    /// <summary>
+    /// Sceglie un populationData a caso.
+    /// </summary>
+    /// <returns></returns>
+    public PopulationData GetPopulationRandom()
+    {
+        for (int i = 0; i < mainPopulation; i++)
+        {
+            int RandomInd = UnityEngine.Random.Range(0, GetAllPopulation().Count);
+            PopulationData newPopulation = GetAllPopulation()[RandomInd];
+            return newPopulation;
+        }
+        return null;
+    }
     #region events
-    
-    
+
+
     public List<TimedEventData> TimedEvents;
 
     private void OnEnable()
@@ -158,6 +153,7 @@ public class PopulationManager : MonoBehaviour {
             if (ev.ID == "Birth")
             {
                 MainPopulation++;
+                CreatePopulation(GetPopulationRandom());
             }
         }
     }

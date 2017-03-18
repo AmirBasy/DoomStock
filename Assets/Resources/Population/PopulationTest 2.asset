@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a606ef750d01b4bb9dbc26df131596, type: 3}
   m_Name: PopulationTest 2
   m_EditorClassIdentifier: 
-  Name: 
+  Name: "Ges\xF9"
   Ambition: 
   Age: 0
   StandardLifeExpectation: 0
