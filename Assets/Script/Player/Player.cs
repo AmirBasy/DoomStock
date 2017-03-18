@@ -85,7 +85,7 @@ public class Player : PlayerBase {
     /// </summary>
     public void MoveToGridPosition(int _x, int _y) {
 
-        if (_x < 0 || _y < 0 || _x > GridController.Grid.GridSize.x || _y > GridController.Grid.GridSize.y)
+        if (_x < 0 || _y < 0 || _x > GridController.Grid.GridSize.x-1 || _y > GridController.Grid.GridSize.y-1)
             return;
         Cell target = GridController.Grid.Cells[_x, _y];
         if (!target.IsValidPosition)
@@ -120,7 +120,7 @@ public class Player : PlayerBase {
             MoveToGridPosition(currentGridPosition[0], currentGridPosition[1] - 1);
         }
         if (Input.GetKeyDown(inputData.Right)) {
-            MoveToGridPosition(currentGridPosition[0] + 1, currentGridPosition[1] + 1);
+            MoveToGridPosition(currentGridPosition[0] + 1, currentGridPosition[1]);
         }
         if (Input.GetKeyDown(inputData.AddBuilding)) {
             DeployBuilding();
