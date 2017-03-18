@@ -52,7 +52,6 @@ namespace Framework.Grid {
             {
                 Cells[(int)pos.x, (int)pos.y].IsValidPosition = false;
             }
-
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace Framework.Grid {
                 return false;
             else
                 return Cells[_x, _y].IsValidPosition;
-        }
+        }        
     }
 
     public enum Direction {

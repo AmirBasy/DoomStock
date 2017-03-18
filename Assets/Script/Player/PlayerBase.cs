@@ -22,7 +22,6 @@ public abstract class PlayerBase : MonoBehaviour {
     protected GridController grid;
     protected int[] currentGridPosition = new int[2];
 
-
 	public virtual void UpdateGraphic(string newText)
     {
         PeopleText.text = newText;
@@ -38,6 +37,10 @@ public abstract class PlayerBase : MonoBehaviour {
     }
     #endregion
 
+    public int[] GetCurrentGridPosition()
+    {
+        return currentGridPosition;
+    }
 }
 
 /// <summary>

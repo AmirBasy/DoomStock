@@ -94,7 +94,7 @@ public class Player : PlayerBase {
         transform.DOMove(GridController.Grid.GetCellWorldPosition(_x,_y),
                     0.1f).OnComplete(delegate {
                         Debug.LogFormat("Movimento player {0} verso {1}", gameObject.name, target);
-                    }).SetEase(Ease.OutBounce);
+                    }).SetEase(Ease.OutSine);
 
         currentGridPosition[0] = _x;
         currentGridPosition[1] = _y;
