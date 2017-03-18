@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,34 +27,24 @@ public class PopulationManager : MonoBehaviour {
     /// <summary>
     /// Popolazione in comune tra i player
     /// </summary>
-    private int maxPopulation;
+    private int mainPopulation;
 
-    public int MaxPopulation
+    public int MainPopulation
     {
-        get { return maxPopulation; }
+        get { return mainPopulation; }
         set
         {
-            maxPopulation = value;
+            mainPopulation = value;
 
-            if (MaxPopulation > maxPopulation)
-                MaxPopulation = maxPopulation;
-            if (MaxPopulation <= 0)
-                MaxPopulation = 0;
-            UpdateGraphic("Main People: " + MaxPopulation);
+            if (MainPopulation > mainPopulation)
+                MainPopulation = mainPopulation;
+            if (MainPopulation <= 0)
+                MainPopulation = 0;
+            UpdateGraphic("Main People: " + MainPopulation);
             
         }
     }
-    /// <summary>
-    /// Aspettativa di vita che viene modifacata in base all'HealthCare
-    /// </summary>
-    /// <returns></returns>
-    //public int LifeExpectancy()
-    //{
-        
 
-
-    //    return PopulationLifeExpectancy;
-    //}
 
     void Awake()
     {
@@ -64,10 +55,10 @@ public class PopulationManager : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        maxPopulation = 100;
+        mainPopulation = 100;
         //PopulationListInScene();
         //CreatePopulation(PopulationDataPrefabs[0]);
-        UpdateGraphic("Main People: " + MaxPopulation);
+        UpdateGraphic("Main People: " + MainPopulation);
     }
 
     private void UpdateGraphic(string _newText)
@@ -83,7 +74,7 @@ public class PopulationManager : MonoBehaviour {
         {
             if (building.Data.IncraseMaxPopulation>0)
             {
-                maxPopulation += building.Data.IncraseMaxPopulation;
+                mainPopulation += building.Data.IncraseMaxPopulation;
             }
         }
     }
@@ -127,7 +118,7 @@ public class PopulationManager : MonoBehaviour {
         foreach (PopulationData populationData in GetAllPopulation())
         {
             PopulationView NewIstanceView = Instantiate(NewIstancePopulationData.PopulationPrefab);
-            for (int i = 0; i < maxPopulation; i++)
+            for (int i = 0; i < mainPopulation; i++)
             {
                 //PopulationDataPrefabs.Add(populationData);
                 Instantiate(NewIstancePopulationData.PopulationPrefab);
@@ -139,20 +130,42 @@ public class PopulationManager : MonoBehaviour {
         
     }
 
-   
 
-    /// <summary>
-    /// Assegna la Popolazione Random
-    /// </summary>
-    public void GetPopulationRandom()
+
+    //public void GetPopulationRandom()
+    //{
+    //    for (int i = 0; i < maxPopulation; i++)
+    //    {
+    //        int RandomInd = Random.Range(0, GetAllPopulation().Count);
+    //        PopulationData newPopulation = GetAllPopulation()[RandomInd];
+
+    //    }
+    //}
+    #region events
+    
+    
+    public List<TimedEventData> TimedEvents;
+
+    private void OnEnable()
     {
-        for (int i = 0; i < maxPopulation; i++)
+        TimeEventManager.OnEvent += OnEvent;
+    }
+
+    private void OnEvent(TimedEventData _eventData)
+    {
+        foreach (TimedEventData ev in TimedEvents)
         {
-            int RandomInd = Random.Range(0, GetAllPopulation().Count);
-            PopulationData newPopulation = GetAllPopulation()[RandomInd];
-            
+            if (ev.ID == "Birth")
+            {
+                MainPopulation++;
+            }
         }
     }
-
-
+    private void OnDisable()
+    {
+        TimeEventManager.OnEvent -= OnEvent;
     }
+
+    #endregion
+
+}

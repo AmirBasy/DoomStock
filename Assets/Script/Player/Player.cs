@@ -43,8 +43,8 @@ public class Player : PlayerBase {
     /// </summary>
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingView _buildingView) {
-        if (GameManager.I.populationManager.MaxPopulation > 0) {
-            GameManager.I.populationManager.MaxPopulation -= 1;
+        if (GameManager.I.populationManager.MainPopulation > 0) {
+            GameManager.I.populationManager.MainPopulation -= 1;
             _buildingView.Data.Population++;
             if (_buildingView != null)
                 _buildingView.gameObject.GetComponent<BuildingView>().UpdateGraphic();
@@ -53,7 +53,7 @@ public class Player : PlayerBase {
 
     public void RemovePopulation() {
         Population -= 1;
-        GameManager.I.populationManager.MaxPopulation += 1;
+        GameManager.I.populationManager.MainPopulation += 1;
         if (Population <= 0)
             Population = 0;
         UpdateGraphic("people: " + Population + " press Q to add, E to remove");
