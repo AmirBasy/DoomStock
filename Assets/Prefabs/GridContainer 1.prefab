@@ -51,5 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1e850b6108ae54ca597c268da7f347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 4772205775514382, guid: fc7114232712d7b4eaefcc441795fd6a, type: 2}
+  TilePrefab: {fileID: 4476553913969040, guid: 46a7c3b71dbb54b4c88e5273641272fa, type: 2}
   GridSize: {x: 10, y: 10}
+  GridInvalidPositions: []
+  gridSize: 

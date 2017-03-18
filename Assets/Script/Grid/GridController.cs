@@ -75,6 +75,7 @@ namespace Framework.Grid {
                 // posizone del cursore oltre le dimensioni della griglia
                 return false;
             else
+                //ritorna se la cella in cui si vuole andare è invalida o meno
                 return Cells[_x, _y].IsValidPosition;
         }        
     }
