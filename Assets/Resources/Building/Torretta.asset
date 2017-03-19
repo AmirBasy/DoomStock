@@ -22,11 +22,12 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 200
-  DecreaseBuildingLife: 1
+  BuildingLife: 180
+  DecreaseBuildingLife: 12
   TimedEvents:
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: 376f8d38d695a4e4bacea0d9e542aa04, type: 2}

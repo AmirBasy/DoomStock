@@ -96,11 +96,15 @@ public class BuildingManager : MonoBehaviour {
         {
             if (_buildingView.Data.BuildingLife <= 0)
             {
-                Destroy(this);
+                Destroy(_buildingView.gameObject);
                 Debug.Log("Ho distrutto l edifico" + _buildingView.Data.ID);
             } 
         }
     }
-    
+
+    public void RemoveLife(BuildingView _buildingView){
+        _buildingView.Data.BuildingLife -= _buildingView.Data.DecreaseBuildingLife;
+        Debug.Log("Actual Life = " + _buildingView.Data.BuildingLife);
+    }
 }
 
