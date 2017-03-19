@@ -46,9 +46,9 @@ public class BuildingManager : MonoBehaviour {
         {
             foreach (BaseResourceData resource in _buildingview.Data.BaseResources)
             {
-                if ( GameManager.I.BaseResource != null)
+                if (_buildingview.Data.BaseResources != null)
                 {
-                    for (int i = 0; i < GameManager.I.BaseResource[i].Length; i++)
+                    for (int i = 0; i < GameManager.I.BaseResource.Length; i++)
                     {
                         if (resource.ID == GameManager.I.BaseResource[i])
                         {

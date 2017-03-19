@@ -32,8 +32,11 @@ public class MenuBuilding : MonoBehaviour {
 	void Update () {
         if (playerBuildingData != null)
         {
-            NameBuilding1.text = playerBuildingData[0].ID;
-            NameBuilding2.text = playerBuildingData[1].ID;
+            for (int i = 0; i < playerBuildingData.Count; i++)
+            {
+                NameBuilding1.text = playerBuildingData[i].ID;
+                NameBuilding2.text = playerBuildingData[i].ID; 
+            }
         }
 		if (Input.GetKeyDown(KeyCode.DownArrow))
         {

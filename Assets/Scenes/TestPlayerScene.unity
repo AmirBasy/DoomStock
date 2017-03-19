@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 170124780}
   - component: {fileID: 170124779}
   m_Layer: 5
-  m_Name: Cibo
+  m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cibo
+  m_Text: Food
 --- !u!222 &170124780
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -260,6 +260,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 171549869}
+  - component: {fileID: 171549870}
   m_Layer: 5
   m_Name: Risorse
   m_TagString: Untagged
@@ -290,6 +291,24 @@ RectTransform:
   m_AnchoredPosition: {x: -22, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &171549870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 171549868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd9d4ba5aedf2d449dad19526ae7b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodText: {fileID: 170124779}
+  StoneText: {fileID: 870418060}
+  WoodText: {fileID: 2066475053}
+  FaithText: {fileID: 239983430}
+  SpiritText: {fileID: 1699448339}
+  GridButton: {fileID: 0}
+  ResourcesButton: {fileID: 0}
 --- !u!1 &235444132
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +365,7 @@ GameObject:
   - component: {fileID: 239983431}
   - component: {fileID: 239983430}
   m_Layer: 5
-  m_Name: Fede
+  m_Name: Faith
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,7 +421,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fede
+  m_Text: Faith
 --- !u!222 &239983431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1201,7 +1220,7 @@ GameObject:
   - component: {fileID: 870418061}
   - component: {fileID: 870418060}
   m_Layer: 5
-  m_Name: Pietra
+  m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1257,7 +1276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pietra
+  m_Text: Stone
 --- !u!222 &870418061
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1661,10 +1680,10 @@ MonoBehaviour:
   Faith: 0
   Spirit: 0
   GridController: {fileID: 1711031092}
-  timeEventManager: {fileID: 0}
+  timeEventManager: {fileID: 235444133}
   populationManager: {fileID: 2036652841}
   buildingManager: {fileID: 973317437}
-  resourcesManager: {fileID: 0}
+  resourcesManager: {fileID: 370798806}
   UIPlayerManager: {fileID: 0}
 --- !u!4 &1151168170
 Transform:
@@ -2237,7 +2256,7 @@ GameObject:
   - component: {fileID: 1699448340}
   - component: {fileID: 1699448339}
   m_Layer: 5
-  m_Name: Morale
+  m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2293,7 +2312,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Morale
+  m_Text: Spirit
 --- !u!222 &1699448340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2679,7 +2698,7 @@ GameObject:
   - component: {fileID: 2066475054}
   - component: {fileID: 2066475053}
   m_Layer: 5
-  m_Name: Legno
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2735,7 +2754,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Legno
+  m_Text: Wood
 --- !u!222 &2066475054
 CanvasRenderer:
   m_ObjectHideFlags: 0
