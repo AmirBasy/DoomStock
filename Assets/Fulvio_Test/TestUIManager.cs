@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class TestUIManager : MonoBehaviour {
     public GameObject PlayerMenuPrefab;
     public List<BuildingData> UibuildingsList = new List<BuildingData>();
-    public GameObject Player1UI;
-    public GameObject Player2UI;
-    public GameObject Player3UI;
-    public GameObject Player4UI;
+    public GameObject BuildingMenuPlayer1;
+    public GameObject BuildingMenuPlayer2;
+    public GameObject BuildingMenuPlayer3;
+    public GameObject BuildingMenuPlayer4;
 
     
     // Use this for initialization
@@ -39,25 +39,46 @@ public class TestUIManager : MonoBehaviour {
                 //tempMenu = Instantiate(PlayerMenuPrefab, Player1UI.transform, false);
                 //tempMenu.transform.position = new Vector3(Player1UI.transform.position.x + 95, Player1UI.transform.position.y - 45);
                 
-                if (Player1UI.active == true)
+                if (BuildingMenuPlayer1.active == true)
                 {
-                    Player1UI.SetActive(false);
+                    BuildingMenuPlayer1.SetActive(false);
                 }
                 else
                 {
-                    Player1UI.SetActive(true);
+                    BuildingMenuPlayer1.SetActive(true);
                 }
                 
 
                 break;
             case "PlayerTwo":
-                Debug.Log("Apri menu P2");
+                if (BuildingMenuPlayer2.active == true)
+                {
+                    BuildingMenuPlayer2.SetActive(false);
+                }
+                else
+                {
+                    BuildingMenuPlayer2.SetActive(true);
+                }
                 break;
             case "PlayerThree":
-                Debug.Log("Apri menu P3");
+                if (BuildingMenuPlayer3.active == true)
+                {
+                    BuildingMenuPlayer3.SetActive(false);
+                }
+                else
+                {
+                    BuildingMenuPlayer3.SetActive(true);
+                }
                 break;
             case "PlayerFour":
-                Debug.Log("Apri menu P4");
+                if (BuildingMenuPlayer4.active == true)
+                {
+                    BuildingMenuPlayer4.SetActive(false);
+                }
+                else
+                {
+                    BuildingMenuPlayer4.SetActive(true);
+                }
                 break;
             default:
                 Debug.Log("Nessun player corrispondente");
@@ -65,26 +86,5 @@ public class TestUIManager : MonoBehaviour {
         }
     }
     
-    public void SendBuildingDataToMenuBuilding(List<BuildingData> _buildingDataPrefabs, Player _player)
-    {
-        switch (_player.ID)
-        {
-            case "PlayerOne":
-                //Player1UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
-                break;
-            case "PlayerTwo":
-                //Player2UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
-                break;
-            case "PlayerThree":
-                //Player3UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
-                break;
-            case "PlayerFour":
-                //Player4UI.GetComponent<MenuBuilding>().playerBuildingData = _buildingDataPrefabs;
-                break;
-            default:
-                break;
-        }
-    }
-
     #endregion
 }

@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour {
                 AddBuilding = KeyCode.N,
                 AddPopulation = KeyCode.U,
                 RemovePopulation = KeyCode.O,
+                //Manca implementazione OpenMenu per il Player 2
             });
             GridController.playersInQueue.AddPlayer(Players[1]);
             Players[1].SetupGrid(0,GridController.gridSize[1]-1);
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour {
                 AddBuilding = KeyCode.F2,
                 AddPopulation = KeyCode.PageUp,
                 RemovePopulation = KeyCode.PageDown,
+                //Manca implementazione OpenMenu per il Player 3
             });
             GridController.playersInQueue.AddPlayer(Players[2]);
             Players[2].SetupGrid(GridController.gridSize[0]-1, GridController.gridSize[1]-1);
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour {
                 AddBuilding = KeyCode.F1,
                 AddPopulation = KeyCode.KeypadPlus,
                 RemovePopulation = KeyCode.KeypadMinus,
+                //Manca implementazione OpenMenu per il Player 4
             });
             GridController.playersInQueue.AddPlayer(Players[3]);
             Players[3].SetupGrid(GridController.gridSize[0]-1, 0);

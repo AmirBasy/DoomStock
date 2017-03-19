@@ -5,10 +5,19 @@ using UnityEngine.UI;
 
 public class MenuBuilding : MonoBehaviour {
 
+    /// <summary>
+    /// Serve al menu per capire a quale player appartiene.
+    /// </summary>
     public string MenuDelPlayer;
-    public Text NameBuilding1;
-    public Text NameBuilding2;
 
+    /// <summary>
+    /// Il prefab della casella di testo che conterrà il nome del Building che può costruire il player.
+    /// </summary>
+    public Text BuildingNameBox;
+
+    /// <summary>
+    /// La lista di Building che devono essere visualizzati nel menu.
+    /// </summary>
     public List<BuildingData> playerBuildingData = new List<BuildingData>();
 
     
@@ -23,34 +32,15 @@ public class MenuBuilding : MonoBehaviour {
     void Start () {
         rectTransform = GetComponent<RectTransform>();
         playerBuildingData = buildingLst();
-
+        
+        CreateBuildingNemeBox();
+        gameObject.SetActive(false);
     }
 
-
-	
-	// Update is called once per frame
-	void Update () {
-        if (playerBuildingData != null)
-        {
-            for (int i = 0; i < playerBuildingData.Count; i++)
-            {
-                NameBuilding1.text = playerBuildingData[i].ID;
-                NameBuilding2.text = playerBuildingData[i].ID; 
-            }
-        }
-		if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            // La somma totale delle altezze delle caselle contenute all'interno del menu
-            float TotalHeight = NameBuilding1.rectTransform.sizeDelta.y + NameBuilding2.rectTransform.sizeDelta.y;
-            
-            /// Controllo se l'altezza del menu è minore della somma delle altezze delle caselle di testo contenute al suo interno
-            
-            if (rectTransform.sizeDelta.y < TotalHeight)
-                /// ingrandisco il menu.
-                Debug.Log("Ingrandisco il menu");
-        }
-	}
-
+    /// <summary>
+    /// Prende la lista di player dal GameManager, il menu controlla a quale player appartiene e si salva la lista corrispondente.
+    /// </summary>
+    /// <returns>Ritorna una lista con i Building a seconda se il MenuBuilding si chiama PlayerOne, PlayerTwo, PlayerThree, PlayerFour</returns>
     public List<BuildingData> buildingLst()
     {
         List<BuildingData> newlist = new List<BuildingData>();
@@ -67,5 +57,22 @@ public class MenuBuilding : MonoBehaviour {
             }
         }
         return newlist;
+    }
+
+    /// <summary>
+    /// Per Ogni elemento della lista playerBuildingData, crea una casella di testo e scrive al suo interno il nome dell'oggetto che ne fa parte.
+    /// </summary>
+    void CreateBuildingNemeBox()
+    {
+        ///Se la lista di buildingData che riceve dal player è piena
+        if (playerBuildingData != null)
+        {
+            foreach (BuildingData item in playerBuildingData)
+            {
+                Text tempText;
+                tempText = Instantiate(BuildingNameBox, transform, false);
+                tempText.text = item.ID;
+            }
+        }
     }
 }
