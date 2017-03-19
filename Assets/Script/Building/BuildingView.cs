@@ -12,7 +12,7 @@ public class BuildingView : MonoBehaviour {
     public Player player;
     private void Start()
     {
-        
+        Debug.Log("Actual Life " + this.Data.BuildingLife);
         //TextActualPeople.text = "People: " + player.Population;
 
     }
@@ -32,11 +32,14 @@ public class BuildingView : MonoBehaviour {
 
         foreach (TimedEventData ev in Data.TimedEvents) {
             switch (ev.ID) {
-                case "Mese":
+                case "FineMese":
                     Data.BuildingLife = Data.BuildingLife - Data.DecreaseBuildingLife;
+                    Debug.Log("Actual Life " + this.Data.BuildingLife);
                     break;
                 case "FoodProduction":
                     GameManager.I.buildingManager.IncreaseResources(this);
+                    break;
+                case "FineAnno":
                     break;
                 default:
                     break;
@@ -46,7 +49,10 @@ public class BuildingView : MonoBehaviour {
         Debug.LogFormat("Edificio {0} si è decrementato di {1} ({2})", Data.ID, Data.DecreaseBuildingLife , Data.BuildingLife);
     }
 
-
+    private void FixedUpdate()
+    {
+        //GameManager.I.buildingManager.DestroyBuildingsInScene(this);
+    }
     public void UpdateGraphic() {
         TextActualPeople.text = "People: " + Data.Population;
         

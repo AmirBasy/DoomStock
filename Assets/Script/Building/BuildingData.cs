@@ -59,6 +59,6 @@ public class BuildingData : ScriptableObject {
     /// <summary>
     /// Lista di Risorse che l'edifico puo creare.
     /// </summary>
-    public List<BaseResourceData> Resources;
+    public List<BaseResourceData> BaseResources;
 }
 

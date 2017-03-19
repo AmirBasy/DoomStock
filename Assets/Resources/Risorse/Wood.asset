@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   ID: Wood
-  Value: 0
-  Limit: 0
+  Value: 3
+  Limit: -1
   HasNegativeValue: 0

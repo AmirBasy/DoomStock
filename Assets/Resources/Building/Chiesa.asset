@@ -21,8 +21,10 @@ MonoBehaviour:
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
-  IncraseMaxPopulation: 0
+  IncreaseMaxPopulation: 0
   BuildingLife: 100
   DecreaseBuildingLife: 2
   TimedEvents:
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  BaseResources:
+  - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}

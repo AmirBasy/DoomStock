@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 47707498}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -4, y: 7, z: -12}
+  m_LocalPosition: {x: 9, y: 12, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -321,7 +321,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
-  unitDuration: 1
+  unitDuration: 2
 --- !u!4 &235444134
 Transform:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 202, y: -27.5}
+  m_AnchoredPosition: {x: 202, y: -499.8}
   m_SizeDelta: {x: 404, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &316361530
@@ -603,7 +603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -143, y: 68}
+  m_AnchoredPosition: {x: -126.4, y: 68}
   m_SizeDelta: {x: 215, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &458756786
@@ -1181,7 +1181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 108, y: 57}
+  m_AnchoredPosition: {x: 945.7, y: 523.8}
   m_SizeDelta: {x: 216, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &856914468
@@ -1649,11 +1649,22 @@ MonoBehaviour:
   - {fileID: 1716284524}
   PlayerPrefab: {fileID: 491136995}
   player: {fileID: 491136996}
+  BaseResource:
+  - Food
+  - Stone
+  - Wood
+  - Faith
+  - Spirit
   Food: 0
+  Wood: 0
+  Stone: 0
+  Faith: 0
+  Spirit: 0
   GridController: {fileID: 1711031092}
   timeEventManager: {fileID: 0}
   populationManager: {fileID: 2036652841}
   buildingManager: {fileID: 973317437}
+  resourcesManager: {fileID: 0}
   UIPlayerManager: {fileID: 0}
 --- !u!4 &1151168170
 Transform:
@@ -1807,15 +1818,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4497645643453024, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4497645643453024, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.54
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4497645643453024, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 6.17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4497645643453024, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1850,12 +1861,12 @@ Prefab:
     - target: {fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39,
         type: 2}
       propertyPath: GridSize.x
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39,
         type: 2}
       propertyPath: GridSize.y
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
@@ -2123,7 +2134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -144, y: -48.5}
+  m_AnchoredPosition: {x: -1050.2999, y: -48.5}
   m_SizeDelta: {x: 287, y: 97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1670330538

@@ -71,7 +71,7 @@ namespace Framework.Grid {
                         playersPositions[i].QueuePosition--;
                     }
                 }
-                Debug.Log(playersPositions[i].player.ID + playersPositions[i].player.GetCurrentGridPosition() + " ArrivalOrder:" + playersPositions[i].QueuePosition);
+                //Debug.Log(playersPositions[i].player.ID + playersPositions[i].player.GetCurrentGridPosition() + " ArrivalOrder:" + playersPositions[i].QueuePosition);
             }
         }
 

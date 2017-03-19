@@ -8,10 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 005132d0c700d8444a48a1ed6e1db281, type: 3}
-  m_Name: FineMese
+  m_Script: {fileID: 11500000, guid: 61e29ede33c30bb418af6e476919eff4, type: 3}
+  m_Name: Faith
   m_EditorClassIdentifier: 
-  ID: FineMese
-  TimeUnitsToInvoke: 2
-  CurrentTimeUnit: 5
-  isRepeating: 1
+  ID: Faith
+  Value: 1
+  Limit: -1
+  HasNegativeValue: 1

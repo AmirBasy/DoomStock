@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Estrattore
   m_EditorClassIdentifier: 
-  ID: 
+  ID: Estrattore
   Population: 0
   PopulationLimit: 0
   BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
@@ -21,4 +21,10 @@ MonoBehaviour:
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
-  Resource: {fileID: 114512866645299112, guid: 78d5e7ca12541014fa9c3e726e746155, type: 2}
+  IncreaseMaxPopulation: 0
+  BuildingLife: 0
+  DecreaseBuildingLife: 0
+  TimedEvents:
+  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  BaseResources:
+  - {fileID: 11400000, guid: b1beb373801c0f34aa769c6597bb6e13, type: 2}

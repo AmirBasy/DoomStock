@@ -74,6 +74,7 @@ public class Player : PlayerBase {
         BuildingsInScene.Add(newInstanceOfView);
         CurrentBuildView = newInstanceOfView;
         CurrentBuildView.player = this;
+        CurrentBuildView.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z);
         GameManager.I.populationManager.IncreaseMaxPopulation();
     }
 

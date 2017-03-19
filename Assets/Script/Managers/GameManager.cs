@@ -12,13 +12,25 @@ public class GameManager : MonoBehaviour {
     public List<Player> Players;
     public GameObject PlayerPrefab;
     public Player player;
-    public int Food;  
+    public string[] BaseResource;
+    public int Food, Wood, Stone, Faith,Spirit;
+    //public List<BaseResourceData> ResourceValue() {
+    //    List<BaseResourceData> returnList = new List<BaseResourceData>();
+    //    foreach (BaseResourceData resources in resourcesManager.resourcesPrefabs)
+    //    {
+    //        returnList.Add(resources);
+    //        return returnList;
+    //    }
+    //    return null;
+    //}
+    
 
     #region Managers
     public GridController GridController;
     public TimeEventManager timeEventManager;
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
+    public ResourcesManager resourcesManager;
     //FulvioTestUI
     public TestUIManager UIPlayerManager;
     #endregion
