@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
+  m_Name: House
+  m_EditorClassIdentifier: 
+  ID: 
+  Population: 0
+  PopulationLimit: 0
+  BuildPrefab: {fileID: 114373493021348228, guid: 9f7b0aee1ebe30840941ef55972acbbf,
+    type: 2}
+  BuildingTime: 0
+  Attack: 0
+  FireRateo: 0
+  DamageResistance: 0
+  Maintenance: 0
+  IncreaseMaxPopulation: 0
+  BuildingLife: 0
+  DecreaseBuildingLife: 0
+  TimedEvents: []
+  BaseResources: []
