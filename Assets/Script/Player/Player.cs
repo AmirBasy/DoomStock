@@ -44,8 +44,11 @@ public class Player : PlayerBase {
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingView _buildingView) {
         if (GameManager.I.populationManager.MainPopulation > 0) {
-            GameManager.I.populationManager.MainPopulation -= 1;
-            _buildingView.Data.Population++;
+            if (BuildingsInScene.Count >= 1)
+            {
+                GameManager.I.populationManager.MainPopulation -= 1;   
+                _buildingView.Data.Population++; 
+            }
             if (_buildingView != null)
                 _buildingView.gameObject.GetComponent<BuildingView>().UpdateGraphic();
         }
