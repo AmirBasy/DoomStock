@@ -5,7 +5,10 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "BuildingDataInfo", 
                  menuName = "Building/BuildingData", order = 1)]
 
-public class BuildingData : ScriptableObject {
+public class BuildingData : ScriptableObject, ISelectable {
+
+    string ISelectable.UniqueID { get; set; }
+
     /// <summary>
     /// identifica il tipo di edificio
     /// </summary>

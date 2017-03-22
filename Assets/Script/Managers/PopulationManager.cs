@@ -136,6 +136,16 @@ public class PopulationManager : MonoBehaviour
         }
         return null;
     }
+
+    public List<PopulationData> GetAllFreePeople() {
+        List<PopulationData> returnList = new List<PopulationData>() {
+            new PopulationData() { Name = "Gino", UniqueID = "Gino" },
+            new PopulationData() { Name = "Pino", UniqueID = "Pino"  },
+            new PopulationData() { Name = "Tino", UniqueID = "Tino"  },
+        };
+        return returnList;
+    }
+
     #region events
 
 

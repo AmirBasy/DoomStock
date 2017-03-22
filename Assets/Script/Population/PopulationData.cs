@@ -4,13 +4,15 @@ using System;
 
 [CreateAssetMenu(fileName = "PopulationData",
                  menuName = "Population/PopulationData", order = 2)]
-public class PopulationData : ScriptableObject
+public class PopulationData : ScriptableObject, ISelectable
 {
+    public string UniqueID { get; set; }
 
-    public String Name, Ambition;
+    public string Name, Ambition;
 
     public int Age,StandardLifeExpectation, FoodRequirements, IndividualHappiness ;
 
     public PopulationView PopulationPrefab;
+
     
 }

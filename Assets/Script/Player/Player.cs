@@ -42,15 +42,14 @@ public class Player : PlayerBase {
     /// Aggiungie la risorsa Population all'Edificio
     /// </summary>
     /// <param name="_buildingView"></param>
-    public void AddPopulation(BuildingView _buildingView) {
+    public void AddPopulation(BuildingData _building, PopulationData _unitToAdd) {
         if (GameManager.I.populationManager.MainPopulation > 0) {
             if (BuildingsInScene.Count >= 1)
             {
                 GameManager.I.populationManager.MainPopulation -= 1;   
-                _buildingView.Data.Population++; 
+                _building.Population++; 
             }
-            if (_buildingView != null)
-                _buildingView.gameObject.GetComponent<BuildingView>().UpdateGraphic();
+            // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
         }
     }
 
@@ -134,7 +133,7 @@ public class Player : PlayerBase {
             DeployBuilding();
         }
         if (Input.GetKeyDown(inputData.AddPopulation)) {
-            AddPopulation(CurrentBuildView);         
+            AddPopulation(CurrentBuildView.Data, null);         
         }
         if (Input.GetKeyDown(inputData.RemovePopulation)) {
             RemovePopulation();
