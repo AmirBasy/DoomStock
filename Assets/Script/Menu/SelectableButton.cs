@@ -11,6 +11,5 @@ public class SelectableButton : Button {
     public void SetData(ISelectable data) {
         SelectionData = data;
         GetComponentInChildren<Text>().text = "- " + SelectionData.UniqueID;
-        
     }
 }

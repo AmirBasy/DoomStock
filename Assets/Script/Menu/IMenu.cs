@@ -17,6 +17,11 @@ public interface IMenu {
     /// </summary>
     List<ISelectable> Selections { get; set; }
     /// <summary>
+    /// Inizializza il menù.
+    /// </summary>
+    /// <param name="_player"></param>
+    void Init(Player _player, List<ISelectable> _firstLevelSelections);
+    /// <summary>
     /// Carica i CurrentSelectables del livello attuale.
     /// </summary>
     void LoadSelections();
@@ -54,38 +59,7 @@ public interface ISelectable {
     string UniqueID { get; set; }
 }
 
-#region Test
-public class TestMenu : IMenu {
-    public Player CurrentPlayer { get; set; }
-    public List<ISelectable> CurrentSelectables { get; set; }
-    public List<ISelectable> Selections {
-        get;
-        set;
-    }
-
-    public void LoadSelections() {
-        CurrentSelectables.Clear();
-        switch (Selections.Count) {
-            case 0:
-                foreach (var p in GameManager.I.populationManager.GetAllFreePeople()) {
-                    CurrentSelectables.Add(p);
-                }
-                break;
-            case 1:
-                foreach (var bView in CurrentPlayer.BuildingsInScene) {
-                    CurrentSelectables.Add(bView.Data);
-                }
-                break;
-            case 2:
-                DoAction();
-                break;
-        }
-
-    }
-
-    public void DoAction() {
-        CurrentPlayer.AddPopulation(Selections[1] as BuildingData, Selections[0] as PopulationData);
-    }
+public enum MenuTypes {
+    AddPopulation,
+    AddBuilding,
 }
-
-#endregion

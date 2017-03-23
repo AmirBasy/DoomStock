@@ -36,6 +36,18 @@ public class Player : PlayerBase {
     }
     #endregion
 
+    #region Menu
+
+    void OpenMenuPopulation() {
+        GameManager.I.uiManager.ShowMenu(MenuTypes.AddPopulation, this);
+    }
+
+    void OpenMenuAddBuilding() {
+        GameManager.I.uiManager.ShowMenu(MenuTypes.AddBuilding, this);
+    }
+
+    #endregion
+
     #region population
 
     /// <summary>
@@ -130,10 +142,14 @@ public class Player : PlayerBase {
             MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
         }
         if (Input.GetKeyDown(inputData.AddBuilding)) {
-            DeployBuilding();
+            // DeployBuilding();
+            // Z
+            OpenMenuAddBuilding();
         }
         if (Input.GetKeyDown(inputData.AddPopulation)) {
-            AddPopulation(CurrentBuildView.Data, null);         
+            //AddPopulation(CurrentBuildView.Data, null);     
+            // X    
+            OpenMenuPopulation();
         }
         if (Input.GetKeyDown(inputData.RemovePopulation)) {
             RemovePopulation();
@@ -152,10 +168,25 @@ public class Player : PlayerBase {
         checkInputs();        
     }
 
+    #region Events subscription
+
+    private void OnEnable() {
+        BuildingView.OnDestroy += OnBuildingDestroyed;
+    }
+
+    void OnBuildingDestroyed(BuildingView _buildingView) {
+        if(BuildingsInScene.Contains(_buildingView))
+            BuildingsInScene.Remove(_buildingView);
+    }
+
+    private void OnDisable() {
+        BuildingView.OnDestroy -= OnBuildingDestroyed;
+    }
+    #endregion
 
 
     #region Fulvio Test UI
-    
+
     /// <summary>
     /// FulvioTestUI
     /// Va a richiamare la funzione ActiveMenu, presente nel UIPlayer, passando se stesso.

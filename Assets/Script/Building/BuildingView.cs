@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BuildingView : MonoBehaviour {
 
@@ -41,7 +42,8 @@ public class BuildingView : MonoBehaviour {
                 case "FineAnno":
                     break;
                 case "Degrado":
-                     GameManager.I.buildingManager.DestroyBuildingsInScene(this);
+                    if (Data.BuildingLife < 1)
+                        destroyMe();
                     Debug.Log("Degrado Edificio " + Data.ID);
                     break;
                 default:
@@ -58,8 +60,25 @@ public class BuildingView : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Distrugge il guilding.
+    /// </summary>
+    void destroyMe() {
+        if (OnDestroy != null)
+            OnDestroy(this);
+        transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() => {
+            GameObject.Destroy(this.gameObject);
+        });
+    }
+
     private void OnDisable() {
         TimeEventManager.OnEvent -= OnUnitEvent;
     }
-    
+
+    #region Events
+    public delegate void BuildingEvent(BuildingView _buildingView);
+
+    public static BuildingEvent OnDestroy;
+    #endregion
+
 }

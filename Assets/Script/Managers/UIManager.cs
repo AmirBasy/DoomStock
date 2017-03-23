@@ -33,4 +33,50 @@ public class UIManager : MonoBehaviour {
         SpiritText.text = " Spirit = " + GameManager.I.Spirit.ToString();
 
     }
+
+    #region Functionalities
+
+    #region Menu
+    [Header("All Menu")]
+    public MenuBase AddPopulationMenu;
+    public PlayerMenuComponent P1_Menu;
+    public PlayerMenuComponent P2_Menu;
+    public PlayerMenuComponent P3_Menu;
+    public PlayerMenuComponent P4_Menu;
+    #endregion
+
+    #endregion
+
+    #region API
+
+    public void ShowMenu(MenuTypes _type, Player _player) {
+        switch (_type) {
+            case MenuTypes.AddPopulation:
+                AddPopulationMenu.Init(_player);
+                break;
+            case MenuTypes.AddBuilding:
+                switch (_player.ID) {
+                    case "PlayerOne":
+                        P1_Menu.Init(_player);
+                        break;
+                    case "PlayerTwo":
+                        P2_Menu.Init(_player);
+                        break;
+                    case "PlayerThree":
+                        P3_Menu.Init(_player);
+                        break;
+                    case "PlayerFour":
+                        P4_Menu.Init(_player);
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    #endregion
 }

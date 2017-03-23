@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
     public ResourcesManager resourcesManager;
+    public UIManager uiManager;
     //FulvioTestUI
     public TestUIManager UIPlayerManager;
     #endregion

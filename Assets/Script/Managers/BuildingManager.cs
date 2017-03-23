@@ -106,5 +106,7 @@ public class BuildingManager : MonoBehaviour {
         _buildingView.Data.BuildingLife -= _buildingView.Data.DecreaseBuildingLife;
         Debug.Log("Actual Life = " + _buildingView.Data.BuildingLife);
     }
+
+
 }
 

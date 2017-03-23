@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class BuildingData : ScriptableObject, ISelectable {
 
-    string ISelectable.UniqueID { get; set; }
+    public string UniqueID { get; set; }
 
     /// <summary>
     /// identifica il tipo di edificio
@@ -63,5 +63,10 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// Lista di Risorse che l'edifico puo creare.
     /// </summary>
     public List<BaseResourceData> BaseResources;
+
+
+    public void Awake() {
+        UniqueID = ID;
+    }
 }
 
