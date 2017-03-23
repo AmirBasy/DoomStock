@@ -14,5 +14,7 @@ public class PopulationData : ScriptableObject, ISelectable
 
     public PopulationView PopulationPrefab;
 
-    
+    public void Awake() {
+        UniqueID = name;
+    }
 }

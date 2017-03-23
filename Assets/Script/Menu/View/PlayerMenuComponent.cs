@@ -34,6 +34,12 @@ public class PlayerMenuComponent : MenuBase {
         CurrentPlayer.DeployBuilding();
     }
 
-
+    protected override void CreateMenuItem(ISelectable _item) {
+        GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
+        SelectableMenuItem newItem = newGO.GetComponent<SelectableMenuItem>();
+        newItem.SetData(_item);
+        // TODO: Add selection logic
+        //newItem.onClick.AddListener(() => this.AddSelection(newButton.SelectionData));
+    }
 
 }

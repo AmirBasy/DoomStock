@@ -328,7 +328,7 @@ Prefab:
     - target: {fileID: 224009766978333940, guid: 1142729c173c1dc4b82d5f848328f2a2,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -346
+      value: -387.8
       objectReference: {fileID: 0}
     - target: {fileID: 224009766978333940, guid: 1142729c173c1dc4b82d5f848328f2a2,
         type: 2}
@@ -371,6 +371,32 @@ Prefab:
       value: 
       objectReference: {fileID: 114795742212221608, guid: a88c776028039ba4fb6d664f0221e8f7,
         type: 2}
+    - target: {fileID: 114069856008558842, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.416
+      objectReference: {fileID: 0}
+    - target: {fileID: 114678903967636710, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: ButtonPrefab
+      value: 
+      objectReference: {fileID: 1438228900236034, guid: 8024579f8f2598443abab71f6c9dc4be,
+        type: 2}
+    - target: {fileID: 224009766978333940, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 116.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224495970492366878, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 58.200012
+      objectReference: {fileID: 0}
+    - target: {fileID: 224495970492366878, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 116.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1142729c173c1dc4b82d5f848328f2a2, type: 2}
   m_IsPrefabParent: 0

@@ -55,12 +55,16 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
             DestroyObject(button.gameObject);
         } 
 
-        foreach (var item in CurrentSelectables) {
-            GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
-            SelectableButton newButton = newGO.GetComponent<SelectableButton>();
-            newButton.SetData(item);
-            newButton.onClick.AddListener(() => this.AddSelection(newButton.SelectionData));
+        foreach (ISelectable item in CurrentSelectables) {
+            CreateMenuItem(item);
         }
+    }
+
+    protected virtual void CreateMenuItem(ISelectable _item) {
+        GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
+        SelectableButton newButton = newGO.GetComponent<SelectableButton>();
+        newButton.SetData(_item);
+        newButton.onClick.AddListener(() => this.AddSelection(newButton.SelectionData));
     }
 
     /// <summary>
