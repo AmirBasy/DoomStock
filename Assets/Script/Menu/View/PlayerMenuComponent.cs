@@ -9,10 +9,19 @@ public class PlayerMenuComponent : MenuBase {
         CurrentSelectables.Clear();
         switch (Selections.Count) {
             case 0:
-                // If firstLevelSelections != null...
+
+                if (firstLevelSelections != null)
+                    foreach (ISelectable selectable in firstLevelSelections)
+                    {
+                        CurrentSelectables.Add(selectable);
+                    }
+
                 break;
             case 1:
-
+                foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
+                {
+                    CurrentSelectables.Add(building);
+                }
                 break;
             default:
                 DoAction();
@@ -22,7 +31,7 @@ public class PlayerMenuComponent : MenuBase {
     }
 
     public override void DoAction() {
-        
+        CurrentPlayer.DeployBuilding();
     }
 
 

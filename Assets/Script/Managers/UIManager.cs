@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using System;
 
 public class UIManager : MonoBehaviour {
 
@@ -48,7 +48,8 @@ public class UIManager : MonoBehaviour {
     #endregion
 
     #region API
-
+    public List<ISelectable> FirstLevelSelectables = new List<ISelectable>();
+   
     public void ShowMenu(MenuTypes _type, Player _player) {
         switch (_type) {
             case MenuTypes.AddPopulation:
@@ -57,7 +58,14 @@ public class UIManager : MonoBehaviour {
             case MenuTypes.AddBuilding:
                 switch (_player.ID) {
                     case "PlayerOne":
-                        P1_Menu.Init(_player);
+
+                        FirstLevelSelectables.Add(
+                            new mySelector() { UniqueID = "Create Building" } as ISelectable
+                        );
+                        FirstLevelSelectables.Add(
+                            new mySelector() { UniqueID = "Remove Building" } as ISelectable
+                        );
+                        P1_Menu.Init(_player, FirstLevelSelectables);
                         break;
                     case "PlayerTwo":
                         P2_Menu.Init(_player);
@@ -79,4 +87,11 @@ public class UIManager : MonoBehaviour {
     }
 
     #endregion
+}
+
+public class mySelector : ISelectable
+{
+    public string UniqueID    {get;
+              set;
+    }
 }

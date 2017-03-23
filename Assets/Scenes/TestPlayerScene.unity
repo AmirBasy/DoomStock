@@ -360,6 +360,17 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -167
       objectReference: {fileID: 0}
+    - target: {fileID: 114578257825913192, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: P1_Menu
+      value: 
+      objectReference: {fileID: 1768298058}
+    - target: {fileID: 114578257825913192, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: createBuilding
+      value: 
+      objectReference: {fileID: 114795742212221608, guid: a88c776028039ba4fb6d664f0221e8f7,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1142729c173c1dc4b82d5f848328f2a2, type: 2}
   m_IsPrefabParent: 0
@@ -1097,6 +1108,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768298058 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114678903967636710, guid: 1142729c173c1dc4b82d5f848328f2a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 291799397}
+  m_Script: {fileID: 11500000, guid: 4f60b08eeed46cc48abfef90267e577a, type: 3}
 --- !u!1 &1854144076
 GameObject:
   m_ObjectHideFlags: 0
