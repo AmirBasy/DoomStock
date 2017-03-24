@@ -59,21 +59,54 @@ public class UIManager : MonoBehaviour {
                 switch (_player.ID) {
                     case "PlayerOne":
                         FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Create Building" } as ISelectable
+                            new mySelector() { UniqueID = " + Building" } as ISelectable
                         );
                         FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Remove Building" } as ISelectable
+                            new mySelector() { UniqueID = " - Building" } as ISelectable
+                        );
+                        FirstLevelSelectables.Add(
+                            new mySelector() { UniqueID = " -  People" } as ISelectable
                         );
                         P1_Menu.Init(_player, FirstLevelSelectables);
                         break;
                     case "PlayerTwo":
-                        P2_Menu.Init(_player);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Create Building" } as ISelectable
+                        //);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Remove Building" } as ISelectable
+                        //);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Remove People" } as ISelectable
+                        //);
+                        P2_Menu.Init(_player, FirstLevelSelectables);
                         break;
                     case "PlayerThree":
-                        P3_Menu.Init(_player);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Create Building" } as ISelectable
+                        //);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = " -Building" } as ISelectable
+                        //);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Remove People" } as ISelectable
+                        //);
+                        FirstLevelSelectables.Add(
+                            new mySelector() { UniqueID = "Miracle" } as ISelectable
+                        );
+                        P3_Menu.Init(_player, FirstLevelSelectables);
                         break;
                     case "PlayerFour":
-                        P4_Menu.Init(_player);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Create Building" } as ISelectable
+                        //);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Remove Building" } as ISelectable
+                        //);
+                        //FirstLevelSelectables.Add(
+                        //    new mySelector() { UniqueID = "Remove Building" } as ISelectable
+                        //);
+                        P4_Menu.Init(_player, FirstLevelSelectables);
                         break;
                     default:
                         break;
