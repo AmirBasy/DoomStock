@@ -8,7 +8,7 @@ using System;
 public class UIManager : MonoBehaviour {
 
     public Text FoodText, StoneText, WoodText, FaithText, SpiritText;
-    public Button GridButton, ResourcesButton;
+   // public Button GridButton, ResourcesButton;
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -58,7 +58,6 @@ public class UIManager : MonoBehaviour {
             case MenuTypes.AddBuilding:
                 switch (_player.ID) {
                     case "PlayerOne":
-
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = "Create Building" } as ISelectable
                         );

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SelectableMenuItem : MonoBehaviour {
 
     public Text Lable;
+    public ISelectable SelectionData;
 
     public void SetData(ISelectable data) {
         Lable.text = "|| " + data.UniqueID + " ||"; 

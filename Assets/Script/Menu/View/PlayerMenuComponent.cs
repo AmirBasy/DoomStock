@@ -9,17 +9,14 @@ public class PlayerMenuComponent : MenuBase {
         CurrentSelectables.Clear();
         switch (Selections.Count) {
             case 0:
-
                 if (firstLevelSelections != null)
-                    foreach (ISelectable selectable in firstLevelSelections)
-                    {
+                    foreach (ISelectable selectable in firstLevelSelections){
                         CurrentSelectables.Add(selectable);
+                        
                     }
-
                 break;
             case 1:
-                foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
-                {
+                foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs){
                     CurrentSelectables.Add(building);
                 }
                 break;
@@ -31,7 +28,8 @@ public class PlayerMenuComponent : MenuBase {
     }
 
     public override void DoAction() {
-        CurrentPlayer.DeployBuilding();
+        CurrentPlayer.DeployBuilding(Selections[1] as BuildingView);
+        Show(false);
     }
 
     protected override void CreateMenuItem(ISelectable _item) {
@@ -39,6 +37,8 @@ public class PlayerMenuComponent : MenuBase {
         SelectableMenuItem newItem = newGO.GetComponent<SelectableMenuItem>();
         newItem.SetData(_item);
         // TODO: Add selection logic
+        newItem.gameObject.AddComponent<SelectableButton>().onClick.AddListener(() => this.AddSelection(newItem.SelectionData));
+        
         //newItem.onClick.AddListener(() => this.AddSelection(newButton.SelectionData));
     }
 

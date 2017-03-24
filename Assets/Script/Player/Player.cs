@@ -61,6 +61,7 @@ public class Player : PlayerBase {
                 GameManager.I.populationManager.MainPopulation -= 1;   
                 _building.Population++; 
             }
+
             // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
         }
     }
@@ -74,21 +75,21 @@ public class Player : PlayerBase {
     }
 
 
-    
+
     #endregion
 
     #region Buildings
     /// <summary>
     /// Istanzia una nuovo oggetto Building
     /// </summary>
-    public override void DeployBuilding()
+    public override void DeployBuilding(BuildingView building)
     {
-        base.DeployBuilding();
+        base.DeployBuilding(building);
         BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(BuildingsDataPrefabs[0]);
         BuildingsInScene.Add(newInstanceOfView);
         CurrentBuildView = newInstanceOfView;
         CurrentBuildView.player = this;
-        CurrentBuildView.transform.position = new Vector3(this.transform.position.x,this.transform.position.y,this.transform.position.z);
+        CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
         GameManager.I.populationManager.IncreaseMaxPopulation();
     }
 
