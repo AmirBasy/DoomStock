@@ -70,10 +70,13 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// </summary>
     public List<BaseResourceData> BaseResources;
 
-
+  
 
     public void Awake() {
         UniqueID = ID;
+        
     }
+
+    
 }
 

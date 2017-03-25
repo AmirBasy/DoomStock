@@ -16,26 +16,16 @@ public class PlayerMenuComponent : MenuBase {
                 if (firstLevelSelections != null)
                     foreach (ISelectable selectable in firstLevelSelections){
                         CurrentSelectables.Add(selectable);
-                        
+                        SaveList.Add(selectable);
                     }
-                foreach (ISelectable item in CurrentSelectables)
-                { 
-                        SaveList.Add(item); 
-                }
+                
 
                 break;
             case 1:
-                for (int i = 0; i < SaveList.Count; i++)
-                {
-                    if (SaveList[i].UniqueID == " + Building")
-                    {
-                        foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
-                        {
-                            CurrentSelectables.Add(building);
-                        }
-                    }
-                }
-                SaveList.Clear();
+                 foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
+                 {
+                    CurrentSelectables.Add(building);
+                 }              
                 break;
             default:
                 DoAction();

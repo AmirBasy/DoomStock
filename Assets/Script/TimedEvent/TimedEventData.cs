@@ -32,24 +32,37 @@ public class TimedEventData : ScriptableObject
     public bool IsEnded
     {
         get { return isEnded; }
-        set { isEnded = value; }
+        set
+        {
+            if (OnDataChanged != null)
+               OnDataChanged(this);
+                isEnded = value;
+        }
     }
+
 
     public void Awake() {
         CurrentTimeUnit = TimeUnitsToInvoke;
     }
 
     /// <summary>
-    /// Comunica che è passata una unità di tempo.
+    /// Comunica che è passata una unità di temxpo.
     /// </summary>
     public bool TimeUnitEnded() {
         CurrentTimeUnit--;
         if (CurrentTimeUnit == 0) {
-            isEnded = true;
+            IsEnded = true;
             if (isRepeating)
                 CurrentTimeUnit = TimeUnitsToInvoke;
             return true;
         }
         return false;
     }
+
+    #region Events
+    public delegate void DataEvent(TimedEventData _timedEventData);
+
+    public static DataEvent OnDataChanged;
+    #endregion
+
 }
