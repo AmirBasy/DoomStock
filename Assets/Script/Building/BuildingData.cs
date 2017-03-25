@@ -22,13 +22,17 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// </summary>
     public int PopulationLimit;
     /// <summary>
+    /// Elenco di risorse necessarie per costruire l'edificio
+    /// </summary>
+    public int WoodToBuild,StoneToBuild;
+    /// <summary>
+    /// Dichiara se un Building ha termianto il suo tempo di costruzione
+    /// </summary>
+    public bool isBuilt;
+    /// <summary>
     /// Oggetto prefab dell edificio
     /// </summary> 
     public BuildingView BuildPrefab;
-    /// <summary>
-    /// Tempo necessario per costruire l'edificio
-    /// </summary>
-    public float BuildingTime;
     /// <summary>
     /// Variabile che indica la potenza di "fuoco" dell'edificio
     /// </summary>
@@ -49,20 +53,23 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// Aumenta il LimiteMassimo della Popolazione
     /// </summary>
     public int IncreaseMaxPopulation;
-
-
+    /// <summary>
+    /// Vita dell' edificio
+    /// </summary>
     public int BuildingLife;
+    /// <summary>
+    /// Variabile utilizzata per il Degrado
+    /// </summary>
     public int DecreaseBuildingLife;
-
     /// <summary>
     /// Lista degli eventi a cui questo edificio risponde.
     /// </summary>
     public List<TimedEventData> TimedEvents;
-
     /// <summary>
     /// Lista di Risorse che l'edifico puo creare.
     /// </summary>
     public List<BaseResourceData> BaseResources;
+
 
 
     public void Awake() {

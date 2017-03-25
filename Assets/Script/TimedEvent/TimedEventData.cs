@@ -27,6 +27,13 @@ public class TimedEventData : ScriptableObject
     /// Se è true si ripete.
     /// </summary>
     public bool isRepeating;
+    private bool isEnded;
+
+    public bool IsEnded
+    {
+        get { return isEnded; }
+        set { isEnded = value; }
+    }
 
     public void Awake() {
         CurrentTimeUnit = TimeUnitsToInvoke;
@@ -38,6 +45,7 @@ public class TimedEventData : ScriptableObject
     public bool TimeUnitEnded() {
         CurrentTimeUnit--;
         if (CurrentTimeUnit == 0) {
+            isEnded = true;
             if (isRepeating)
                 CurrentTimeUnit = TimeUnitsToInvoke;
             return true;

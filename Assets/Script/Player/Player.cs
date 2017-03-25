@@ -86,11 +86,17 @@ public class Player : PlayerBase {
     {
         base.DeployBuilding(building);
         BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(BuildingsDataPrefabs[0]);
-        BuildingsInScene.Add(newInstanceOfView);
-        CurrentBuildView = newInstanceOfView;
-        CurrentBuildView.player = this;
-        CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-        GameManager.I.populationManager.IncreaseMaxPopulation();
+        if (newInstanceOfView.CheckResources() == true)
+        {
+            CurrentBuildView = newInstanceOfView;
+            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+            if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
+            {
+                BuildingsInScene.Add(newInstanceOfView);
+                CurrentBuildView.player = this;
+                GameManager.I.populationManager.IncreaseMaxPopulation();  
+            }
+        }
     }
 
     #endregion

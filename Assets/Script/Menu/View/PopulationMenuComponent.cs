@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PopulationMenuComponent : MenuBase {
 
+    List<ISelectable> SaveSelectable = new List<ISelectable>();  
+
     public override void LoadSelections() {
         CurrentSelectables.Clear();
         switch (Selections.Count) {
@@ -20,7 +22,7 @@ public class PopulationMenuComponent : MenuBase {
                 }
                 break;
             case 2:
-                DoAction();
+                DoAction();           
                 return;
         }
         RefreshItemList();

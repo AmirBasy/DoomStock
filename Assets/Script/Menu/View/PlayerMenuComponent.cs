@@ -19,15 +19,15 @@ public class PlayerMenuComponent : MenuBase {
                         
                     }
                 foreach (ISelectable item in CurrentSelectables)
-                {
-                    SaveList.Add(item);
+                { 
+                        SaveList.Add(item); 
                 }
 
                 break;
-            case 1: 
-                foreach (mySelector selectable in SaveList)
+            case 1:
+                for (int i = 0; i < SaveList.Count; i++)
                 {
-                    if (selectable.UniqueID.Equals(" + Building"))
+                    if (SaveList[i].UniqueID == " + Building")
                     {
                         foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
                         {
