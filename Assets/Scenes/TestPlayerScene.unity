@@ -1766,7 +1766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainPeopleText: {fileID: 449894090}
-  PV: {fileID: 0}
   StandardNatality: 0
   Names:
   - Harry Potter
@@ -1775,10 +1774,11 @@ MonoBehaviour:
   - Geppetto
   - Freddie Mercury
   - Giorgia Meloni
-  MinLife: 30
-  MaxLife: 40
+  MinLife: 3
+  MaxLife: 4
   TimedEvents:
   - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
+  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
 --- !u!4 &2036652842
 Transform:
   m_ObjectHideFlags: 0

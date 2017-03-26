@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System;
+using System.Collections.Generic;
+
 
 
 public class PopulationData : ISelectable
@@ -8,9 +9,7 @@ public class PopulationData : ISelectable
 
     public string Name, Ambition;
 
-    public int Age, MaxAge, FoodRequirements, IndividualHappiness;
-
-    public PopulationView PopulationPrefab;
+    public int Age, MaxAge, FoodRequirements, IndividualHappiness, Month;
 
     public void Awake() {
         UniqueID = Name;

@@ -8,9 +8,9 @@ public class PopulationManager : MonoBehaviour
 {
 
     public Text MainPeopleText;
-    public PopulationView PV;
+
     public int StandardNatality;
-    public List<PopulationData> PopulationDataPrefabs;
+    public List<PopulationData> AllPopulation = new List<PopulationData>();
     /// <summary>
     /// scegliere nomi tra questi.
     /// </summary>
@@ -55,6 +55,7 @@ public class PopulationManager : MonoBehaviour
     {
         mainPopulation = 0;
         UpdateGraphic("Main People: " + MainPopulation);
+
     }
 
     private void UpdateGraphic(string _newText)
@@ -94,7 +95,29 @@ public class PopulationManager : MonoBehaviour
             if (ev.ID == "Birth")
             {
                 MainPopulation++;
-                AllFreePeople.Add(CreatePopulation());
+                PopulationData newUnit = CreatePopulation();
+                AllFreePeople.Add(newUnit);
+                AllPopulation.Add(newUnit);
+            }
+            if (ev.ID == "FineMese")
+            {
+                foreach (PopulationData p_data in AllPopulation)
+                {
+                    p_data.Month++;
+                   
+                    if(p_data.Month >= 12)
+                    {
+                        p_data.MaxAge--;
+                        if (p_data.MaxAge <= 0) {
+                            AllFreePeople.Remove(p_data);
+                            AllPopulation.Remove(p_data);
+                        }
+                            
+
+                        p_data.Month = 0;
+                    }
+                        
+                }
             }
         }
     }
@@ -106,6 +129,10 @@ public class PopulationManager : MonoBehaviour
     #endregion
     public List<PopulationData> AllFreePeople = new List<PopulationData>();
 
+    /// <summary>
+    /// genera un'unità di populationData con nome  e età massima random.
+    /// </summary>
+    /// <returns></returns>
     PopulationData CreatePopulation()
     {
         int randomIndex = UnityEngine.Random.Range(0, Names.Count);
