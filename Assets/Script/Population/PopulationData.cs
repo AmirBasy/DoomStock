@@ -2,19 +2,17 @@
 using System;
 
 
-[CreateAssetMenu(fileName = "PopulationData",
-                 menuName = "Population/PopulationData", order = 2)]
-public class PopulationData : ScriptableObject, ISelectable
+public class PopulationData : ISelectable
 {
     public string UniqueID { get; set; }
 
     public string Name, Ambition;
 
-    public int Age,StandardLifeExpectation, FoodRequirements, IndividualHappiness ;
+    public int Age, MaxAge, FoodRequirements, IndividualHappiness;
 
     public PopulationView PopulationPrefab;
 
     public void Awake() {
-        UniqueID = name;
+        UniqueID = Name;
     }
 }

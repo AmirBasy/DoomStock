@@ -12,7 +12,7 @@ public class PopulationMenuComponent : MenuBase {
         CurrentSelectables.Clear();
         switch (Selections.Count) {
             case 0:
-                foreach (var p in GameManager.I.populationManager.GetAllFreePeople()) {
+                foreach (var p in GameManager.I.populationManager.AllFreePeople) {
                     CurrentSelectables.Add(p);
                 }
               
