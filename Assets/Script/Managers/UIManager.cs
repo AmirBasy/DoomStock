@@ -7,7 +7,7 @@ using System;
 
 public class UIManager : MonoBehaviour {
 
-    public Text FoodText, StoneText, WoodText, FaithText, SpiritText;
+    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText;
    // public Button GridButton, ResourcesButton;
     void Awake()
     {
@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour {
         WoodText.text = " Wood = " + GameManager.I.Wood.ToString();
         FaithText.text = " Faith = " + GameManager.I.Faith.ToString();
         SpiritText.text = " Spirit = " + GameManager.I.Spirit.ToString();
+        HealthcareText.text = " Healthcare = " + GameManager.I.Healthcare.ToString();
 
     }
 

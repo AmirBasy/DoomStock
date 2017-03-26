@@ -13,17 +13,23 @@ public class GameManager : MonoBehaviour {
     public GameObject PlayerPrefab;
     public Player player;
     public string[] BaseResource;
-    public int Food, Wood, Stone, Faith,Spirit;
-    //public List<BaseResourceData> ResourceValue() {
-    //    List<BaseResourceData> returnList = new List<BaseResourceData>();
-    //    foreach (BaseResourceData resources in resourcesManager.resourcesPrefabs)
-    //    {
-    //        returnList.Add(resources);
-    //        return returnList;
-    //    }
-    //    return null;
-    //}
+    public int Food, Wood, Stone, Faith, Spirit;
+
     
+    int healthcare;
+
+    public int Healthcare
+    {
+        get { return healthcare; }
+        set {
+            if (value <= 0)
+                value = 0;
+            healthcare = value;
+            
+            GameManager.I.populationManager.MaxLife += value;
+        }
+    }
+
 
     #region Managers
     public GridController GridController;

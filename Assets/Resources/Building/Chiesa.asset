@@ -14,9 +14,11 @@ MonoBehaviour:
   ID: Chiesa
   Population: 0
   PopulationLimit: 0
+  WoodToBuild: 0
+  StoneToBuild: 0
+  isBuilt: 0
   BuildPrefab: {fileID: 114322596599644798, guid: c2d48951f9dce594c99750b2b3e3005e,
     type: 2}
-  BuildingTime: 0
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
@@ -28,5 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
   - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}

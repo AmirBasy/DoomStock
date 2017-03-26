@@ -77,6 +77,7 @@ public class PopulationManager : MonoBehaviour
     {
         mainPopulation = 0;
         UpdateGraphic("Main People: " + MainPopulation);
+        
      
     }
     #endregion
@@ -185,6 +186,12 @@ public class PopulationManager : MonoBehaviour
                     {
                         Debug.Log("devo mangiare. " + _pdata.Name);
                         GameManager.I.Food--;
+                        if (GameManager.I.Food <= 0)
+                        {
+                            GameManager.I.Food = 0;
+                            AllFreePeople.Remove(_pdata);
+                            AllPopulation.Remove(_pdata);
+                        }
                     }
 
                 }

@@ -74,7 +74,7 @@ public class BuildingManager : MonoBehaviour {
                                     GameManager.I.Spirit += _buildingview.Data.Population * resource.Value;
                                     Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Spirit);
                                     break;
-
+                               
                                 default:
                                     break;
                             }

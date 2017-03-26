@@ -53,6 +53,12 @@ public class BuildingView : MonoBehaviour
                         GameManager.I.buildingManager.IncreaseResources(this);
                     }
                     break;
+                case "HealthcareProduction":
+                    if (Data.isBuilt == true)
+                    {
+                        GameManager.I.Healthcare++;
+                    }
+                    break;
                 case "FineAnno":
                     break;
                 case "Degrado":
