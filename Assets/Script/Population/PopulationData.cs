@@ -9,7 +9,7 @@ public class PopulationData : ISelectable
 
     public string Name, Ambition;
 
-    public int Age, MaxAge, FoodRequirements, IndividualHappiness, Month;
+    public int Age, MaxAge, FoodRequirements, EatingTime, IndividualHappiness, Month;
 
     public void Awake() {
         UniqueID = Name;

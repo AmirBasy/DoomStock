@@ -1766,7 +1766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainPeopleText: {fileID: 449894090}
-  StandardNatality: 0
+  HealthCare: 0
   Names:
   - Harry Potter
   - Marco Conio
@@ -1776,9 +1776,12 @@ MonoBehaviour:
   - Giorgia Meloni
   MinLife: 3
   MaxLife: 4
+  MinFoodRequirement: 0
+  MaxFoodRequirement: 0
   TimedEvents:
   - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  - {fileID: 11400000, guid: 8b57b2eacd23ed04d8ffcc5f668a699c, type: 2}
 --- !u!4 &2036652842
 Transform:
   m_ObjectHideFlags: 0
