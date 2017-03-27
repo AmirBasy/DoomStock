@@ -30,7 +30,7 @@ public abstract class PlayerBase : MonoBehaviour {
     /// <summary>
     /// Istanzia un edificio
     /// </summary>
-    public virtual void DeployBuilding(BuildingView building) { }
+    public virtual void DeployBuilding(BuildingData building) { }
 
     #region Move Ability
     public virtual void MoveTo(Vector3 _destination) {

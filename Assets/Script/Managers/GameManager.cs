@@ -125,8 +125,8 @@ public class GameManager : MonoBehaviour {
     {
         SetupPlayers();
         Food = 100;
-        Wood = 100;
-        Stone = 100;
+        Wood = 10;
+        Stone = 10;
     }
 
     public void BackToMenu()
@@ -134,6 +134,13 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
-   
+    /// <summary>
+    /// Rimuove le risorse necessarie per costruire l'edificio
+    /// </summary>
+    public void RemoveResource(BuildingData data)
+    {
+        GameManager.I.Wood -= data.WoodToBuild;
+        GameManager.I.Stone -= data.StoneToBuild;
+    }
 }
 

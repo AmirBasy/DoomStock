@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1089,6 +1089,11 @@ Prefab:
       propertyPath: HealthcareText
       value: 
       objectReference: {fileID: 914813757}
+    - target: {fileID: 114283964066212778, guid: 1142729c173c1dc4b82d5f848328f2a2,
+        type: 2}
+      propertyPath: _menuBase
+      value: 
+      objectReference: {fileID: 504749694}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1142729c173c1dc4b82d5f848328f2a2, type: 2}
   m_IsPrefabParent: 0
@@ -1253,6 +1258,12 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &504749694 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114847950554658294, guid: 1142729c173c1dc4b82d5f848328f2a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 291799397}
+  m_Script: {fileID: 11500000, guid: d3302ca9b37f2ee48b8d700d99a554f9, type: 3}
 --- !u!1 &538491046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,7 +1493,6 @@ MonoBehaviour:
   Stone: 0
   Faith: 0
   Spirit: 0
-  Healthcare: 0
   GridController: {fileID: 1711031092}
   timeEventManager: {fileID: 235444133}
   populationManager: {fileID: 2036652841}
@@ -1629,13 +1639,13 @@ Prefab:
         type: 2}
       propertyPath: BuildingsDataPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: ae42ad5c29a788c498b48096b3e6c257,
+      objectReference: {fileID: 11400000, guid: b86dd77e64dac744e8d3f73da8d3dc5e,
         type: 2}
     - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
         type: 2}
       propertyPath: BuildingsDataPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: cb8257d5093acc0479cf96a6fba06721,
+      objectReference: {fileID: 11400000, guid: a7107ac8dd2f1104193a6e8ff5a30fee,
         type: 2}
     - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
         type: 2}
@@ -1652,7 +1662,7 @@ Prefab:
         type: 2}
       propertyPath: BuildingsDataPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: bf92cdf1a74891f4899847eb0a6df76a,
+      objectReference: {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff,
         type: 2}
     - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
         type: 2}

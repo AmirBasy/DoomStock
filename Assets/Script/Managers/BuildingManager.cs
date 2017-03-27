@@ -107,6 +107,36 @@ public class BuildingManager : MonoBehaviour {
         Debug.Log("Actual Life = " + _buildingView.Data.BuildingLife);
     }
 
-
+    /// <summary>
+    /// Restituisce il numero per ogni Edificio in scena
+    /// </summary>
+    /// <returns></returns>
+    public int GetIdBuildingInScene() {
+        int buildingNumber = GetAllBuildingInScene().Count;
+        return buildingNumber;
+    }
+    /// <summary>
+    /// Rimuove il building in scene con il parametro UNIQUE ID
+    /// </summary>
+    /// <param name="id"></param>
+    public void DestroyBuildingInScene(string id) {
+        foreach (BuildingView building in GetAllBuildingInScene())
+        {
+            if (building.Data.UniqueID == id)
+            {
+                Destroy(building);
+            }
+        }
+    }
+    ///// <summary>
+    ///// setta un UniqueID per l'edificio
+    ///// </summary>
+    //public void SetBuildingUniqueID(BuildingView view)
+    //{
+    //    foreach (var item in GetAllBuildingInScene())
+    //    {
+    //        item.Data.UniqueID = item.Data.ID + GameManager.I.buildingManager.GetIdBuildingInScene();
+    //    }
+    //}
 }
 

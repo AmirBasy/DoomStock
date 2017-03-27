@@ -11,13 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Farm2
   m_EditorClassIdentifier: 
-  ID: Farm2
+  ID: 
   Population: 0
   PopulationLimit: 0
+  WoodToBuild: 0
+  StoneToBuild: 0
+  isBuilt: 0
   BuildPrefab: {fileID: 0}
-  BuildingTime: 0
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
-  Resource: {fileID: 114512866645299112, guid: 78d5e7ca12541014fa9c3e726e746155, type: 2}
+  IncreaseMaxPopulation: 0
+  BuildingLife: 0
+  DecreaseBuildingLife: 0
+  TimedEvents: []
+  BaseResources: []

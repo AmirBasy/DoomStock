@@ -9,7 +9,7 @@ public class Player : PlayerBase {
     /// <summary>
     /// Elenco dei BuildingView che sono stati istanziati nella scena di gioco
     /// </summary>
-    [HideInInspector]public List<BuildingView> BuildingsInScene;
+    public List<BuildingView> BuildingsInScene;
     public List<BuildingData> BuildingsDataPrefabs = new List<BuildingData>();
     public BuildingView CurrentBuildView;
     private void Start()
@@ -42,8 +42,8 @@ public class Player : PlayerBase {
         GameManager.I.uiManager.ShowMenu(MenuTypes.AddPopulation, this);
     }
 
-    void OpenMenuAddBuilding() {
-        GameManager.I.uiManager.ShowMenu(MenuTypes.AddBuilding, this);
+    void OpenMenuPlayerID() {
+        GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
     }
 
     #endregion
@@ -82,12 +82,13 @@ public class Player : PlayerBase {
     /// <summary>
     /// Istanzia una nuovo oggetto Building
     /// </summary>
-    public override void DeployBuilding(BuildingView building)
+    public override void DeployBuilding(BuildingData building)
     {
         base.DeployBuilding(building);
-        BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(BuildingsDataPrefabs[0]);
-        if (newInstanceOfView.CheckResources() == true)
+        
+        if (CheckResources(building) == true)
         {
+            BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
@@ -99,7 +100,40 @@ public class Player : PlayerBase {
         }
     }
 
+    /// <summary>
+    /// Controlla le risorse necessarie per costruire l'edificio
+    /// </summary>
+    public bool CheckResources(BuildingData newBuildingData)
+    {
+        if (GameManager.I.Wood > 0 && GameManager.I.Stone > 0)
+        {
+            if (newBuildingData.WoodToBuild <= GameManager.I.Wood &&
+                newBuildingData.StoneToBuild <= GameManager.I.Stone)
+            {
+                GameManager.I.RemoveResource(newBuildingData);
+                return true;
+            }
+        }
+        return false;
+    }
+    /// <summary>
+    /// Tramite la ui, distrugge un edificio
+    /// </summary>
+    /// <param name="id"></param>
+    public void DestroyBuilding(string id)
+    {
+        for (int i = 0; i < BuildingsInScene.Count; i++)
+        {
+            if (id == BuildingsInScene[i].Data.UniqueID)
+            {
+                BuildingsInScene.RemoveAt(i);
+                Destroy(BuildingsInScene[i].gameObject);
+            }
+        }
+    }
     #endregion
+
+    
 
     #region grid Movement
     /// <summary>
@@ -151,7 +185,7 @@ public class Player : PlayerBase {
         if (Input.GetKeyDown(inputData.AddBuilding)) {
             // DeployBuilding();
             // Z
-            OpenMenuAddBuilding();
+            OpenMenuPlayerID();
         }
         if (Input.GetKeyDown(inputData.AddPopulation)) {
             //AddPopulation(CurrentBuildView.Data, null);     

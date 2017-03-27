@@ -15,11 +15,12 @@ public class BuildingView : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Actual Life " + this.Data.BuildingLife);
+        //Debug.Log("Actual Life " + this.Data.BuildingLife);
         //TextActualPeople.text = "People: " + player.Population;  
     }
     public void Init(BuildingData _buildingData)
     {
+        
         CheckRenderer(GetComponent<Renderer>());
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
@@ -68,9 +69,6 @@ public class BuildingView : MonoBehaviour
                             destroyMe();
                     }
                     break;
-                case "Costruzione":
-                    OnTimedEventDataChanged(ev);
-                    break;
                 default:
                     break;
             }
@@ -95,24 +93,8 @@ public class BuildingView : MonoBehaviour
         }
     }
     #region Resources API
-    /// <summary>
-    /// Controlla le risorse necessarie per costruire l'edificio
-    /// </summary>
-    public bool CheckResources()
-    {
-        if (Data.WoodToBuild <= GameManager.I.Wood &&
-            Data.StoneToBuild <= GameManager.I.Stone)
-            RemoveResource();
-        return true;
-    }
-    /// <summary>
-    /// Rimuove le risorse necessarie per costruire l'edificio
-    /// </summary>
-    public void RemoveResource()
-    {
-        GameManager.I.Wood -= Data.WoodToBuild;
-        GameManager.I.Stone -= Data.StoneToBuild;
-    }
+    
+    
     #endregion
 
     /// <summary>

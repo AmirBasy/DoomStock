@@ -99,7 +99,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1123306350743274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -180,9 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   TextActualPeople: {fileID: 102055847397946174}
   Data: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0, type: 2}
-  player: {fileID: 0}
 --- !u!222 &222082468448870404
 CanvasRenderer:
   m_ObjectHideFlags: 1

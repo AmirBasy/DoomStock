@@ -48,7 +48,7 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     /// <summary>
     /// Esegue il refresh della lista degli oggetti visibi del menù.
     /// </summary>
-    protected void RefreshItemList() {
+    public void RefreshItemList() {
         if (!IsVisible)
             return;
         foreach (SelectableButton button in GetComponentsInChildren<SelectableButton>()) {
@@ -59,7 +59,10 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
             CreateMenuItem(item);
         }
     }
-
+    /// <summary>
+    /// Crea un nuovo MenuItem per i button
+    /// </summary>
+    /// <param name="_item"></param>
     protected virtual void CreateMenuItem(ISelectable _item) {
         GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
         SelectableButton newButton = newGO.GetComponent<SelectableButton>();
@@ -73,9 +76,7 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     /// <param name="_show"></param>
     public void Show(bool _show) {
         IsVisible = _show;
-        foreach (MonoBehaviour go in GetComponentsInChildren<MonoBehaviour>()) {
-            go.enabled = _show;
-        }
+        MenuItemsContainer.gameObject.SetActive(IsVisible);
     }
 
     #endregion

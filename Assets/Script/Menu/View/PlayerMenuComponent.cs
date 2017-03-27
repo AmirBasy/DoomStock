@@ -12,21 +12,40 @@ public class PlayerMenuComponent : MenuBase {
     public override void LoadSelections() {
         CurrentSelectables.Clear();
         switch (Selections.Count) {
+            #region Prima scelta nella lista
             case 0:
                 if (firstLevelSelections != null)
-                    foreach (ISelectable selectable in firstLevelSelections){
+                {
+                    foreach (ISelectable selectable in firstLevelSelections)
+                    {
                         CurrentSelectables.Add(selectable);
-                        SaveList.Add(selectable);
                     }
-                
-
+                }
                 break;
             case 1:
-                 foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
-                 {
-                    CurrentSelectables.Add(building);
-                 }              
-                break;
+                switch (Selections[0].UniqueID)// inserire id?
+                {
+                    case " + Building":
+
+                        foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
+                        {
+                            CurrentSelectables.Add(building);
+                        }
+                        break;
+                    case " - Building":
+                        foreach (ISelectable building in CurrentPlayer.BuildingsInScene)
+                        {
+                            CurrentSelectables.Add(building);
+                        }
+                        break;
+                    case " -  People":
+                        break;
+                    default:
+                        break;
+                }
+                break; 
+            #endregion
+
             default:
                 DoAction();
                 return;
@@ -36,10 +55,24 @@ public class PlayerMenuComponent : MenuBase {
     }
 
     public override void DoAction() {
-        CurrentPlayer.DeployBuilding(Selections[1] as BuildingView);
+        switch (Selections[0].UniqueID)
+        {
+            case " + Building":
+                CurrentPlayer.DeployBuilding(Selections[1] as BuildingData);
+                break;
+            case " - Building":
+                CurrentPlayer.DestroyBuilding(Selections[1].UniqueID);
+                break;
+            case " -  People":
+                //Chiamare funzione population
+                break;
+            default:
+                break;
+        }
         Show(false);
+        Selections.Clear();
     }
-
+    
     protected override void CreateMenuItem(ISelectable _item) {
         GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
         SelectableMenuItem newItem = newGO.GetComponent<SelectableMenuItem>();

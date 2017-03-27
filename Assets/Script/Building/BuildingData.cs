@@ -73,9 +73,9 @@ public class BuildingData : ScriptableObject, ISelectable {
   
 
     public void Awake() {
-        UniqueID = ID;
-        
-    }
+        //UniqueID = ID + GameManager.I.buildingManager.GetIdBuildingInScene();
+
+     }
 
     
 }
