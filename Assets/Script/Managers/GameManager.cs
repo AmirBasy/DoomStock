@@ -134,6 +134,14 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
-   
+    /// <summary>
+    /// Rimuove le risorse necessarie per costruire l'edificio
+    /// </summary>
+    public void RemoveResource(BuildingData data)
+    {
+        GameManager.I.Wood -= data.WoodToBuild;
+        GameManager.I.Stone -= data.StoneToBuild;
+    }
+
 }
 
