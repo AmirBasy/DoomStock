@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         SetupPlayers();
-        Food = 100;
+        Food = 10;
         Wood = 100;
         Stone = 100;
     }

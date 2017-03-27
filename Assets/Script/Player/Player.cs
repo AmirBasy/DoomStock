@@ -55,20 +55,20 @@ public class Player : PlayerBase {
     /// </summary>
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingData _building, PopulationData _unitToAdd) {
-        if (GameManager.I.populationManager.MainPopulation > 0) {
-            if (BuildingsInScene.Count >= 1)
-            {
-                GameManager.I.populationManager.MainPopulation -= 1;   
-                _building.Population++; 
-            }
+        //if (GameManager.I.populationManager.MainPopulation() > 0) {
+        //    if (BuildingsInScene.Count >= 1)
+        //    {
+        //       // GameManager.I.populationManager.MainPopulation -= 1;   
+        //        _building.Population++; 
+        //    }
 
-            // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
-        }
+        //    // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
+        //}
     }
 
     public void RemovePopulation() {
         Population -= 1;
-        GameManager.I.populationManager.MainPopulation += 1;
+        //GameManager.I.populationManager.MainPopulation += 1;
         if (Population <= 0)
             Population = 0;
         UpdateGraphic("people: " + Population + " press Q to add, E to remove");
