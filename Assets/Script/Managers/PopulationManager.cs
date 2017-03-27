@@ -137,7 +137,9 @@ public class PopulationManager : MonoBehaviour
             #region Birth
             if (ev.ID == "Birth")
             {
+               
                 PopulationData newUnit = CreatePopulation();
+                Debug.Log("Sono nato. " + newUnit.Name);
                 AllFreePeople.Add(newUnit);
                 AllPopulation.Add(newUnit);
             }
@@ -155,6 +157,7 @@ public class PopulationManager : MonoBehaviour
                         p_data.MaxAge--;
                         if (p_data.MaxAge <= 0)
                         {
+                            Debug.Log("sono morto. " + p_data.Name);
                             AllFreePeople.Remove(p_data);
                             AllPopulation.Remove(p_data);
                         }
@@ -206,7 +209,7 @@ public class PopulationManager : MonoBehaviour
                         if (GameManager.I.Food <= 0)
                         {
                             GameManager.I.Food = 0;
-
+                            Debug.Log("sono morto. " + AllPopulation[i].Name);
                             AllFreePeople.Remove(AllPopulation[i]);
                             AllPopulation.Remove(AllPopulation[i]);
                         }
