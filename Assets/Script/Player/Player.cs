@@ -91,12 +91,12 @@ public class Player : PlayerBase {
             BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-            if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
-            {
+            //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
+            //{
                 BuildingsInScene.Add(newInstanceOfView);
                 CurrentBuildView.player = this;
                 GameManager.I.populationManager.IncreaseMaxPopulation();  
-            }
+            //}
         }
     }
 

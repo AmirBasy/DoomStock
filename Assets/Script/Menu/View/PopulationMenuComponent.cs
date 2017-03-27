@@ -35,8 +35,10 @@ public class PopulationMenuComponent : MenuBase {
     public override void DoAction() {
         CurrentPlayer.AddPopulation(Selections[1] as BuildingData, Selections[0] as PopulationData);
         GameManager.I.populationManager.AllFreePeople.Remove(Selections[0] as PopulationData);
-       // GameManager.I.populationManager.MainPopulation--;
+        // GameManager.I.populationManager.MainPopulation--;
+        Selections.Clear();
         Show(false);
+
     }
 
     #region event subscriptions

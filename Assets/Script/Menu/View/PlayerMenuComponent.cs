@@ -12,7 +12,7 @@ public class PlayerMenuComponent : MenuBase {
     public override void LoadSelections() {
         CurrentSelectables.Clear();
         switch (Selections.Count) {
-            #region Prima scelta nella lista
+           
             case 0:
                 if (firstLevelSelections != null)
                 {
@@ -44,7 +44,7 @@ public class PlayerMenuComponent : MenuBase {
                         break;
                 }
                 break; 
-            #endregion
+         
 
             default:
                 DoAction();
