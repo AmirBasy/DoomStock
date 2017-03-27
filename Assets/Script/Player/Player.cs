@@ -126,8 +126,8 @@ public class Player : PlayerBase {
         {
             if (id == BuildingsInScene[i].Data.UniqueID)
             {
-                BuildingsInScene.RemoveAt(i);
                 Destroy(BuildingsInScene[i].gameObject);
+                BuildingsInScene.RemoveAt(i);
             }
         }
     }

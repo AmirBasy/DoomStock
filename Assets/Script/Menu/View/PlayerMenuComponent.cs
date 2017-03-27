@@ -33,9 +33,9 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " - Building":
-                        foreach (ISelectable building in CurrentPlayer.BuildingsInScene)
+                        foreach (BuildingView building in CurrentPlayer.BuildingsInScene)
                         {
-                            CurrentSelectables.Add(building);
+                            CurrentSelectables.Add(building.Data);
                         }
                         break;
                     case " -  People":
