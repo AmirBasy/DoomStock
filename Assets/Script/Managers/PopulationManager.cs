@@ -35,22 +35,14 @@ public class PopulationManager : MonoBehaviour
     /// <summary>
     /// Popolazione in comune tra i player
     /// </summary>
-    private int mainPopulation;
-    public int MainPopulation
-    {
-        get { return mainPopulation; }
-        set
-        {
-            mainPopulation = value;
+    //private int mainPopulation;
+    //public int MainPopulation()
+    //{
 
-            if (MainPopulation > mainPopulation)
-                MainPopulation = mainPopulation;
-            if (MainPopulation <= 0)
-                MainPopulation = 0;
-            UpdateGraphic("Main People: " + MainPopulation);
+    //    UpdateGraphic("Main People: " + AllFreePeople.Count);
 
-        }
-    }
+    //    return AllFreePeople.Count;
+    //}
     #endregion
 
     #region Lists
@@ -75,10 +67,10 @@ public class PopulationManager : MonoBehaviour
 
     void Start()
     {
-        mainPopulation = 0;
-        UpdateGraphic("Main People: " + MainPopulation);
-        
-     
+
+        UpdateGraphic("Main People: " + AllFreePeople.Count);
+
+
     }
     #endregion
 
@@ -103,7 +95,7 @@ public class PopulationManager : MonoBehaviour
         {
             if (building.Data.IncreaseMaxPopulation > 0)
             {
-                mainPopulation += building.Data.IncreaseMaxPopulation;
+                // MainPopulation += building.Data.IncreaseMaxPopulation;
             }
         }
     }
@@ -145,8 +137,9 @@ public class PopulationManager : MonoBehaviour
             #region Birth
             if (ev.ID == "Birth")
             {
-                MainPopulation++;
+               
                 PopulationData newUnit = CreatePopulation();
+                Debug.Log("Sono nato. " + newUnit.Name);
                 AllFreePeople.Add(newUnit);
                 AllPopulation.Add(newUnit);
             }
@@ -164,6 +157,7 @@ public class PopulationManager : MonoBehaviour
                         p_data.MaxAge--;
                         if (p_data.MaxAge <= 0)
                         {
+                            Debug.Log("sono morto. " + p_data.Name);
                             AllFreePeople.Remove(p_data);
                             AllPopulation.Remove(p_data);
                         }
@@ -179,30 +173,61 @@ public class PopulationManager : MonoBehaviour
             #region Food
             if (ev.ID == "Eat")
             {
-                foreach (PopulationData _pdata in AllPopulation)
+                #region foreach
+                //foreach (PopulationData _pdata in AllPopulation)
+                //{
+                //    _pdata.EatingTime--;
+                //    if (_pdata.EatingTime <= 0)
+                //    {
+                //        Debug.Log("devo mangiare. " + _pdata.Name);
+                //        GameManager.I.Food--;
+                //        if (GameManager.I.Food <= 0)
+                //        {
+                //            GameManager.I.Food = 0;
+                //            AllFreePeople.Remove(_pdata);           
+                //            AllPopulation.Remove(_pdata);
+                //        }
+                //    }
+
+                //} 
+                #endregion
+
+                for (int i = 0; i < AllPopulation.Count; i++)
                 {
-                    _pdata.EatingTime--;
-                    if (_pdata.EatingTime <= 0)
+                    int eatingTime = AllPopulation[i].EatingTime;
+                    AllPopulation[i].EatingTime--;
+                    if (AllPopulation[i].EatingTime <= 0)
                     {
-                        Debug.Log("devo mangiare. " + _pdata.Name);
+                        AllPopulation[i].EatingTime = 0;
+                        Debug.Log("devo mangiare. " + AllPopulation[i].Name);
                         GameManager.I.Food--;
+                        if (AllPopulation[i].EatingTime <= 0)
+                        {
+                            AllPopulation[i].EatingTime = eatingTime;
+                        }
+
                         if (GameManager.I.Food <= 0)
                         {
                             GameManager.I.Food = 0;
-                            AllFreePeople.Remove(_pdata);
-                            AllPopulation.Remove(_pdata);
+                            Debug.Log("sono morto. " + AllPopulation[i].Name);
+                            AllFreePeople.Remove(AllPopulation[i]);
+                            AllPopulation.Remove(AllPopulation[i]);
                         }
                     }
-
                 }
+                #endregion
             }
-            #endregion
         }
     }
+
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnEvent;
     }
 
+    private void Update()
+    {
+        UpdateGraphic("Main People: " + AllFreePeople.Count);
+    }
     #endregion
 }
