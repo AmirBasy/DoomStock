@@ -43,12 +43,28 @@ public class Player : PlayerBase
 
     void OpenMenuPopulation()
     {
-        GameManager.I.uiManager.ShowMenu(MenuTypes.AddPopulation, this);
+        GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
     }
 
     void OpenMenuPlayerID()
     {
         GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
+    }
+
+    public void GoBackToLastMenu()
+    {
+        switch (MenuTypes.Player)
+        {
+            case MenuTypes.PopulationMenu:
+                GameManager.I.uiManager._menuBase.Show(false);
+                break; 
+            case MenuTypes.Player:
+
+                break;
+            default:
+                break;
+        }
+        GameManager.I.uiManager.FirstLevelSelectables.Clear();
     }
 
     #endregion
@@ -71,6 +87,8 @@ public class Player : PlayerBase
         //    // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
         //}
     }
+
+   
 
     public void RemovePopulation()
     {
@@ -198,19 +216,15 @@ public class Player : PlayerBase
         }
         if (Input.GetKeyDown(inputData.Confirm))
         {
-            // DeployBuilding();
-            // Z
             OpenMenuPlayerID();
         }
         if (Input.GetKeyDown(inputData.PopulationMenu))
-        {
-            //AddPopulation(CurrentBuildView.Data, null);     
-            // X    
+        {  
             OpenMenuPopulation();
         }
         if (Input.GetKeyDown(inputData.GoBack))
         {
-            RemovePopulation();
+            GoBackToLastMenu();
         }
         
     }
