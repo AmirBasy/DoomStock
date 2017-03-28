@@ -53,11 +53,9 @@ public class PlayerInputData {
     public KeyCode Right;
     public KeyCode Left;
 
-    public KeyCode AddPopulation; // TODO: Rename to Confirm
-    public KeyCode RemovePopulation; 
-    public KeyCode AddBuilding; // TODO: Rename to GoBack
+    public KeyCode Confirm;
+    public KeyCode RemovePopulation;
+    public KeyCode GoBack;
 
-    ///FulvioTestUI
-    public KeyCode OpenMenu;
 }
 

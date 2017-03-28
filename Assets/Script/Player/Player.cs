@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Framework.Grid;
 
-public class Player : PlayerBase {
+public class Player : PlayerBase
+{
     /// <summary>
     /// Elenco dei BuildingView che sono stati istanziati nella scena di gioco
     /// </summary>
@@ -23,7 +24,8 @@ public class Player : PlayerBase {
     /// Setto l'input per questo player.
     /// </summary>
     /// <param name="_inputData"></param>
-    public void SetupInput(PlayerInputData _inputData) {
+    public void SetupInput(PlayerInputData _inputData)
+    {
         inputData = _inputData;
     }
 
@@ -31,18 +33,21 @@ public class Player : PlayerBase {
     /// Setta la griglia di pertinenza del player per i movimenti.
     /// </summary>
     /// <param name="_grid"></param>
-    public void SetupGrid(int _initialX, int _initialY) {
+    public void SetupGrid(int _initialX, int _initialY)
+    {
         MoveToGridPosition(_initialX, _initialY);
     }
     #endregion
 
     #region Menu
 
-    void OpenMenuPopulation() {
+    void OpenMenuPopulation()
+    {
         GameManager.I.uiManager.ShowMenu(MenuTypes.AddPopulation, this);
     }
 
-    void OpenMenuPlayerID() {
+    void OpenMenuPlayerID()
+    {
         GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
     }
 
@@ -54,7 +59,8 @@ public class Player : PlayerBase {
     /// Aggiungie la risorsa Population all'Edificio
     /// </summary>
     /// <param name="_buildingView"></param>
-    public void AddPopulation(BuildingData _building, PopulationData _unitToAdd) {
+    public void AddPopulation(BuildingData _building, PopulationData _unitToAdd)
+    {
         //if (GameManager.I.populationManager.MainPopulation() > 0) {
         //    if (BuildingsInScene.Count >= 1)
         //    {
@@ -66,7 +72,8 @@ public class Player : PlayerBase {
         //}
     }
 
-    public void RemovePopulation() {
+    public void RemovePopulation()
+    {
         Population -= 1;
         //GameManager.I.populationManager.MainPopulation += 1;
         if (Population <= 0)
@@ -85,7 +92,7 @@ public class Player : PlayerBase {
     public override void DeployBuilding(BuildingData building)
     {
         base.DeployBuilding(building);
-        
+
         if (CheckResources(building) == true)
         {
             BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
@@ -93,9 +100,9 @@ public class Player : PlayerBase {
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
             //{
-                BuildingsInScene.Add(newInstanceOfView);
-                CurrentBuildView.player = this;
-                GameManager.I.populationManager.IncreaseMaxPopulation();  
+            BuildingsInScene.Add(newInstanceOfView);
+            CurrentBuildView.player = this;
+            GameManager.I.populationManager.IncreaseMaxPopulation();
             //}
         }
     }
@@ -133,23 +140,25 @@ public class Player : PlayerBase {
     }
     #endregion
 
-    
+
 
     #region grid Movement
     /// <summary>
     /// Muove il player sulla griglia alla posizione indicata.
     /// </summary>
-    public void MoveToGridPosition(int _x, int _y) {
+    public void MoveToGridPosition(int _x, int _y)
+    {
 
-        if (_x < 0 || _y < 0 || _x > GridController.Grid.GridSize.x-1 || _y > GridController.Grid.GridSize.y-1)
+        if (_x < 0 || _y < 0 || _x > GridController.Grid.GridSize.x - 1 || _y > GridController.Grid.GridSize.y - 1)
             return;
         Cell target = GridController.Grid.Cells[_x, _y];
         if (!target.IsValidPosition)
             return;
-        
+
         //Actual translation
-        transform.DOMove(GridController.Grid.GetCellWorldPosition(_x,_y),
-                    0.1f).OnComplete(delegate {
+        transform.DOMove(GridController.Grid.GetCellWorldPosition(_x, _y),
+                    0.1f).OnComplete(delegate
+                    {
                         Debug.LogFormat("Movimento player {0} - [{1}, {2}]", ID, _x, _y);
                     }).SetEase(Ease.OutSine);
 
@@ -166,80 +175,74 @@ public class Player : PlayerBase {
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
     /// </summary>
-    void checkInputs() {
+    void checkInputs()
+    {
         if (inputData == null)
             return;
 
-        if (Input.GetKeyDown(inputData.Up)) {
-            MoveToGridPosition(XpositionOnGrid,YpositionOnGrid + 1);
+        if (Input.GetKeyDown(inputData.Up))
+        {
+            MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1);
         }
-        if (Input.GetKeyDown(inputData.Left)) {
+        if (Input.GetKeyDown(inputData.Left))
+        {
             MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid);
         }
-        if (Input.GetKeyDown(inputData.Down)) {
+        if (Input.GetKeyDown(inputData.Down))
+        {
             MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1);
         }
-        if (Input.GetKeyDown(inputData.Right)) {
+        if (Input.GetKeyDown(inputData.Right))
+        {
             MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
         }
-        if (Input.GetKeyDown(inputData.AddBuilding)) {
+        if (Input.GetKeyDown(inputData.GoBack))
+        {
             // DeployBuilding();
             // Z
             OpenMenuPlayerID();
         }
-        if (Input.GetKeyDown(inputData.AddPopulation)) {
+        if (Input.GetKeyDown(inputData.Confirm))
+        {
             //AddPopulation(CurrentBuildView.Data, null);     
             // X    
             OpenMenuPopulation();
         }
-        if (Input.GetKeyDown(inputData.RemovePopulation)) {
+        if (Input.GetKeyDown(inputData.RemovePopulation))
+        {
             RemovePopulation();
         }
-        //FulvioTestUI
-        if (Input.GetKeyDown(inputData.OpenMenu))
-        {
-            ActiveMenuInUIManager();
-        }
-    }
-
-    #endregion
-    
-    void Update()
-    {
-        checkInputs();        
-    }
-
-    #region Events subscription
-
-    private void OnEnable() {
-        BuildingView.OnDestroy += OnBuildingDestroyed;
-    }
-
-    void OnBuildingDestroyed(BuildingView _buildingView) {
-        if(BuildingsInScene.Contains(_buildingView))
-            BuildingsInScene.Remove(_buildingView);
-    }
-
-    private void OnDisable() {
-        BuildingView.OnDestroy -= OnBuildingDestroyed;
-    }
-    #endregion
-
-
-    #region Fulvio Test UI
-
-    /// <summary>
-    /// FulvioTestUI
-    /// Va a richiamare la funzione ActiveMenu, presente nel UIPlayer, passando se stesso.
-    /// </summary>
-    void ActiveMenuInUIManager()
-    {
-        GameManager.I.UIPlayerManager.ActiveMenu(this);
         
     }
 
     #endregion
 
+    void Update()
+    {
+        checkInputs();
+    }
+
+    #region Events subscription
+
+    private void OnEnable()
+    {
+        BuildingView.OnDestroy += OnBuildingDestroyed;
+    }
+
+    void OnBuildingDestroyed(BuildingView _buildingView)
+    {
+        if (BuildingsInScene.Contains(_buildingView))
+            BuildingsInScene.Remove(_buildingView);
+    }
+
+    private void OnDisable()
+    {
+        BuildingView.OnDestroy -= OnBuildingDestroyed;
+    }
 }
+    #endregion
+
+
+
 
 

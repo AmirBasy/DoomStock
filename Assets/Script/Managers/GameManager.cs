@@ -52,11 +52,10 @@ public class GameManager : MonoBehaviour {
                     Left = KeyCode.A,
                     Down = KeyCode.S,
                     Right = KeyCode.D,
-                    AddBuilding = KeyCode.Z,
-                    AddPopulation = KeyCode.X,
+                    GoBack = KeyCode.Z,
+                    Confirm = KeyCode.X,
                     RemovePopulation = KeyCode.E,
-                    //FulvioTestUI
-                    OpenMenu = KeyCode.Space,
+                    
                 });
             GridController.playersInQueue.AddPlayer(Players[0]);
             Players[0].SetupGrid(0,0);
@@ -69,8 +68,8 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.J,
                 Down = KeyCode.K,
                 Right = KeyCode.L,
-                AddBuilding = KeyCode.N,
-                AddPopulation = KeyCode.U,
+                GoBack = KeyCode.N,
+                Confirm = KeyCode.U,
                 RemovePopulation = KeyCode.O,
                 //Manca implementazione OpenMenu per il Player 2
             });
@@ -85,8 +84,8 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.LeftArrow,
                 Down = KeyCode.DownArrow,
                 Right = KeyCode.RightArrow,
-                AddBuilding = KeyCode.F2,
-                AddPopulation = KeyCode.PageUp,
+                GoBack = KeyCode.F2,
+                Confirm = KeyCode.PageUp,
                 RemovePopulation = KeyCode.PageDown,
                 //Manca implementazione OpenMenu per il Player 3
             });
@@ -100,8 +99,8 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.Keypad4,
                 Down = KeyCode.Keypad5,
                 Right = KeyCode.Keypad6,
-                AddBuilding = KeyCode.F1,
-                AddPopulation = KeyCode.KeypadPlus,
+                GoBack = KeyCode.F1,
+                Confirm = KeyCode.KeypadPlus,
                 RemovePopulation = KeyCode.KeypadMinus,
                 //Manca implementazione OpenMenu per il Player 4
             });
