@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class UIManager : MonoBehaviour {
+    
+    
+    #region Logger
+
+    public Logger logger;
+
+    #endregion
 
     public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText;
    // public Button GridButton, ResourcesButton;
@@ -122,6 +129,17 @@ public class UIManager : MonoBehaviour {
                 break;
         }
         
+    }
+
+    /// <summary>
+    /// Funzione per scrivere all'interno del logger
+    /// </summary>
+    /// <param name="_stringToWrite">Cosa scrivere all'interno del logger</param>
+    public void WriteInLogger(string _stringToWrite)
+    {
+        //controlla se c'è il collegamento al logger 
+        if (logger != null)
+            logger.WriteInLogger(_stringToWrite);
     }
 
     #endregion
