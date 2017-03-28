@@ -15,7 +15,15 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
         get { return _currentSelectables; }
         set { _currentSelectables = value; }
     }
-
+    /// <summary>
+    /// Lista momentanea che salva gli ISelectable scelti nella fase precedente del menu
+    /// </summary>
+    List<ISelectable>  _firstSaveList= new List<ISelectable>();
+    public List<ISelectable> FirstSaveList
+    {
+        get {return _firstSaveList; }
+        set { _firstSaveList = value; }
+    }
     private List<ISelectable> _selections = new List<ISelectable>();
     /// <summary>
     /// 

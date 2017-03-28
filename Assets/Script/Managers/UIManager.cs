@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour {
     public void ShowMenu(MenuTypes _type, Player _player) {
         FirstLevelSelectables.Clear();
         switch (_type) {
-            case MenuTypes.AddPopulation:
+            case MenuTypes.PopulationMenu:
                 _menuBase.Init(_player);
                 break;
             case MenuTypes.Player: 

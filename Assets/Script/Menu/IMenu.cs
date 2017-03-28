@@ -60,8 +60,7 @@ public interface ISelectable {
 }
 
 public enum MenuTypes {
-    AddPopulation,
-    AddBuilding,
+    PopulationMenu,
     Player,
 
 }

@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMenuComponent : MenuBase {
-    /// <summary>
-    /// Lista momentanea che passa gli ISelectable scelti nella fase successiva del menu
-    /// </summary>
-    List<ISelectable> SaveList = new List<ISelectable>();
+    
 
     public override void LoadSelections() {
         CurrentSelectables.Clear();
@@ -20,10 +17,14 @@ public class PlayerMenuComponent : MenuBase {
                     {
                         CurrentSelectables.Add(selectable);
                     }
+                    foreach (ISelectable item in firstLevelSelections)
+                    {
+                        FirstSaveList.Add(item);
+                    }
                 }
                 break;
             case 1:
-                switch (Selections[0].UniqueID)// inserire id?
+                switch (Selections[0].UniqueID)
                 {
                     case " + Building":
 
@@ -71,6 +72,7 @@ public class PlayerMenuComponent : MenuBase {
         }
         Show(false);
         Selections.Clear();
+        FirstSaveList.Clear();
     }
     
     protected override void CreateMenuItem(ISelectable _item) {

@@ -40,31 +40,67 @@ public class Player : PlayerBase
     #endregion
 
     #region Menu
-
+    /// <summary>
+    /// Apre il menu della popolazione libera
+    /// </summary>
     void OpenMenuPopulation()
     {
         GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
     }
-
+    /// <summary>
+    /// Apre il Menu del Player
+    /// </summary>
     void OpenMenuPlayerID()
     {
         GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
     }
-
-    public void GoBackToLastMenu()
+    /// <summary>
+    /// Torna all'ultima scalta fatta nel menu
+    /// </summary>
+    /// <param name="_menu"></param>
+    public void GoBackToLastMenu(MenuTypes _menu)
     {
-        switch (MenuTypes.Player)
+        UIManager uiPointer = GameManager.I.uiManager;
+        switch (_menu)
         {
             case MenuTypes.PopulationMenu:
-                GameManager.I.uiManager._menuBase.Show(false);
-                break; 
+                uiPointer._menuBase.Show(false);
+                break;
             case MenuTypes.Player:
-
+                switch (ID)
+                {
+                    case "PlayerOne":
+                        uiPointer.P1_Menu.Show(false);
+                        break;
+                    case "PlayerTwo":
+                        uiPointer.P2_Menu.Show(false);
+                        break;
+                    case "PlayerThree":
+                        uiPointer.P3_Menu.Show(false);
+                        break;
+                    case "PlayerFour":
+                        uiPointer.P4_Menu.Show(false);
+                        break;
+                    default:
+                        break;
+                }
+                //switch (uiPointer._menuBase.firstLevelSelections.Count)
+                //{
+                //    case 0:
+                        
+                //        break;
+                //    case 1:
+                //        uiPointer._menuBase.CurrentSelectables[1] = 
+                //        uiPointer._menuBase.FirstSaveList[0];
+                //        break;
+                //    default:
+                //        break;
+                //}
                 break;
             default:
                 break;
         }
-        GameManager.I.uiManager.FirstLevelSelectables.Clear();
+        uiPointer._menuBase.FirstSaveList.Clear();
     }
 
     #endregion
@@ -224,7 +260,16 @@ public class Player : PlayerBase
         }
         if (Input.GetKeyDown(inputData.GoBack))
         {
-            GoBackToLastMenu();
+            switch (MenuTypes.Player)
+            {    case MenuTypes.Player:
+                    GoBackToLastMenu(MenuTypes.Player);
+                    break;
+            }
+            switch (MenuTypes.PopulationMenu)
+            {   case MenuTypes.PopulationMenu:
+                    GoBackToLastMenu(MenuTypes.PopulationMenu);
+                    break;
+            }
         }
         
     }
