@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour {
                     Left = KeyCode.A,
                     Down = KeyCode.S,
                     Right = KeyCode.D,
-                    GoBack = KeyCode.Z,
-                    Confirm = KeyCode.X,
-                    RemovePopulation = KeyCode.E,
+                    Confirm = KeyCode.Z,
+                    PopulationMenu = KeyCode.X,
+                    GoBack = KeyCode.E,
                     
                 });
             GridController.playersInQueue.AddPlayer(Players[0]);
@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.J,
                 Down = KeyCode.K,
                 Right = KeyCode.L,
-                GoBack = KeyCode.N,
-                Confirm = KeyCode.U,
-                RemovePopulation = KeyCode.O,
-                //Manca implementazione OpenMenu per il Player 2
+                Confirm = KeyCode.N,
+                PopulationMenu = KeyCode.U,
+                GoBack = KeyCode.O,
+                
             });
             GridController.playersInQueue.AddPlayer(Players[1]);
             Players[1].SetupGrid(0,GridController.gridSize[1]-1);
@@ -84,10 +84,10 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.LeftArrow,
                 Down = KeyCode.DownArrow,
                 Right = KeyCode.RightArrow,
-                GoBack = KeyCode.F2,
-                Confirm = KeyCode.PageUp,
-                RemovePopulation = KeyCode.PageDown,
-                //Manca implementazione OpenMenu per il Player 3
+                Confirm = KeyCode.Home,
+                PopulationMenu = KeyCode.PageUp,
+                GoBack = KeyCode.PageDown,
+                
             });
             GridController.playersInQueue.AddPlayer(Players[2]);
             Players[2].SetupGrid(GridController.gridSize[0]-1, GridController.gridSize[1]-1);
@@ -99,10 +99,10 @@ public class GameManager : MonoBehaviour {
                 Left = KeyCode.Keypad4,
                 Down = KeyCode.Keypad5,
                 Right = KeyCode.Keypad6,
-                GoBack = KeyCode.F1,
-                Confirm = KeyCode.KeypadPlus,
-                RemovePopulation = KeyCode.KeypadMinus,
-                //Manca implementazione OpenMenu per il Player 4
+                Confirm = KeyCode.KeypadMultiply,
+                PopulationMenu = KeyCode.KeypadPlus,
+                GoBack = KeyCode.KeypadMinus,
+                
             });
             GridController.playersInQueue.AddPlayer(Players[3]);
             Players[3].SetupGrid(GridController.gridSize[0]-1, 0);

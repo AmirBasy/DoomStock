@@ -74,11 +74,11 @@ public class Player : PlayerBase
 
     public void RemovePopulation()
     {
-        Population -= 1;
-        //GameManager.I.populationManager.MainPopulation += 1;
-        if (Population <= 0)
-            Population = 0;
-        UpdateGraphic("people: " + Population + " press Q to add, E to remove");
+        //Population -= 1;
+        ////GameManager.I.populationManager.MainPopulation += 1;
+        //if (Population <= 0)
+        //    Population = 0;
+        //UpdateGraphic("people: " + Population + " press Q to add, E to remove");
     }
 
 
@@ -196,19 +196,19 @@ public class Player : PlayerBase
         {
             MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
         }
-        if (Input.GetKeyDown(inputData.GoBack))
+        if (Input.GetKeyDown(inputData.Confirm))
         {
             // DeployBuilding();
             // Z
             OpenMenuPlayerID();
         }
-        if (Input.GetKeyDown(inputData.Confirm))
+        if (Input.GetKeyDown(inputData.PopulationMenu))
         {
             //AddPopulation(CurrentBuildView.Data, null);     
             // X    
             OpenMenuPopulation();
         }
-        if (Input.GetKeyDown(inputData.RemovePopulation))
+        if (Input.GetKeyDown(inputData.GoBack))
         {
             RemovePopulation();
         }

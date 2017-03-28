@@ -53,9 +53,9 @@ public class PlayerInputData {
     public KeyCode Right;
     public KeyCode Left;
 
-    public KeyCode Confirm;
-    public KeyCode RemovePopulation;
+    public KeyCode PopulationMenu;
     public KeyCode GoBack;
+    public KeyCode Confirm;
 
 }
 
