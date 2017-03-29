@@ -135,11 +135,11 @@ public class UIManager : MonoBehaviour {
     /// Funzione per scrivere all'interno del logger
     /// </summary>
     /// <param name="_stringToWrite">Cosa scrivere all'interno del logger</param>
-    public void WriteInLogger(string _stringToWrite)
+    public void WriteInLogger(string _stringToWrite, logType _typeOfLog)
     {
         //controlla se c'è il collegamento al logger 
         if (logger != null)
-            logger.WriteInLogger(_stringToWrite);
+            logger.WriteInLogger(_stringToWrite, _typeOfLog);
     }
 
     #endregion
