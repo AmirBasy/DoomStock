@@ -26,7 +26,7 @@ public class Logger : MonoBehaviour {
     /// <param name="_stringToWrite">Cosa scrivere all'interno del logger</param>
     public void WriteInLogger(string _textToWrite)
     {
-        LoggerText.text = Time.unscaledTime + ": " + _textToWrite + "\n ************ \n" + LoggerText.text;
+        LoggerText.text = DateTime.Now + ": " + _textToWrite + "\n ************ \n" + LoggerText.text;
     }
 
     #endregion
