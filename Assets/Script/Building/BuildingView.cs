@@ -20,13 +20,13 @@ public class BuildingView : MonoBehaviour
     }
     public void Init(BuildingData _buildingData)
     {
-        
         CheckRenderer(GetComponent<Renderer>());
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
         TimedEventData.OnDataChanged += OnTimedEventDataChanged;
         UpdateGraphic();
     }
+ 
 
     void OnUnitEvent(TimedEventData _eventData)
     {

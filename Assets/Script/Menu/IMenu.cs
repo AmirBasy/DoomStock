@@ -62,7 +62,6 @@ public static class IMenuExtension {
             return;
         }
         _this.ScelteFatte.RemoveAt(_this.ScelteFatte.Count -1);
-        //_this.ScelteFatte = _this.firstLevelSelections;
         _this.LoadSelections(); 
     }
 
@@ -91,7 +90,7 @@ public static class IMenuExtension {
 /// Interfaccia per tutti gli oggetti selezionabili.
 /// </summary>
 public interface ISelectable {
-    string UniqueID { get; set; }
+     string UniqueID { get; set; }
 }
 
 public enum MenuTypes {

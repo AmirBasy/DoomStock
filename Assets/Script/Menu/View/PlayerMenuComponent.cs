@@ -24,7 +24,7 @@ public class PlayerMenuComponent : MenuBase {
                     case " + Building":
 
                         foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
-                        {
+                        { 
                             PossibiliScelteAttuali.Add(building);
                         }
                         break;

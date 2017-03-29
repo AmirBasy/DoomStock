@@ -9,8 +9,9 @@ public class SelectableMenuItem : MonoBehaviour {
     public ISelectable SelectionData;
 
     public void SetData(ISelectable data) {
+        
         SelectionData = data;
-        Lable.text = "|| " + data.UniqueID + " ||"; 
+            Lable.text = "| " + data.UniqueID + " |"; 
     }
 
     public void Select(bool _isSelected) {
