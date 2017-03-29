@@ -11,16 +11,26 @@ public interface IMenu {
     /// <summary>
     /// Elenco degli elementi selezionabili nel menù al livello attuale.
     /// </summary>
-    List<ISelectable> CurrentSelectables { get; set; }
+    List<ISelectable> PossibiliScelteAttuali { get; set; }
+    /// <summary>
+    /// Indica la posizione del cursore nell'elenco dei CurrentSelectables in cui mi trovo.
+    /// </summary>
+    int IndiceDellaSelezioneEvidenziata { get; set; }
+
+    List<ISelectable> firstLevelSelections { get; set; }
     /// <summary>
     /// Elenco delle selezioni effettuate.
     /// </summary>
-    List<ISelectable> Selections { get; set; }
+    List<ISelectable> ScelteFatte { get; set; }
     /// <summary>
     /// Inizializza il menù.
     /// </summary>
     /// <param name="_player"></param>
     void Init(Player _player, List<ISelectable> _firstLevelSelections);
+    /// <summary>
+    /// Chiude il menù.
+    /// </summary>
+    void Close();
     /// <summary>
     /// Carica i CurrentSelectables del livello attuale.
     /// </summary>
@@ -38,7 +48,7 @@ public static class IMenuExtension {
     /// <param name="_this"></param>
     /// <param name="selectionToAdd"></param>
     public static void AddSelection(this IMenu _this, ISelectable selectionToAdd) {
-        _this.Selections.Add(selectionToAdd);
+        _this.ScelteFatte.Add(selectionToAdd);
         _this.LoadSelections();
     }
 
@@ -47,8 +57,33 @@ public static class IMenuExtension {
     /// </summary>
     /// <param name="_this"></param>
     public static void GoBack(this IMenu _this) {
-        _this.Selections.RemoveAt(_this.Selections.Count);
-        _this.LoadSelections();
+        if (_this.ScelteFatte.Count < 1) {
+            _this.Close();
+            return;
+        }
+        _this.ScelteFatte.RemoveAt(_this.ScelteFatte.Count -1);
+        //_this.ScelteFatte = _this.firstLevelSelections;
+        _this.LoadSelections(); 
+    }
+
+    /// <summary>
+    /// Sposta la selezione tra gli items in avanti.
+    /// </summary>
+    /// <param name="_this"></param>
+    public static void MoveToNextItem(this IMenu _this) {
+        _this.IndiceDellaSelezioneEvidenziata++;
+        if(_this.IndiceDellaSelezioneEvidenziata >= _this.PossibiliScelteAttuali.Count)
+            _this.IndiceDellaSelezioneEvidenziata = 0;
+    }
+
+    /// <summary>
+    /// Sposta la selezione tra gli items indrè.
+    /// </summary>
+    /// <param name="_this"></param>
+    public static void MoveToPrevItem(this IMenu _this) {
+        _this.IndiceDellaSelezioneEvidenziata--;
+        if (_this.IndiceDellaSelezioneEvidenziata < 0)
+            _this.IndiceDellaSelezioneEvidenziata = _this.PossibiliScelteAttuali.Count - 1;
     }
 }
 

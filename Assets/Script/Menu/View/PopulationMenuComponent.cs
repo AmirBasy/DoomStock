@@ -9,18 +9,18 @@ public class PopulationMenuComponent : MenuBase {
     List<ISelectable> SaveSelectable = new List<ISelectable>();  
 
     public override void LoadSelections() {
-        CurrentSelectables.Clear();
-        switch (Selections.Count) {
+        PossibiliScelteAttuali.Clear();
+        switch (ScelteFatte.Count) {
             case 0:
                 foreach (var p in GameManager.I.populationManager.AllFreePeople) {
-                    CurrentSelectables.Add(p);
+                    PossibiliScelteAttuali.Add(p);
                 }
               
                 break;
             case 1:
                     foreach (var bView in CurrentPlayer.BuildingsInScene)
                     {
-                        CurrentSelectables.Add(bView.Data);
+                        PossibiliScelteAttuali.Add(bView.Data);
                     } 
 
                 
@@ -33,10 +33,10 @@ public class PopulationMenuComponent : MenuBase {
     }
 
     public override void DoAction() {
-        CurrentPlayer.AddPopulation(Selections[1] as BuildingData, Selections[0] as PopulationData);
-        GameManager.I.populationManager.AllFreePeople.Remove(Selections[0] as PopulationData);
+        CurrentPlayer.AddPopulation(ScelteFatte[1] as BuildingData, ScelteFatte[0] as PopulationData);
+        GameManager.I.populationManager.AllFreePeople.Remove(ScelteFatte[0] as PopulationData);
         // GameManager.I.populationManager.MainPopulation--;
-        Selections.Clear();
+        ScelteFatte.Clear();
         Show(false);
 
     }

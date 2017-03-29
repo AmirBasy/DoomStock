@@ -7,36 +7,43 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
 
     #region Properties
     public Player CurrentPlayer { get; set; }
-    private List<ISelectable> _currentSelectables = new List<ISelectable>();
+
+    private List<ISelectable> _possibiliScelteAttuali = new List<ISelectable>();
     /// <summary>
-    /// 
+    /// Lista degli elementi selezionabili attualmente nel menù.
     /// </summary>
-    public List<ISelectable> CurrentSelectables {
-        get { return _currentSelectables; }
-        set { _currentSelectables = value; }
+    public List<ISelectable> PossibiliScelteAttuali {
+        get { return _possibiliScelteAttuali; }
+        set { _possibiliScelteAttuali = value; }
     }
+
+    
+    private int _indiceDellaSelezioneEvidenziata;
     /// <summary>
-    /// Lista momentanea che salva gli ISelectable scelti nella fase precedente del menu
+    /// Indica la posizione del cursore nell'elenco dei CurrentSelectables in cui mi trovo.
     /// </summary>
-    List<ISelectable>  _firstSaveList= new List<ISelectable>();
-    public List<ISelectable> FirstSaveList
-    {
-        get {return _firstSaveList; }
-        set { _firstSaveList = value; }
+    public int IndiceDellaSelezioneEvidenziata {
+        get { return _indiceDellaSelezioneEvidenziata; }
+        set {
+            _indiceDellaSelezioneEvidenziata = value;
+            SelectActiveItem(_indiceDellaSelezioneEvidenziata);
+        }
     }
-    private List<ISelectable> _selections = new List<ISelectable>();
+
+
+    private List<ISelectable> _scelteFatte = new List<ISelectable>();
     /// <summary>
-    /// 
+    /// Lista delle selezioni effettuate dal pleyer per scendere nei sottolivelli del menù.
     /// </summary>
-    public List<ISelectable> Selections {
-        get { return _selections; }
-        set { _selections = value; }
+    public List<ISelectable> ScelteFatte {
+        get { return _scelteFatte; }
+        set { _scelteFatte = value;}   
     }
 
     /// <summary>
     /// Se necessario contiene il primo livello di selectables.
     /// </summary>
-    protected List<ISelectable> firstLevelSelections { get; set; }
+    public List<ISelectable> firstLevelSelections { get; set; }
     #endregion
 
     #region ViewProperties
@@ -47,7 +54,7 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     #region View
 
     private void Start() {
-        Show(false);
+        Close();
     }
 
     public GameObject ButtonPrefab;
@@ -59,23 +66,47 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     public void RefreshItemList() {
         if (!IsVisible)
             return;
-        foreach (SelectableButton button in GetComponentsInChildren<SelectableButton>()) {
-            DestroyObject(button.gameObject);
+        foreach (SelectableMenuItem item in GetComponentsInChildren<SelectableMenuItem>()) {
+            DestroyObject(item.gameObject);
         } 
 
-        foreach (ISelectable item in CurrentSelectables) {
+        foreach (ISelectable item in PossibiliScelteAttuali) {
             CreateMenuItem(item);
         }
+
+        
     }
+
+    /// <summary>
+    /// Seleziona l'elemento della lista degli items del menù all'index indicato come parametro, e disattiva tutti gli altri.
+    /// </summary>
+    /// <param name="selectedItemIndex"></param>
+    void SelectActiveItem(int selectedItemIndex) {
+        for (int i = 0; i < MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>().Count(); i++) {
+            if (selectedItemIndex == i)
+                MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(true);
+            else
+                MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(false);
+        }
+    }
+
     /// <summary>
     /// Crea un nuovo MenuItem per i button
     /// </summary>
     /// <param name="_item"></param>
     protected virtual void CreateMenuItem(ISelectable _item) {
         GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
-        SelectableButton newButton = newGO.GetComponent<SelectableButton>();
+        SelectableMenuItem newButton = newGO.GetComponent<SelectableMenuItem>();
         newButton.SetData(_item);
-        newButton.onClick.AddListener(() => this.AddSelection(newButton.SelectionData));
+        //newButton.onClick.AddListener(() => this.AddSelection(newButton.SelectionData));
+    }
+
+    /// <summary>
+    /// Chiude il menù.
+    /// </summary>
+    public void Close() {
+        Show(false);
+        ScelteFatte.Clear();
     }
 
     /// <summary>
@@ -85,6 +116,8 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     public void Show(bool _show) {
         IsVisible = _show;
         MenuItemsContainer.gameObject.SetActive(IsVisible);
+        if (!_show)
+            CurrentPlayer.OnMenuClosed(this);
     }
 
     #endregion
@@ -103,5 +136,8 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
 
     public abstract void DoAction();
 
+    /// <summary>
+    /// Carico la lista dei CurrentSelectables.
+    /// </summary>
     public abstract void LoadSelections();
 }

@@ -7,7 +7,6 @@ using System;
 
 public class UIManager : MonoBehaviour {
     
-    
     #region Logger
 
     public Logger logger;
@@ -58,12 +57,12 @@ public class UIManager : MonoBehaviour {
     #region API
     public List<ISelectable> FirstLevelSelectables = new List<ISelectable>();
    
-    public void ShowMenu(MenuTypes _type, Player _player) {
+    public IMenu ShowMenu(MenuTypes _type, Player _player) {
         FirstLevelSelectables.Clear();
         switch (_type) {
             case MenuTypes.PopulationMenu:
                 _menuBase.Init(_player);
-                break;
+                return _menuBase;
             case MenuTypes.Player: 
                 switch (_player.ID)
                 {   
@@ -71,14 +70,14 @@ public class UIManager : MonoBehaviour {
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = " + Building" } as ISelectable
                             );
-                       FirstLevelSelectables.Add(
+                        FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = " - Building" } as ISelectable
                             );
-                       FirstLevelSelectables.Add(
+                        FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = " -  People" } as ISelectable
                             );
-                       P1_Menu.Init(_player, FirstLevelSelectables);
-                        break;   
+                        P1_Menu.Init(_player, FirstLevelSelectables);
+                        return P1_Menu;
                     case "PlayerTwo":
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = " + Building" } as ISelectable
@@ -89,8 +88,8 @@ public class UIManager : MonoBehaviour {
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = "Remove People" } as ISelectable
                         );
-                        P2_Menu.Init(_player, FirstLevelSelectables);  
-                        break;
+                        P2_Menu.Init(_player, FirstLevelSelectables);
+                        return P2_Menu;
                     case "PlayerThree":
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = " + Building" } as ISelectable
@@ -105,7 +104,7 @@ public class UIManager : MonoBehaviour {
                             new mySelector() { UniqueID = "Miracle" } as ISelectable
                         );
                         P3_Menu.Init(_player, FirstLevelSelectables);
-                        break;
+                        return P3_Menu;
                     case "PlayerFour":
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = " + Building" } as ISelectable
@@ -120,7 +119,7 @@ public class UIManager : MonoBehaviour {
                             new mySelector() { UniqueID = "Qualcosa" } as ISelectable
                             );
                         P4_Menu.Init(_player, FirstLevelSelectables);
-                        break;
+                        return P4_Menu;
                     default:
                         break;
                 }
@@ -128,7 +127,7 @@ public class UIManager : MonoBehaviour {
             default:
                 break;
         }
-        
+        return null; // Menù not found
     }
 
     /// <summary>

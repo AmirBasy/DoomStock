@@ -43,64 +43,24 @@ public class Player : PlayerBase
     /// <summary>
     /// Apre il menu della popolazione libera
     /// </summary>
-    void OpenMenuPopulation()
+    IMenu OpenMenuPopulation()
     {
-        GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
+        return GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
     }
     /// <summary>
     /// Apre il Menu del Player
     /// </summary>
-    void OpenMenuPlayerID()
+    IMenu OpenMenuPlayerID()
     {
-        GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
+        return GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
     }
+
     /// <summary>
-    /// Torna all'ultima scalta fatta nel menu
+    /// Accade quando viene chiuso un menù.
     /// </summary>
-    /// <param name="_menu"></param>
-    public void GoBackToLastMenu(MenuTypes _menu)
-    {
-        UIManager uiPointer = GameManager.I.uiManager;
-        switch (_menu)
-        {
-            case MenuTypes.PopulationMenu:
-                uiPointer._menuBase.Show(false);
-                break;
-            case MenuTypes.Player:
-                switch (ID)
-                {
-                    case "PlayerOne":
-                        uiPointer.P1_Menu.Show(false);
-                        break;
-                    case "PlayerTwo":
-                        uiPointer.P2_Menu.Show(false);
-                        break;
-                    case "PlayerThree":
-                        uiPointer.P3_Menu.Show(false);
-                        break;
-                    case "PlayerFour":
-                        uiPointer.P4_Menu.Show(false);
-                        break;
-                    default:
-                        break;
-                }
-                //switch (uiPointer._menuBase.firstLevelSelections.Count)
-                //{
-                //    case 0:
-                        
-                //        break;
-                //    case 1:
-                //        uiPointer._menuBase.CurrentSelectables[1] = 
-                //        uiPointer._menuBase.FirstSaveList[0];
-                //        break;
-                //    default:
-                //        break;
-                //}
-                break;
-            default:
-                break;
-        }
-        uiPointer._menuBase.FirstSaveList.Clear();
+    /// <param name="_menuClosed"></param>
+    public void OnMenuClosed(IMenu _menuClosed) {
+        currentMenu = null;
     }
 
     #endregion
@@ -194,8 +154,6 @@ public class Player : PlayerBase
     }
     #endregion
 
-
-
     #region grid Movement
     /// <summary>
     /// Muove il player sulla griglia alla posizione indicata.
@@ -226,52 +184,61 @@ public class Player : PlayerBase
 
     #region input
 
+    // TODO: rifattorizzare creando state machine player
+    IMenu currentMenu = null;
+
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
     /// </summary>
-    void checkInputs()
-    {
+    void checkInputs() {
         if (inputData == null)
             return;
 
-        if (Input.GetKeyDown(inputData.Up))
-        {
-            MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1);
-        }
-        if (Input.GetKeyDown(inputData.Left))
-        {
-            MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid);
-        }
-        if (Input.GetKeyDown(inputData.Down))
-        {
-            MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1);
-        }
-        if (Input.GetKeyDown(inputData.Right))
-        {
-            MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
-        }
-        if (Input.GetKeyDown(inputData.Confirm))
-        {
-            OpenMenuPlayerID();
-        }
-        if (Input.GetKeyDown(inputData.PopulationMenu))
-        {  
-            OpenMenuPopulation();
-        }
-        if (Input.GetKeyDown(inputData.GoBack))
-        {
-            switch (MenuTypes.Player)
-            {    case MenuTypes.Player:
-                    GoBackToLastMenu(MenuTypes.Player);
-                    break;
+        if (currentMenu == null) {
+            if (Input.GetKeyDown(inputData.Up)) {
+                MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1);
             }
-            switch (MenuTypes.PopulationMenu)
-            {   case MenuTypes.PopulationMenu:
-                    GoBackToLastMenu(MenuTypes.PopulationMenu);
-                    break;
+            if (Input.GetKeyDown(inputData.Left)) {
+                MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid);
+            }
+            if (Input.GetKeyDown(inputData.Down)) {
+                MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1);
+            }
+            if (Input.GetKeyDown(inputData.Right)) {
+                MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
+            }
+            if (Input.GetKeyDown(inputData.Confirm)) {
+                currentMenu = OpenMenuPlayerID();
+            }
+            if (Input.GetKeyDown(inputData.PopulationMenu)) {
+                currentMenu = OpenMenuPopulation();
+            }
+            if (Input.GetKeyDown(inputData.GoBack)) {
+                
+            }
+        } else {  // Menu mode
+            if (Input.GetKeyDown(inputData.Up)) {
+                currentMenu.MoveToPrevItem();
+            }
+            if (Input.GetKeyDown(inputData.Left)) {
+            }
+            if (Input.GetKeyDown(inputData.Down)) {
+                currentMenu.MoveToNextItem();
+            }
+            if (Input.GetKeyDown(inputData.Right)) {
+            }
+            if (Input.GetKeyDown(inputData.Confirm)) {
+                currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
+            }
+            if (Input.GetKeyDown(inputData.PopulationMenu)) {
+                
+            }
+            if (Input.GetKeyDown(inputData.GoBack)) {
+                currentMenu.GoBack();
             }
         }
-        
+    
+
     }
 
     #endregion
