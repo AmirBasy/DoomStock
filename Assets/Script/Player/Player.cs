@@ -30,10 +30,10 @@ public class Player : PlayerBase
     }
 
     /// <summary>
-    /// Setta la griglia di pertinenza del player per i movimenti.
+    /// Mette il player nella posizione iniziale
     /// </summary>
     /// <param name="_grid"></param>
-    public void SetupGrid(int _initialX, int _initialY)
+    public void SetUpPosition(int _initialX, int _initialY)
     {
         MoveToGridPosition(_initialX, _initialY);
     }
@@ -109,14 +109,18 @@ public class Player : PlayerBase
 
         if (CheckResources(building) == true)
         {
+            building.PlayerOwner = this;
             BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+            GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, building);
             //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
             //{
             BuildingsInScene.Add(newInstanceOfView);
-            CurrentBuildView.player = this;
+           // CurrentBuildView.player = this;
+            
             GameManager.I.populationManager.IncreaseMaxPopulation();
+
             //}
         }
     }
@@ -147,8 +151,7 @@ public class Player : PlayerBase
         {
             if (id == BuildingsInScene[i].Data.UniqueID)
             {
-                Destroy(BuildingsInScene[i].gameObject);
-                BuildingsInScene.RemoveAt(i);
+                BuildingsInScene[i].destroyMe();
             }
         }
     }
@@ -161,14 +164,14 @@ public class Player : PlayerBase
     public void MoveToGridPosition(int _x, int _y)
     {
 
-        if (_x < 0 || _y < 0 || _x > GridController.Grid.GridSize.x - 1 || _y > GridController.Grid.GridSize.y - 1)
+        if (_x < 0 || _y < 0 || _x > GameManager.I.gridController.GridSize.x - 1 || _y > GameManager.I.gridController.GridSize.y - 1)
             return;
-        Cell target = GridController.Grid.Cells[_x, _y];
+        Cell target = GameManager.I.gridController.Cells[_x, _y];
         if (!target.IsValidPosition)
             return;
 
         //Actual translation
-        transform.DOMove(GridController.Grid.GetCellWorldPosition(_x, _y),
+        transform.DOMove(GameManager.I.gridController.GetCellWorldPosition(_x, _y),
                     0.1f).OnComplete(delegate
                     {
                         Debug.LogFormat("Movimento player {0} - [{1}, {2}]", ID, _x, _y);
@@ -178,7 +181,7 @@ public class Player : PlayerBase
         YpositionOnGrid = _y;
 
         //Update of the ArrivalQueue
-        GridController.Grid.playersInQueue.SetArrivalOrder(this, _x, _y);
+        GameManager.I.gridController.playersInQueue.SetArrivalOrder(this, _x, _y);
     }
     #endregion
 

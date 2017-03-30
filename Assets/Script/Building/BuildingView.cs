@@ -7,7 +7,7 @@ using DG.Tweening;
 public class BuildingView : MonoBehaviour
 {
 
-    [HideInInspector] public Player player;
+    //[HideInInspector] public Player player;
 
     public TextMesh TextActualPeople;
 
@@ -114,15 +114,17 @@ public class BuildingView : MonoBehaviour
     }
 
     /// <summary>
-    /// Distrugge il guilding.
+    /// API che distrugge il building.
     /// </summary>
-    void destroyMe()
+    public void destroyMe()
     {
         if (OnDestroy != null)
             OnDestroy(this);
         transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
         {
-            GameObject.Destroy(this.gameObject);
+            GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
+            Destroy(gameObject);
+            Data.PlayerOwner.BuildingsInScene.Remove(this);
         });
     }
 

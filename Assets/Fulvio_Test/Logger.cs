@@ -17,16 +17,17 @@ public class Logger : MonoBehaviour {
     public bool ShowBuildingLog;
     public bool ShowEventLog;
 
-
+    public static Logger I;
+    private void Awake() {
+        if (I == null)
+            I = this;
+        else { Destroy(gameObject); }
+    }
     private void Start()
     {
         LoggerText = GetComponentInChildren<Text>();
     }
 
-    private void Update()
-    {
-        
-    }
 
     /// <summary>
     /// Controlla le booleane per verificare cosa può essere visualizzato e scrive tutta la lista selezionata nella casella di testo

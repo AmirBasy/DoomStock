@@ -116,7 +116,7 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     public void Show(bool _show) {
         IsVisible = _show;
         MenuItemsContainer.gameObject.SetActive(IsVisible);
-        if (!_show)
+        if (!_show && CurrentPlayer != null)
             CurrentPlayer.OnMenuClosed(this);
     }
 

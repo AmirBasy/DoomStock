@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class UIManager : MonoBehaviour {
-    
+
     #region Logger
 
     public Logger logger;
@@ -14,9 +14,8 @@ public class UIManager : MonoBehaviour {
     #endregion
 
     public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText;
-   // public Button GridButton, ResourcesButton;
-    void Awake()
-    {
+    // public Button GridButton, ResourcesButton;
+    void Awake() {
         DontDestroyOnLoad(this.gameObject);
     }
     public void GoToGridScene() {
@@ -25,13 +24,11 @@ public class UIManager : MonoBehaviour {
     public void GoToResourcesScene() {
         SceneManager.LoadScene("TestPlayerScene");
     }
-    private void Update()
-    {
+    private void Update() {
         UpdateGraphic();
     }
 
-    private void UpdateGraphic()
-    {
+    private void UpdateGraphic() {
         FoodText.text = " Food = " + GameManager.I.Food.ToString();
         StoneText.text = " Stone = " + GameManager.I.Stone.ToString();
         WoodText.text = " Wood = " + GameManager.I.Wood.ToString();
@@ -56,68 +53,46 @@ public class UIManager : MonoBehaviour {
 
     #region API
     public List<ISelectable> FirstLevelSelectables = new List<ISelectable>();
-   
+
     public IMenu ShowMenu(MenuTypes _type, Player _player) {
         FirstLevelSelectables.Clear();
         switch (_type) {
             case MenuTypes.PopulationMenu:
                 _menuBase.Init(_player);
                 return _menuBase;
-            case MenuTypes.Player: 
-                switch (_player.ID)
-                {   
+            case MenuTypes.Player:
+                CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
+                if (cell.Status == CellDoomstock.CellStatus.Empty) {
+                    FirstLevelSelectables.Add(
+                  new mySelector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
+                } else if (cell.Status == CellDoomstock.CellStatus.Filled) {
+                    if (cell.building.PlayerOwner == _player) {
+                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
+                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable );
+                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                    } else {
+                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                    }
+                }
+                else if (cell.Status == CellDoomstock.CellStatus.Hole) {
+                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                }
+
+
+                switch (_player.ID) {
                     case "PlayerOne":
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " + Building" } as ISelectable
-                            );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " - Building" } as ISelectable
-                            );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " -  People" } as ISelectable
-                            );
                         P1_Menu.Init(_player, FirstLevelSelectables);
                         return P1_Menu;
                     case "PlayerTwo":
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " + Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Remove Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Remove People" } as ISelectable
-                        );
                         P2_Menu.Init(_player, FirstLevelSelectables);
                         return P2_Menu;
                     case "PlayerThree":
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " + Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " -Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Remove People" } as ISelectable
-                        );
                         FirstLevelSelectables.Add(
                             new mySelector() { UniqueID = "Miracle" } as ISelectable
                         );
                         P3_Menu.Init(_player, FirstLevelSelectables);
                         return P3_Menu;
                     case "PlayerFour":
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = " + Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Remove Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Remove Building" } as ISelectable
-                        );
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Qualcosa" } as ISelectable
-                            );
                         P4_Menu.Init(_player, FirstLevelSelectables);
                         return P4_Menu;
                     default:
@@ -134,8 +109,7 @@ public class UIManager : MonoBehaviour {
     /// Funzione per scrivere all'interno del logger
     /// </summary>
     /// <param name="_stringToWrite">Cosa scrivere all'interno del logger</param>
-    public void WriteInLogger(string _stringToWrite, logType _typeOfLog)
-    {
+    public void WriteInLogger(string _stringToWrite, logType _typeOfLog) {
         //controlla se c'è il collegamento al logger 
         if (logger != null)
             logger.WriteInLogger(_stringToWrite, _typeOfLog);
@@ -144,9 +118,7 @@ public class UIManager : MonoBehaviour {
     #endregion
 }
 
-public class mySelector : ISelectable
-{
-    public string UniqueID    {get;
-              set;
-    }
+public class mySelector : ISelectable {
+    public string UniqueID { get; set; }
+    public string NameLable { get; set; }
 }

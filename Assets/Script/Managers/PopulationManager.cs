@@ -234,4 +234,16 @@ public class PopulationManager : MonoBehaviour
         UpdateGraphic("Main People: " + AllFreePeople.Count);
     }
     #endregion
+
+    #region Unique ID
+    int counter = 0;
+    /// <summary>
+    /// Genera un id univoco.
+    /// </summary>
+    /// <returns></returns>
+    public int GetUniqueId() {
+        counter++;
+        return counter;
+    }
+    #endregion
 }

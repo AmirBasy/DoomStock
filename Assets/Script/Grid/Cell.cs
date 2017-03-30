@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Framework.Grid { 
     [System.Serializable]
-    public struct Cell {
+    public class Cell {
+        public Vector2 GridPosition;
         /// <summary>
         /// The Cell position in world space
         /// </summary>

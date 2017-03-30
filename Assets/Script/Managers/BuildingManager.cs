@@ -11,11 +11,11 @@ public class BuildingManager : MonoBehaviour {
     /// <returns></returns>
     public List<BuildingView> GetAllBuildingInScene() {
         List<BuildingView> newBuildingList = new List<BuildingView>();
-        foreach (Player players in GameManager.I.Players )
+        foreach (Player currentPlayer in GameManager.I.Players )
         {
-            if (players.BuildingsInScene != null)
+            if (currentPlayer.BuildingsInScene != null)
             {
-                foreach (BuildingView building in GameManager.I.player.BuildingsInScene)
+                foreach (BuildingView building in currentPlayer.BuildingsInScene)
                 {
                     newBuildingList.Add(building);
                 }
@@ -108,7 +108,7 @@ public class BuildingManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Restituisce il numero per ogni Edificio in scena
+    /// Restituisce il totale degli edifici in scena.
     /// </summary>
     /// <returns></returns>
     public int GetIdBuildingInScene() {
@@ -138,5 +138,17 @@ public class BuildingManager : MonoBehaviour {
     //        item.Data.UniqueID = item.Data.ID + GameManager.I.buildingManager.GetIdBuildingInScene();
     //    }
     //}
+
+    #region Unique ID
+    int counter = 0;
+    /// <summary>
+    /// Genera un id univoco.
+    /// </summary>
+    /// <returns></returns>
+    public int GetUniqueId() {
+        counter++;
+        return counter;
+    }
+    #endregion
 }
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class BuildingData : ScriptableObject, ISelectable {
 
     public string UniqueID { get; set; }
+    public string NameLable { get; set; }
 
     /// <summary>
     /// identifica il tipo di edificio
@@ -70,10 +71,23 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// </summary>
     public List<BaseResourceData> BaseResources;
 
+    private Player _playerOwner;
+
+    public Player PlayerOwner {
+        get { return _playerOwner; }
+        set { _playerOwner = value; }
+    }
+
+
     public void Awake() {
-        UniqueID = ID + GameManager.I.buildingManager.GetIdBuildingInScene();
+        UniqueID = ID + GameManager.I.buildingManager.GetUniqueId(); 
+        NameLable = ID;
      }
 
+    public Vector2 GetGridPosition() {
+
+        return GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID);
+    }
 
 }
 

@@ -19,9 +19,9 @@ public abstract class PlayerBase : MonoBehaviour {
     }
 
     public PlayerInputData inputData;
-    protected GridController grid;
-    protected int XpositionOnGrid;
-    protected int YpositionOnGrid;
+    protected GridController<CellDoomstock> grid;
+    public int XpositionOnGrid;
+    public int YpositionOnGrid;
 
     public virtual void UpdateGraphic(string newText)
     {

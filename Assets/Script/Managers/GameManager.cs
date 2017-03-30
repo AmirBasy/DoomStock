@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour {
     public static GameManager I;
     public List<Player> Players;
     public GameObject PlayerPrefab;
-    public Player player;
     public string[] BaseResource;
     public int Food, Wood, Stone, Faith, Spirit;
 
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour {
 
 
     #region Managers
-    public GridController GridController;
+    public GridControllerDoomstock gridController;
     public TimeEventManager timeEventManager;
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
@@ -57,8 +56,8 @@ public class GameManager : MonoBehaviour {
                     GoBack = KeyCode.E,
                     
                 });
-            GridController.playersInQueue.AddPlayer(Players[0]);
-            Players[0].SetupGrid(0,0);
+            gridController.playersInQueue.AddPlayer(Players[0]);
+            Players[0].SetUpPosition(0,0);
         }
 
         if (Players[1] != null) {
@@ -73,8 +72,8 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.O,
                 
             });
-            GridController.playersInQueue.AddPlayer(Players[1]);
-            Players[1].SetupGrid(0,GridController.gridSize[1]-1);
+            gridController.playersInQueue.AddPlayer(Players[1]);
+            Players[1].SetUpPosition(0,(int)gridController.GridSize.y-1);
         }
 
         if (Players[2] != null) {
@@ -89,8 +88,8 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.PageDown,
                 
             });
-            GridController.playersInQueue.AddPlayer(Players[2]);
-            Players[2].SetupGrid(GridController.gridSize[0]-1, GridController.gridSize[1]-1);
+            gridController.playersInQueue.AddPlayer(Players[2]);
+            Players[2].SetUpPosition((int)gridController.GridSize.x -1, (int)gridController.GridSize.y-1);
         }
         if (Players[3] != null) {
             Players[3].SetupInput(
@@ -104,8 +103,8 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.KeypadMinus,
                 
             });
-            GridController.playersInQueue.AddPlayer(Players[3]);
-            Players[3].SetupGrid(GridController.gridSize[0]-1, 0);
+            gridController.playersInQueue.AddPlayer(Players[3]);
+            Players[3].SetUpPosition((int)gridController.GridSize.x-1, 0);
         }
     }
 
@@ -122,7 +121,9 @@ public class GameManager : MonoBehaviour {
 
     private void Start()
     {
-        SetupPlayers();
+        //TODO: mettere nel SetUp del gioco
+        GridSetUp();
+        SetupPlayers(); 
         Food = 10;
         Wood = 100;
         Stone = 100;
@@ -140,6 +141,12 @@ public class GameManager : MonoBehaviour {
     {
         GameManager.I.Wood -= data.WoodToBuild;
         GameManager.I.Stone -= data.StoneToBuild;
+    }
+
+    void GridSetUp() {
+        gridController.CreateMap(20,20);
+        gridController.Cells[(int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
+        Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
     }
 
 }

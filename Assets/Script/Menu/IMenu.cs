@@ -90,7 +90,14 @@ public static class IMenuExtension {
 /// Interfaccia per tutti gli oggetti selezionabili.
 /// </summary>
 public interface ISelectable {
-     string UniqueID { get; set; }
+    /// <summary>
+    /// Identificativo SEMPRE univoco.
+    /// </summary>
+    string UniqueID { get; set; }
+    /// <summary>
+    /// Nome visualizzato nella UI.
+    /// </summary>
+    string NameLable { get; set; }
 }
 
 public enum MenuTypes {

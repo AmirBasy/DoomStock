@@ -23,9 +23,10 @@ public class PlayerMenuComponent : MenuBase {
                 {
                     case " + Building":
 
-                        foreach (ISelectable building in CurrentPlayer.BuildingsDataPrefabs)
-                        { 
-                            PossibiliScelteAttuali.Add(building);
+                        foreach (BuildingData building in CurrentPlayer.BuildingsDataPrefabs)
+                        {
+                            BuildingData newBuildingInstance = Instantiate<BuildingData>(building);
+                            PossibiliScelteAttuali.Add(newBuildingInstance);
                         }
                         break;
                     case " - Building":
