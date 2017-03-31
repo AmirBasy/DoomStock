@@ -20,54 +20,43 @@ public class BuildingView : MonoBehaviour
     }
     public void Init(BuildingData _buildingData)
     {
-        CheckRenderer(GetComponent<Renderer>());
+        //CheckRenderer(GetComponent<Renderer>());
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
-        TimedEventData.OnDataChanged += OnTimedEventDataChanged;
         UpdateGraphic();
     }
  
 
     void OnUnitEvent(TimedEventData _eventData)
     {
-        foreach (TimedEventData ev in Data.TimedEvents)
-        {
-            if (ev.ID == _eventData.ID)
-            {
-                Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
-            }
-        }
+        #region DebugEvent
+        //foreach (TimedEventData ev in Data.TimedEvents)
+        //{
+        //    if (ev.ID == _eventData.ID)
+        //    {
+        //        Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+        //    }
+        //} 
+        #endregion
 
         foreach (TimedEventData ev in Data.TimedEvents)
         {
             switch (ev.ID)
             {
                 case "FineMese":
-                    if (Data.isBuilt == true)
-                    {
                         GameManager.I.buildingManager.RemoveLife(this);
-                    }
                     break;
                 case "FoodProduction":
-                    if (Data.isBuilt == true)
-                    {
                         GameManager.I.buildingManager.IncreaseResources(this);
-                    }
                     break;
                 case "HealthcareProduction":
-                    if (Data.isBuilt == true)
-                    {
                         GameManager.I.Healthcare++;
-                    }
                     break;
                 case "FineAnno":
                     break;
                 case "Degrado":
-                    if (Data.isBuilt == true)
-                    {
                         if (Data.BuildingLife < 1)
-                            destroyMe();
-                    }
+                           destroyMe();
                     break;
                 default:
                     break;
@@ -84,34 +73,31 @@ public class BuildingView : MonoBehaviour
         TextActualPeople.text = "People: " + Data.Population;
     }
 
-    public void OnTimedEventDataChanged(TimedEventData _timedEventData) {
+    //public void OnTimedEventDataChanged(TimedEventData _timedEventData) {
 
-        if (_timedEventData.IsEnded == true)
-        {
-            Data.isBuilt = true;
-            CheckRenderer(GetComponent<Renderer>());
-        }
-    }
-    #region Resources API
+    //    if (_timedEventData.IsEnded == true)
+    //    {
+    //        Data.isBuilt = true;
+    //        CheckRenderer(GetComponent<Renderer>());
+    //    }
+    //}
     
-    
-    #endregion
 
     /// <summary>
     /// Attiva o Disattiva la Mesh dell'Oggetto
     /// </summary>
     /// <param name="_renderer"></param>
-    public bool CheckRenderer(Renderer _renderer)
-    {
-        _renderer = Data.BuildPrefab.GetComponent<Renderer>();
-        if (Data.isBuilt == true)
-        {
-            _renderer.enabled = true;
-            return true;
-        }
-        _renderer.enabled = false;
-        return false;
-    }
+    //public bool CheckRenderer(Renderer _renderer)
+    //{
+    //    _renderer = Data.BuildPrefab.GetComponent<Renderer>();
+    //    if (Data.isBuilt == true)
+    //    {
+    //        _renderer.enabled = true;
+    //        return true;
+    //    }
+    //    _renderer.enabled = false;
+    //    return false;
+    //}
 
     /// <summary>
     /// API che distrugge il building.
@@ -122,8 +108,8 @@ public class BuildingView : MonoBehaviour
             OnDestroy(this);
         transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
         {
-            GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
             Destroy(gameObject);
+            GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
             Data.PlayerOwner.BuildingsInScene.Remove(this);
         });
     }
@@ -132,7 +118,6 @@ public class BuildingView : MonoBehaviour
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
-        TimedEventData.OnDataChanged -= OnTimedEventDataChanged;
     }
 
     #region Events

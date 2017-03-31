@@ -15,15 +15,12 @@ public class PopulationMenuComponent : MenuBase {
                 foreach (var p in GameManager.I.populationManager.AllFreePeople) {
                     PossibiliScelteAttuali.Add(p);
                 }
-              
                 break;
             case 1:
                     foreach (var bView in CurrentPlayer.BuildingsInScene)
                     {
                         PossibiliScelteAttuali.Add(bView.Data);
-                    } 
-
-                
+                    }
                  break;
             case 2:
                 DoAction();           

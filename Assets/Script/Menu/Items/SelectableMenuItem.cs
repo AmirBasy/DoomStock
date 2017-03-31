@@ -11,7 +11,7 @@ public class SelectableMenuItem : MonoBehaviour {
     public void SetData(ISelectable data) {
         
         SelectionData = data;
-            Lable.text = "| " + data.NameLable + " |"; 
+        Lable.text = data.NameLable; 
     }
 
     public void Select(bool _isSelected) {

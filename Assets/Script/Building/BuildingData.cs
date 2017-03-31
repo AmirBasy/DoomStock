@@ -26,10 +26,10 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// Elenco di risorse necessarie per costruire l'edificio
     /// </summary>
     public int WoodToBuild,StoneToBuild;
-    /// <summary>
-    /// Dichiara se un Building ha termianto il suo tempo di costruzione
-    /// </summary>
-    public bool isBuilt;
+    ///// <summary>
+    ///// Dichiara se un Building ha termianto il suo tempo di costruzione
+    ///// </summary>
+    //public bool isBuilt;
     /// <summary>
     /// Oggetto prefab dell edificio
     /// </summary> 

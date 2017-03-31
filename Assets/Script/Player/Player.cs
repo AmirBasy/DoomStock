@@ -214,7 +214,10 @@ public class Player : PlayerBase
                 currentMenu = OpenMenuPlayerID();
             }
             if (Input.GetKeyDown(inputData.PopulationMenu)) {
-                currentMenu = OpenMenuPopulation();
+                if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status == CellDoomstock.CellStatus.Hole)
+                {
+                    currentMenu = OpenMenuPopulation(); 
+                }
             }
             if (Input.GetKeyDown(inputData.GoBack)) {
                 

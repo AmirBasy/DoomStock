@@ -6,7 +6,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Farm1
@@ -16,7 +16,6 @@ MonoBehaviour:
   PopulationLimit: 0
   WoodToBuild: 10
   StoneToBuild: 10
-  isBuilt: 0
   BuildPrefab: {fileID: 114864723372019696, guid: 9cc16ee383968c942925416ab59b38ef,
     type: 2}
   Attack: 0
@@ -24,10 +23,12 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 30
-  DecreaseBuildingLife: 5
+  BuildingLife: 100000
+  DecreaseBuildingLife: 1
   TimedEvents:
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
-  BaseResources: []
+  - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
+  BaseResources:
+  - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}

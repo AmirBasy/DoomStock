@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour {
         //TODO: mettere nel SetUp del gioco
         GridSetUp();
         SetupPlayers(); 
-        Food = 10;
+        Food = 10000000;
         Wood = 100;
         Stone = 100;
     }
