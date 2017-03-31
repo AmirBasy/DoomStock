@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class PopulationMenuComponent : MenuBase {
 
-    List<ISelectable> SaveSelectable = new List<ISelectable>();  
-
     public override void LoadSelections() {
         PossibiliScelteAttuali.Clear();
         switch (ScelteFatte.Count) {
@@ -32,7 +30,7 @@ public class PopulationMenuComponent : MenuBase {
     public override void DoAction() {
         CurrentPlayer.AddPopulation(ScelteFatte[1] as BuildingData, ScelteFatte[0] as PopulationData);
         GameManager.I.populationManager.AllFreePeople.Remove(ScelteFatte[0] as PopulationData);
-        // GameManager.I.populationManager.MainPopulation--;
+        GameManager.I.populationManager.FreePeopleCounter--;
         ScelteFatte.Clear();
         Show(false);
 

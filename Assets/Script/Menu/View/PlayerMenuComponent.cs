@@ -69,11 +69,12 @@ public class PlayerMenuComponent : MenuBase {
         Close();
         
     }
-    
-    //protected override void CreateMenuItem(ISelectable _item) {
-    //    GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
-    //    SelectableMenuItem newItem = newGO.GetComponent<SelectableMenuItem>();
-    //    newItem.SetData(_item);
-    //}
+
+    protected override void CreateMenuItem(ISelectable _item)
+    {
+        GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
+        SelectableMenuItem newItem = newGO.GetComponent<SelectableMenuItem>();
+        newItem.SetData(_item);
+    }
 
 }

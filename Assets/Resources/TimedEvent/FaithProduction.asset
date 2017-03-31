@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 005132d0c700d8444a48a1ed6e1db281, type: 3}
-  m_Name: Birth
+  m_Name: FaithProduction
   m_EditorClassIdentifier: 
-  ID: Birth
-  TimeUnitsToInvoke: 10
-  CurrentTimeUnit: 1
-  isRepeating: 0
+  ID: FaithProduction
+  TimeUnitsToInvoke: 1
+  CurrentTimeUnit: 0
+  isRepeating: 1

@@ -77,8 +77,6 @@ public class UIManager : MonoBehaviour {
                 else if (cell.Status == CellDoomstock.CellStatus.Hole) {
                     FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
                 }
-
-
                 switch (_player.ID) {
                     case "PlayerOne":
                         P1_Menu.Init(_player, FirstLevelSelectables);

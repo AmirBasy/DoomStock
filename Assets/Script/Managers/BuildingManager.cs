@@ -128,16 +128,6 @@ public class BuildingManager : MonoBehaviour {
             }
         }
     }
-    ///// <summary>
-    ///// setta un UniqueID per l'edificio
-    ///// </summary>
-    //public void SetBuildingUniqueID(BuildingView view)
-    //{
-    //    foreach (var item in GetAllBuildingInScene())
-    //    {
-    //        item.Data.UniqueID = item.Data.ID + GameManager.I.buildingManager.GetIdBuildingInScene();
-    //    }
-    //}
 
     #region Unique ID
     int counter = 0;

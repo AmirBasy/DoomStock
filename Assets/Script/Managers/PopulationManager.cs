@@ -31,6 +31,8 @@ public class PopulationManager : MonoBehaviour
     /// Scegliere ogni quanto mangiare di ciascun popolano tra MinEatingTime e MaxEatingTime.
     /// </summary>
     public int MinEatingTime, MaxEatingTime;
+    [HideInInspector]
+    public int FreePeopleCounter;
 
     /// <summary>
     /// Popolazione in comune tra i player
@@ -57,6 +59,7 @@ public class PopulationManager : MonoBehaviour
     public List<PopulationData> AllFreePeople = new List<PopulationData>();
     #endregion
 
+   
     #region Init
     void Awake()
     {
@@ -67,10 +70,7 @@ public class PopulationManager : MonoBehaviour
 
     void Start()
     {
-
         UpdateGraphic("Main People: " + AllFreePeople.Count);
-
-
     }
     #endregion
 
@@ -116,6 +116,7 @@ public class PopulationManager : MonoBehaviour
             EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
         };
         unitToInstantiate.Awake();
+        FreePeopleCounter++;
         return unitToInstantiate;
     }
     #endregion

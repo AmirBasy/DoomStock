@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: FoodProduction
   m_EditorClassIdentifier: 
   ID: FoodProduction
-  TimeUnitsToInvoke: 5
-  CurrentTimeUnit: 0
+  TimeUnitsToInvoke: 1
+  CurrentTimeUnit: 5
   isRepeating: 1

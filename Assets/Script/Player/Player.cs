@@ -73,15 +73,11 @@ public class Player : PlayerBase
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingData _building, PopulationData _unitToAdd)
     {
-        //if (GameManager.I.populationManager.MainPopulation() > 0) {
-        //    if (BuildingsInScene.Count >= 1)
-        //    {
-        //       // GameManager.I.populationManager.MainPopulation -= 1;   
-        //        _building.Population++; 
-        //    }
-
-        //    // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
-        //}
+        if (GameManager.I.populationManager.FreePeopleCounter > 0)
+        {
+                _building.Population++;
+            // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
+        }
     }
 
    
