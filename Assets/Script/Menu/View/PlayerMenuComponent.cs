@@ -36,6 +36,10 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " -  People":
+                        foreach (BuildingView item in CurrentPlayer.BuildingsInScene)
+                        {
+                           // PossibiliScelteAttuali.Add(item.NameLable) as ISelectable;
+                        }
                         break;
                     default:
                         break;

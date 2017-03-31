@@ -11,13 +11,13 @@ public class BuildingData : ScriptableObject, ISelectable {
     public string NameLable { get; set; }
 
     /// <summary>
+    /// la risorsa population che ha è assegnata al
+    /// </summary>
+    public List<PopulationData> Population;
+    /// <summary>
     /// identifica il tipo di edificio
     /// </summary>
     public String ID;
-    /// <summary>
-    /// la risorsa population che ha è assegnata al
-    /// </summary>
-    public int Population;
     /// <summary>
     /// Variabile che indica quanta Popolazione massima posso possedere
     /// </summary>

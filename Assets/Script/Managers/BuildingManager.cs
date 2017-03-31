@@ -42,7 +42,7 @@ public class BuildingManager : MonoBehaviour {
     /// <param name="_buildingData"></param>
     public void IncreaseResources(BuildingView _buildingview)
     {
-        if (_buildingview.Data.Population >0)
+        if (_buildingview.Data.Population.Count > 0)
         {
             foreach (BaseResourceData resource in _buildingview.Data.BaseResources)
             {
@@ -55,36 +55,37 @@ public class BuildingManager : MonoBehaviour {
                             switch (GameManager.I.BaseResource[i])
                             {
                                 case "Food":
-                                    GameManager.I.Food += _buildingview.Data.Population * resource.Value;
-                                    Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + " il valore e' di "+ GameManager.I.Food);
+                                    GameManager.I.Food += _buildingview.Data.Population.Count * resource.Value;
+                                    Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + " il valore e' di " + GameManager.I.Food);
                                     break;
                                 case "Wood":
-                                    GameManager.I.Wood += _buildingview.Data.Population * resource.Value;
+                                    GameManager.I.Wood += _buildingview.Data.Population.Count * resource.Value;
                                     Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Wood);
                                     break;
                                 case "Stone":
-                                    GameManager.I.Stone += _buildingview.Data.Population * resource.Value;
+                                    GameManager.I.Stone += _buildingview.Data.Population.Count * resource.Value;
                                     Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Stone);
                                     break;
                                 case "Faith":
-                                    GameManager.I.Faith += _buildingview.Data.Population * resource.Value;
+                                    GameManager.I.Faith += _buildingview.Data.Population.Count * resource.Value;
                                     Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Faith);
                                     break;
                                 case "Spirit":
-                                    GameManager.I.Spirit += _buildingview.Data.Population * resource.Value;
+                                    GameManager.I.Spirit += _buildingview.Data.Population.Count * resource.Value;
                                     Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Spirit);
                                     break;
-                               
+
                                 default:
                                     break;
                             }
-                            
-                            
+
+
                         }
-                    } 
+                    }
                 }
             }
         }
+        else return;
     }
 
     /// <summary>
