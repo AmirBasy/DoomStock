@@ -76,7 +76,6 @@ public class Player : PlayerBase
         _building.Population = new List<PopulationData>();
         if (GameManager.I.populationManager.AllFreePeople.Count > 0)
         {       
-                
                 _building.Population.Add(_unitToAdd);
             // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
         }
@@ -118,9 +117,10 @@ public class Player : PlayerBase
            // CurrentBuildView.player = this;
             
             GameManager.I.populationManager.IncreaseMaxPopulation();
-
+            
             //}
         }
+        CurrentBuildView = null;
     }
 
     /// <summary>

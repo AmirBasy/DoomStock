@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33826540908043980}
   - component: {fileID: 23828795279250298}
   - component: {fileID: 64886229137965136}
+  - component: {fileID: 114732767355465116}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -94,3 +95,16 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 17c9a3688a05340408c43d51187323b7, type: 3}
+--- !u!114 &114732767355465116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695523076802282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c605e456fac5d847bc983205a37f298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Color:
+  - {fileID: 2100000, guid: b1e1ef8ff9c21fa4790bc2e6b5f764d4, type: 2}

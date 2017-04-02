@@ -30,8 +30,6 @@ public class PopulationMenuComponent : MenuBase {
     public override void DoAction() {
         CurrentPlayer.AddPopulation(ScelteFatte[1] as BuildingData, ScelteFatte[0] as PopulationData);
         GameManager.I.populationManager.AllFreePeople.Remove(ScelteFatte[0] as PopulationData);
-        //aggiungiere il pop data alla building view
-
         ScelteFatte.Clear();
         Show(false);
 

@@ -36,10 +36,11 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " -  People":
-                        foreach (BuildingView item in CurrentPlayer.BuildingsInScene)
-                        {
-                           // PossibiliScelteAttuali.Add(item.NameLable) as ISelectable;
-                        }
+                        //CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
+                        //foreach (PopulationData item in CurrentPlayer.)
+                        //{
+                        //    PossibiliScelteAttuali.Add(item);
+                        //}
                         break;
                     default:
                         break;
