@@ -36,12 +36,12 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " -  People":
-                        //CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
-                        //foreach (PopulationData item in CurrentPlayer.)
-                        //{
-                        //    PossibiliScelteAttuali.Add(item);
-                        //}
+                        CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
+                        foreach (PopulationData item in cell._buildingView.Data.Population) { 
+                            PossibiliScelteAttuali.Add(item);
+                        }
                         break;
+                
                     default:
                         break;
                 }
@@ -66,6 +66,7 @@ public class PlayerMenuComponent : MenuBase {
                 CurrentPlayer.DestroyBuilding(ScelteFatte[1].UniqueID);
                 break;
             case " -  People":
+                CurrentPlayer.RemovePopulation(ScelteFatte[1].UniqueID);
                 //Chiamare funzione population
                 break;
             default:

@@ -33,6 +33,7 @@ public class BuildingManager : MonoBehaviour {
         NewIstanceBuildingData = Instantiate(_buildingDataPrefab);
         BuildingView NewIstanceView = Instantiate(NewIstanceBuildingData.BuildPrefab);
         NewIstanceView.Init(NewIstanceBuildingData);
+        NewIstanceView.Data.Population = new List<PopulationData>();
         return NewIstanceView;
     }
 
@@ -42,6 +43,7 @@ public class BuildingManager : MonoBehaviour {
     /// <param name="_buildingData"></param>
     public void IncreaseResources(BuildingView _buildingview)
     {
+        //_buildingview.Data.Population = new List<PopulationData>();
         if (_buildingview.Data.Population.Count == 0)
         {
             return;

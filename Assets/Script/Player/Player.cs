@@ -73,7 +73,7 @@ public class Player : PlayerBase
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingData _building, PopulationData _unitToAdd)
     {
-        _building.Population = new List<PopulationData>();
+       
         if (GameManager.I.populationManager.AllFreePeople.Count > 0)
         {       
                 _building.Population.Add(_unitToAdd);
@@ -83,7 +83,7 @@ public class Player : PlayerBase
 
    
 
-    public void RemovePopulation()
+    public void RemovePopulation(string _unitToRemove)
     {
         //Population -= 1;
         ////GameManager.I.populationManager.MainPopulation += 1;
@@ -114,8 +114,9 @@ public class Player : PlayerBase
             //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
             //{
             BuildingsInScene.Add(newInstanceOfView);
-           // CurrentBuildView.player = this;
-            
+            building.Population = new List<PopulationData>();
+            // CurrentBuildView.player = this;
+            GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]._buildingView = CurrentBuildView;
             GameManager.I.populationManager.IncreaseMaxPopulation();
             
             //}
