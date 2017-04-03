@@ -11,12 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Farm3
   m_EditorClassIdentifier: 
-  ID: 
-  Population: 0
+  ID: Farm3
   PopulationLimit: 0
   WoodToBuild: 0
   StoneToBuild: 0
-  isBuilt: 0
   BuildPrefab: {fileID: 114864723372019696, guid: 9cc16ee383968c942925416ab59b38ef,
     type: 2}
   Attack: 0

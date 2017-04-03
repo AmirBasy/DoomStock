@@ -121,6 +121,7 @@ public class BuildingView : MonoBehaviour
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
+
     }
 
     #region Events
