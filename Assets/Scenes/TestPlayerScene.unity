@@ -306,7 +306,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345334094
 GameObject:
@@ -338,7 +338,7 @@ RectTransform:
   m_Children:
   - {fileID: 1959747417}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -356,6 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa5f449ec6af2243945d7faa0cbbe38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowLowPrioLog: 0
+  ShowPopulationLog: 0
+  ShowBuildingLog: 0
+  ShowEventLog: 0
 --- !u!114 &345334097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +436,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &425206227
 Prefab:
@@ -795,7 +799,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1028751845 stripped
 MonoBehaviour:
@@ -855,6 +859,8 @@ MonoBehaviour:
   resourcesManager: {fileID: 370798806}
   uiManager: {fileID: 1028751845}
   UIPlayerManager: {fileID: 0}
+  X: 10
+  Y: 10
 --- !u!4 &1151168170
 Transform:
   m_ObjectHideFlags: 0
@@ -866,7 +872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1323415652 stripped
 MonoBehaviour:
@@ -938,8 +944,8 @@ Prefab:
       propertyPath: GridSize.y
       value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents: [{fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39,
-        type: 2}]
+    m_RemovedComponents:
+    - {fileID: 114339023798415358, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1676663626
@@ -1311,5 +1317,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

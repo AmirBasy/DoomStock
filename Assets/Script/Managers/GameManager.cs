@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour {
         {
             I = this;
         }
+       
     }
 
     private void Start()
@@ -142,12 +143,15 @@ public class GameManager : MonoBehaviour {
         GameManager.I.Wood -= data.WoodToBuild;
         GameManager.I.Stone -= data.StoneToBuild;
     }
-
+    public int X, Y;
     void GridSetUp() {
-        gridController.CreateMap(20,20);
+        gridController.CreateMap(X,Y);
         gridController.Cells[(int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
         Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
+      
+
     }
+
 
 }
 
