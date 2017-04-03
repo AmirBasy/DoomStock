@@ -66,7 +66,8 @@ public class PlayerMenuComponent : MenuBase {
                 CurrentPlayer.DestroyBuilding(ScelteFatte[1].UniqueID);
                 break;
             case " -  People":
-                CurrentPlayer.RemovePopulation(ScelteFatte[1].UniqueID);
+                CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
+                CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell._buildingView);
                 //Chiamare funzione population
                 break;
             default:

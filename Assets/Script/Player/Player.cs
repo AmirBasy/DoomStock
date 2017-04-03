@@ -82,14 +82,21 @@ public class Player : PlayerBase
     }
 
    
-
-    public void RemovePopulation(string _unitToRemove)
+    /// <summary>
+    /// Rimuove un popolano dalla lista Population del building
+    /// </summary>
+    /// <param name="_unitToRemove"></param>
+    public void RemovePopulationFromBuilding(string _unitToRemove, BuildingView view)
     {
-        //Population -= 1;
-        ////GameManager.I.populationManager.MainPopulation += 1;
-        //if (Population <= 0)
-        //    Population = 0;
-        //UpdateGraphic("people: " + Population + " press Q to add, E to remove");
+        for (int i = 0; i < view.Data.Population.Count; i++)
+        {
+            if (_unitToRemove == view.Data.Population[i].UniqueID)
+            {
+                //GameManager.I.populationManager.AllFreePeople.Add(i);
+                view.Data.Population.RemoveAt(i);
+
+            }
+        }
     }
 
 
@@ -114,7 +121,7 @@ public class Player : PlayerBase
             //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
             //{
             BuildingsInScene.Add(newInstanceOfView);
-            building.Population = new List<PopulationData>();
+            
             // CurrentBuildView.player = this;
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]._buildingView = CurrentBuildView;
             GameManager.I.populationManager.IncreaseMaxPopulation();
