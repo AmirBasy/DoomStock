@@ -88,15 +88,15 @@ public class Player : PlayerBase
     /// <param name="_unitToRemove"></param>
     public void RemovePopulationFromBuilding(string _unitToRemove, BuildingView view)
     {
-        for (int i = 0; i < view.Data.Population.Count; i++)
-        {
-            if (_unitToRemove == view.Data.Population[i].UniqueID)
+            for (int i = 0; i < view.Data.Population.Count; i++)
             {
-                //GameManager.I.populationManager.AllFreePeople.Add(i);
-                view.Data.Population.RemoveAt(i);
+                if (_unitToRemove == view.Data.Population[i].UniqueID)
+                { 
+                    GameManager.I.populationManager.AllFreePeople.Add(view.Data.Population[i]);
+                    view.Data.Population.RemoveAt(i);
 
-            }
-        }
+                }
+            }  
     }
 
 
