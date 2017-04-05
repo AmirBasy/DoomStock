@@ -94,8 +94,10 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// rimuove  un'unità di popolazione dall'edificio
     /// </summary>
     public void RemoveUnitOfPopulationFromBuilding(string _unitToRemoveID) {
-
-        GameManager.I.populationManager.AllFreePeople.AddRange(Population.FindAll(p => p.UniqueID == _unitToRemoveID));   
+        foreach (var item in Population.FindAll(p => p.UniqueID == _unitToRemoveID)) {
+            GameManager.I.populationManager.AddPopulation(item);
+        }
+      
         Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
 
     }

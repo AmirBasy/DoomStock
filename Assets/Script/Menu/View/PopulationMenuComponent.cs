@@ -10,7 +10,7 @@ public class PopulationMenuComponent : MenuBase {
         PossibiliScelteAttuali.Clear();
         switch (ScelteFatte.Count) {
             case 0:
-                foreach (var p in GameManager.I.populationManager.AllFreePeople) {
+                foreach (var p in GameManager.I.populationManager.GetAllFreePeople()) {
                     PossibiliScelteAttuali.Add(p);
                 }
                 break;
@@ -28,8 +28,8 @@ public class PopulationMenuComponent : MenuBase {
     }
 
     public override void DoAction() {
-        CurrentPlayer.AddPopulation(ScelteFatte[1] as BuildingData, ScelteFatte[0] as PopulationData);
-        GameManager.I.populationManager.AllFreePeople.Remove(ScelteFatte[0] as PopulationData);
+        
+        CurrentPlayer.AddPopulation(ScelteFatte[1] as BuildingData, ScelteFatte[0].UniqueID);
         ScelteFatte.Clear();
         Show(false);
 
@@ -37,10 +37,14 @@ public class PopulationMenuComponent : MenuBase {
 
     #region event subscriptions
     private void OnEnable() {
-        BuildingView.OnDestroy += OnEventDecay;
+        BuildingView.OnDestroy += RefreshList;
+        PopulationManager.OnFreePopulationChanged += RefreshList2;
     }
 
-    void OnEventDecay(BuildingView _buildingDestroyed) {
+    void RefreshList(BuildingView _buildingDestroyed) {
+        StartCoroutine(RefreshActualList());
+    }
+    void RefreshList2() {
         StartCoroutine(RefreshActualList());
     }
 
@@ -51,7 +55,8 @@ public class PopulationMenuComponent : MenuBase {
     }
 
     private void OnDisable() {
-        BuildingView.OnDestroy -= OnEventDecay;
+        BuildingView.OnDestroy -= RefreshList;
+        PopulationManager.OnFreePopulationChanged -= RefreshList2;
     }
     #endregion
 }

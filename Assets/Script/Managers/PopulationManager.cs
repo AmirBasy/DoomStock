@@ -49,15 +49,18 @@ public class PopulationManager : MonoBehaviour
     /// <summary>
     /// Lista di tutta la popolazione in scena.
     /// </summary>
-    public List<PopulationData> AllPopulation = new List<PopulationData>();
+    List<PopulationData> AllPopulation = new List<PopulationData>();
 
     /// <summary>
     /// Lista della popolazione non assegnata.
     /// </summary>
-    public List<PopulationData> AllFreePeople = new List<PopulationData>();
-    #endregion
+   // public List<PopulationData> AllFreePeople = new List<PopulationData>();
+     List<PopulationData> AllFreePeople = new List<PopulationData>();
 
    
+    #endregion
+
+
     #region Init
     void Awake()
     {
@@ -121,7 +124,9 @@ public class PopulationManager : MonoBehaviour
     #region Events
 
 
-    //public List<TimedEventData> TimedEvents;
+    public delegate void PopulationEvent();
+
+    public static PopulationEvent OnFreePopulationChanged;
 
     private void OnEnable()
     {
@@ -138,7 +143,7 @@ public class PopulationManager : MonoBehaviour
                 PopulationData newUnit = CreatePopulation();
                 Debug.Log("Sono nato. " + newUnit.Name);
                 GameManager.I.uiManager.WriteInLogger("E' nato. " + newUnit.Name, logType.Population);
-                AllFreePeople.Add(newUnit);
+                AddPopulation(newUnit);
                 AllPopulation.Add(newUnit);
             }
             #endregion
@@ -243,5 +248,34 @@ public class PopulationManager : MonoBehaviour
     }
     #endregion
 
+    #region Api
+    /// <summary>
+    /// aggiunge un'unità di popolazione alla lista di popolani liberi.
+    /// </summary>
+    /// <param name="unitToAdd"></param>
+    public void AddPopulation(PopulationData unitToAdd) {
+        AllFreePeople.Add(unitToAdd);
+        if (OnFreePopulationChanged != null)
+            OnFreePopulationChanged();
+    }
+    /// <summary>
+    /// toglie un'unità di popolazione dalla lista di popolani liberi.
+    /// </summary>
+    /// <param name="unitIDToRemove"></param>
+    public PopulationData GetUnit(string unitIDToRemove) {
+        PopulationData pdata = AllFreePeople.Find(p => p.UniqueID == unitIDToRemove);
+        if (!AllFreePeople.Remove(pdata))
+            return null;
+        if (OnFreePopulationChanged != null)
+            OnFreePopulationChanged();
+        
+        return pdata;
+    }
+    public List<PopulationData> GetAllFreePeople() {
+        return AllFreePeople;
+    }
+
+   
+    #endregion
 
 }

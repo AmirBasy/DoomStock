@@ -71,13 +71,13 @@ public class Player : PlayerBase
     /// Aggiungie la risorsa Population all'Edificio
     /// </summary>
     /// <param name="_buildingView"></param>
-    public void AddPopulation(BuildingData _building, PopulationData _unitToAdd)
+    public void AddPopulation(BuildingData _building, string _unitIDToAdd)
     {
        
-        if (GameManager.I.populationManager.AllFreePeople.Count > 0)
+        if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
         {       
-                _building.Population.Add(_unitToAdd);
-            // TODO: aggiungere il popolano passato come parametro alla lista dei popolani del building e rimuoverlo dalla lista dei disponibili.
+                _building.Population.Add(GameManager.I.populationManager.GetUnit(_unitIDToAdd));
+           
         }
     }
 
