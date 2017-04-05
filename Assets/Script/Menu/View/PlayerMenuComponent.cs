@@ -19,8 +19,9 @@ public class PlayerMenuComponent : MenuBase {
                 }
                 break;
             case 1:
+                CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
                 switch (ScelteFatte[0].UniqueID)
-                {
+                {   
                     case " + Building":
 
                         foreach (BuildingData building in CurrentPlayer.BuildingsDataPrefabs)
@@ -30,13 +31,10 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " - Building":
-                        foreach (BuildingView building in CurrentPlayer.BuildingsInScene)
-                        {
-                            PossibiliScelteAttuali.Add(building.Data);
-                        }
+                            PossibiliScelteAttuali.Add(cell.building);
                         break;
                     case " -  People":
-                        CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
+                        
                         foreach (PopulationData item in cell.building.Population) { 
                             PossibiliScelteAttuali.Add(item);
                         }
