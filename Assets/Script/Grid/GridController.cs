@@ -29,7 +29,7 @@ namespace Framework.Grid {
                     newTile.name = "Cell["+x+","+y+"]";
                     Cells[x, y] = Activator.CreateInstance<T>();
                     Cells[x, y].WorldPosition = newTile.position;
-                    Cells[x, y].GridPosition = newTile.position;
+                    Cells[x, y].GridPosition = new Vector2(x,y);
                     Cells[x, y].IsValidPosition = true;
                 }
             }

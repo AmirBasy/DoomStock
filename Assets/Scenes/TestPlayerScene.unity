@@ -290,11 +290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventsPrefab:
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
-  - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
+  - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  unitDuration: 5
+  unitDuration: 1
 --- !u!4 &235444134
 Transform:
   m_ObjectHideFlags: 0
@@ -1302,10 +1300,6 @@ MonoBehaviour:
   MaxFoodRequirement: 2
   MinEatingTime: 1
   MaxEatingTime: 2
-  TimedEvents:
-  - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
-  - {fileID: 11400000, guid: 8b57b2eacd23ed04d8ffcc5f668a699c, type: 2}
 --- !u!4 &2036652842
 Transform:
   m_ObjectHideFlags: 0

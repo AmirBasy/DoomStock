@@ -37,7 +37,7 @@ public class PlayerMenuComponent : MenuBase {
                         break;
                     case " -  People":
                         CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
-                        foreach (PopulationData item in cell._buildingView.Data.Population) { 
+                        foreach (PopulationData item in cell.building.Population) { 
                             PossibiliScelteAttuali.Add(item);
                         }
                         break;
@@ -67,7 +67,7 @@ public class PlayerMenuComponent : MenuBase {
                 break;
             case " -  People":
                 CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
-                CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell._buildingView);
+                CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell.building);
                 //Chiamare funzione population
                 break;
             default:

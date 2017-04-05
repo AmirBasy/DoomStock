@@ -121,7 +121,7 @@ public class PopulationManager : MonoBehaviour
     #region Events
 
 
-    public List<TimedEventData> TimedEvents;
+    //public List<TimedEventData> TimedEvents;
 
     private void OnEnable()
     {
@@ -130,10 +130,9 @@ public class PopulationManager : MonoBehaviour
 
     private void OnEvent(TimedEventData _eventData)
     {
-        foreach (TimedEventData ev in TimedEvents)
-        {
+
             #region Birth
-            if (ev.ID == "Birth")
+            if (_eventData.ID == "Birth")
             {
                
                 PopulationData newUnit = CreatePopulation();
@@ -145,7 +144,7 @@ public class PopulationManager : MonoBehaviour
             #endregion
 
             #region FineMese
-            if (ev.ID == "FineMese")
+            if (_eventData.ID == "FineMese")
             {
                 foreach (PopulationData p_data in AllPopulation)
                 {
@@ -171,7 +170,7 @@ public class PopulationManager : MonoBehaviour
             #endregion
 
             #region Food
-            if (ev.ID == "Eat")
+            if (_eventData.ID == "Eat")
             {
                 #region foreach
                 //foreach (PopulationData _pdata in AllPopulation)
@@ -218,7 +217,6 @@ public class PopulationManager : MonoBehaviour
                     }
                 }
                 #endregion
-            }
         }
     }
 

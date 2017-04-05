@@ -6,8 +6,10 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
 
 public Vector2 GetBuildingPositionByUniqueID(string uniqueID) {
         foreach (CellDoomstock item in Cells) {
-            if (item._buildingView.Data.UniqueID == uniqueID)
-                return item.GridPosition;
+            if (item.building) {
+                if (item.building.UniqueID == uniqueID)
+                    return item.GridPosition; 
+            }
         }
         return new Vector2 (-1,-1);
     }

@@ -6,7 +6,7 @@ using Framework.Grid;
 public class CellDoomstock : Cell {
     public BuildingData building;
     public CellStatus Status = CellStatus.Empty;
-    public BuildingView _buildingView;
+     //BuildingView _buildingView;
     
     public enum CellStatus {
         Empty,

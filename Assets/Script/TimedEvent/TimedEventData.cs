@@ -37,7 +37,7 @@ public class TimedEventData : ScriptableObject
     /// </summary>
     public bool TimeUnitEnded() {
         CurrentTimeUnit--;
-        if (CurrentTimeUnit  < 1) {
+        if (CurrentTimeUnit == 0) {
             if (isRepeating)
                 CurrentTimeUnit = TimeUnitsToInvoke;
             return true;

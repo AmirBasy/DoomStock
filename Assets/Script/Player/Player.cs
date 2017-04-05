@@ -86,14 +86,14 @@ public class Player : PlayerBase
     /// Rimuove un popolano dalla lista Population del building
     /// </summary>
     /// <param name="_unitToRemove"></param>
-    public void RemovePopulationFromBuilding(string _unitToRemove, BuildingView view)
+    public void RemovePopulationFromBuilding(string _unitToRemove, BuildingData _buildingData)
     {
-            for (int i = 0; i < view.Data.Population.Count; i++)
+            for (int i = 0; i < _buildingData.Population.Count; i++)
             {
-                if (_unitToRemove == view.Data.Population[i].UniqueID)
+                if (_unitToRemove == _buildingData.Population[i].UniqueID)
                 { 
-                    GameManager.I.populationManager.AllFreePeople.Add(view.Data.Population[i]);
-                    view.Data.Population.RemoveAt(i);
+                    GameManager.I.populationManager.AllFreePeople.Add(_buildingData.Population[i]);
+                    _buildingData.Population.RemoveAt(i);
 
                 }
             }  
@@ -112,18 +112,17 @@ public class Player : PlayerBase
         base.DeployBuilding(building);
 
         if (CheckResources(building) == true)
-        {
-            building.PlayerOwner = this;
+        { 
             BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
+            newInstanceOfView.Data.PlayerOwner = this;
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-            GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, building);
+            GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
             //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
             //{
             BuildingsInScene.Add(newInstanceOfView);
             
             // CurrentBuildView.player = this;
-            GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]._buildingView = CurrentBuildView;
             GameManager.I.populationManager.IncreaseMaxPopulation();
             
             //}

@@ -107,14 +107,15 @@ public class BuildingView : MonoBehaviour
     /// </summary>
     public void destroyMe()
     {
-        if (OnDestroy != null)
-            OnDestroy(this);
+        GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
         transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
         {
+         if (OnDestroy != null)
+            OnDestroy(this);
             Destroy(gameObject);
-            GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
-            Data.PlayerOwner.BuildingsInScene.Remove(this);
+           //Data.PlayerOwner.BuildingsInScene.Remove(this);
         });
+        
     }
 
 
