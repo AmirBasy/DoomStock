@@ -47,14 +47,14 @@ public class GameManager : MonoBehaviour {
         if (Players[0] != null) {
             Players[0].SetupInput(
                 new PlayerInputData() {
-                    Up = KeyCode.W,
-                    Left = KeyCode.A,
-                    Down = KeyCode.S,
-                    Right = KeyCode.D,
-                    Confirm = KeyCode.Z,
-                    PopulationMenu = KeyCode.X,
-                    GoBack = KeyCode.E,
-                    
+                    Up = KeyCode.W, //| Input.GetAxis() 
+                    Left = KeyCode.A,// | KeyCode.Joystick1Button4,
+                    Down = KeyCode.S,// | KeyCode.Joystick1Button5,
+                    Right = KeyCode.D,// | KeyCode.Joystick1Button0,
+                    Confirm = KeyCode.Z | KeyCode.Joystick1Button0,
+                    PopulationMenu = KeyCode.X | KeyCode.Joystick1Button4,
+                    GoBack = KeyCode.E | KeyCode.Joystick1Button1,
+
                 });
             gridController.playersInQueue.AddPlayer(Players[0]);
             Players[0].SetUpPosition(0,0);

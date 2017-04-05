@@ -17,7 +17,7 @@ public class CellView : MonoBehaviour
         foreach (CellDoomstock item in GameManager.I.gridController.Cells)
         {
             data = item;
-        }   
+        }
         if (data.Status == CellDoomstock.CellStatus.Hole)
         {
             rend.material = Color[0];
@@ -26,6 +26,7 @@ public class CellView : MonoBehaviour
         {
             return;
         }
+
     }
 
     private void Start()

@@ -68,8 +68,14 @@ public class UIManager : MonoBehaviour {
                 } else if (cell.Status == CellDoomstock.CellStatus.Filled) {
                     if (cell.building.PlayerOwner == _player) {
                         FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
-                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable );
-                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                        if (cell.building.Population.Count >0)
+                        {
+                            FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable); 
+                        }
+                        if (GameManager.I.populationManager.GetAllFreePeople().Count>0)
+                        {
+                            FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable); 
+                        }
                     } else {
                         FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
                     }
