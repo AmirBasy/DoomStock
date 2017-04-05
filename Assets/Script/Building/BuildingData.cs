@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-[CreateAssetMenu(fileName = "BuildingDataInfo", 
+[CreateAssetMenu(fileName = "BuildingDataInfo",
                  menuName = "Building/BuildingData", order = 1)]
 
 public class BuildingData : ScriptableObject, ISelectable {
@@ -25,7 +26,7 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// <summary>
     /// Elenco di risorse necessarie per costruire l'edificio
     /// </summary>
-    public int WoodToBuild,StoneToBuild;
+    public int WoodToBuild, StoneToBuild;
     ///// <summary>
     ///// Dichiara se un Building ha termianto il suo tempo di costruzione
     ///// </summary>
@@ -80,14 +81,31 @@ public class BuildingData : ScriptableObject, ISelectable {
 
 
     public void Awake() {
-        UniqueID = ID + GameManager.I.buildingManager.GetUniqueId(); 
+        UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
         NameLable = ID;
-     }
+    }
 
     public Vector2 GetGridPosition() {
 
         return GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID);
     }
 
+    /// <summary>
+    /// rimuove  un'unità di popolazione dall'edificio
+    /// </summary>
+    public void RemoveUnitOfPopulationFromBuilding(string _unitToRemoveID) {
+
+        GameManager.I.populationManager.AllFreePeople.AddRange(Population.FindAll(p => p.UniqueID == _unitToRemoveID));   
+        Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
+
+    }
+    /// <summary>
+    /// toglie tutta la popolazione dall'edificio e la rimette nella pozza
+    /// </summary>
+    public void RemoveAllPopulationFromBuilding() {
+        for (int i = 0; i < Population.Count; i++) {
+            RemoveUnitOfPopulationFromBuilding(Population[i].UniqueID);
+        }
+    }
 }
 

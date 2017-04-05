@@ -30,21 +30,18 @@ public class BuildingView : MonoBehaviour
     void OnUnitEvent(TimedEventData _eventData)
     {
         #region DebugEvent
-        //foreach (TimedEventData ev in Data.TimedEvents)
-        //{
-        //    if (ev.ID == _eventData.ID)
-        //    {
-        //        Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
-        //    }
-        //} 
+        foreach (TimedEventData ev in Data.TimedEvents) {
+            if (ev.ID == _eventData.ID) {
+                Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+            }
+        }
         #endregion
 
-        foreach (TimedEventData ev in Data.TimedEvents)
-        {
-            switch (ev.ID)
+
+        switch (_eventData.ID)
             {
                 case "FineMese":
-                        GameManager.I.buildingManager.RemoveLife(this);
+                        
                     break;
                 case "FoodProduction":
                         GameManager.I.buildingManager.IncreaseResources(this);
@@ -58,16 +55,17 @@ public class BuildingView : MonoBehaviour
                 case "FineAnno":
                     break;
                 case "Degrado":
-                        if (Data.BuildingLife < 1)
-                           destroyMe();
+                GameManager.I.buildingManager.RemoveLife(this);
+                if (Data.BuildingLife < 1)
+                    destroyMe();
                     break;
                 default:
                     break;
-            }
+            
 
         }
 
-        Debug.LogFormat("Edificio {0} si è decrementato di {1} ({2})", Data.ID, Data.DecreaseBuildingLife, Data.BuildingLife);
+
     }
 
 
@@ -108,12 +106,13 @@ public class BuildingView : MonoBehaviour
     public void destroyMe()
     {
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
+        //toglie tutti i popolani dall'edificio e le rimette in POZZA
+        Data.RemoveAllPopulationFromBuilding();
         transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
         {
          if (OnDestroy != null)
             OnDestroy(this);
             Destroy(gameObject);
-           //Data.PlayerOwner.BuildingsInScene.Remove(this);
         });
         
     }

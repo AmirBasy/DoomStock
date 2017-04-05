@@ -88,15 +88,7 @@ public class Player : PlayerBase
     /// <param name="_unitToRemove"></param>
     public void RemovePopulationFromBuilding(string _unitToRemove, BuildingData _buildingData)
     {
-            for (int i = 0; i < _buildingData.Population.Count; i++)
-            {
-                if (_unitToRemove == _buildingData.Population[i].UniqueID)
-                { 
-                    GameManager.I.populationManager.AllFreePeople.Add(_buildingData.Population[i]);
-                    _buildingData.Population.RemoveAt(i);
-
-                }
-            }  
+        _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
     }
 
 
