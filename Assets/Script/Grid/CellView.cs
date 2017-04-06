@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellView : MonoBehaviour, ICellView
+public class CellView : MonoBehaviour
 {
     CellDoomstock data = null;
     Renderer rend;
@@ -35,8 +35,3 @@ public class CellView : MonoBehaviour, ICellView
     }
 }
 
-
-public interface ICellView
-{
-
-}
