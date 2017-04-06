@@ -12,6 +12,8 @@ public class Logger : MonoBehaviour {
     List<string> EventStrings = new List<string>();
     List<string> LowPriorityStrings = new List<string>();
 
+    public int MaxLengthOfLogger = 100;
+
     public bool ShowLowPrioLog;
     public bool ShowPopulationLog;
     public bool ShowBuildingLog;
@@ -71,6 +73,27 @@ public class Logger : MonoBehaviour {
                 LoggerText.text = DateTime.Now + ": " + EventStrings[i] + "\n ************ \n" + LoggerText.text;
             }
         }
+
+        ClearLists();
+
+    }
+
+    /// <summary>
+    /// Elimina l'ultimo elemento della lista quando essa arriva al numero indicato da MaxLengthOfLogger.
+    /// </summary>
+    void ClearLists()
+    {
+        if (PopulationStrings.Count > MaxLengthOfLogger)
+            PopulationStrings.Remove(PopulationStrings[0]);
+
+        if (BuildingStrings.Count > MaxLengthOfLogger)
+            BuildingStrings.RemoveAt(BuildingStrings.Count - 1);
+
+        if(EventStrings.Count > MaxLengthOfLogger)
+            EventStrings.RemoveAt(EventStrings.Count - 1);
+
+        if (LowPriorityStrings.Count > MaxLengthOfLogger)
+            LowPriorityStrings.RemoveAt(LowPriorityStrings.Count - 1);
     }
 
     /// <summary>

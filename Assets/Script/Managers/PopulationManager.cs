@@ -142,7 +142,7 @@ public class PopulationManager : MonoBehaviour
                
                 PopulationData newUnit = CreatePopulation();
                 Debug.Log("Sono nato. " + newUnit.Name);
-                GameManager.I.uiManager.WriteInLogger("E' nato. " + newUnit.Name, logType.Population);
+                Logger.I.WriteInLogger("E' nato. " + newUnit.Name, logType.Population);
                 AddPopulation(newUnit);
                 AllPopulation.Add(newUnit);
             }
@@ -161,7 +161,7 @@ public class PopulationManager : MonoBehaviour
                         if (p_data.MaxAge <= 0)
                         {
                             Debug.Log("sono morto. " + p_data.Name);
-                            GameManager.I.uiManager.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
+                            Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
                             AllFreePeople.Remove(p_data);
                             AllPopulation.Remove(p_data);
                         }
@@ -204,7 +204,7 @@ public class PopulationManager : MonoBehaviour
                     {
                         AllPopulation[i].EatingTime = 0;
                         Debug.Log("devo mangiare. " + AllPopulation[i].Name);
-                        GameManager.I.uiManager.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
+                        Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
                         GameManager.I.Food--;
                         if (AllPopulation[i].EatingTime <= 0)
                         {
@@ -215,7 +215,7 @@ public class PopulationManager : MonoBehaviour
                         {
                             GameManager.I.Food = 0;
                             Debug.Log("sono morto. " + AllPopulation[i].Name);
-                            GameManager.I.uiManager.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
+                            Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
                             AllFreePeople.Remove(AllPopulation[i]);
                             AllPopulation.Remove(AllPopulation[i]);
                         }
