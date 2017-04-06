@@ -73,10 +73,12 @@ public class Player : PlayerBase
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingData _building, string _unitIDToAdd)
     {
-       
+
+       // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
         if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
-        {       
-                _building.Population.Add(GameManager.I.populationManager.GetUnit(_unitIDToAdd));
+        {
+            PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
+                _building.Population.Add(pdata);
            
         }
     }

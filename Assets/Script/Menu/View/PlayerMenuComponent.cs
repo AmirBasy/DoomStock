@@ -72,7 +72,7 @@ public class PlayerMenuComponent : MenuBase {
                 CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell.building);
                 break;
             case " + People":
-                CurrentPlayer.AddPopulation(cell.building,ScelteFatte[0].UniqueID);
+                CurrentPlayer.AddPopulation(cell.building,ScelteFatte[1].UniqueID);
                 break;
             default:
                 break;   
