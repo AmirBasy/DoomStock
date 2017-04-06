@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour {
     public void SetupPlayers() {
         if (Players[0] != null) {
             Players[0].SetupInput(
-                new PlayerInputData() {
+                new PlayerInputData()
+                {
                     Up = KeyCode.W, //| Input.GetAxis() 
                     Left = KeyCode.A,// | KeyCode.Joystick1Button4,
                     Down = KeyCode.S,// | KeyCode.Joystick1Button5,
@@ -58,7 +59,6 @@ public class GameManager : MonoBehaviour {
                     GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
 
                 });
-            gridController.playersInQueue.AddPlayer(Players[0]);
             Players[0].SetUpPosition(0,0);
         }
 
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.O,
                 
             });
-            gridController.playersInQueue.AddPlayer(Players[1]);
+            
             Players[1].SetUpPosition(0,(int)gridController.GridSize.y-1);
         }
 
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.PageDown,
                 
             });
-            gridController.playersInQueue.AddPlayer(Players[2]);
+            
             Players[2].SetUpPosition((int)gridController.GridSize.x -1, (int)gridController.GridSize.y-1);
         }
         if (Players[3] != null) {
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.KeypadMinus,
                 
             });
-            gridController.playersInQueue.AddPlayer(Players[3]);
+            
             Players[3].SetUpPosition((int)gridController.GridSize.x-1, 0);
         }
     }

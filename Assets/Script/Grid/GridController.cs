@@ -14,7 +14,7 @@ namespace Framework.Grid {
         public T[,] Cells;
         public List<Vector2> GridInvalidPositions = new List<Vector2>();
         [HideInInspector]
-        public ArrivalQueue playersInQueue = new ArrivalQueue();
+        //public ArrivalQueue playersInQueue = new ArrivalQueue();
 
         /// <summary>
         /// Generates la griglia utilizzando il TilePrefab
@@ -82,15 +82,43 @@ namespace Framework.Grid {
             GridSize.y = y;
             Cells = new T[(int)GridSize.x, (int)GridSize.y];
             GenerateMap(withView);
-        } 
+        }
+        #endregion
+        #region grid Movement
+        /// <summary>
+        /// Muove il player sulla griglia alla posizione indicata.
+        /// </summary>
+        public virtual void MoveToGridPosition(int _x, int _y, Player _player)
+        {
+
+            if (_x < 0 || _y < 0 || _x > GridSize.x - 1 || _y > GridSize.y - 1)
+                return;
+            Cell target = Cells[_x, _y];
+            if (!target.IsValidPosition)
+                return;
+
+            //Actual translation
+            _player.transform.DOMove(GetCellWorldPosition(_x, _y),
+                        0.3f).OnComplete(delegate
+                        {
+                            Debug.LogFormat("Movimento player {0} - [{1}, {2}]", _player.ID, _x, _y);
+                        }).SetEase(Ease.OutBack);
+
+            _player.XpositionOnGrid = _x;
+            _player.YpositionOnGrid = _y;
+
+
+
+        }
         #endregion
     }
 
-    
+
     public enum Direction {
         up,
         left,
         down,
         right,
     }
+
 }

@@ -27,6 +27,22 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         returnCellView.GetComponent<CellView>().Init(cellData as CellDoomstock);
         return returnCellView;
     }
+    public override void MoveToGridPosition(int _x, int _y, Player _player)
+    {
+        if (_x < 0 || _y < 0 || _x > GridSize.x - 1 || _y > GridSize.y - 1)
+            return;
+        if (Cells[_x, _y].PlayersQueue.Contains(_player))
+            Cells[_x, _y].PlayersQueue.Remove(_player);
+        base.MoveToGridPosition(_x, _y, _player);
+        Cells[_x, _y].PlayersQueue.Add(_player);
+    }
+    public bool CanUseMenu(Player _player)
+    {
+        if (Cells[_player.XpositionOnGrid, _player.YpositionOnGrid].PlayersQueue.LastIndexOf(_player) == 0)
+            return true;
+        else { return false; }
+    }
+
 }
 
 

@@ -35,7 +35,7 @@ public class Player : PlayerBase
     /// <param name="_grid"></param>
     public void SetUpPosition(int _initialX, int _initialY)
     {
-        MoveToGridPosition(_initialX, _initialY);
+        GameManager.I.gridController.MoveToGridPosition(_initialX, _initialY, this);
     }
     #endregion
 
@@ -45,6 +45,8 @@ public class Player : PlayerBase
     /// </summary>
     IMenu OpenMenuPopulation()
     {
+        if (!GameManager.I.gridController.CanUseMenu(this))
+            return null;
         return GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
     }
     /// <summary>
@@ -52,6 +54,8 @@ public class Player : PlayerBase
     /// </summary>
     IMenu OpenMenuPlayerID()
     {
+        if (!GameManager.I.gridController.CanUseMenu(this))
+            return null;
         return GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
     }
 
@@ -156,33 +160,7 @@ public class Player : PlayerBase
     }
     #endregion
 
-    #region grid Movement
-    /// <summary>
-    /// Muove il player sulla griglia alla posizione indicata.
-    /// </summary>
-    public void MoveToGridPosition(int _x, int _y)
-    {
-
-        if (_x < 0 || _y < 0 || _x > GameManager.I.gridController.GridSize.x - 1 || _y > GameManager.I.gridController.GridSize.y - 1)
-            return;
-        Cell target = GameManager.I.gridController.Cells[_x, _y];
-        if (!target.IsValidPosition)
-            return;
-
-        //Actual translation
-        transform.DOMove(GameManager.I.gridController.GetCellWorldPosition(_x, _y),
-                    0.3f).OnComplete(delegate
-                    {
-                        Debug.LogFormat("Movimento player {0} - [{1}, {2}]", ID, _x, _y);
-                    }).SetEase(Ease.OutBack);
-
-        XpositionOnGrid = _x;
-        YpositionOnGrid = _y;
-
-        //Update of the ArrivalQueue
-        GameManager.I.gridController.playersInQueue.SetArrivalOrder(this, _x, _y);
-    }
-    #endregion
+   
 
     #region input
 
@@ -198,16 +176,16 @@ public class Player : PlayerBase
 
         if (currentMenu == null) {
             if (Input.GetKeyDown(inputData.Up)) {
-                MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1);
+                GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1, this);
             }
             if (Input.GetKeyDown(inputData.Left)) {
-                MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid);
+                GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid, this);
             }
             if (Input.GetKeyDown(inputData.Down)) {
-                MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1);
+                GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1, this);
             }
             if (Input.GetKeyDown(inputData.Right)) {
-                MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid);
+                GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid, this);
             }
             if (Input.GetKeyDown(inputData.Confirm)) {
                 currentMenu = OpenMenuPlayerID();

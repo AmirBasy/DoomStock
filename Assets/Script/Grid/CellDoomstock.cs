@@ -6,8 +6,15 @@ using Framework.Grid;
 public class CellDoomstock : Cell {
     public BuildingData building;
     public CellStatus Status = CellStatus.Empty;
-     //BuildingView _buildingView;
-    
+    //BuildingView _buildingView;
+    private List<Player> playersQueue = new List<Player>();
+
+    public List<Player> PlayersQueue {
+        get { return playersQueue; }
+        set { playersQueue = value; }
+    }
+
+
     public enum CellStatus {
         Empty,
         Filled,
