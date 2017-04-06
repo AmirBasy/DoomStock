@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellView : MonoBehaviour
+public class CellView : MonoBehaviour, ICellView
 {
-    CellDoomstock data;
+    CellDoomstock data = null;
     Renderer rend;
     public Material[] Color;
-    CellDoomstock.CellStatus Status;
 
-
-    public void init(CellDoomstock _cell) {
-        data = _cell;
+    public void Init(CellDoomstock _data) {
+        data = _data;
+        data.OnDataChanged = null;
+        data.OnDataChanged += OnDataChanged;
         rend = GetComponent<Renderer>();
         rend.enabled = true;
-        foreach (CellDoomstock item in GameManager.I.gridController.Cells)
-        {
-            data = item;
-        }
         if (data.Status == CellDoomstock.CellStatus.Hole)
         {
             rend.material = Color[0];
@@ -29,8 +25,18 @@ public class CellView : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        init(data);
+    void OnDataChanged(CellDoomstock _newData) {
+        Init(_newData);
     }
+
+    private void OnDisable()
+    {
+        data.OnDataChanged -= OnDataChanged;
+    }
+}
+
+
+public interface ICellView
+{
+
 }

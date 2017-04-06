@@ -17,5 +17,13 @@ public class CellDoomstock : Cell {
     public void SetStatus(CellStatus status, BuildingData _building = null) {
         Status = status;
         building = _building;
+        if (OnDataChanged != null)
+            OnDataChanged(this);
     }
+
+    #region Events
+    public delegate void CellEvent(CellDoomstock data);
+
+    public CellEvent OnDataChanged;
+    #endregion
 }

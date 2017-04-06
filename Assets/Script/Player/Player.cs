@@ -171,10 +171,10 @@ public class Player : PlayerBase
 
         //Actual translation
         transform.DOMove(GameManager.I.gridController.GetCellWorldPosition(_x, _y),
-                    0.1f).OnComplete(delegate
+                    0.3f).OnComplete(delegate
                     {
                         Debug.LogFormat("Movimento player {0} - [{1}, {2}]", ID, _x, _y);
-                    }).SetEase(Ease.OutSine);
+                    }).SetEase(Ease.OutBack);
 
         XpositionOnGrid = _x;
         YpositionOnGrid = _y;

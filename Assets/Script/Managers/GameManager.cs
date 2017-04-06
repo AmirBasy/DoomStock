@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    public bool DebugMode = false;
+
     public static GameManager I;
     public List<Player> Players;
     public GameObject PlayerPrefab;
@@ -145,8 +147,7 @@ public class GameManager : MonoBehaviour {
     }
     public int X, Y;
     void GridSetUp() {
-        gridController.CreateMap(X,Y);
-        gridController.Cells[(int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
+        gridController.CreateMap(X,Y, DebugMode);
         Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
       
 

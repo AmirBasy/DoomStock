@@ -7,9 +7,9 @@ using System;
 
 namespace Framework.Grid {
 
-    public class GridController<T> : MonoBehaviour where T : Cell{
+    public class GridController<T> : MonoBehaviour where T : Cell {
 
-        public Transform TilePrefab;
+        public GameObject TilePrefab;
         public Vector2 GridSize = new Vector2(3,3);
         public T[,] Cells;
         public List<Vector2> GridInvalidPositions = new List<Vector2>();
@@ -19,18 +19,18 @@ namespace Framework.Grid {
         /// <summary>
         /// Generates la griglia utilizzando il TilePrefab
         /// </summary>
-        void GenerateMap() {
+        protected virtual void GenerateMap(bool createView = false) {
 
             for (int x = 0; x < GridSize.x; x++) {
                 for (int y = 0; y < GridSize.y; y++)
                 {
                     Vector3 tilePosition = new Vector3(x, 0, y);
-                    Transform newTile = Instantiate(TilePrefab, tilePosition, Quaternion.identity, this.transform).transform;
-                    newTile.name = "Cell["+x+","+y+"]";
                     Cells[x, y] = Activator.CreateInstance<T>();
-                    Cells[x, y].WorldPosition = newTile.position;
+                    Cells[x, y].WorldPosition = tilePosition;
                     Cells[x, y].GridPosition = new Vector2(x,y);
                     Cells[x, y].IsValidPosition = true;
+                    if (createView)
+                        CreateGridTileView(tilePosition, Cells[x, y]);
                 }
             }
             //Set the choosen invalid positions
@@ -40,14 +40,20 @@ namespace Framework.Grid {
             }
         }
 
+        protected virtual GameObject CreateGridTileView(Vector3 tilePosition, T cellData) {
+            GameObject newTile = Instantiate<GameObject>(TilePrefab, tilePosition, Quaternion.identity, this.transform);
+            newTile.name = "Cell["+ tilePosition.x+","+ tilePosition.y + "]";
+            return newTile;
+        }
+
         #region API
         /// <summary>
         /// Restituisce la posizione world della cella alla grid position richiesta
         /// </summary>
         /// <returns></returns>
         public Vector3 GetCellWorldPosition(int _x, int _y) {
-
-            return Cells[_x, _y].WorldPosition;
+            Vector3 tileSize = TilePrefab.transform.localScale;
+            return Cells[_x, _y].WorldPosition + new Vector3(0, 0, tileSize.y);
         }
 
         /// <summary>
@@ -71,11 +77,11 @@ namespace Framework.Grid {
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void CreateMap(int x, int y) {
+        public void CreateMap(int x, int y, bool withView = false) {
             GridSize.x = x;
             GridSize.y = y;
             Cells = new T[(int)GridSize.x, (int)GridSize.y];
-            GenerateMap();
+            GenerateMap(withView);
         } 
         #endregion
     }
