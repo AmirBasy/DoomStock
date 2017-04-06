@@ -6,17 +6,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Chiesa
   m_EditorClassIdentifier: 
   ID: Chiesa
-  Population: 0
   PopulationLimit: 0
-  WoodToBuild: 0
-  StoneToBuild: 0
-  isBuilt: 0
+  WoodToBuild: 12
+  StoneToBuild: 30
   BuildPrefab: {fileID: 114322596599644798, guid: c2d48951f9dce594c99750b2b3e3005e,
     type: 2}
   Attack: 0
@@ -27,9 +25,8 @@ MonoBehaviour:
   BuildingLife: 10
   DecreaseBuildingLife: 2
   TimedEvents:
-  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
   - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
-  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}

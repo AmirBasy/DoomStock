@@ -71,17 +71,18 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
         } 
 
         foreach (ISelectable item in PossibiliScelteAttuali) {
+            
             CreateMenuItem(item);
+
         }
 
-        
     }
 
     /// <summary>
     /// Seleziona l'elemento della lista degli items del menù all'index indicato come parametro, e disattiva tutti gli altri.
     /// </summary>
     /// <param name="selectedItemIndex"></param>
-    void SelectActiveItem(int selectedItemIndex) {
+    public void SelectActiveItem(int selectedItemIndex) {
         for (int i = 0; i < MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>().Count(); i++) {
             if (selectedItemIndex == i)
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(true);

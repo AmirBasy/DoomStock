@@ -6,26 +6,26 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
-  m_Name: Estrattore
+  m_Name: EstrattoreWood
   m_EditorClassIdentifier: 
-  ID: Estrattore
-  Population: 0
+  ID: EstrattoreWood
   PopulationLimit: 0
+  WoodToBuild: 15
+  StoneToBuild: 15
   BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
     type: 2}
-  BuildingTime: 0
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
   BuildingLife: 20
-  DecreaseBuildingLife: 2
+  DecreaseBuildingLife: 1
   TimedEvents:
-  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  - {fileID: 11400000, guid: 1fbdd3a6cb6c398498f0eb97d525ff85, type: 2}
   - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   BaseResources:

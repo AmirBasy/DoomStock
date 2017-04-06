@@ -44,10 +44,16 @@ public class BuildingView : MonoBehaviour
                         
                     break;
                 case "FoodProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
+                         GameManager.I.buildingManager.IncreaseResources(this);
                     break;
+                case "WoodProduction":
+                         GameManager.I.buildingManager.IncreaseResources(this);
+                    break;
+                case "StoneProduction":
+                         GameManager.I.buildingManager.IncreaseResources(this);
+                     break;
                 case "FaithProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
+                         GameManager.I.buildingManager.IncreaseResources(this);
                     break;
                 case "HealthcareProduction":
                         GameManager.I.Healthcare++;
@@ -55,7 +61,7 @@ public class BuildingView : MonoBehaviour
                 case "FineAnno":
                     break;
                 case "Degrado":
-                GameManager.I.buildingManager.RemoveLife(this);
+                        GameManager.I.buildingManager.RemoveLife(this);
                 if (Data.BuildingLife < 1)
                     destroyMe();
                     break;

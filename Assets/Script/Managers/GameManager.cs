@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour {
     public BuildingManager buildingManager;
     public ResourcesManager resourcesManager;
     public UIManager uiManager;
-    //FulvioTestUI
-    public TestUIManager UIPlayerManager;
     #endregion
 
     #region Players
@@ -127,9 +125,9 @@ public class GameManager : MonoBehaviour {
         //TODO: mettere nel SetUp del gioco
         GridSetUp();
         SetupPlayers(); 
-        Food = 10000000;
-        Wood = 100;
-        Stone = 100;
+        //Food = 10000000;
+        //Wood = 100;
+        //Stone = 100;
     }
 
     public void BackToMenu()

@@ -7,6 +7,7 @@ public class PlayerMenuComponent : MenuBase {
     
 
     public override void LoadSelections() {
+        
         PossibiliScelteAttuali.Clear();
         switch (ScelteFatte.Count) {
             case 0:
@@ -44,6 +45,9 @@ public class PlayerMenuComponent : MenuBase {
                             PossibiliScelteAttuali.Add(p);
                         }
                        break;
+                    case " Info ":
+
+                        break;
                     default:
                         break;
                 }
@@ -74,6 +78,7 @@ public class PlayerMenuComponent : MenuBase {
             case " + People":
                 CurrentPlayer.AddPopulation(cell.building,ScelteFatte[1].UniqueID);
                 break;
+            case " Info ":
             default:
                 break;   
         }

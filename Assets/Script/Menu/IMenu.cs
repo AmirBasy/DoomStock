@@ -50,6 +50,7 @@ public static class IMenuExtension {
     public static void AddSelection(this IMenu _this, ISelectable selectionToAdd) {
         _this.ScelteFatte.Add(selectionToAdd);
         _this.LoadSelections();
+        
     }
 
     /// <summary>

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: FaithProduction
   m_EditorClassIdentifier: 
   ID: FaithProduction
-  TimeUnitsToInvoke: 1
-  CurrentTimeUnit: 0
+  TimeUnitsToInvoke: 20
+  CurrentTimeUnit: 1
   isRepeating: 1

@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 7
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,7 +25,6 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -38,11 +37,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 7
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +53,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 4
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -67,27 +66,13 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 1
-    m_BakeBackend: 0
-    m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
-    m_PVRBounces: 2
-    m_PVRFiltering: 0
-    m_PVRFilteringMode: 1
-    m_PVRCulling: 1
-    m_PVRFilteringGaussRadiusDirect: 1
-    m_PVRFilteringGaussRadiusIndirect: 5
-    m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -104,8 +89,6 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
-    manualTileSize: 0
-    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &47707498
@@ -178,8 +161,6 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -246,6 +227,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4101982951579500, guid: ab2b1793e28cb254b99880fe04f78be6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -278,6 +264,126 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 92612a42ff1432243830c1f2c32a9dee,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[17]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[18]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[19]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[20]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab2b1793e28cb254b99880fe04f78be6, type: 2}
   m_IsPrefabParent: 0
@@ -310,7 +416,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventsPrefab:
   - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
+  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
+  - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
+  - {fileID: 11400000, guid: 8b57b2eacd23ed04d8ffcc5f668a699c, type: 2}
+  - {fileID: 11400000, guid: bbaa30fc4930e2b4b857901291ac9e50, type: 2}
+  - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
+  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
+  - {fileID: 11400000, guid: 5df240c234f3f7f4a9eed7266ab2701c, type: 2}
+  - {fileID: 11400000, guid: 1fbdd3a6cb6c398498f0eb97d525ff85, type: 2}
   unitDuration: 1
 --- !u!4 &235444134
 Transform:
@@ -373,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa5f449ec6af2243945d7faa0cbbe38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxLengthOfLogger: 100
   ShowLowPrioLog: 0
   ShowPopulationLog: 0
   ShowBuildingLog: 0
@@ -570,7 +686,6 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!1 &538491046
 GameObject:
@@ -595,7 +710,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 538491046}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -620,8 +735,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &538491048
@@ -778,6 +891,11 @@ Prefab:
       propertyPath: m_StartAxis
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224883746886573312, guid: 2acaa43a67287ad48ae8c110837ac6df,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.6512524
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2acaa43a67287ad48ae8c110837ac6df, type: 2}
   m_IsPrefabParent: 0
@@ -868,9 +986,9 @@ MonoBehaviour:
   - Faith
   - Healthcare
   - Spirit
-  Food: 0
-  Wood: 0
-  Stone: 0
+  Food: 80
+  Wood: 100
+  Stone: 100
   Faith: 0
   Spirit: 0
   gridController: {fileID: 700978119}
@@ -879,9 +997,8 @@ MonoBehaviour:
   buildingManager: {fileID: 973317437}
   resourcesManager: {fileID: 370798806}
   uiManager: {fileID: 1028751845}
-  UIPlayerManager: {fileID: 0}
-  X: 10
-  Y: 10
+  X: 20
+  Y: 20
 --- !u!4 &1151168170
 Transform:
   m_ObjectHideFlags: 0
@@ -979,7 +1096,7 @@ Prefab:
     - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
         type: 2}
       propertyPath: BuildingsDataPrefabs.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4137709451974644, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1017,14 +1134,12 @@ Prefab:
         type: 2}
       propertyPath: BuildingsDataPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: b86dd77e64dac744e8d3f73da8d3dc5e,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
         type: 2}
       propertyPath: BuildingsDataPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: a7107ac8dd2f1104193a6e8ff5a30fee,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
         type: 2}
       propertyPath: Building.Array.data[0]
@@ -1180,7 +1295,6 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!65 &1954921256
 BoxCollider:

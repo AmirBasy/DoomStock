@@ -15,7 +15,7 @@ public class TestUIManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         
-        GameManager.I.UIPlayerManager = this;
+       //ameManager.I.UIPlayerManager = this;
 	}
 	
 	// Update is called once per frame
