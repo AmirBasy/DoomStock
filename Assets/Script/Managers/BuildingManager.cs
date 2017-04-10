@@ -4,13 +4,6 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
-
-
-    //private void Awake()
-    //{
-    //    TimeEventManager.OnEvent += OnUnitEvent;
-    //}
-
     /// <summary>
     /// Lista di BuildingView che i player Istanziano nella scena.
     /// </summary>
@@ -51,7 +44,6 @@ public class BuildingManager : MonoBehaviour
     /// <param name="_buildingData"></param>
     public void IncreaseResources(BuildingView _buildingview)
     {
-        //_buildingview.Data.Population = new List<PopulationData>();
         if (_buildingview.Data.Population.Count == 0)
         {
             return;
@@ -77,12 +69,6 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-
-
-    //private void OnDisable()
-    //{
-    //    TimeEventManager.OnEvent -= OnUnitEvent;
-    //}
     /// <summary>
     /// Controlla la lista di tutti gli edifici in scena.Se la vita e' 0, distrugge gli edifici
     /// </summary>

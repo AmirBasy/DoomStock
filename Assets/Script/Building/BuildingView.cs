@@ -63,8 +63,8 @@ public class BuildingView : MonoBehaviour
                     case "FaithProduction":
                         GameManager.I.buildingManager.IncreaseResources(this);
                         break;
-                    case "HealthcareProduction":
-                        GameManager.I.Healthcare++;
+                    case "SpiritProduction":
+                        GameManager.I.buildingManager.IncreaseResources(this);
                         break;
                     case "FineAnno":
                         break;
