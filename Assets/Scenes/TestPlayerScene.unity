@@ -1487,10 +1487,11 @@ MonoBehaviour:
   - Eugenio
   MinLife: 3
   MaxLife: 4
-  MinFoodRequirement: 1
-  MaxFoodRequirement: 2
-  MinEatingTime: 1
-  MaxEatingTime: 2
+  MinFoodRequirement: 20
+  MaxFoodRequirement: 30
+  MinEatingTime: 10
+  MaxEatingTime: 20
+  Startpop: 4
 --- !u!4 &2036652842
 Transform:
   m_ObjectHideFlags: 0

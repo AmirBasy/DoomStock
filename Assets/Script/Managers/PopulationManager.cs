@@ -31,18 +31,10 @@ public class PopulationManager : MonoBehaviour
     /// Scegliere ogni quanto mangiare di ciascun popolano tra MinEatingTime e MaxEatingTime.
     /// </summary>
     public int MinEatingTime, MaxEatingTime;
-
     /// <summary>
-    /// Popolazione in comune tra i player
+    /// PER DEBUG
     /// </summary>
-    //private int mainPopulation;
-    //public int MainPopulation()
-    //{
-
-    //    UpdateGraphic("Main People: " + AllFreePeople.Count);
-
-    //    return AllFreePeople.Count;
-    //}
+    public int Startpop = 0;
     #endregion
 
     #region Lists
@@ -72,6 +64,13 @@ public class PopulationManager : MonoBehaviour
     void Start()
     {
         UpdateGraphic("Main People: " + AllFreePeople.Count);
+        for (int i = 0; i < Startpop; i++)
+        {
+            //TODO:queste tre vanno sempre insieme, mettere a posto
+            PopulationData newUnit =CreatePopulation();
+            AddPopulation(newUnit);
+            AllPopulation.Add(newUnit);
+        }
     }
     #endregion
 
@@ -151,8 +150,6 @@ public class PopulationManager : MonoBehaviour
             #region FineMese
             if (_eventData.ID == "FineMese")
             {
-            // foreach (PopulationData p_data in AllPopulation)
-            //  {
             for (int i = 0; i < AllPopulation.Count; i++)
             {
                 AllPopulation[i].Month++;
@@ -173,31 +170,13 @@ public class PopulationManager : MonoBehaviour
                 } 
             }
 
-               // }
             }
             #endregion
 
             #region Food
             if (_eventData.ID == "Eat")
             {
-                #region foreach
-                //foreach (PopulationData _pdata in AllPopulation)
-                //{
-                //    _pdata.EatingTime--;
-                //    if (_pdata.EatingTime <= 0)
-                //    {
-                //        Debug.Log("devo mangiare. " + _pdata.Name);
-                //        GameManager.I.Food--;
-                //        if (GameManager.I.Food <= 0)
-                //        {
-                //            GameManager.I.Food = 0;
-                //            AllFreePeople.Remove(_pdata);           
-                //            AllPopulation.Remove(_pdata);
-                //        }
-                //    }
-
-                //} 
-                #endregion
+               
 
                 for (int i = 0; i < AllPopulation.Count; i++)
                 {
@@ -206,23 +185,25 @@ public class PopulationManager : MonoBehaviour
                     if (AllPopulation[i].EatingTime <= 0)
                     {
                         AllPopulation[i].EatingTime = 0;
-                        Debug.Log("devo mangiare. " + AllPopulation[i].Name);
-                        Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
+                       // Debug.Log("devo mangiare. " + AllPopulation[i].Name);
+                        //Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
                         GameManager.I.Food--;
                         if (AllPopulation[i].EatingTime <= 0)
                         {
                             AllPopulation[i].EatingTime = eatingTime;
                         }
 
-                        if (GameManager.I.Food <= 0)
-                        {
-                            GameManager.I.Food = 0;
-                            Debug.Log("sono morto. " + AllPopulation[i].Name);
-                            Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
-                            AllFreePeople.Remove(AllPopulation[i]);
-                            AllPopulation.Remove(AllPopulation[i]);
-                        }
-                    }
+                    #region morte di fame
+                    if (GameManager.I.Food <= 0)
+                    {
+                        GameManager.I.Food = 0;
+                        Debug.Log("sono morto. " + AllPopulation[i].Name);
+                        Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
+                        AllFreePeople.Remove(AllPopulation[i]);
+                        AllPopulation.Remove(AllPopulation[i]);
+                    } 
+                    #endregion
+                }
                 }
                 #endregion
         }
