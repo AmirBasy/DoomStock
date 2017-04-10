@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Torretta
   m_EditorClassIdentifier: 
+  Ambition: 
   IsEnded: 0
   ID: Torretta
   PopulationLimit: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 180
+  BuildingLife: 2147483647
   DecreaseBuildingLife: 2
   TimedEvents:
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}

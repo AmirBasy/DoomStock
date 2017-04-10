@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: House
   m_EditorClassIdentifier: 
+  Ambition: 
   IsEnded: 0
   ID: House
   PopulationLimit: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 0
+  BuildingLife: 2147483647
   DecreaseBuildingLife: 0
   TimedEvents: []
   BaseResources: []

@@ -24,7 +24,7 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 190000
+  BuildingLife: 2147483647
   DecreaseBuildingLife: 1
   TimedEvents:
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}

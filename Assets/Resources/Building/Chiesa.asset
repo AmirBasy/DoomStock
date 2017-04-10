@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Chiesa
   m_EditorClassIdentifier: 
+  Ambition: Cleric
   IsEnded: 0
   ID: Chiesa
   PopulationLimit: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 300
+  BuildingLife: 2147483647
   DecreaseBuildingLife: 2
   TimedEvents:
   - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}

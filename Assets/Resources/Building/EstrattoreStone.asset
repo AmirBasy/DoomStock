@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: EstrattoreStone
   m_EditorClassIdentifier: 
+  Ambition: Carpenter
   IsEnded: 0
   ID: EstrattoreStone
   PopulationLimit: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 20
+  BuildingLife: 2147483647
   DecreaseBuildingLife: 1
   TimedEvents:
   - {fileID: 11400000, guid: 5df240c234f3f7f4a9eed7266ab2701c, type: 2}
