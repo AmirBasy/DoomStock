@@ -1038,7 +1038,7 @@ MonoBehaviour:
   - Faith
   - Healthcare
   - Spirit
-  Food: 80
+  Food: 1000
   Wood: 1000
   Stone: 1000
   Faith: 0

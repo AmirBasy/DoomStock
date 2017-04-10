@@ -11,6 +11,8 @@ public class BuildingData : ScriptableObject, ISelectable {
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
 
+    //[HideInInspector]
+    public bool IsEnded;
     /// <summary>
     /// la risorsa population che ha è assegnata al
     /// </summary>

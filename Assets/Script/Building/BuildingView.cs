@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class BuildingView : MonoBehaviour
 {
-    public TextMesh TextActualPeople;
+    public TextMesh TextActualStatus;
 
     public BuildingData Data;
 
@@ -16,6 +16,7 @@ public class BuildingView : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         rend.enabled = false;
+        TextActualStatus.text = "In Costruzione ";
         //Debug.Log("Actual Life " + this.Data.BuildingLife);
         //TextActualPeople.text = "People: " + player.Population;  
     }
@@ -30,55 +31,57 @@ public class BuildingView : MonoBehaviour
 
     void OnUnitEvent(TimedEventData _eventData)
     {
-        #region DebugEvent
-        foreach (TimedEventData ev in Data.TimedEvents) {
-                if (ev.ID == "Costruzione")
+        #region Event
+        _eventData.ID = "Costruzione";
+        rend.enabled = true;
+        TextActualStatus.text = "";
+        Data.IsEnded = true;
+        if (Data.IsEnded == true)
+        {
+            foreach (TimedEventData ev in Data.TimedEvents)
+            {
+
+                switch (ev.ID)
                 {
-                _eventData.IsEnded = true;
-                    rend.enabled = true;
-                    if (_eventData.IsEnded == true)
-                    {
-                        switch (_eventData.ID)
-                        {
-                            case "FineMese":
-                                Debug.Log("Mese");
-                                break;
-                            case "FoodProduction":
-                                GameManager.I.buildingManager.IncreaseResources(this);
-                                break;
-                            case "WoodProduction":
-                                GameManager.I.buildingManager.IncreaseResources(this);
-                                break;
-                            case "StoneProduction":
-                                GameManager.I.buildingManager.IncreaseResources(this);
-                                break;
-                            case "FaithProduction":
-                                GameManager.I.buildingManager.IncreaseResources(this);
-                                break;
-                            case "HealthcareProduction":
-                                GameManager.I.Healthcare++;
-                                break;
-                            case "FineAnno":
-                                break;
-                            case "Degrado":
-                                GameManager.I.buildingManager.RemoveLife(this);
-                                if (Data.BuildingLife < 1)
-                                    destroyMe();
-                                break;
-                            default:
-                                break;
-                        }  
-                    }
-                    Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+                    case "FineMese":
+                        Debug.Log("Mese");
+                        break;
+                    case "FoodProduction":
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
+                    case "WoodProduction":
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
+                    case "StoneProduction":
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
+                    case "FaithProduction":
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
+                    case "HealthcareProduction":
+                        GameManager.I.Healthcare++;
+                        break;
+                    case "FineAnno":
+                        break;
+                    case "Degrado":
+                        GameManager.I.buildingManager.RemoveLife(this);
+                        if (Data.BuildingLife < 1)
+                            destroyMe();
+                        break;
+                    default:
+                        break;
                 }
-        }
+
+            }
+        } 
+                 Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
         #endregion
     }
 
 
     public void UpdateGraphic()
     {
-        TextActualPeople.text = "People: " + Data.Population;
+        TextActualStatus.text = "ahahah";
     }
 
     //public void OnTimedEventDataChanged(TimedEventData _timedEventData) {
@@ -88,23 +91,6 @@ public class BuildingView : MonoBehaviour
     //        Data.isBuilt = true;
     //        CheckRenderer(GetComponent<Renderer>());
     //    }
-    //}
-    
-
-    /// <summary>
-    /// Attiva o Disattiva la Mesh dell'Oggetto
-    /// </summary>
-    /// <param name="_renderer"></param>
-    //public bool CheckRenderer(Renderer _renderer)
-    //{
-    //    _renderer = Data.BuildPrefab.GetComponent<Renderer>();
-    //    if (Data.isBuilt == true)
-    //    {
-    //        _renderer.enabled = true;
-    //        return true;
-    //    }
-    //    _renderer.enabled = false;
-    //    return false;
     //}
 
     /// <summary>

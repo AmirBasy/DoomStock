@@ -116,14 +116,8 @@ public class Player : PlayerBase
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
-            //if (newInstanceOfView.CheckRenderer(newInstanceOfView.gameObject.GetComponent<Renderer>()) == true)
-            //{
             BuildingsInScene.Add(newInstanceOfView);
-            
-            // CurrentBuildView.player = this;
             GameManager.I.populationManager.IncreaseMaxPopulation();
-            
-            //}
         }
         CurrentBuildView = null;
     }
