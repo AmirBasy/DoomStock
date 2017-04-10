@@ -151,26 +151,29 @@ public class PopulationManager : MonoBehaviour
             #region FineMese
             if (_eventData.ID == "FineMese")
             {
-                foreach (PopulationData p_data in AllPopulation)
+            // foreach (PopulationData p_data in AllPopulation)
+            //  {
+            for (int i = 0; i < AllPopulation.Count; i++)
+            {
+                AllPopulation[i].Month++;
+
+                if (AllPopulation[i].Month >= 12)
                 {
-                    p_data.Month++;
-
-                    if (p_data.Month >= 12)
+                    AllPopulation[i].MaxAge--;
+                    if (AllPopulation[i].MaxAge <= 0)
                     {
-                        p_data.MaxAge--;
-                        if (p_data.MaxAge <= 0)
-                        {
-                            Debug.Log("sono morto. " + p_data.Name);
-                            Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
-                            AllFreePeople.Remove(p_data);
-                            AllPopulation.Remove(p_data);
-                        }
-
-
-                        p_data.Month = 0;
+                        Debug.Log("sono morto. " + AllPopulation[i].Name);
+                        //Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
+                        AllFreePeople.Remove(AllPopulation[i]);
+                        AllPopulation.Remove(AllPopulation[i]);
                     }
 
-                }
+
+                    AllPopulation[i].Month = 0;
+                } 
+            }
+
+               // }
             }
             #endregion
 
