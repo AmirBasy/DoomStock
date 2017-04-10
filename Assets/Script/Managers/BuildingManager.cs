@@ -59,37 +59,13 @@ public class BuildingManager : MonoBehaviour {
                 {
                     if (_buildingview.Data.BaseResources != null)
                     {
-                        for (int i = 0; i < GameManager.I.BaseResource.Length; i++)
+                        for (int i = 0; i < GameManager.I.resources.Count; i++)
                         {
-                            if (resource.ID == GameManager.I.BaseResource[i])
+                            if (resource.ID == GameManager.I.resources[i].ID)
                             {
-                                switch (GameManager.I.BaseResource[i])
-                                {
-                                    case "Food":
-                                        GameManager.I.Food += _buildingview.Data.Population.Count * resource.Value;
-                                        Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + " il valore e' di " + GameManager.I.Food);
-                                        break;
-                                    case "Wood":
-                                        GameManager.I.Wood += _buildingview.Data.Population.Count * resource.Value;
-                                        Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Wood);
-                                        break;
-                                    case "Stone":
-                                        GameManager.I.Stone += _buildingview.Data.Population.Count * resource.Value;
-                                        Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Stone);
-                                        break;
-                                    case "Faith":
-                                        GameManager.I.Faith += _buildingview.Data.Population.Count * resource.Value;
-                                        Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Faith);
-                                        break;
-                                    case "Spirit":
-                                        GameManager.I.Spirit += _buildingview.Data.Population.Count * resource.Value;
-                                        Debug.Log("Actual Resources = " + GameManager.I.BaseResource[i] + "il valore e'" + GameManager.I.Spirit);
-                                        break;
-
-                                    default:
-                                        break;
-                                }
-
+   
+                                        GameManager.I.GetResourceDataByID(GameManager.I.resources[i].ID).Value += _buildingview.Data.Population.Count * resource.Value;
+                                        Debug.Log("Actual Resources = " + GameManager.I.resources[i].ID + " il valore e' di " + GameManager.I.resources[i].Value);
 
                             }
                         }

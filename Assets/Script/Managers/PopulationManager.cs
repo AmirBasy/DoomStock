@@ -188,16 +188,16 @@ public class PopulationManager : MonoBehaviour
                     Debug.Log("devo mangiare. " + AllPopulation[i].Name);
                     Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
 
-                    GameManager.I.Food = GameManager.I.Food - AllPopulation[i].FoodRequirements;
+                    GameManager.I.GetResourceDataByID("Food").Value -=  AllPopulation[i].FoodRequirements;
                     if (AllPopulation[i].EatingTime <= 0)
                     {
                         AllPopulation[i].EatingTime = eatingTime;
                     }
 
                     #region morte di fame
-                    if (GameManager.I.Food <= 0)
+                    if (GameManager.I.GetResourceDataByID("Food").Value <= 0)
                     {
-                        GameManager.I.Food = 0;
+                        GameManager.I.GetResourceDataByID("Food").Value = 0;
                         Debug.Log("sono morto. " + AllPopulation[i].Name);
                         Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
                         AllFreePeople.Remove(AllPopulation[i]);

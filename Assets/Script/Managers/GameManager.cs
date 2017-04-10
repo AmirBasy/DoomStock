@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour {
     public static GameManager I;
     public List<Player> Players;
     public GameObject PlayerPrefab;
-    public string[] BaseResource;
-    public int Food, Wood, Stone, Faith, Spirit;
+    //public string[] BaseResource;
 
+    //  public int Food, Wood, Stone, Faith, Spirit;
+    public List<BaseResourceData> resources;
     
     int healthcare;
 
@@ -124,10 +125,16 @@ public class GameManager : MonoBehaviour {
     {
         //TODO: mettere nel SetUp del gioco
         GridSetUp();
-        SetupPlayers(); 
-        //Food = 10000000;
-        //Wood = 100;
-        //Stone = 100;
+        SetupPlayers();
+        SetupResources();
+    }
+
+    void SetupResources()
+    {
+        foreach (BaseResourceData item in Resources.LoadAll<BaseResourceData>("Risorse"))
+        {
+            resources.Add(Instantiate(item));
+        }
     }
 
     public void BackToMenu()
@@ -140,8 +147,8 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public void RemoveResource(BuildingData data)
     {
-        GameManager.I.Wood -= data.WoodToBuild;
-        GameManager.I.Stone -= data.StoneToBuild;
+        GetResourceDataByID("Wood").Value -= data.WoodToBuild;
+        GetResourceDataByID("Stone").Value -= data.StoneToBuild;
     }
     public int X, Y;
     void GridSetUp() {
@@ -150,7 +157,18 @@ public class GameManager : MonoBehaviour {
       
 
     }
-
-
+    /// <summary>
+    /// Restituisce la risorsa se gli si passa la stringa
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public BaseResourceData GetResourceDataByID(string id) {
+        foreach (BaseResourceData item in resources)
+        {
+            if (item.ID == id)
+                return item;
+        }
+        return null;
+    }
 }
 

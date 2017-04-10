@@ -29,12 +29,12 @@ public class UIManager : MonoBehaviour {
     }
 
     private void UpdateGraphic() {
-        FoodText.text = " Food = " + GameManager.I.Food.ToString();
-        StoneText.text = " Stone = " + GameManager.I.Stone.ToString();
-        WoodText.text = " Wood = " + GameManager.I.Wood.ToString();
-        FaithText.text = " Faith = " + GameManager.I.Faith.ToString();
-        SpiritText.text = " Spirit = " + GameManager.I.Spirit.ToString();
-        HealthcareText.text = " Healthcare = " + GameManager.I.Healthcare.ToString();
+        FoodText.text = " Food = " + GameManager.I.GetResourceDataByID("Food").Value.ToString();
+        StoneText.text = " Stone = " + GameManager.I.GetResourceDataByID("Stone").Value.ToString();
+        WoodText.text = " Wood = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
+        FaithText.text = " Faith = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
+        SpiritText.text = " Spirit = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
+        HealthcareText.text = " Healthcare = " + GameManager.I.GetResourceDataByID("Healthcare").Value.ToString();
 
     }
 

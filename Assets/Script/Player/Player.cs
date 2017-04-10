@@ -127,10 +127,10 @@ public class Player : PlayerBase
     /// </summary>
     public bool CheckResources(BuildingData newBuildingData)
     {
-        if (GameManager.I.Wood > 0 && GameManager.I.Stone > 0)
+        if (GameManager.I.GetResourceDataByID("Wood").Value > 0 && GameManager.I.GetResourceDataByID("Stone").Value > 0)
         {
-            if (newBuildingData.WoodToBuild <= GameManager.I.Wood &&
-                newBuildingData.StoneToBuild <= GameManager.I.Stone)
+            if (newBuildingData.WoodToBuild <= GameManager.I.GetResourceDataByID("Wood").Value &&
+                newBuildingData.StoneToBuild <= GameManager.I.GetResourceDataByID("Stone").Value)
             {
                 GameManager.I.RemoveResource(newBuildingData);
                 return true;
