@@ -948,6 +948,11 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 248.9
       objectReference: {fileID: 0}
+    - target: {fileID: 114515093037204592, guid: 2acaa43a67287ad48ae8c110837ac6df,
+        type: 2}
+      propertyPath: HappinessText
+      value: 
+      objectReference: {fileID: 1706033029}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2acaa43a67287ad48ae8c110837ac6df, type: 2}
   m_IsPrefabParent: 0
@@ -1031,18 +1036,7 @@ MonoBehaviour:
   - {fileID: 1323415652}
   - {fileID: 1716284524}
   PlayerPrefab: {fileID: 491136995}
-  BaseResource:
-  - Food
-  - Stone
-  - Wood
-  - Faith
-  - Healthcare
-  - Spirit
-  Food: 1000
-  Wood: 1000
-  Stone: 1000
-  Faith: 0
-  Spirit: 0
+  resources: []
   gridController: {fileID: 700978119}
   timeEventManager: {fileID: 235444133}
   populationManager: {fileID: 2036652841}
@@ -1218,6 +1212,84 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1706033027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1139861825368360, guid: 2acaa43a67287ad48ae8c110837ac6df,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1706033028}
+  - component: {fileID: 1706033030}
+  - component: {fileID: 1706033029}
+  m_Layer: 5
+  m_Name: Happiness
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1706033028
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224165122928102246, guid: 2acaa43a67287ad48ae8c110837ac6df,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706033027}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1924055631}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: -27.6}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1706033029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114571883567473334, guid: 2acaa43a67287ad48ae8c110837ac6df,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706033027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Happiness
+--- !u!222 &1706033030
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222691205104844748, guid: 2acaa43a67287ad48ae8c110837ac6df,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706033027}
 --- !u!114 &1716284524 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114239827312617918, guid: cbe962c29f64b7d42b236fd3f51b6084,
@@ -1286,6 +1358,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1924055631 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224359619034100776, guid: 2acaa43a67287ad48ae8c110837ac6df,
+    type: 2}
+  m_PrefabInternal: {fileID: 826322683}
 --- !u!1 &1954921253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,6 +1562,10 @@ MonoBehaviour:
   - Freddie Mercury
   - Giorgia Meloni
   - Eugenio
+  Ambitions:
+  - Farmer
+  - Cleric
+  - Carpenter
   MinLife: 3
   MaxLife: 4
   MinFoodRequirement: 20

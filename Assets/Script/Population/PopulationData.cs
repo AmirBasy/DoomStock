@@ -9,8 +9,8 @@ public class PopulationData : ISelectable
     public string NameLable { get; set; }
 
     public string Name, Ambition;
-
-    public int Age, MaxAge, FoodRequirements, EatingTime, IndividualHappiness, Month;
+    public bool IndividualHappiness;
+    public int Age, MaxAge, FoodRequirements, EatingTime, Month;
 
     public void Awake() {
         UniqueID = Name + GameManager.I.populationManager.GetUniqueId() ;
