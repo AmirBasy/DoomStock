@@ -46,10 +46,10 @@ public class PopulationManager : MonoBehaviour
     /// <summary>
     /// Lista della popolazione non assegnata.
     /// </summary>
-   // public List<PopulationData> AllFreePeople = new List<PopulationData>();
-     List<PopulationData> AllFreePeople = new List<PopulationData>();
+    // public List<PopulationData> AllFreePeople = new List<PopulationData>();
+    List<PopulationData> AllFreePeople = new List<PopulationData>();
 
-   
+
     #endregion
 
 
@@ -67,7 +67,7 @@ public class PopulationManager : MonoBehaviour
         for (int i = 0; i < Startpop; i++)
         {
             //TODO:queste tre vanno sempre insieme, mettere a posto
-            PopulationData newUnit =CreatePopulation();
+            PopulationData newUnit = CreatePopulation();
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
         }
@@ -135,21 +135,21 @@ public class PopulationManager : MonoBehaviour
     private void OnEvent(TimedEventData _eventData)
     {
 
-            #region Birth
-            if (_eventData.ID == "Birth")
-            {
-               
-                PopulationData newUnit = CreatePopulation();
-                Debug.Log("Sono nato. " + newUnit.Name);
-                Logger.I.WriteInLogger("E' nato. " + newUnit.Name, logType.Population);
-                AddPopulation(newUnit);
-                AllPopulation.Add(newUnit);
-            }
-            #endregion
+        #region Birth
+        if (_eventData.ID == "Birth")
+        {
 
-            #region FineMese
-            if (_eventData.ID == "FineMese")
-            {
+            PopulationData newUnit = CreatePopulation();
+            Debug.Log("Sono nato. " + newUnit.Name);
+            Logger.I.WriteInLogger("E' nato. " + newUnit.Name, logType.Population);
+            AddPopulation(newUnit);
+            AllPopulation.Add(newUnit);
+        }
+        #endregion
+
+        #region FineMese
+        if (_eventData.ID == "FineMese")
+        {
             for (int i = 0; i < AllPopulation.Count; i++)
             {
                 AllPopulation[i].Month++;
@@ -167,31 +167,32 @@ public class PopulationManager : MonoBehaviour
 
 
                     AllPopulation[i].Month = 0;
-                } 
+                }
             }
 
-            }
-            #endregion
+        }
+        #endregion
 
-            #region Food
-            if (_eventData.ID == "Eat")
+        #region Food
+        if (_eventData.ID == "Eat")
+        {
+
+
+            for (int i = 0; i < AllPopulation.Count; i++)
             {
-               
-
-                for (int i = 0; i < AllPopulation.Count; i++)
+                int eatingTime = AllPopulation[i].EatingTime;
+                AllPopulation[i].EatingTime--;
+                if (AllPopulation[i].EatingTime <= 0)
                 {
-                    int eatingTime = AllPopulation[i].EatingTime;
-                    AllPopulation[i].EatingTime--;
+                    AllPopulation[i].EatingTime = 0;
+                    Debug.Log("devo mangiare. " + AllPopulation[i].Name);
+                    Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
+
+                    GameManager.I.Food = GameManager.I.Food - AllPopulation[i].FoodRequirements;
                     if (AllPopulation[i].EatingTime <= 0)
                     {
-                        AllPopulation[i].EatingTime = 0;
-                       // Debug.Log("devo mangiare. " + AllPopulation[i].Name);
-                        //Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
-                        GameManager.I.Food--;
-                        if (AllPopulation[i].EatingTime <= 0)
-                        {
-                            AllPopulation[i].EatingTime = eatingTime;
-                        }
+                        AllPopulation[i].EatingTime = eatingTime;
+                    }
 
                     #region morte di fame
                     if (GameManager.I.Food <= 0)
@@ -201,11 +202,11 @@ public class PopulationManager : MonoBehaviour
                         Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
                         AllFreePeople.Remove(AllPopulation[i]);
                         AllPopulation.Remove(AllPopulation[i]);
-                    } 
+                    }
                     #endregion
                 }
-                }
-                #endregion
+            }
+            #endregion
         }
     }
 
@@ -226,7 +227,8 @@ public class PopulationManager : MonoBehaviour
     /// Genera un id univoco.
     /// </summary>
     /// <returns></returns>
-    public int GetUniqueId() {
+    public int GetUniqueId()
+    {
         counter++;
         return counter;
     }
@@ -237,7 +239,8 @@ public class PopulationManager : MonoBehaviour
     /// aggiunge un'unità di popolazione alla lista di popolani liberi.
     /// </summary>
     /// <param name="unitToAdd"></param>
-    public void AddPopulation(PopulationData unitToAdd) {
+    public void AddPopulation(PopulationData unitToAdd)
+    {
         AllFreePeople.Add(unitToAdd);
         if (OnFreePopulationChanged != null)
             OnFreePopulationChanged();
@@ -246,20 +249,22 @@ public class PopulationManager : MonoBehaviour
     /// toglie un'unità di popolazione dalla lista di popolani liberi.
     /// </summary>
     /// <param name="unitIDToRemove"></param>
-    public PopulationData GetUnit(string unitIDToRemove) {
+    public PopulationData GetUnit(string unitIDToRemove)
+    {
         PopulationData pdata = AllFreePeople.Find(p => p.UniqueID == unitIDToRemove);
         if (!AllFreePeople.Remove(pdata))
             return null;
         if (OnFreePopulationChanged != null)
             OnFreePopulationChanged();
-        
+
         return pdata;
     }
-    public List<PopulationData> GetAllFreePeople() {
+    public List<PopulationData> GetAllFreePeople()
+    {
         return AllFreePeople;
     }
 
-   
+
     #endregion
 
 }
