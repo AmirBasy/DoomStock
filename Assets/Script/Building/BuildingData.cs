@@ -7,7 +7,7 @@ using System.Linq;
                  menuName = "Building/BuildingData", order = 1)]
 
 public class BuildingData : ScriptableObject, ISelectable {
-
+    
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
 
@@ -81,8 +81,10 @@ public class BuildingData : ScriptableObject, ISelectable {
 
 
     public void Awake() {
+        if (!GameManager.I)
+            return;
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
-        NameLable = ID;
+        NameLable = ID + " (" + UniqueID + ")" ;
     }
 
     public Vector2 GetGridPosition() {

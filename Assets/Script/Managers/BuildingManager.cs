@@ -139,6 +139,7 @@ public class BuildingManager : MonoBehaviour {
     }
 
     #region Unique ID
+    
     int counter = 0;
     /// <summary>
     /// Genera un id univoco.

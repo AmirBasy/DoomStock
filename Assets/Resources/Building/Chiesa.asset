@@ -25,8 +25,8 @@ MonoBehaviour:
   BuildingLife: 10
   DecreaseBuildingLife: 2
   TimedEvents:
-  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
   - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}
