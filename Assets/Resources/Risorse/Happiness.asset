@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61e29ede33c30bb418af6e476919eff4, type: 3}
-  m_Name: Wood
+  m_Name: Happiness
   m_EditorClassIdentifier: 
-  ID: Wood
-  Value: 300
-  Limit: -1
+  ID: Happiness
+  Value: 0
+  Limit: 0
   HasNegativeValue: 0

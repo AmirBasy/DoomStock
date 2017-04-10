@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Chiesa
   m_EditorClassIdentifier: 
+  Ambition: Cleric
+  IsEnded: 0
   ID: Chiesa
   PopulationLimit: 0
   WoodToBuild: 80

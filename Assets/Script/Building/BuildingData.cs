@@ -11,6 +11,7 @@ public class BuildingData : ScriptableObject, ISelectable {
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
 
+    public string Ambition;
     //[HideInInspector]
     public bool IsEnded;
     /// <summary>

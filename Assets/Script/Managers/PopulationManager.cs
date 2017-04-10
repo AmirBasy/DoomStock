@@ -17,6 +17,7 @@ public class PopulationManager : MonoBehaviour
     /// </summary>
     public List<String> Names;
 
+    public List<String> Ambitions;
     /// <summary>
     /// Scegliere età massima di ciascun popolano tra MinLife e MaxLife.
     /// </summary>
@@ -107,6 +108,7 @@ public class PopulationManager : MonoBehaviour
     PopulationData CreatePopulation()
     {
         int randomIndex = UnityEngine.Random.Range(0, Names.Count);
+        int randomAmbition = UnityEngine.Random.Range(0, Ambitions.Count);
 
         PopulationData unitToInstantiate = new PopulationData
         {
@@ -114,6 +116,9 @@ public class PopulationManager : MonoBehaviour
             Name = Names[randomIndex],
             FoodRequirements = UnityEngine.Random.Range(MinFoodRequirement, MaxFoodRequirement),
             EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
+            IndividualHappiness = false,
+            Ambition = Ambitions[randomAmbition]
+            
         };
         unitToInstantiate.Awake();
         return unitToInstantiate;
@@ -140,8 +145,8 @@ public class PopulationManager : MonoBehaviour
         {
 
             PopulationData newUnit = CreatePopulation();
-            Debug.Log("Sono nato. " + newUnit.Name);
-            Logger.I.WriteInLogger("E' nato. " + newUnit.Name, logType.Population);
+            Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un "+ newUnit.Ambition);
+            Logger.I.WriteInLogger("E' nato. " + newUnit.Name +" con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
         }
@@ -264,7 +269,15 @@ public class PopulationManager : MonoBehaviour
         return AllFreePeople;
     }
 
-
+    public PopulationData GetPopulationDataByID(string uniqueID)
+    {
+        foreach (PopulationData item in AllPopulation)
+        {
+            if (item.UniqueID == uniqueID)
+                return item;
+        }
+        return null;
+    }
     #endregion
 
 }

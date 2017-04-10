@@ -63,7 +63,8 @@ public class Player : PlayerBase
     /// Accade quando viene chiuso un menù.
     /// </summary>
     /// <param name="_menuClosed"></param>
-    public void OnMenuClosed(IMenu _menuClosed) {
+    public void OnMenuClosed(IMenu _menuClosed)
+    {
         currentMenu = null;
     }
 
@@ -78,16 +79,22 @@ public class Player : PlayerBase
     public void AddPopulation(BuildingData _building, string _unitIDToAdd)
     {
 
-       // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
+        // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
         if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
         {
             PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
-                _building.Population.Add(pdata);
-           
+            _building.Population.Add(pdata);
+
         }
+        if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
+        {
+            GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
+            GameManager.I.GetResourceDataByID("Happiness").Value++;
+        }
+        else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; }
     }
 
-   
+
     /// <summary>
     /// Rimuove un popolano dalla lista Population del building
     /// </summary>
@@ -95,6 +102,7 @@ public class Player : PlayerBase
     public void RemovePopulationFromBuilding(string _unitToRemove, BuildingData _buildingData)
     {
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
+        GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
     }
 
 
@@ -110,7 +118,7 @@ public class Player : PlayerBase
         base.DeployBuilding(building);
 
         if (CheckResources(building) == true)
-        { 
+        {
             BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
             newInstanceOfView.Data.PlayerOwner = this;
             CurrentBuildView = newInstanceOfView;
@@ -154,7 +162,7 @@ public class Player : PlayerBase
     }
     #endregion
 
-   
+
 
     #region input
 
@@ -164,57 +172,75 @@ public class Player : PlayerBase
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
     /// </summary>
-    void checkInputs() {
+    void checkInputs()
+    {
         if (inputData == null)
             return;
 
-        if (currentMenu == null) {
-            if (Input.GetKeyDown(inputData.Up)) {
+        if (currentMenu == null)
+        {
+            if (Input.GetKeyDown(inputData.Up))
+            {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1, this);
             }
-            if (Input.GetKeyDown(inputData.Left)) {
+            if (Input.GetKeyDown(inputData.Left))
+            {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid, this);
             }
-            if (Input.GetKeyDown(inputData.Down)) {
+            if (Input.GetKeyDown(inputData.Down))
+            {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1, this);
             }
-            if (Input.GetKeyDown(inputData.Right)) {
+            if (Input.GetKeyDown(inputData.Right))
+            {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid, this);
             }
-            if (Input.GetKeyDown(inputData.Confirm)) {
+            if (Input.GetKeyDown(inputData.Confirm))
+            {
                 currentMenu = OpenMenuPlayerID();
             }
-            if (Input.GetKeyDown(inputData.PopulationMenu)) {
+            if (Input.GetKeyDown(inputData.PopulationMenu))
+            {
                 if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status == CellDoomstock.CellStatus.Hole)
                 {
-                    currentMenu = OpenMenuPopulation(); 
+                    currentMenu = OpenMenuPopulation();
                 }
             }
-            if (Input.GetKeyDown(inputData.GoBack)) {
-                
+            if (Input.GetKeyDown(inputData.GoBack))
+            {
+
             }
-        } else {  // Menu mode
-            if (Input.GetKeyDown(inputData.Up)) {
+        }
+        else
+        {  // Menu mode
+            if (Input.GetKeyDown(inputData.Up))
+            {
                 currentMenu.MoveToPrevItem();
             }
-            if (Input.GetKeyDown(inputData.Left)) {
+            if (Input.GetKeyDown(inputData.Left))
+            {
             }
-            if (Input.GetKeyDown(inputData.Down)) {
+            if (Input.GetKeyDown(inputData.Down))
+            {
                 currentMenu.MoveToNextItem();
             }
-            if (Input.GetKeyDown(inputData.Right)) {
+            if (Input.GetKeyDown(inputData.Right))
+            {
             }
-            if (Input.GetKeyDown(inputData.Confirm)) {
+            if (Input.GetKeyDown(inputData.Confirm))
+            {
                 currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
             }
-            if (Input.GetKeyDown(inputData.PopulationMenu)) {
-                
+            if (Input.GetKeyDown(inputData.PopulationMenu))
+            {
+
             }
-            if (Input.GetKeyDown(inputData.GoBack)) {
+            if (Input.GetKeyDown(inputData.GoBack))
+            {
                 currentMenu.GoBack();
             }
         }
-    
+
 
     }
 
@@ -243,7 +269,7 @@ public class Player : PlayerBase
         BuildingView.OnDestroy -= OnBuildingDestroyed;
     }
 }
-    #endregion
+#endregion
 
 
 

@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour {
 
     #endregion
 
-    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText;
+    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText,HappinessText;
     // public Button GridButton, ResourcesButton;
     void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour {
         FaithText.text = " Faith = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
         SpiritText.text = " Spirit = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
         HealthcareText.text = " Healthcare = " + GameManager.I.GetResourceDataByID("Healthcare").Value.ToString();
-
+        HappinessText.text = " Happiness = " + GameManager.I.GetResourceDataByID("Happiness").Value.ToString();
     }
 
     #region Functionalities
