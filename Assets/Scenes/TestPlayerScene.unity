@@ -1489,9 +1489,9 @@ MonoBehaviour:
   MaxLife: 4
   MinFoodRequirement: 20
   MaxFoodRequirement: 30
-  MinEatingTime: 10
-  MaxEatingTime: 20
-  Startpop: 4
+  MinEatingTime: 2
+  MaxEatingTime: 3
+  Startpop: 0
 --- !u!4 &2036652842
 Transform:
   m_ObjectHideFlags: 0

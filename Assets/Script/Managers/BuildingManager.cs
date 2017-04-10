@@ -96,6 +96,7 @@ public class BuildingManager : MonoBehaviour {
 
         
     }
+
     /// <summary>
     /// Controlla la lista di tutti gli edifici in scena.Se la vita e' 0, distrugge gli edifici
     /// </summary>
@@ -124,6 +125,7 @@ public class BuildingManager : MonoBehaviour {
         int buildingNumber = GetAllBuildingInScene().Count;
         return buildingNumber;
     }
+
     /// <summary>
     /// Rimuove il building in scene con il parametro UNIQUE ID
     /// </summary>
