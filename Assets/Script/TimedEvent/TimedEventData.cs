@@ -27,6 +27,8 @@ public class TimedEventData : ScriptableObject
     /// Se è true si ripete.
     /// </summary>
     public bool isRepeating;
+    [HideInInspector]
+    public bool IsEnded;
 
     public void Awake() {
         CurrentTimeUnit = TimeUnitsToInvoke;

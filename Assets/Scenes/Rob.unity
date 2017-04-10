@@ -1038,9 +1038,9 @@ MonoBehaviour:
   - Faith
   - Healthcare
   - Spirit
-  Food: 80
-  Wood: 1000
-  Stone: 1000
+  Food: 150
+  Wood: 200
+  Stone: 100
   Faith: 0
   Spirit: 0
   gridController: {fileID: 700978119}
@@ -1487,11 +1487,11 @@ MonoBehaviour:
   - Eugenio
   MinLife: 3
   MaxLife: 4
-  MinFoodRequirement: 20
-  MaxFoodRequirement: 30
-  MinEatingTime: 2
-  MaxEatingTime: 3
-  Startpop: 0
+  MinFoodRequirement: 1
+  MaxFoodRequirement: 2
+  MinEatingTime: 1
+  MaxEatingTime: 2
+  Startpop: 5
 --- !u!4 &2036652842
 Transform:
   m_ObjectHideFlags: 0

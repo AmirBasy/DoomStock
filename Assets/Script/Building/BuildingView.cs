@@ -6,15 +6,16 @@ using DG.Tweening;
 
 public class BuildingView : MonoBehaviour
 {
-
-    //[HideInInspector] public Player player;
-
     public TextMesh TextActualPeople;
 
     public BuildingData Data;
 
+    Renderer rend;
+
     private void Start()
     {
+        rend = GetComponent<Renderer>();
+        rend.enabled = false;
         //Debug.Log("Actual Life " + this.Data.BuildingLife);
         //TextActualPeople.text = "People: " + player.Population;  
     }
@@ -31,47 +32,47 @@ public class BuildingView : MonoBehaviour
     {
         #region DebugEvent
         foreach (TimedEventData ev in Data.TimedEvents) {
-            if (ev.ID == _eventData.ID) {
-                Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
-            }
+                if (ev.ID == "Costruzione")
+                {
+                _eventData.IsEnded = true;
+                    rend.enabled = true;
+                    if (_eventData.IsEnded == true)
+                    {
+                        switch (_eventData.ID)
+                        {
+                            case "FineMese":
+                                Debug.Log("Mese");
+                                break;
+                            case "FoodProduction":
+                                GameManager.I.buildingManager.IncreaseResources(this);
+                                break;
+                            case "WoodProduction":
+                                GameManager.I.buildingManager.IncreaseResources(this);
+                                break;
+                            case "StoneProduction":
+                                GameManager.I.buildingManager.IncreaseResources(this);
+                                break;
+                            case "FaithProduction":
+                                GameManager.I.buildingManager.IncreaseResources(this);
+                                break;
+                            case "HealthcareProduction":
+                                GameManager.I.Healthcare++;
+                                break;
+                            case "FineAnno":
+                                break;
+                            case "Degrado":
+                                GameManager.I.buildingManager.RemoveLife(this);
+                                if (Data.BuildingLife < 1)
+                                    destroyMe();
+                                break;
+                            default:
+                                break;
+                        }  
+                    }
+                    Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+                }
         }
         #endregion
-
-
-        switch (_eventData.ID)
-            {
-                case "FineMese":
-                        
-                    break;
-                case "FoodProduction":
-                         GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
-                case "WoodProduction":
-                         GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
-                case "StoneProduction":
-                         GameManager.I.buildingManager.IncreaseResources(this);
-                     break;
-                case "FaithProduction":
-                         GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
-                case "HealthcareProduction":
-                        GameManager.I.Healthcare++;
-                    break;
-                case "FineAnno":
-                    break;
-                case "Degrado":
-                        GameManager.I.buildingManager.RemoveLife(this);
-                if (Data.BuildingLife < 1)
-                    destroyMe();
-                    break;
-                default:
-                    break;
-            
-
-        }
-
-
     }
 
 

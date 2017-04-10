@@ -1039,8 +1039,8 @@ MonoBehaviour:
   - Healthcare
   - Spirit
   Food: 80
-  Wood: 1000
-  Stone: 1000
+  Wood: 100
+  Stone: 100
   Faith: 0
   Spirit: 0
   gridController: {fileID: 700978119}
