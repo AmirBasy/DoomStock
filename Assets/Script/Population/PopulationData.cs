@@ -14,7 +14,7 @@ public class PopulationData : ISelectable
 
     public void Awake() {
         UniqueID = Name + GameManager.I.populationManager.GetUniqueId() ;
-        NameLable = Name;
+        NameLable = Name + ": " + Ambition;
     }
     
 }
