@@ -32,15 +32,20 @@ public class BuildingView : MonoBehaviour
     void OnUnitEvent(TimedEventData _eventData)
     {
         #region Event
-        _eventData.ID = "Costruzione";
-        rend.enabled = true;
-        TextActualStatus.text = "";
-        Data.IsEnded = true;
+        if (_eventData.ID == "Costruzione" && Data.IsEnded == false)
+        {
+            Data.BuildingTime--;
+            if (Data.BuildingTime == 0)
+            {
+                rend.enabled = true;
+                TextActualStatus.text = "";
+                Data.IsEnded = true;
+            }     
+        }
         if (Data.IsEnded == true)
         {
             foreach (TimedEventData ev in Data.TimedEvents)
             {
-
                 switch (ev.ID)
                 {
                     case "FineMese":
@@ -101,11 +106,13 @@ public class BuildingView : MonoBehaviour
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
         //toglie tutti i popolani dall'edificio e le rimette in POZZA
         Data.RemoveAllPopulationFromBuilding();
+        TimeEventManager.OnEvent -= OnUnitEvent;
         transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
         {
          if (OnDestroy != null)
             OnDestroy(this);
             Destroy(gameObject);
+
         });
         
     }

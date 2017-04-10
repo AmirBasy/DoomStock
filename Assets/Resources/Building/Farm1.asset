@@ -14,8 +14,8 @@ MonoBehaviour:
   IsEnded: 0
   ID: Farm1
   PopulationLimit: 0
-  WoodToBuild: 40
-  StoneToBuild: 0
+  WoodToBuild: 10
+  StoneToBuild: 10
   BuildPrefab: {fileID: 114864723372019696, guid: 9cc16ee383968c942925416ab59b38ef,
     type: 2}
   Attack: 0
@@ -32,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
+  BuildingTime: 10

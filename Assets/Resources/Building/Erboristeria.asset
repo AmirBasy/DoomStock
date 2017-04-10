@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Erboristeria
   m_EditorClassIdentifier: 
+  IsEnded: 0
   ID: Erboristeria
   PopulationLimit: 0
   WoodToBuild: 150
@@ -29,3 +30,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
   - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
   BaseResources: []
+  BuildingTime: 10

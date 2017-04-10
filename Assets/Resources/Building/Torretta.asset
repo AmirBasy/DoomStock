@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Torretta
   m_EditorClassIdentifier: 
+  IsEnded: 0
   ID: Torretta
   PopulationLimit: 0
   WoodToBuild: 50
@@ -31,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: 376f8d38d695a4e4bacea0d9e542aa04, type: 2}
+  BuildingTime: 10

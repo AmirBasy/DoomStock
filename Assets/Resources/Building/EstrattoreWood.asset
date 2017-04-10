@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: EstrattoreWood
   m_EditorClassIdentifier: 
+  IsEnded: 0
   ID: EstrattoreWood
   PopulationLimit: 0
   WoodToBuild: 40
@@ -31,3 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
   BaseResources:
   - {fileID: 11400000, guid: b1beb373801c0f34aa769c6597bb6e13, type: 2}
+  BuildingTime: 10

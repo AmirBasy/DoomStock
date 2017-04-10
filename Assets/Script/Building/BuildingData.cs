@@ -11,7 +11,7 @@ public class BuildingData : ScriptableObject, ISelectable {
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
 
-    //[HideInInspector]
+    [HideInInspector]
     public bool IsEnded;
     /// <summary>
     /// la risorsa population che ha è assegnata al
@@ -73,7 +73,10 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// Lista di Risorse che l'edifico puo creare.
     /// </summary>
     public List<BaseResourceData> BaseResources;
-
+    /// <summary>
+    /// Tempo di costruzione per l'edificio
+    /// </summary>
+    public int BuildingTime;
     private Player _playerOwner;
 
     public Player PlayerOwner {
