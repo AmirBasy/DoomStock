@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: EstrattoreWood
   PopulationLimit: 0
-  WoodToBuild: 15
+  WoodToBuild: 40
   StoneToBuild: 15
   BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
     type: 2}

@@ -148,6 +148,7 @@ PlayerSettings:
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
+  apiCompatibilityLevel: 2
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
@@ -580,15 +581,13 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   xboxOneScriptCompiler: 0
-  vrEditorSettings:
-    daydream:
-      daydreamIconForeground: {fileID: 0}
-      daydreamIconBackground: {fileID: 0}
+  vrEditorSettings: {daydream: {daydreamIconForeground: {fileID: 0}, daydreamIconBackground: {
+        fileID: 0}}}
   cloudServicesEnabled:
+    Build: 1
     Collab: 1
     UNet: 1
   facebookSdkVersion: 7.9.1
-  apiCompatibilityLevel: 2
   cloudProjectId: c46a58d5-d681-4498-813a-816a102d5b34
   projectName: DoomStock
   organizationId: mastrosnake
