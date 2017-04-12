@@ -342,75 +342,75 @@ namespace Framework
         public ButtonState Select;
     }
 
-    public class Player
-    {
-        public PlayerIndex playerIndex;
-        PlayerInput playerInput;
+    //public class Player
+    //{
+    //    public PlayerIndex playerIndex;
+    //    PlayerInput playerInput;
 
-        public Player(PlayerIndex _playerIndex)
-        {
-            playerIndex = _playerIndex;
-            playerInput = new PlayerInput(playerIndex);
-        }
+    //    public Player(PlayerIndex _playerIndex)
+    //    {
+    //        playerIndex = _playerIndex;
+    //        playerInput = new PlayerInput(playerIndex);
+    //    }
 
-        /// <summary>
-        /// Funzione sostitutiva all'update
-        /// </summary>
-        public void OnUpdate()
-        {
-            CheckMenuInputStatus(playerInput.GetPlayerInputStatus());
-        }
+    //    /// <summary>
+    //    /// Funzione sostitutiva all'update
+    //    /// </summary>
+    //    public void OnUpdate()
+    //    {
+    //        CheckInputStatus(playerInput.GetPlayerInputStatus());
+    //    }
 
-        bool isReleased = true;
+    //    bool isReleased = true;
 
-        /// <summary>
-        /// Controlla l'inpunt da passare al menù corrente o alla griglia
-        /// </summary>
-        /// <param name="_inputStatus"></param>
-        void CheckMenuInputStatus(InputStatus _inputStatus)
-        {
-            if (_inputStatus.LeftThumbSticksAxisY == 0)
-                isReleased = true;
+    //    /// <summary>
+    //    /// Controlla l'inpunt da passare al menù corrente o alla griglia
+    //    /// </summary>
+    //    /// <param name="_inputStatus"></param>
+    //    void CheckInputStatus(InputStatus _inputStatus)
+    //    {
+    //        if (_inputStatus.LeftThumbSticksAxisY == 0)
+    //            isReleased = true;
 
-            if ((_inputStatus.DPadUp == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY == 1) && isReleased)
-            {
-                isReleased = false;
-                // GO UP
-            }
+    //        if ((_inputStatus.DPadUp == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY == 1) && isReleased)
+    //        {
+    //            isReleased = false;
+    //            // GO UP
+    //        }
 
-            if ((_inputStatus.DPadDown == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY == -1) && isReleased)
-            {
-                isReleased = false;
-                // GO DOWN
-            }
+    //        if ((_inputStatus.DPadDown == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY == -1) && isReleased)
+    //        {
+    //            isReleased = false;
+    //            // GO DOWN
+    //        }
 
-            if ((_inputStatus.DPadRight == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX == 1) && isReleased)
-            {
-                isReleased = false;
-                // GO RIGHT
-            }
+    //        if ((_inputStatus.DPadRight == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX == 1) && isReleased)
+    //        {
+    //            isReleased = false;
+    //            // GO RIGHT
+    //        }
 
-            if ((_inputStatus.DPadLeft == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX == -1) && isReleased)
-            {
-                isReleased = false;
-                // GO LEFT
-            }
+    //        if ((_inputStatus.DPadLeft == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX == -1) && isReleased)
+    //        {
+    //            isReleased = false;
+    //            // GO LEFT
+    //        }
 
-            if (_inputStatus.A == ButtonState.Pressed)
-            {
-                //FORWARD
-            }
+    //        if (_inputStatus.A == ButtonState.Pressed)
+    //        {
+    //            //FORWARD
+    //        }
 
 
-            if (_inputStatus.B == ButtonState.Pressed)
-            {
-                //BACKWARD
-            }
+    //        if (_inputStatus.B == ButtonState.Pressed)
+    //        {
+    //            //BACKWARD
+    //        }
 
-            if (_inputStatus.X == ButtonState.Pressed)
-            {
-                //POPULATION MENU
-            }
-        }
-    }
+    //        if (_inputStatus.X == ButtonState.Pressed)
+    //        {
+    //            //POPULATION MENU
+    //        }
+    //    }
+    //}
 }
