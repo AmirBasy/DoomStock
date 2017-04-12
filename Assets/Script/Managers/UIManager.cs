@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour {
                     if (cell.building.Population.Count > 0) {
                         FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
                     }
-                    if (GameManager.I.populationManager.GetAllFreePeople().Count > 0) {
+                    if (GameManager.I.populationManager.GetAllFreePeople().Count > 0 && cell.building.Population.Count < cell.building.PopulationLimit) {
                         FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
                     }
                 } else {

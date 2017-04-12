@@ -80,18 +80,22 @@ public class Player : PlayerBase
     {
 
         // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
-        if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
-        {
-            PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
-            _building.Population.Add(pdata);
+        //if ( _building.Population.Count <_building.PopulationLimit )
+        //{
+            if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
+            {
+                PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
+                _building.Population.Add(pdata);
 
-        }
-        if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
-        {
-            GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
-            GameManager.I.GetResourceDataByID("Happiness").Value++;
-        }
-        else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; }
+            }
+            if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
+            {
+                GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
+                GameManager.I.GetResourceDataByID("Happiness").Value++;
+            }
+            else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; } 
+       // }
+        //return;
     }
 
 

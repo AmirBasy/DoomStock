@@ -11,10 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Farm1
   m_EditorClassIdentifier: 
+  currentState: 0
+  TimedEvents:
+  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
+  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
+  - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
+  BaseResources:
+  - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
   Ambition: Farmer
-  IsEnded: 0
+  BuildingTime: 10
   ID: Farm1
-  PopulationLimit: 0
+  PopulationLimit: 2
   WoodToBuild: 10
   StoneToBuild: 10
   BuildPrefab: {fileID: 114864723372019696, guid: 9cc16ee383968c942925416ab59b38ef,
@@ -26,10 +33,3 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 1
-  TimedEvents:
-  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
-  BaseResources:
-  - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
-  BuildingTime: 10
