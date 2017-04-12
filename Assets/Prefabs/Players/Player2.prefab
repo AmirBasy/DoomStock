@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1481515458354618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4011634609873064}
   m_Father: {fileID: 0}
@@ -104,6 +104,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23726277709694158
 MeshRenderer:
@@ -135,6 +136,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33578670206436040
 MeshFilter:
@@ -189,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: PlayerTwo
   PeopleText: {fileID: 0}
+  XpositionOnGrid: 0
+  YpositionOnGrid: 0
   BuildingsInScene: []
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0, type: 2}

@@ -9,6 +9,7 @@ namespace Framework.Grid {
 
     public class GridController<T> : MonoBehaviour where T : Cell {
 
+        public float CellSize = 1;
         public GameObject TilePrefab;
         public Vector2 GridSize = new Vector2(3,3);
         public T[,] Cells;
@@ -22,15 +23,15 @@ namespace Framework.Grid {
         protected virtual void GenerateMap(bool createView = false) {
 
             for (int x = 0; x < GridSize.x; x++) {
-                for (int y = 0; y < GridSize.y; y++)
+                for (int z = 0; z < GridSize.y; z++)
                 {
-                    Vector3 tilePosition = new Vector3(x, 0, y);
-                    Cells[x, y] = Activator.CreateInstance<T>();
-                    Cells[x, y].WorldPosition = tilePosition;
-                    Cells[x, y].GridPosition = new Vector2(x,y);
-                    Cells[x, y].IsValidPosition = true;
+                    Vector3 tilePosition = new Vector3(x * CellSize, 0, z * CellSize);
+                    Cells[x, z] = Activator.CreateInstance<T>();
+                    Cells[x, z].WorldPosition = tilePosition;
+                    Cells[x, z].GridPosition = new Vector2(x,z);
+                    Cells[x, z].IsValidPosition = true;
                     if (createView)
-                        CreateGridTileView(tilePosition, Cells[x, y]);
+                        CreateGridTileView(tilePosition, Cells[x, z]);
                 }
             }
             //Set the choosen invalid positions
@@ -52,8 +53,8 @@ namespace Framework.Grid {
         /// </summary>
         /// <returns></returns>
         public Vector3 GetCellWorldPosition(int _x, int _y) {
-            Vector3 tileSize = TilePrefab.transform.localScale;
-            return Cells[_x, _y].WorldPosition + new Vector3(0, 0, tileSize.y);
+            //Vector3 tileSize = TilePrefab.transform.localScale;
+            return Cells[_x, _y].WorldPosition + new Vector3(0, -CellSize, CellSize / 2);
         }
 
         /// <summary>

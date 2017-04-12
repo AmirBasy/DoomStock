@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
                     GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
 
                 });
-            Players[0].SetUpPosition(0,0);
+            Players[0].SetUpPosition(0,0, CellSize);
         }
 
         if (Players[1] != null) {
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
                 
             });
             
-            Players[1].SetUpPosition(0,(int)gridController.GridSize.y-1);
+            Players[1].SetUpPosition(0,(int)gridController.GridSize.y-1 , CellSize);
         }
 
         if (Players[2] != null) {
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
                 
             });
             
-            Players[2].SetUpPosition((int)gridController.GridSize.x -1, (int)gridController.GridSize.y-1);
+            Players[2].SetUpPosition((int)gridController.GridSize.x -1, (int)gridController.GridSize.y-1, CellSize);
         }
         if (Players[3] != null) {
             Players[3].SetupInput(
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour {
                 
             });
             
-            Players[3].SetUpPosition((int)gridController.GridSize.x-1, 0);
+            Players[3].SetUpPosition((int)gridController.GridSize.x-1, 0, CellSize);
         }
     }
 
@@ -150,9 +150,12 @@ public class GameManager : MonoBehaviour {
         GetResourceDataByID("Wood").Value -= data.WoodToBuild;
         GetResourceDataByID("Stone").Value -= data.StoneToBuild;
     }
-    public int X, Y;
+
+    public int GridWidth, GridHeight;
+    public float CellSize = 1;
     void GridSetUp() {
-        gridController.CreateMap(X,Y, DebugMode);
+        gridController.CellSize = CellSize;
+        gridController.CreateMap(GridWidth,GridHeight, DebugMode);
         Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
       
 

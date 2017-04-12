@@ -4,6 +4,8 @@ using UnityEngine;
 using Framework.Grid;
 public class GridControllerDoomstock : GridController<CellDoomstock> {
 
+    public Texture2D heightmap;
+
     public Vector2 GetBuildingPositionByUniqueID(string uniqueID) {
         foreach (CellDoomstock item in Cells) {
             if (item.building) {
@@ -16,8 +18,24 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
 
     protected override void GenerateMap(bool createView = false)
     {
-        base.GenerateMap(createView);
+        base.GenerateMap(false);
         Cells[(int)(GridSize.x / 2), (int)(GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
+        int cellWidth = heightmap.width / (int)GridSize.x;
+        int cellHeight = heightmap.height / (int)GridSize.y;
+        Debug.LogFormat("HM {0} x {1} -> {2} x {3}", heightmap.width, heightmap.height, cellWidth, cellHeight);
+        foreach (CellDoomstock cell in Cells) {
+            int x = (int)(cell.GridPosition.x * cellWidth) + (cellWidth / 2);
+            int y = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
+            Color resultColor = heightmap.GetPixel(x, y);
+            float colorPixelValue = resultColor.grayscale;
+            Debug.LogFormat("Color {0} x {1} -> {2}", cell.GridPosition.x, cell.GridPosition.y, colorPixelValue);
+
+            cell.WorldPosition += new Vector3(0, colorPixelValue * 5, 0);
+            if(createView)
+                CreateGridTileView(cell.WorldPosition, cell);
+        }
+
+
     }
 
 
@@ -25,6 +43,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     {
         GameObject returnCellView = base.CreateGridTileView(tilePosition, cellData);
         returnCellView.GetComponent<CellView>().Init(cellData as CellDoomstock);
+        returnCellView.transform.GetChild(0).transform.localScale = new Vector3(GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y, GameManager.I.CellSize);
         return returnCellView;
     }
     public override void MoveToGridPosition(int Xnext, int Ynext, Player _player)

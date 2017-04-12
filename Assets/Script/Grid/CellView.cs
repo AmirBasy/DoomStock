@@ -12,7 +12,7 @@ public class CellView : MonoBehaviour
         data = _data;
         data.OnDataChanged = null;
         data.OnDataChanged += OnDataChanged;
-        rend = GetComponent<Renderer>();
+        rend = GetComponentInChildren<Renderer>();
         rend.enabled = true;
         if (data.Status == CellDoomstock.CellStatus.Hole)
         {

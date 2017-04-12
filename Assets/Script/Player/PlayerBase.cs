@@ -57,6 +57,5 @@ public class PlayerInputData {
     public KeyCode GoBack;
     public KeyCode Confirm;
 
-
 }
 

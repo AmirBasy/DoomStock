@@ -33,8 +33,8 @@ public class Player : PlayerBase
     /// Mette il player nella posizione iniziale
     /// </summary>
     /// <param name="_grid"></param>
-    public void SetUpPosition(int _initialX, int _initialY)
-    {
+    public void SetUpPosition(int _initialX, int _initialY, float _size) {
+        transform.localScale = new Vector3(_size, _size, _size);
         GameManager.I.gridController.MoveToGridPosition(_initialX, _initialY, this);
     }
     #endregion
