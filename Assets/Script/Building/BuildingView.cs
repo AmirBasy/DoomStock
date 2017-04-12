@@ -14,14 +14,13 @@ public class BuildingView : MonoBehaviour {
     private void Start() {
         rend = GetComponent<Renderer>();
         UpdateAspect();
-        //Debug.Log("Actual Life " + this.Data.BuildingLife);
-        //TextActualPeople.text = "People: " + player.Population;  
+         
     }
     public void Init(BuildingData _buildingData) {
-        //CheckRenderer(GetComponent<Renderer>());
+       
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
-        UpdateGraphic();
+        
     }
 
 
@@ -73,18 +72,6 @@ public class BuildingView : MonoBehaviour {
     }
 
 
-    public void UpdateGraphic() {
-        TextActualStatus.text = "ahahah";
-    }
-
-    //public void OnTimedEventDataChanged(TimedEventData _timedEventData) {
-
-    //    if (_timedEventData.IsEnded == true)
-    //    {
-    //        Data.isBuilt = true;
-    //        CheckRenderer(GetComponent<Renderer>());
-    //    }
-    //}
 
     /// <summary>
     /// API che distrugge il building.

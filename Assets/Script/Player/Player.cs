@@ -122,6 +122,7 @@ public class Player : PlayerBase
             BuildingView newInstanceOfView = GameManager.I.buildingManager.CreateBuild(building);
             newInstanceOfView.Data.PlayerOwner = this;
             CurrentBuildView = newInstanceOfView;
+            CurrentBuildView.transform.localScale = new Vector3(GameManager.I.CellSize, GameManager.I.CellSize, GameManager.I.CellSize);
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
             BuildingsInScene.Add(newInstanceOfView);
