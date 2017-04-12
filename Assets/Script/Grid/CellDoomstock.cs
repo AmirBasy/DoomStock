@@ -18,7 +18,8 @@ public class CellDoomstock : Cell {
     public enum CellStatus {
         Empty,
         Filled,
-        Hole
+        Hole,
+        Debris
     }
 	
     public void SetStatus(CellStatus status, BuildingData _building = null) {

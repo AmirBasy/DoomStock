@@ -160,6 +160,18 @@ public class Player : PlayerBase
             }
         }
     }
+    public void RemoveBuildingDebris(BuildingData _building) {
+        if (GameManager.I.buildingManager.GetBuildingView(_building.UniqueID))
+            GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).RemoveDebris();
+
+    }
+
+    public bool CanRemoveDebris() {
+        if (ID == "PlayerTwo")
+            return true;
+        else
+            return false;
+    }
     #endregion
 
 
@@ -255,10 +267,10 @@ public class Player : PlayerBase
 
     private void OnEnable()
     {
-        BuildingView.OnDestroy += OnBuildingDestroyed;
+        BuildingView.OnRemoveDebris += OnBuildingDebrisRemove;
     }
 
-    void OnBuildingDestroyed(BuildingView _buildingView)
+    void OnBuildingDebrisRemove(BuildingView _buildingView)
     {
         if (BuildingsInScene.Contains(_buildingView))
             BuildingsInScene.Remove(_buildingView);
@@ -266,10 +278,10 @@ public class Player : PlayerBase
 
     private void OnDisable()
     {
-        BuildingView.OnDestroy -= OnBuildingDestroyed;
+        BuildingView.OnRemoveDebris -= OnBuildingDebrisRemove;
     }
+    #endregion
 }
-#endregion
 
 
 

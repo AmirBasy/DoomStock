@@ -107,15 +107,19 @@ public class BuildingManager : MonoBehaviour
     /// <param name="id"></param>
     public void DestroyBuildingInScene(string id)
     {
-        foreach (BuildingView building in GetAllBuildingInScene())
-        {
-            if (building.Data.UniqueID == id)
-            {
-                Destroy(building);
-            }
-        }
+
+        if (GetBuildingView(id) != null)
+            Destroy(GetBuildingView(id));
     }
 
+    public BuildingView GetBuildingView(string id) {
+        foreach (BuildingView building in GetAllBuildingInScene()) {
+            if (building.Data.UniqueID == id) {
+                return building;
+            }
+        }
+        return null;
+    }
     #region Unique ID
 
     int counter = 0;

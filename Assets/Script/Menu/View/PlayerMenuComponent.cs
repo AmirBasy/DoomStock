@@ -32,6 +32,7 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " - Building":
+                        //TODO: deve solo togliere il building
                             PossibiliScelteAttuali.Add(cell.building);
                         break;
                     case " -  People":
@@ -48,6 +49,9 @@ public class PlayerMenuComponent : MenuBase {
                     case " Info ":
 
                         break;
+                case " - Debris":
+                DoAction();
+                break;
                     default:
                         break;
                 }
@@ -79,6 +83,10 @@ public class PlayerMenuComponent : MenuBase {
                 CurrentPlayer.AddPopulation(cell.building,ScelteFatte[1].UniqueID);
                 break;
             case " Info ":
+            break;
+            case " - Debris":
+            CurrentPlayer.RemoveBuildingDebris(cell.building);
+            break;
             default:
                 break;   
         }
