@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour {
 
     #endregion
 
-    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText,HappinessText;
+    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText, HappinessText;
     // public Button GridButton, ResourcesButton;
     void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -58,53 +58,67 @@ public class UIManager : MonoBehaviour {
         FirstLevelSelectables.Clear();
         switch (_type) {
             case MenuTypes.PopulationMenu:
-                _menuBase.Init(_player);
-                return _menuBase;
+            _menuBase.Init(_player);
+            return _menuBase;
             case MenuTypes.Player:
-                CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
-                if (cell.Status == CellDoomstock.CellStatus.Empty) {
-                    FirstLevelSelectables.Add(
-                  new mySelector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
-                } else if (cell.Status == CellDoomstock.CellStatus.Filled) {
-                    if (cell.building.PlayerOwner == _player) {
-                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
-                        if (cell.building.Population.Count >0)
-                        {
-                            FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable); 
-                        }
-                        if (GameManager.I.populationManager.GetAllFreePeople().Count>0)
-                        {
-                            FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable); 
-                        }
-                    } else {
-                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+
+            CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
+            switch (cell.Status) {
+                case CellDoomstock.CellStatus.Empty:
+                FirstLevelSelectables.Add(
+              new mySelector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
+                break;
+                case CellDoomstock.CellStatus.Filled:
+                if (cell.building.PlayerOwner == _player) {
+                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
+                    if (cell.building.Population.Count > 0) {
+                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
                     }
+                    if (GameManager.I.populationManager.GetAllFreePeople().Count > 0) {
+                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                    }
+                } else {
+                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
                 }
-                else if (cell.Status == CellDoomstock.CellStatus.Hole) {
-                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
-                }
-                switch (_player.ID) {
-                    case "PlayerOne":
-                        P1_Menu.Init(_player, FirstLevelSelectables);
-                        return P1_Menu;
-                    case "PlayerTwo":
-                        P2_Menu.Init(_player, FirstLevelSelectables);
-                        return P2_Menu;
-                    case "PlayerThree":
-                        FirstLevelSelectables.Add(
-                            new mySelector() { UniqueID = "Miracle" } as ISelectable
-                        );
-                        P3_Menu.Init(_player, FirstLevelSelectables);
-                        return P3_Menu;
-                    case "PlayerFour":
-                        P4_Menu.Init(_player, FirstLevelSelectables);
-                        return P4_Menu;
-                    default:
-                        break;
-                }
+
                 break;
+                case CellDoomstock.CellStatus.Hole:
+                FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                break;
+                case CellDoomstock.CellStatus.Debris:
+                FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                if (_player.CanRemoveDebris()) {
+                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
+                }
+                
+                    
+                break;
+                
+                default:
+                break;
+            }
+            switch (_player.ID) {
+                case "PlayerOne":
+                P1_Menu.Init(_player, FirstLevelSelectables);
+                return P1_Menu;
+                case "PlayerTwo":
+                P2_Menu.Init(_player, FirstLevelSelectables);
+                return P2_Menu;
+                case "PlayerThree":
+                FirstLevelSelectables.Add(
+                    new mySelector() { UniqueID = "Miracle" } as ISelectable
+                );
+                P3_Menu.Init(_player, FirstLevelSelectables);
+                return P3_Menu;
+                case "PlayerFour":
+                P4_Menu.Init(_player, FirstLevelSelectables);
+                return P4_Menu;
+                default:
+                break;
+            }
+            break;
             default:
-                break;
+            break;
         }
         return null; // Menù not found
     }
