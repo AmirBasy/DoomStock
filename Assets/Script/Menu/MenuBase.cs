@@ -85,7 +85,10 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     public void SelectActiveItem(int selectedItemIndex) {
         for (int i = 0; i < MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>().Count(); i++) {
             if (selectedItemIndex == i)
+            {
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(true);
+                return;
+            }
             else
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(false);
         }

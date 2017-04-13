@@ -236,7 +236,7 @@ public class Player : PlayerBase
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid, this);
                 isReleasedHorizontal = false;
             }
-            if (_inputStatus.A == ButtonState.Pressed) // SELECT
+            if (_inputStatus.A == ButtonState.Pressed && GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status != CellDoomstock.CellStatus.Hole) // SELECT
             {
                 currentMenu = OpenMenuPlayerID();
             }

@@ -15,7 +15,7 @@ public class SelectableMenuItem : MonoBehaviour {
     }
 
     public void Select(bool _isSelected) {
-        if (_isSelected)
+        if (_isSelected == true)
             Lable.color = Color.red;
         else
             Lable.color = Color.black;
