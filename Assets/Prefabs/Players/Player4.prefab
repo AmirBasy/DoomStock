@@ -197,3 +197,4 @@ MonoBehaviour:
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183, type: 2}
   CurrentBuildView: {fileID: 0}
+  InputPlayerIndex: 3

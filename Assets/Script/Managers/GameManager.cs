@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour {
 
     #region Players
 
+    // TODO : vecchio sistema di input da cancellare
+
     public void SetupPlayers() {
         if (Players[0] != null) {
             Players[0].SetupInput(

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Framework.Grid;
+using XInputDotNetPure;
 
 public class Player : PlayerBase
 {
@@ -17,6 +18,7 @@ public class Player : PlayerBase
     {
         Population = 0;
         //GameManager.I.UIPlayerManager.SendBuildingDataToMenuBuilding(BuildingsDataPrefabs, this);
+        playerInput = new PlayerInput(InputPlayerIndex);
     }
 
     #region Setup
@@ -70,7 +72,7 @@ public class Player : PlayerBase
 
     #endregion
 
-    #region population
+    #region Population
 
     /// <summary>
     /// Aggiungie la risorsa Population all'Edificio
@@ -179,9 +181,24 @@ public class Player : PlayerBase
     }
     #endregion
 
+    #region Input
+    /// <summary>
+    /// Indice che viene passato alla classe PlayerInput per determinare quale input si sta ricevendo
+    /// </summary>
+    public PlayerIndex InputPlayerIndex;
+    /// <summary>
+    /// Classe che legge gli input sia da tastiera che da controller
+    /// </summary>
+    PlayerInput playerInput;
 
-
-    #region input
+    /// <summary>
+    /// Variabile che controlla se la levetta sinistra (movimento verticale) è stata rilasciata per evitare che il movimento sia continuo
+    /// </summary>
+    bool isReleasedHorizontal = true;
+    /// <summary>
+    /// Variabile che controlla se la levetta sinistra (movimento orizzontale) è stata rilasciata per evitare che il movimento sia continuo
+    /// </summary>
+    bool isReleasedVertical = true;
 
     // TODO: rifattorizzare creando state machine player
     IMenu currentMenu = null;
@@ -189,70 +206,89 @@ public class Player : PlayerBase
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
     /// </summary>
-    void checkInputs()
+    void CheckInputStatus(InputStatus _inputStatus)
     {
-        if (inputData == null)
-            return;
-
         if (currentMenu == null)
         {
-            if (Input.GetKeyDown(inputData.Up))
+            // controllo che la levetta sia stata rilasciata nei due sensi o quasi
+            if (_inputStatus.LeftThumbSticksAxisY <= 0.2 && _inputStatus.LeftThumbSticksAxisY >= -0.2)
+                isReleasedVertical = true;
+            if (_inputStatus.LeftThumbSticksAxisX <= 0.2 && _inputStatus.LeftThumbSticksAxisX >= -0.2)
+                isReleasedHorizontal = true;
+
+            if ((_inputStatus.DPadUp == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY >= 0.5) && isReleasedVertical) // GO UP
             {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid, YpositionOnGrid + 1, this);
+                isReleasedVertical = false;
             }
-            if (Input.GetKeyDown(inputData.Left))
+            if ((_inputStatus.DPadLeft == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX <= -0.5) && isReleasedHorizontal)  // GO LEFT
             {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid - 1, YpositionOnGrid, this);
+                isReleasedHorizontal = false;
             }
-            if (Input.GetKeyDown(inputData.Down))
+            if ((_inputStatus.DPadDown == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY <= -0.5) && isReleasedVertical) // GO DOWN
             {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid, YpositionOnGrid - 1, this);
+                isReleasedVertical = false;
             }
-            if (Input.GetKeyDown(inputData.Right))
+            if ((_inputStatus.DPadRight == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX >= 0.5) && isReleasedHorizontal) // GO RIGHT
             {
                 GameManager.I.gridController.MoveToGridPosition(XpositionOnGrid + 1, YpositionOnGrid, this);
+                isReleasedHorizontal = false;
             }
-            if (Input.GetKeyDown(inputData.Confirm))
+            if (_inputStatus.A == ButtonState.Pressed) // SELECT
             {
                 currentMenu = OpenMenuPlayerID();
             }
-            if (Input.GetKeyDown(inputData.PopulationMenu))
+            if (_inputStatus.X == ButtonState.Pressed) // POPULATION MENU
             {
                 if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status == CellDoomstock.CellStatus.Hole)
                 {
                     currentMenu = OpenMenuPopulation();
                 }
             }
-            if (Input.GetKeyDown(inputData.GoBack))
+            if (_inputStatus.B == ButtonState.Pressed) // DESELECT
             {
 
             }
         }
         else
-        {  // Menu mode
-            if (Input.GetKeyDown(inputData.Up))
+        {
+            // Menu mode
+
+            // controllo che la levetta sia stata rilasciata nei due sensi o quasi
+            if (_inputStatus.LeftThumbSticksAxisY <= 0.2 && _inputStatus.LeftThumbSticksAxisY >= -0.2)
+                isReleasedVertical = true;
+            if (_inputStatus.LeftThumbSticksAxisX <= 0.2 && _inputStatus.LeftThumbSticksAxisX >= -0.2)
+                isReleasedHorizontal = true;
+
+            if ((_inputStatus.DPadUp == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY >= 0.5) && isReleasedVertical) // GO UP
             {
                 currentMenu.MoveToPrevItem();
+                isReleasedVertical = false;
             }
-            if (Input.GetKeyDown(inputData.Left))
+            if ((_inputStatus.DPadLeft == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX <= -0.5) && isReleasedHorizontal)// GO LEFT
             {
+                isReleasedHorizontal = false;
             }
-            if (Input.GetKeyDown(inputData.Down))
+            if ((_inputStatus.DPadDown == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisY <= -0.5) && isReleasedVertical) // GO DOWN
             {
                 currentMenu.MoveToNextItem();
+                isReleasedVertical = false;
             }
-            if (Input.GetKeyDown(inputData.Right))
+            if ((_inputStatus.DPadRight == ButtonState.Pressed || _inputStatus.LeftThumbSticksAxisX >= 0.5) && isReleasedHorizontal) // GO RIGHT
             {
+                isReleasedHorizontal = false;
             }
-            if (Input.GetKeyDown(inputData.Confirm))
+            if (_inputStatus.A == ButtonState.Pressed)// SELECT
             {
                 currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
             }
-            if (Input.GetKeyDown(inputData.PopulationMenu))
+            if (_inputStatus.X == ButtonState.Pressed)// POPULATION MENU
             {
 
             }
-            if (Input.GetKeyDown(inputData.GoBack))
+            if (_inputStatus.B == ButtonState.Pressed)// DESELECT
             {
                 currentMenu.GoBack();
             }
@@ -265,10 +301,11 @@ public class Player : PlayerBase
 
     void Update()
     {
-        checkInputs();
+        // chiamata alla funzione che legge gli input
+        CheckInputStatus(playerInput.GetPlayerInputStatus());
     }
 
-    #region Events subscription
+    #region Events Subscription
 
     private void OnEnable()
     {

@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986654954083166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4453924354568572}
@@ -197,3 +197,4 @@ MonoBehaviour:
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
   CurrentBuildView: {fileID: 0}
+  InputPlayerIndex: 0
