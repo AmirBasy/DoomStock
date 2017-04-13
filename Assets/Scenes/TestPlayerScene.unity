@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 47707498}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 7.5, y: 9, z: -3}
+  m_LocalPosition: {x: 10, y: 14, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -523,7 +523,7 @@ MonoBehaviour:
   TilePrefab: {fileID: 1004780974669124, guid: 46a7c3b71dbb54b4c88e5273641272fa, type: 2}
   GridSize: {x: 3, y: 3}
   GridInvalidPositions: []
-  heightmap: {fileID: 2800000, guid: 4f3b6bb66ecf0b1469cadd585bcddd50, type: 3}
+  heightmap: {fileID: 2800000, guid: ed26c1cb79866114998b61b6e34bb5ee, type: 3}
 --- !u!1001 &826322683
 Prefab:
   m_ObjectHideFlags: 0
