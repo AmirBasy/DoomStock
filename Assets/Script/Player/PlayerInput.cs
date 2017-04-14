@@ -29,6 +29,17 @@ public class PlayerInput
 
         return inputStatus;
     }
+
+    /// <summary>
+    /// Funzione che permette di utilizzare la vibrazione del controller (da usare con un timer/corutine)
+    /// </summary>
+    /// <param name="_playerIndex"></param>
+    /// <param name="_leftMotor"></param>
+    /// <param name="_rightMotor"></param>
+    public void SetControllerVibration(PlayerIndex _playerIndex, float _leftMotor, float _rightMotor)
+    {
+        GamePad.SetVibration(_playerIndex, _leftMotor, _rightMotor);
+    }
     #endregion
 
     #region ControllerInput
