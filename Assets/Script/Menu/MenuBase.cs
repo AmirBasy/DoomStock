@@ -87,10 +87,12 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
             if (selectedItemIndex == i)
             {
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(true);
-                return;
+
             }
             else
+            { 
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(false);
+            }
         }
     }
 
