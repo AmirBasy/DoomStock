@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour {
     // TODO : vecchio sistema di input da cancellare
 
     public void SetupPlayers() {
+        CellDoomstock hole = gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole);
         if (Players[0] != null) {
             Players[0].SetupInput(
                 new PlayerInputData()
@@ -60,7 +61,8 @@ public class GameManager : MonoBehaviour {
                     GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
 
                 });
-            Players[0].SetUpPosition(0,0, CellSize);
+
+            Players[0].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y - 1, CellSize);
         }
 
         if (Players[1] != null) {
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour {
                 
             });
             
-            Players[1].SetUpPosition(0,(int)gridController.GridSize.y-1 , CellSize);
+            Players[1].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y + 1, CellSize);
         }
 
         if (Players[2] != null) {
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour {
                 
             });
             
-            Players[2].SetUpPosition((int)gridController.GridSize.x -1, (int)gridController.GridSize.y-1, CellSize);
+            Players[2].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y + 1, CellSize);
         }
         if (Players[3] != null) {
             Players[3].SetupInput(
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour {
                 
             });
             
-            Players[3].SetUpPosition((int)gridController.GridSize.x-1, 0, CellSize);
+            Players[3].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y - 1, CellSize);
         }
     }
 

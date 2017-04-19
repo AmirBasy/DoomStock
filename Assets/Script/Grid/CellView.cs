@@ -18,6 +18,9 @@ public class CellView : MonoBehaviour
         {
             rend.material = Color[0];
         }
+        else if (data.Cost > 5) {
+            rend.material = Color[1];
+        }
         else
         {
             return;

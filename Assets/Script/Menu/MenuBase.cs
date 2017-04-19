@@ -84,13 +84,11 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     /// <param name="selectedItemIndex"></param>
     public void SelectActiveItem(int selectedItemIndex) {
         for (int i = 0; i < MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>().Count(); i++) {
-            if (selectedItemIndex == i)
-            {
+            if (selectedItemIndex == i) {
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(true);
-                return;
-            }
-            else
+            } else {
                 MenuItemsContainer.GetComponentsInChildren<SelectableMenuItem>()[i].Select(false);
+            }
         }
     }
 

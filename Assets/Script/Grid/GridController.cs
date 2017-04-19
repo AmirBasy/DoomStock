@@ -84,6 +84,8 @@ namespace Framework.Grid {
             Cells = new T[(int)GridSize.x, (int)GridSize.y];
             GenerateMap(withView);
         }
+
+
         #endregion
         #region grid Movement
         /// <summary>
@@ -95,7 +97,7 @@ namespace Framework.Grid {
             if (_x < 0 || _y < 0 || _x > GridSize.x - 1 || _y > GridSize.y - 1)
                 return;
             Cell target = Cells[_x, _y];
-            if (!target.IsValidPosition)
+            if (_player.MaxCellCost < target.Cost)
                 return;
 
             //Actual translation

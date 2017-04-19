@@ -6,6 +6,7 @@ using Framework.Grid;
 public class CellDoomstock : Cell {
     public BuildingData building;
     public CellStatus Status = CellStatus.Empty;
+   
     //BuildingView _buildingView;
     private List<Player> playersQueue = new List<Player>();
 
@@ -34,4 +35,6 @@ public class CellDoomstock : Cell {
 
     public CellEvent OnDataChanged;
     #endregion
+
+   
 }

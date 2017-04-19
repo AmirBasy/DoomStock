@@ -9,7 +9,7 @@ public abstract class PlayerBase : MonoBehaviour {
 
     public string ID;
     public Text PeopleText;
-
+    public int MaxCellCost;
     private int population;
 
     public int Population

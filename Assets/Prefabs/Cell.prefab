@@ -138,3 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Color:
   - {fileID: 2100000, guid: b1e1ef8ff9c21fa4790bc2e6b5f764d4, type: 2}
+  - {fileID: 2100000, guid: a7ded790204f1a14b88e0f0e54b30e2d, type: 2}
