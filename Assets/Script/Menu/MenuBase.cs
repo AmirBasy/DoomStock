@@ -67,7 +67,7 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
         if (!IsVisible)
             return;
         foreach (SelectableMenuItem item in GetComponentsInChildren<SelectableMenuItem>()) {
-            DestroyObject(item.gameObject);
+            DestroyImmediate(item.gameObject);
         } 
 
         foreach (ISelectable item in PossibiliScelteAttuali) {
