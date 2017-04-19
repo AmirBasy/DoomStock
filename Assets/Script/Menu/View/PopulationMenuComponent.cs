@@ -25,6 +25,7 @@ public class PopulationMenuComponent : MenuBase {
                 return;
         }
         RefreshItemList();
+        IndiceDellaSelezioneEvidenziata = 0;
     }
 
     public override void DoAction() {
