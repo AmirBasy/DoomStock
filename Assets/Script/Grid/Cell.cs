@@ -13,7 +13,7 @@ namespace Framework.Grid {
         /// <summary>
         /// Is a valid position for player
         /// </summary>
-        public bool IsValidPosition;
+        //public bool IsValidPosition;
         public int Cost = 1;
     }
 

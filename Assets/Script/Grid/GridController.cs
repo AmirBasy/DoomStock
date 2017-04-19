@@ -29,16 +29,12 @@ namespace Framework.Grid {
                     Cells[x, z] = Activator.CreateInstance<T>();
                     Cells[x, z].WorldPosition = tilePosition;
                     Cells[x, z].GridPosition = new Vector2(x,z);
-                    Cells[x, z].IsValidPosition = true;
+                    
                     if (createView)
                         CreateGridTileView(tilePosition, Cells[x, z]);
                 }
             }
-            //Set the choosen invalid positions
-            foreach (Vector2 pos in GridInvalidPositions)
-            {
-                Cells[(int)pos.x, (int)pos.y].IsValidPosition = false;
-            }
+            
         }
 
         protected virtual GameObject CreateGridTileView(Vector3 tilePosition, T cellData) {
@@ -57,21 +53,7 @@ namespace Framework.Grid {
             return Cells[_x, _y].WorldPosition + new Vector3(0, -CellSize, CellSize / 2);
         }
 
-        /// <summary>
-        /// Restituisce true se la posizione richiesta è valida.
-        /// </summary>
-        /// <returns></returns>
-        public bool IsValidPosition(int _x, int _y) {
-            if (_x < 0 || _y < 0)
-                // posizone del cursore negativa
-                return false;
-            else if (_x >= GridSize.x || _y >= GridSize.y)
-                // posizone del cursore oltre le dimensioni della griglia
-                return false;
-            else
-                //ritorna se la cella in cui si vuole andare è invalida o meno
-                return Cells[_x, _y].IsValidPosition;
-        }
+        
 
         /// <summary>
         /// Api che crea la mappa con le dimensioni passate
