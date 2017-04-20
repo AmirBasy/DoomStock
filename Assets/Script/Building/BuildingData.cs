@@ -112,10 +112,11 @@ public class BuildingData : ScriptableObject, ISelectable {
     public void RemoveUnitOfPopulationFromBuilding(string _unitToRemoveID) {
         foreach (var item in Population.FindAll(p => p.UniqueID == _unitToRemoveID)) {
             GameManager.I.populationManager.AddPopulation(item);
+            GameManager.I.messagesManager.ShowMessage(item, PopulationMessageType.BackToHole);
         }
 
         Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
-
+       
     }
     /// <summary>
     /// toglie tutta la popolazione dall'edificio e la rimette nella pozza

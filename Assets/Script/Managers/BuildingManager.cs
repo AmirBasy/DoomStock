@@ -111,7 +111,13 @@ public class BuildingManager : MonoBehaviour
         if (GetBuildingView(id) != null)
             Destroy(GetBuildingView(id));
     }
-
+    public Vector3 GetBuildingContainingUnit(PopulationData unit) {
+        foreach (BuildingView b in GetAllBuildingInScene()) {
+            if (b.Data.Population.Exists(u => u.UniqueID == unit.UniqueID))
+                return b.transform.position;
+        }
+        return GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition;
+    }
     public BuildingView GetBuildingView(string id) {
         foreach (BuildingView building in GetAllBuildingInScene()) {
             if (building.Data.UniqueID == id) {

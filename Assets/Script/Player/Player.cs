@@ -88,7 +88,7 @@ public class Player : PlayerBase
             {
                 PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
                 _building.Population.Add(pdata);
-
+                GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             }
             if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
             {
@@ -108,6 +108,7 @@ public class Player : PlayerBase
     public void RemovePopulationFromBuilding(string _unitToRemove, BuildingData _buildingData)
     {
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
+       
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
     }
 

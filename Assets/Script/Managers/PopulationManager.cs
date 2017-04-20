@@ -167,10 +167,11 @@ public class PopulationManager : MonoBehaviour
                     if (AllPopulation[i].MaxAge <= 0)
                     {
                         Debug.Log("sono morto. " + AllPopulation[i].Name);
+                        GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
                         //Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
                         AllFreePeople.Remove(AllPopulation[i]);
                         AllPopulation.Remove(AllPopulation[i]);
-                        GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
+                        
                     }
 
 
@@ -208,6 +209,7 @@ public class PopulationManager : MonoBehaviour
                         GameManager.I.GetResourceDataByID("Food").Value = 0;
                         Debug.Log("sono morto. " + AllPopulation[i].Name);
                         Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
+                        GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
                         AllFreePeople.Remove(AllPopulation[i]);
                         AllPopulation.Remove(AllPopulation[i]);
                     }
