@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour {
     public BuildingManager buildingManager;
     public ResourcesManager resourcesManager;
     public UIManager uiManager;
+    public MessagesManager messagesManager;
     #endregion
 
     #region Players

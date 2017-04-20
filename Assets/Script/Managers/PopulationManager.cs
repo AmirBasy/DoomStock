@@ -140,6 +140,7 @@ public class PopulationManager : MonoBehaviour
     private void OnEvent(TimedEventData _eventData)
     {
 
+
         #region Birth
         if (_eventData.ID == "Birth")
         {
@@ -149,6 +150,7 @@ public class PopulationManager : MonoBehaviour
             Logger.I.WriteInLogger("E' nato. " + newUnit.Name +" con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
+            GameManager.I.messagesManager.ShowMessage(newUnit, PopulationMessageType.Birth);
         }
         #endregion
 
@@ -168,6 +170,7 @@ public class PopulationManager : MonoBehaviour
                         //Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
                         AllFreePeople.Remove(AllPopulation[i]);
                         AllPopulation.Remove(AllPopulation[i]);
+                        GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
                     }
 
 
