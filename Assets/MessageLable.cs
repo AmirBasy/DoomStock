@@ -44,4 +44,23 @@ public class MessageLable : MonoBehaviour {
         }
 
     }
+
+    public void ShowBuilding(BuildingData _building, BuildingMessageType _type, PopulationData _population = null) {
+        switch (_type)
+        {
+            case BuildingMessageType.Construction:
+                text.text = _building.currentState.ToString();
+                background.color = Color.grey;
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, _building.BuildingTime).OnComplete(() => {
+                    Destroy(this.gameObject);
+                });
+                break;
+            case BuildingMessageType.Builded:
+                break;
+            case BuildingMessageType.Debis:
+                break;
+            default:
+                break;
+        }
+    }
 }

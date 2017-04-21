@@ -4,65 +4,74 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class BuildingView : MonoBehaviour {
+public class BuildingView : MonoBehaviour
+{
     public TextMesh TextActualStatus;
 
     public BuildingData Data;
-
     Renderer rend;
+    public Material[] Materials;
 
-    private void Start() {
+    private void Start()
+    {
         rend = GetComponent<Renderer>();
         UpdateAspect();
-         
+
     }
-    public void Init(BuildingData _buildingData) {
-       
+    public void Init(BuildingData _buildingData)
+    {
+
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
-        
+
     }
 
 
-    void OnUnitEvent(TimedEventData _eventData) {
+    void OnUnitEvent(TimedEventData _eventData)
+    {
         #region Event
-        if (_eventData.ID == "Costruzione" && Data.currentState == BuildingData.BuildingState.Construction) {
+        if (_eventData.ID == "Costruzione" && Data.currentState == BuildingData.BuildingState.Construction)
+        {
             Data.BuildingTime--;
-            if (Data.BuildingTime == 0) {
+            if (Data.BuildingTime == 0)
+            {
                 Data.currentState = BuildingData.BuildingState.Built;
                 UpdateAspect();
             }
         }
-        if (Data.currentState == BuildingData.BuildingState.Built) {
-            foreach (TimedEventData ev in Data.TimedEvents) {
-                switch (ev.ID) {
+        if (Data.currentState == BuildingData.BuildingState.Built)
+        {
+            foreach (TimedEventData ev in Data.TimedEvents)
+            {
+                switch (ev.ID)
+                {
                     case "FineMese":
-                    Debug.Log("Mese");
-                    break;
+                        Debug.Log("Mese");
+                        break;
                     case "FoodProduction":
-                    GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
                     case "WoodProduction":
-                    GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
                     case "StoneProduction":
-                    GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
                     case "FaithProduction":
-                    GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
                     case "SpiritProduction":
-                    GameManager.I.buildingManager.IncreaseResources(this);
-                    break;
+                        GameManager.I.buildingManager.IncreaseResources(this);
+                        break;
                     case "FineAnno":
-                    break;
+                        break;
                     case "Degrado":
-                    GameManager.I.buildingManager.RemoveLife(this);
-                    if (Data.BuildingLife < 1)
-                        destroyMe();
-                    break;
+                        GameManager.I.buildingManager.RemoveLife(this);
+                        if (Data.BuildingLife < 1)
+                            destroyMe();
+                        break;
                     default:
-                    break;
+                        break;
                 }
 
             }
@@ -76,7 +85,8 @@ public class BuildingView : MonoBehaviour {
     /// <summary>
     /// API che distrugge il building.
     /// </summary>
-    public void destroyMe() {
+    public void destroyMe()
+    {
         if (OnDestroy != null)
             OnDestroy(this);
         CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
@@ -85,7 +95,8 @@ public class BuildingView : MonoBehaviour {
         Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         Data.currentState = BuildingData.BuildingState.Debris;
-        transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() => {
+        transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
+        {
 
             UpdateAspect();
             //Destroy(gameObject);
@@ -96,35 +107,43 @@ public class BuildingView : MonoBehaviour {
     /// <summary>
     /// aggiorna la grafica del building
     /// </summary>
-    void UpdateAspect() {
-        switch (Data.currentState) {
+    void UpdateAspect()
+    {
+        switch (Data.currentState)
+        {
             case BuildingData.BuildingState.Construction:
-            rend.enabled = false;
-            TextActualStatus.text = "In Costruzione ";
-            break;
+                GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                rend.material = Materials[1];
+                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
+                //TextActualStatus.text = "In Costruzione ";
+                break;
             case BuildingData.BuildingState.Built:
-            rend.enabled = true;
-            TextActualStatus.text = "";
-            break;
+                rend.material = Materials[0];
+                // rend.material.color = originalMat.color;
+                //TextActualStatus.text = "";
+                break;
             case BuildingData.BuildingState.Debris:
-            rend.enabled = false;
-            TextActualStatus.text = "Debris";
-            break;
+                rend.material = Materials[2];
+                transform.DOMoveY(transform.position.y -0.5f,2).OnComplete(() => { });
+                TextActualStatus.text = "Debris";
+                break;
             default:
-            break;
+                break;
         }
     }
 
-    public void RemoveDebris() {
+    public void RemoveDebris()
+    {
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
-        GameManager.I.GetResourceDataByID("Wood").Value += Data.WoodToBuild/4;
+        GameManager.I.GetResourceDataByID("Wood").Value += Data.WoodToBuild / 4;
         GameManager.I.GetResourceDataByID("Stone").Value += Data.StoneToBuild / 4;
         if (OnRemoveDebris != null)
             OnRemoveDebris(this);
         Destroy(gameObject);
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         TimeEventManager.OnEvent -= OnUnitEvent;
 
     }

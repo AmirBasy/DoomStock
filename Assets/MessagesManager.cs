@@ -9,7 +9,8 @@ public class MessagesManager : MonoBehaviour {
 
     public void ShowMessage(PopulationData unit, PopulationMessageType _type, BuildingView building = null) {
         MessageLable message;
-        switch (_type) {
+        switch (_type)
+        {
             case PopulationMessageType.Birth:
             message = Instantiate(MessageLablePrefab, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition, transform.rotation);
             message.Show(unit, _type);
@@ -30,10 +31,33 @@ public class MessagesManager : MonoBehaviour {
             break;
         }
     }
+    public void ShowBuildingMessage(BuildingView  _building, BuildingMessageType _type, PopulationData _population = null, Player _player = null) {
+        MessageLable message;
+        switch (_type)
+        {
+            case BuildingMessageType.Construction:
+                message = Instantiate(MessageLablePrefab,_building.transform.position, transform.rotation);
+                message.ShowBuilding(_building.Data, _type);
+                break;
+            case BuildingMessageType.Builded:
+                break;
+            case BuildingMessageType.Debis:
+                break;
+            default:
+                break;
+        }
+    }
 }
+
 public enum PopulationMessageType{
     Birth,
     Death,
     AddToBuilding,
     BackToHole
+}
+
+public enum BuildingMessageType {
+    Construction,
+    Builded,
+    Debis
 }

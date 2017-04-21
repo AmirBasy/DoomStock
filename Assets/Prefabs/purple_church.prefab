@@ -184,6 +184,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextActualStatus: {fileID: 102182735132444952}
   Data: {fileID: 11400000, guid: 6c52c0e700f90d7428c57a26b219b471, type: 2}
+  Materials:
+  - {fileID: 2100000, guid: d091b2915fd965d4f8348e457d74358b, type: 2}
+  - {fileID: 2100000, guid: 0045a7f35f100a343bdec0cb111f8780, type: 2}
+  - {fileID: 2100000, guid: a602e5f85afb59440b9f96baa8f025dc, type: 2}
 --- !u!222 &222385097874700178
 CanvasRenderer:
   m_ObjectHideFlags: 1
