@@ -88,6 +88,7 @@ public class Player : PlayerBase
             _building.Population.Add(pdata);
             _building.currentState = BuildingData.BuildingState.Producing;
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
+            GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).FillPopulationBar();
             GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
         }

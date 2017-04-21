@@ -6,7 +6,11 @@ using DG.Tweening;
 
 public class BuildingView : MonoBehaviour
 {
-    public TextMesh TextActualStatus;
+
+    public Image BuildingLifeBar;
+    public Image PopulationBar;
+    int startingLife;
+    //public TextMesh TextActualStatus;
 
     public BuildingData Data;
     Renderer rend;
@@ -15,6 +19,8 @@ public class BuildingView : MonoBehaviour
 
     private void Start()
     {
+        startingLife = Data.BuildingLife;
+        BuildingLifeBar.fillAmount = startingLife / Data.BuildingLife;
         anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
         UpdateAspect();
@@ -158,6 +164,13 @@ public class BuildingView : MonoBehaviour
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
 
+    }
+
+    public void FillPopulationBar() {
+        if (Data.Population.Count< Data.PopulationLimit)
+        {
+            PopulationBar.fillAmount = Data.Population.Count / Data.PopulationLimit;
+        }
     }
 
     #region Events
