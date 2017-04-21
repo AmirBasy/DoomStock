@@ -19,7 +19,7 @@ MonoBehaviour:
   BaseResources:
   - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
   Ambition: Farmer
-  BuildingTime: 10
+  BuildingTime: 3
   ID: Farm1
   PopulationLimit: 2
   WoodToBuild: 10

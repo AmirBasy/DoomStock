@@ -6,7 +6,8 @@ using System.Linq;
 [CreateAssetMenu(fileName = "BuildingDataInfo",
                  menuName = "Building/BuildingData", order = 1)]
 
-public class BuildingData : ScriptableObject, ISelectable {
+public class BuildingData : ScriptableObject, ISelectable
+{
 
 
     [HideInInspector]
@@ -29,7 +30,8 @@ public class BuildingData : ScriptableObject, ISelectable {
     #region Proprietà
     private Player _playerOwner;
 
-    public Player PlayerOwner {
+    public Player PlayerOwner
+    {
         get { return _playerOwner; }
         set { _playerOwner = value; }
     }
@@ -90,18 +92,20 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// <summary>
     /// Variabile utilizzata per il Degrado
     /// </summary>
-    public int DecreaseBuildingLife; 
+    public int DecreaseBuildingLife;
     #endregion
 
-    public void Awake() {
+    public void Awake()
+    {
         if (!GameManager.I)
             return;
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
-        NameLable = ID + " (" + UniqueID + ")" ;
+        NameLable = ID + " (" + UniqueID + ")";
     }
 
     #region API
-    public Vector2 GetGridPosition() {
+    public Vector2 GetGridPosition()
+    {
 
         return GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID);
     }
@@ -109,29 +113,49 @@ public class BuildingData : ScriptableObject, ISelectable {
     /// <summary>
     /// rimuove  un'unità di popolazione dall'edificio
     /// </summary>
-    public void RemoveUnitOfPopulationFromBuilding(string _unitToRemoveID) {
-        foreach (var item in Population.FindAll(p => p.UniqueID == _unitToRemoveID)) {
+    public void RemoveUnitOfPopulationFromBuilding(string _unitToRemoveID)
+    {
+        foreach (var item in Population.FindAll(p => p.UniqueID == _unitToRemoveID))
+        {
             GameManager.I.populationManager.AddPopulation(item);
             GameManager.I.messagesManager.ShowMessage(item, PopulationMessageType.BackToHole);
         }
 
         Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
-       
+
     }
     /// <summary>
     /// toglie tutta la popolazione dall'edificio e la rimette nella pozza
     /// </summary>
-    public void RemoveAllPopulationFromBuilding() {
-        for (int i = 0; i < Population.Count; i++) {
+    public void RemoveAllPopulationFromBuilding()
+    {
+        for (int i = 0; i < Population.Count; i++)
+        {
             RemoveUnitOfPopulationFromBuilding(Population[i].UniqueID);
         }
-    } 
+    }
+
+    /// <summary>
+    /// Ritorna True se l'edifico sta producendo
+    /// </summary>
+    /// <returns></returns>
+    public bool IsBuildingProducing()
+    {
+        if (Population.Count > 0)
+        {
+            return true;
+        }
+        return false;
+    }
     #endregion
 
-    public enum BuildingState {
+
+    public enum BuildingState
+    {
         Construction = 0,
         Built = 1,
-        Debris = 2
+        Debris = 2,
+        Producing =3
     }
 }
 

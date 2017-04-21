@@ -11,9 +11,11 @@ public class BuildingView : MonoBehaviour
     public BuildingData Data;
     Renderer rend;
     public Material[] Materials;
+    public Animation anim;
 
     private void Start()
     {
+        anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
         UpdateAspect();
 
@@ -105,8 +107,9 @@ public class BuildingView : MonoBehaviour
     /// <summary>
     /// aggiorna la grafica del building
     /// </summary>
-    void UpdateAspect()
+    public void UpdateAspect()
     {
+        Animator _animator = GetComponent<Animator>();
         switch (Data.currentState)
         {
             case BuildingData.BuildingState.Construction:
@@ -117,17 +120,30 @@ public class BuildingView : MonoBehaviour
             case BuildingData.BuildingState.Built:
                 GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
                 rend.material = Materials[0];
+
                 break;
             case BuildingData.BuildingState.Debris:
                 GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 rend.material = Materials[2];
-                transform.DOMoveY(transform.position.y -0.5f,2).OnComplete(() => { });
+                transform.DOMoveY(transform.position.y - 0.5f, 2).OnComplete(() => { });
+                break;
+            case BuildingData.BuildingState.Producing:
+                Data.IsBuildingProducing();
+                if (Data.IsBuildingProducing() == true)
+                {
+                    _animator.enabled = true;
+                }
+                else
+                {
+                    _animator.enabled = false;
+                }
                 break;
             default:
                 break;
         }
     }
 
+   
     public void RemoveDebris()
     {
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);

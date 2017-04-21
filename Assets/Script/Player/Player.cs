@@ -78,7 +78,7 @@ public class Player : PlayerBase
     /// <summary>
     /// Aggiungie la risorsa Population all'Edificio
     /// </summary>
-    /// <param name="_buildingView"></param>
+    /// <param name="_building"></param>
     public void AddPopulation(BuildingData _building, string _unitIDToAdd)
     {
         // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
@@ -86,6 +86,8 @@ public class Player : PlayerBase
         {
             PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
             _building.Population.Add(pdata);
+            _building.currentState = BuildingData.BuildingState.Producing;
+            GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
             GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
         }
@@ -107,6 +109,11 @@ public class Player : PlayerBase
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
+        if (_buildingData.Population.Count<1)
+        {
+            GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).UpdateAspect();
+            _buildingData.currentState = BuildingData.BuildingState.Built;
+        }
     }
     #endregion
 
