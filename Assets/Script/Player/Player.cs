@@ -35,7 +35,8 @@ public class Player : PlayerBase
     /// Mette il player nella posizione iniziale
     /// </summary>
     /// <param name="_grid"></param>
-    public void SetUpPosition(int _initialX, int _initialY, float _size) {
+    public void SetUpPosition(int _initialX, int _initialY, float _size)
+    {
         transform.localScale = new Vector3(_size, _size, _size);
         GameManager.I.gridController.MoveToGridPosition(_initialX, _initialY, this);
     }
@@ -80,24 +81,20 @@ public class Player : PlayerBase
     /// <param name="_buildingView"></param>
     public void AddPopulation(BuildingData _building, string _unitIDToAdd)
     {
-
         // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
-        //if ( _building.Population.Count <_building.PopulationLimit )
-        //{
-            if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
-            {
-                PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
-                _building.Population.Add(pdata);
-                GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
-            }
-            if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
-            {
-                GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
-                GameManager.I.GetResourceDataByID("Happiness").Value++;
-            }
-            else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; } 
-       // }
-        //return;
+        if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
+        {
+            PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
+            _building.Population.Add(pdata);
+            GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
+            GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
+        }
+        if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
+        {
+            GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
+            GameManager.I.GetResourceDataByID("Happiness").Value++;
+        }
+        else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; }
     }
 
 
@@ -108,12 +105,9 @@ public class Player : PlayerBase
     public void RemovePopulationFromBuilding(string _unitToRemove, BuildingData _buildingData)
     {
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
-       
+        GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
     }
-
-
-
     #endregion
 
     #region Buildings
@@ -130,7 +124,7 @@ public class Player : PlayerBase
             newInstanceOfView.Data.PlayerOwner = this;
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.localScale = new Vector3(GameManager.I.CellSize, GameManager.I.CellSize, GameManager.I.CellSize);
-            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize/2)-1, this.transform.position.z);
+            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize / 2) - 1, this.transform.position.z);
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
             BuildingsInScene.Add(newInstanceOfView);
             GameManager.I.populationManager.IncreaseMaxPopulation();
@@ -168,13 +162,15 @@ public class Player : PlayerBase
             }
         }
     }
-    public void RemoveBuildingDebris(BuildingData _building) {
+    public void RemoveBuildingDebris(BuildingData _building)
+    {
         if (GameManager.I.buildingManager.GetBuildingView(_building.UniqueID))
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).RemoveDebris();
 
     }
 
-    public bool CanRemoveDebris() {
+    public bool CanRemoveDebris()
+    {
         if (ID == "PlayerTwo")
             return true;
         else

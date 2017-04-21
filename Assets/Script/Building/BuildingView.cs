@@ -91,16 +91,14 @@ public class BuildingView : MonoBehaviour
             OnDestroy(this);
         CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
         cell.SetStatus(CellDoomstock.CellStatus.Debris, cell.building);
+        //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debis);
         //toglie tutti i popolani dall'edificio e le rimette in POZZA
         Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         Data.currentState = BuildingData.BuildingState.Debris;
         transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
         {
-
             UpdateAspect();
-            //Destroy(gameObject);
-
         });
 
     }
@@ -115,17 +113,15 @@ public class BuildingView : MonoBehaviour
                 GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 rend.material = Materials[1];
                 transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
-                //TextActualStatus.text = "In Costruzione ";
                 break;
             case BuildingData.BuildingState.Built:
+                GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
                 rend.material = Materials[0];
-                // rend.material.color = originalMat.color;
-                //TextActualStatus.text = "";
                 break;
             case BuildingData.BuildingState.Debris:
+                GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 rend.material = Materials[2];
                 transform.DOMoveY(transform.position.y -0.5f,2).OnComplete(() => { });
-                TextActualStatus.text = "Debris";
                 break;
             default:
                 break;

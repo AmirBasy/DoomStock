@@ -56,8 +56,32 @@ public class MessageLable : MonoBehaviour {
                 });
                 break;
             case BuildingMessageType.Builded:
+                text.text = _building.currentState.ToString();
+                background.color = Color.grey;
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
+                    Destroy(this.gameObject);
+                });
                 break;
-            case BuildingMessageType.Debis:
+            case BuildingMessageType.Debris:
+                text.text = _building.currentState.ToString();
+                background.color = Color.grey;
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
+                    Destroy(this.gameObject);
+                });
+                break;
+            case BuildingMessageType.PeopleAdded:
+                text.text ="+1";
+                background.color = Color.grey;
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
+                    Destroy(this.gameObject);
+                });
+                break;
+            case BuildingMessageType.PeopleRemoved:
+                text.text = "-1";
+                background.color = Color.grey;
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
+                    Destroy(this.gameObject);
+                });
                 break;
             default:
                 break;
