@@ -29,13 +29,13 @@ public class UIManager : MonoBehaviour {
     }
 
     private void UpdateGraphic() {
-        FoodText.text = " Food = " + GameManager.I.GetResourceDataByID("Food").Value.ToString();
-        StoneText.text = " Stone = " + GameManager.I.GetResourceDataByID("Stone").Value.ToString();
-        WoodText.text = " Wood = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
-        FaithText.text = " Faith = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
-        SpiritText.text = " Spirit = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
-        HealthcareText.text = " Healthcare = " + GameManager.I.GetResourceDataByID("Healthcare").Value.ToString();
-        HappinessText.text = " Happiness = " + GameManager.I.GetResourceDataByID("Happiness").Value.ToString();
+        FoodText.text = " = " + GameManager.I.GetResourceDataByID("Food").Value.ToString();
+        StoneText.text = " = " + GameManager.I.GetResourceDataByID("Stone").Value.ToString();
+        WoodText.text = " = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
+        FaithText.text = " = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
+        SpiritText.text = " = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
+        HealthcareText.text = " = " + GameManager.I.GetResourceDataByID("Healthcare").Value.ToString();
+        HappinessText.text = " = " + GameManager.I.GetResourceDataByID("Happiness").Value.ToString();
     }
 
     #region Functionalities

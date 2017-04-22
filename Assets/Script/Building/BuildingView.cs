@@ -20,7 +20,7 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         startingLife = Data.BuildingLife;
-        BuildingLifeBar.fillAmount = startingLife / Data.BuildingLife;
+        //BuildingLifeBar.fillAmount = startingLife / Data.BuildingLife;
         anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
         UpdateAspect();
@@ -169,7 +169,7 @@ public class BuildingView : MonoBehaviour
     public void FillPopulationBar() {
         if (Data.Population.Count< Data.PopulationLimit)
         {
-            PopulationBar.fillAmount = Data.Population.Count / Data.PopulationLimit;
+            //PopulationBar.fillAmount = Data.Population.Count / Data.PopulationLimit;
         }
     }
 

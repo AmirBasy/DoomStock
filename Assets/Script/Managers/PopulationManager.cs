@@ -64,7 +64,7 @@ public class PopulationManager : MonoBehaviour
 
     void Start()
     {
-        UpdateGraphic("Main People: " + AllFreePeople.Count);
+        UpdateGraphic(" = " + AllFreePeople.Count);
         for (int i = 0; i < Startpop; i++)
         {
             //TODO:queste tre vanno sempre insieme, mettere a posto
@@ -227,7 +227,7 @@ public class PopulationManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateGraphic("Main People: " + AllFreePeople.Count);
+        UpdateGraphic(" = " + AllFreePeople.Count);
     }
     #endregion
 

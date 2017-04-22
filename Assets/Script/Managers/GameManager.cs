@@ -13,9 +13,6 @@ public class GameManager : MonoBehaviour {
     public static GameManager I;
     public List<Player> Players;
     public GameObject PlayerPrefab;
-    //public string[] BaseResource;
-
-    //  public int Food, Wood, Stone, Faith, Spirit;
     public List<BaseResourceData> resources;
     
     int healthcare;

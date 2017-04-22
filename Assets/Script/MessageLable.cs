@@ -6,14 +6,15 @@ using DG.Tweening;
 
 public class MessageLable : MonoBehaviour {
     public TMP_Text text;
-    public SpriteRenderer icon;
+    public Sprite[] icon;
     public SpriteRenderer background;
 
     public void Show(PopulationData unit, PopulationMessageType _type, BuildingView building = null) {
         switch (_type) {
             case PopulationMessageType.Birth:
             text.text = unit.Name;
-            background.color = Color.white;
+            background.color = Color.cyan;
+            GetComponentInChildren<SpriteRenderer>().sprite = icon[0];
             transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
                 Destroy(this.gameObject);
             });
@@ -21,6 +22,7 @@ public class MessageLable : MonoBehaviour {
             case PopulationMessageType.Death:
             text.text = unit.Name;
             background.color = Color.black;
+            GetComponentInChildren<SpriteRenderer>().sprite = icon[2];
             transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
                 Destroy(this.gameObject);
             });
@@ -29,14 +31,14 @@ public class MessageLable : MonoBehaviour {
             text.text = unit.Name;
             background.color = Color.yellow;
             transform.DOMove(building.transform.position, 5).OnComplete(() => {
-                Destroy(this.gameObject);
+            Destroy(this.gameObject);
             });
             break;
             case PopulationMessageType.BackToHole:
             text.text = unit.Name;
             background.color = Color.green;
             transform.DOMove(GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition, 5).OnComplete(() => {
-                Destroy(this.gameObject);
+            Destroy(this.gameObject);
             });
             break;
             default:
@@ -51,13 +53,15 @@ public class MessageLable : MonoBehaviour {
             case BuildingMessageType.Construction:
                 text.text = _building.currentState.ToString();
                 background.color = Color.grey;
+                GetComponentInChildren<SpriteRenderer>().sprite = icon[6];
                 transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, _building.BuildingTime).OnComplete(() => {
-                    Destroy(this.gameObject);
+                Destroy(this.gameObject);
                 });
                 break;
             case BuildingMessageType.Builded:
                 text.text = _building.currentState.ToString();
                 background.color = Color.grey;
+                GetComponentInChildren<SpriteRenderer>().sprite = icon[12];
                 transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
                     Destroy(this.gameObject);
                 });
@@ -65,6 +69,7 @@ public class MessageLable : MonoBehaviour {
             case BuildingMessageType.Debris:
                 text.text = _building.currentState.ToString();
                 background.color = Color.grey;
+                GetComponentInChildren<SpriteRenderer>().sprite = icon[10];
                 transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
                     Destroy(this.gameObject);
                 });
