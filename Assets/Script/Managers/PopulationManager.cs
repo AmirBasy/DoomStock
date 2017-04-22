@@ -227,7 +227,7 @@ public class PopulationManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateGraphic(" = " + AllFreePeople.Count);
+        UpdateGraphic(" =   " + AllFreePeople.Count);
     }
     #endregion
 
