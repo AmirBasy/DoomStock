@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: FineMese
   m_EditorClassIdentifier: 
   ID: FineMese
-  TimeUnitsToInvoke: 10
-  CurrentTimeUnit: 1
+  TimeUnitsToInvoke: 5
+  CurrentTimeUnit: 0
   isRepeating: 1
