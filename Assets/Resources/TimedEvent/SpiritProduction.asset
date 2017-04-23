@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: SpiritProduction
   m_EditorClassIdentifier: 
   ID: SpiritProduction
-  TimeUnitsToInvoke: 3
+  TimeUnitsToInvoke: 10
   CurrentTimeUnit: 0
   isRepeating: 1

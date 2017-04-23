@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: HealthcareProduction
   m_EditorClassIdentifier: 
   ID: HealthcareProduction
-  TimeUnitsToInvoke: 60
-  CurrentTimeUnit: 60
+  TimeUnitsToInvoke: 10
+  CurrentTimeUnit: 0
   isRepeating: 1

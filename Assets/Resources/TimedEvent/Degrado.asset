@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Degrado
   TimeUnitsToInvoke: 30
-  CurrentTimeUnit: 15
+  CurrentTimeUnit: 0
   isRepeating: 1

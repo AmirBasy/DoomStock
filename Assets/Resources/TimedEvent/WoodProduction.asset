@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: WoodProduction
   m_EditorClassIdentifier: 
   ID: WoodProduction
-  TimeUnitsToInvoke: 15
+  TimeUnitsToInvoke: 3
   CurrentTimeUnit: 0
   isRepeating: 1

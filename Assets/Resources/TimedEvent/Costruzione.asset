@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Costruzione
   TimeUnitsToInvoke: 1
-  CurrentTimeUnit: 1
+  CurrentTimeUnit: 0
   isRepeating: 1

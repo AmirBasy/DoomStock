@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: StoneProduction
   m_EditorClassIdentifier: 
   ID: StoneProduction
-  TimeUnitsToInvoke: 15
-  CurrentTimeUnit: 15
+  TimeUnitsToInvoke: 3
+  CurrentTimeUnit: 0
   isRepeating: 1
