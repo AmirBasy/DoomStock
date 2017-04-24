@@ -54,15 +54,15 @@ public class BuildingManager : MonoBehaviour
             {
                 if (_buildingview.Data.BaseResources != null)
                 {
-                    for (int i = 0; i < GameManager.I.resources.Count; i++)
+                    for (int i = 0; i < GameManager.I.resourcesManager.resourcesPrefabs.Count; i++)
                     {
-                        if (resource.ID == GameManager.I.resources[i].ID)
+                        if (resource.ID== GameManager.I.resourcesManager.resourcesPrefabs[i].ID)
                         {
-
-                            GameManager.I.GetResourceDataByID(GameManager.I.resources[i].ID).Value += _buildingview.Data.Population.Count * 10;
+                            GameManager.I.GetResourceDataByID(resource.ID).Value += (int)(_buildingview.Data.Population.Count * 10)/4;
                             Debug.Log("Actual Resources = " + GameManager.I.resources[i].ID + " il valore e' di " + GameManager.I.resources[i].Value);
 
                         }
+
                     }
                 }
             }
@@ -111,16 +111,21 @@ public class BuildingManager : MonoBehaviour
         if (GetBuildingView(id) != null)
             Destroy(GetBuildingView(id));
     }
-    public Vector3 GetBuildingContainingUnit(PopulationData unit) {
-        foreach (BuildingView b in GetAllBuildingInScene()) {
+    public Vector3 GetBuildingContainingUnit(PopulationData unit)
+    {
+        foreach (BuildingView b in GetAllBuildingInScene())
+        {
             if (b.Data.Population.Exists(u => u.UniqueID == unit.UniqueID))
                 return b.transform.position;
         }
         return GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition;
     }
-    public BuildingView GetBuildingView(string id) {
-        foreach (BuildingView building in GetAllBuildingInScene()) {
-            if (building.Data.UniqueID == id) {
+    public BuildingView GetBuildingView(string id)
+    {
+        foreach (BuildingView building in GetAllBuildingInScene())
+        {
+            if (building.Data.UniqueID == id)
+            {
                 return building;
             }
         }

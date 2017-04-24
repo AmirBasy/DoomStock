@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Name: Torretta
   m_EditorClassIdentifier: 
   currentState: 0
-  TimedEvents:
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
-  - {fileID: 11400000, guid: 198021353c9d29f4dbc0a6dc2584de79, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
+  TimedEvents: []
   BaseResources:
   - {fileID: 11400000, guid: 376f8d38d695a4e4bacea0d9e542aa04, type: 2}
   Ambition: 

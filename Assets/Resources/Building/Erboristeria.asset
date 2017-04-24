@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Name: Erboristeria
   m_EditorClassIdentifier: 
   currentState: 0
-  TimedEvents:
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
-  - {fileID: 11400000, guid: c41118e343ca5014fb847bbbd9a5a3b3, type: 2}
+  TimedEvents: []
   BaseResources: []
   Ambition: 
   BuildingTime: 10

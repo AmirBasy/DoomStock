@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Name: Farm1
   m_EditorClassIdentifier: 
   currentState: 0
-  TimedEvents:
-  - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
+  TimedEvents: []
   BaseResources:
   - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
   Ambition: Farmer

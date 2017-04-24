@@ -11,8 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: House
   m_EditorClassIdentifier: 
+  currentState: 0
+  TimedEvents: []
+  BaseResources: []
   Ambition: 
-  IsEnded: 0
+  BuildingTime: 10
   ID: House
   PopulationLimit: 0
   WoodToBuild: 0
@@ -26,6 +29,3 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 0
-  TimedEvents: []
-  BaseResources: []
-  BuildingTime: 10

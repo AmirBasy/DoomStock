@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Name: EstrattoreStone
   m_EditorClassIdentifier: 
   currentState: 0
-  TimedEvents:
-  - {fileID: 11400000, guid: 5df240c234f3f7f4a9eed7266ab2701c, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  TimedEvents: []
   BaseResources:
   - {fileID: 11400000, guid: aae1c9385edc6c14ab8416ec38d20513, type: 2}
   Ambition: Carpenter

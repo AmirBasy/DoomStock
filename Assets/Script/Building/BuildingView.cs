@@ -54,42 +54,67 @@ public class BuildingView : MonoBehaviour
                 UpdateAspect();
             }
         }
-        if (Data.currentState == BuildingData.BuildingState.Built)
+        if (Data.currentState == BuildingData.BuildingState.Producing )
         {
-            foreach (TimedEventData ev in Data.TimedEvents)
+            if (_eventData.ID == "FoodProduction")
             {
-                switch (ev.ID)
-                {
-                    case "FineMese":
-                        Debug.Log("Mese");
-                        break;
-                    case "FoodProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
-                        break;
-                    case "WoodProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
-                        break;
-                    case "StoneProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
-                        break;
-                    case "FaithProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
-                        break;
-                    case "SpiritProduction":
-                        GameManager.I.buildingManager.IncreaseResources(this);
-                        break;
-                    case "FineAnno":
-                        break;
-                    case "Degrado":
-                        GameManager.I.buildingManager.RemoveLife(this);
-                        if (Data.BuildingLife < 1)
-                            destroyMe();
-                        break;
-                    default:
-                        break;
-                }
+                GameManager.I.buildingManager.IncreaseResources(this);
 
             }
+            if (_eventData.ID == "WoodProduction")
+            {
+                GameManager.I.buildingManager.IncreaseResources(this);
+
+            }
+            if (_eventData.ID == "StoneProduction")
+            {
+                GameManager.I.buildingManager.IncreaseResources(this);
+
+            }
+            if (_eventData.ID == "FaithProduction")
+            {
+                GameManager.I.buildingManager.IncreaseResources(this);
+
+            }
+            if (_eventData.ID == "SpiritProduction")
+            {
+                GameManager.I.buildingManager.IncreaseResources(this);
+
+            }
+            //foreach (TimedEventData ev in GameManager.I.timeEventManager.EventsPrefab)
+            //{
+            //    switch (ev.ID)
+            //    {
+            //        case "FineMese":
+            //            Debug.Log("Mese");
+            //            break;
+            //        case "FoodProduction":
+            //            GameManager.I.buildingManager.IncreaseResources(this);
+            //            break;
+            //        case "WoodProduction":
+            //            GameManager.I.buildingManager.IncreaseResources(this);
+            //            break;
+            //        case "StoneProduction":
+            //            GameManager.I.buildingManager.IncreaseResources(this);
+            //            break;
+            //        case "FaithProduction":
+            //            GameManager.I.buildingManager.IncreaseResources(this);
+            //            break;
+            //        case "SpiritProduction":
+            //            GameManager.I.buildingManager.IncreaseResources(this);
+            //            break;
+            //        case "FineAnno":
+            //            break;
+            //        case "Degrado":
+            //            GameManager.I.buildingManager.RemoveLife(this);
+            //            if (Data.BuildingLife < 1)
+            //                destroyMe();
+            //            break;
+            //        default:
+            //            break;
+            //    }
+
+            //}
         }
         Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
         #endregion

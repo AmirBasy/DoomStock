@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Healthcare
   m_EditorClassIdentifier: 
   ID: Healthcare
-  Value: 0
-  Limit: 0
+  Value: 1
+  Limit: 10
   HasNegativeValue: 0

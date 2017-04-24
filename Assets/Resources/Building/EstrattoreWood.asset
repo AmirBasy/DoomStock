@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Name: EstrattoreWood
   m_EditorClassIdentifier: 
   currentState: 0
-  TimedEvents:
-  - {fileID: 11400000, guid: 1fbdd3a6cb6c398498f0eb97d525ff85, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  TimedEvents: []
   BaseResources:
   - {fileID: 11400000, guid: b1beb373801c0f34aa769c6597bb6e13, type: 2}
   Ambition: Carpenter

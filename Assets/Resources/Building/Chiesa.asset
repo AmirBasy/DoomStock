@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Name: Chiesa
   m_EditorClassIdentifier: 
   currentState: 0
-  TimedEvents:
-  - {fileID: 11400000, guid: bbaa30fc4930e2b4b857901291ac9e50, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
+  TimedEvents: []
   BaseResources:
   - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}
   Ambition: Cleric
