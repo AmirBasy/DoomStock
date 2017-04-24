@@ -11,10 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: EstrattoreWood
   m_EditorClassIdentifier: 
+  currentState: 0
+  TimedEvents:
+  - {fileID: 11400000, guid: 1fbdd3a6cb6c398498f0eb97d525ff85, type: 2}
+  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
+  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
+  BaseResources:
+  - {fileID: 11400000, guid: b1beb373801c0f34aa769c6597bb6e13, type: 2}
   Ambition: Carpenter
-  IsEnded: 0
+  BuildingTime: 10
   ID: EstrattoreWood
-  PopulationLimit: 0
+  PopulationLimit: 5
   WoodToBuild: 40
   StoneToBuild: 15
   BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
@@ -26,10 +33,3 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 1
-  TimedEvents:
-  - {fileID: 11400000, guid: 1fbdd3a6cb6c398498f0eb97d525ff85, type: 2}
-  - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
-  BaseResources:
-  - {fileID: 11400000, guid: b1beb373801c0f34aa769c6597bb6e13, type: 2}
-  BuildingTime: 10

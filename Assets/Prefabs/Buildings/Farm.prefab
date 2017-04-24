@@ -38,9 +38,9 @@ GameObject:
   - component: {fileID: 4556249021517614}
   - component: {fileID: 33271501733275866}
   - component: {fileID: 23558730339373722}
-  - component: {fileID: 114864723372019696}
   - component: {fileID: 95712486142810466}
   - component: {fileID: 111924073297172510}
+  - component: {fileID: 114864723372019696}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged

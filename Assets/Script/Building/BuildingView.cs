@@ -28,7 +28,6 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         //PopulationBarCounter = 0;
-        InvokeRepeating("DecreasePopulationBar", 0, 1);
         anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
         UpdateAspect();

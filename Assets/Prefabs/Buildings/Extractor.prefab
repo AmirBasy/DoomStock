@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33344224242576656}
   - component: {fileID: 23735944800737984}
   - component: {fileID: 95655389218227180}
-  - component: {fileID: 114924793947049800}
   - component: {fileID: 111039297571367750}
+  - component: {fileID: 114924793947049800}
   m_Layer: 0
   m_Name: Extractor
   m_TagString: Untagged
@@ -143,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 1123306350743274}
   m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: f801352f327fd4e45971e53ce5256259, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2743ea896bb406a4da938fc068bb2aaa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -183,7 +183,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: abfa7b55ec626f647b18f630efa6f24d, type: 2}
   m_Animations: []
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &114924793947049800

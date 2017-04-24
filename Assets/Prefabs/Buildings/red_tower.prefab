@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33554324841839754}
   - component: {fileID: 23394337814225174}
   - component: {fileID: 95484038546241244}
-  - component: {fileID: 114029765257987560}
   - component: {fileID: 111138966210692730}
+  - component: {fileID: 114029765257987560}
   m_Layer: 0
   m_Name: red_tower
   m_TagString: Untagged
@@ -143,7 +143,7 @@ Animator:
   m_GameObject: {fileID: 1534342398030610}
   m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 571ac9ee7d24c844da99a96232621976, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2743ea896bb406a4da938fc068bb2aaa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

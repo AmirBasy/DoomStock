@@ -59,7 +59,7 @@ public class BuildingManager : MonoBehaviour
                         if (resource.ID == GameManager.I.resources[i].ID)
                         {
 
-                            GameManager.I.GetResourceDataByID(GameManager.I.resources[i].ID).Value += _buildingview.Data.Population.Count * resource.Value;
+                            GameManager.I.GetResourceDataByID(GameManager.I.resources[i].ID).Value += _buildingview.Data.Population.Count * 10;
                             Debug.Log("Actual Resources = " + GameManager.I.resources[i].ID + " il valore e' di " + GameManager.I.resources[i].Value);
 
                         }

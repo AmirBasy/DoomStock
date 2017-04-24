@@ -1044,7 +1044,7 @@ Prefab:
     - target: {fileID: 114176073411524906, guid: 9330cfb6442f47c45b481e4dda53038b,
         type: 2}
       propertyPath: unitDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114176073411524906, guid: 9330cfb6442f47c45b481e4dda53038b,
         type: 2}
