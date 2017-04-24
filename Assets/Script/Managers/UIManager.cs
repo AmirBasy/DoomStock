@@ -52,6 +52,17 @@ public class UIManager : MonoBehaviour {
     #endregion
 
     #region API
+    public void SetFoodTextColor() {
+        if (GameManager.I.populationManager.IsFoodEnough() == false)
+        {
+            FoodText.color = Color.yellow;
+        }
+        else
+        {
+            FoodText.color = Color.white;
+        }
+    }
+
     public List<ISelectable> FirstLevelSelectables = new List<ISelectable>();
 
     public IMenu ShowMenu(MenuTypes _type, Player _player) {

@@ -88,9 +88,10 @@ public class Player : PlayerBase
             _building.Population.Add(pdata);
             _building.currentState = BuildingData.BuildingState.Producing;
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
-            GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).FillPopulationBar();
+            //GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).SetPopulationBar();
             GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
+
         }
         if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
         {
@@ -110,6 +111,7 @@ public class Player : PlayerBase
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
+        //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count<1)
         {
             GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).UpdateAspect();

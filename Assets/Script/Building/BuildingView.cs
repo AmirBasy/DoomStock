@@ -6,11 +6,19 @@ using DG.Tweening;
 
 public class BuildingView : MonoBehaviour
 {
-
     public Image BuildingLifeBar;
     public Image PopulationBar;
-    int startingLife;
-    //public TextMesh TextActualStatus;
+    private int populationBarCounter;
+
+    public int PopulationBarCounter
+    {
+        get { return populationBarCounter; }
+        set { populationBarCounter = value;
+            //SetPopulationBar();
+        }
+    }
+
+
 
     public BuildingData Data;
     Renderer rend;
@@ -19,8 +27,8 @@ public class BuildingView : MonoBehaviour
 
     private void Start()
     {
-        startingLife = Data.BuildingLife;
-        //BuildingLifeBar.fillAmount = startingLife / Data.BuildingLife;
+        //PopulationBarCounter = 0;
+        InvokeRepeating("DecreasePopulationBar", 0, 1);
         anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
         UpdateAspect();
@@ -132,6 +140,7 @@ public class BuildingView : MonoBehaviour
                 GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 rend.material = Materials[2];
                 transform.DOMoveY(transform.position.y - 0.5f, 2).OnComplete(() => { });
+                _animator.enabled = false;
                 break;
             case BuildingData.BuildingState.Producing:
                 Data.IsBuildingProducing();
@@ -166,12 +175,33 @@ public class BuildingView : MonoBehaviour
 
     }
 
-    public void FillPopulationBar() {
-        if (Data.Population.Count< Data.PopulationLimit)
+    public void DecreasePopulationBar() {
+        if (PopulationBarCounter < 1)
         {
-            //PopulationBar.fillAmount = Data.Population.Count / Data.PopulationLimit;
+            return;
+
+        }
+        else
+        {
+            PopulationBarCounter -= 1;
         }
     }
+
+    //public void SetPopulationBar() {
+    //    if (Data.Population.Count < Data.PopulationLimit)
+    //    {
+    //        PopulationBarCounter ++;
+    //    }
+    //    else if (populationBarCounter <1)
+    //    {
+    //        return ;
+    //    }
+    //    else if (Data.Population.Count >= Data.PopulationLimit)
+    //    {
+    //        PopulationBarCounter--;
+    //    }
+    //    PopulationBar.fillAmount = (float)PopulationBarCounter/Data.PopulationLimit;
+    //}
 
     #region Events
     public delegate void BuildingEvent(BuildingView _buildingView);

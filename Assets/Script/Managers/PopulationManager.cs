@@ -36,6 +36,19 @@ public class PopulationManager : MonoBehaviour
     /// PER DEBUG
     /// </summary>
     public int Startpop = 0;
+
+    private int foodRequirement;
+
+    public int FoodRequirement
+    {
+        get { return foodRequirement; }
+        set
+        {
+            foodRequirement = value;
+            GameManager.I.uiManager.SetFoodTextColor();
+        }
+    }
+
     #endregion
 
     #region Lists
@@ -118,7 +131,7 @@ public class PopulationManager : MonoBehaviour
             EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
             IndividualHappiness = false,
             Ambition = Ambitions[randomAmbition]
-            
+
         };
         unitToInstantiate.Awake();
         return unitToInstantiate;
@@ -146,10 +159,11 @@ public class PopulationManager : MonoBehaviour
         {
 
             PopulationData newUnit = CreatePopulation();
-            Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un "+ newUnit.Ambition);
-            Logger.I.WriteInLogger("E' nato. " + newUnit.Name +" con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
+            Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
+            Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
+            FoodRequirement += newUnit.FoodRequirements;
             GameManager.I.messagesManager.ShowMessage(newUnit, PopulationMessageType.Birth);
         }
         #endregion
@@ -166,12 +180,13 @@ public class PopulationManager : MonoBehaviour
                     AllPopulation[i].MaxAge--;
                     if (AllPopulation[i].MaxAge <= 0)
                     {
+                        FoodRequirement -= AllPopulation[i].FoodRequirements;
                         Debug.Log("sono morto. " + AllPopulation[i].Name);
                         GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
                         //Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
                         AllFreePeople.Remove(AllPopulation[i]);
                         AllPopulation.Remove(AllPopulation[i]);
-                        
+
                     }
 
 
@@ -186,7 +201,6 @@ public class PopulationManager : MonoBehaviour
         if (_eventData.ID == "Eat")
         {
 
-
             for (int i = 0; i < AllPopulation.Count; i++)
             {
                 int eatingTime = AllPopulation[i].EatingTime;
@@ -197,7 +211,7 @@ public class PopulationManager : MonoBehaviour
                     Debug.Log("devo mangiare. " + AllPopulation[i].Name);
                     Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
 
-                    GameManager.I.GetResourceDataByID("Food").Value -=  AllPopulation[i].FoodRequirements;
+                    GameManager.I.GetResourceDataByID("Food").Value -= AllPopulation[i].FoodRequirements;
                     if (AllPopulation[i].EatingTime <= 0)
                     {
                         AllPopulation[i].EatingTime = eatingTime;
@@ -207,6 +221,8 @@ public class PopulationManager : MonoBehaviour
                     if (GameManager.I.GetResourceDataByID("Food").Value <= 0)
                     {
                         GameManager.I.GetResourceDataByID("Food").Value = 0;
+                        FoodRequirement -= AllPopulation[i].FoodRequirements;
+                        GameManager.I.uiManager.FoodText.color = Color.red;
                         Debug.Log("sono morto. " + AllPopulation[i].Name);
                         Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
                         GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
@@ -285,4 +301,12 @@ public class PopulationManager : MonoBehaviour
     }
     #endregion
 
+    public bool IsFoodEnough()
+    {
+        if (FoodRequirement <= GameManager.I.GetResourceDataByID("Food").Value)
+        {
+            return true;
+        }
+        return false;
+    }
 }
