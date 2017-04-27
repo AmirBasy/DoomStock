@@ -67,7 +67,21 @@ namespace Framework.Grid {
             GenerateMap(withView);
         }
 
-
+        /// <summary>
+        /// restituisce le celle vicine alla cella passata
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <returns></returns>
+        public List<T> GetNeighboursStar(T cell) {
+            List<T> returnList = new List<T>();
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    if (x != 0 && y != 0)
+                        returnList.Add(Cells[(int)cell.GridPosition.x + x, (int)cell.GridPosition.y + y]);
+                }
+            }
+            return returnList;
+        }
         #endregion
         #region grid Movement
         /// <summary>

@@ -33,16 +33,21 @@ public class CellDoomstock : Cell, INode {
     }
 
     public Vector2 GetGridPosition() {
-        throw new NotImplementedException();
+        return GridPosition;
     }
 
     public Vector3 GetWorldPosition() {
-        throw new NotImplementedException();
+        return WorldPosition;
     }
 
     public List<INode> GetNeighbours() {
-        throw new NotImplementedException();
+        List<INode> returnList = new List<INode>();
+        foreach (var item in GameManager.I.gridController.GetNeighboursStar(this)) {
+            returnList.Add(item);
+        }
+        return returnList;
     }
+
     #endregion
 
     public enum CellStatus {
