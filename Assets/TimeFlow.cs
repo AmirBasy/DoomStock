@@ -34,8 +34,6 @@ public class TimeFlow : MonoBehaviour
         #region FineMese
         if (_eventData.ID == "FineMese")
         {
-
- 
             MonthCounter++;
             FillTheMounthImage();
         }
@@ -44,8 +42,10 @@ public class TimeFlow : MonoBehaviour
         #region Year
         if (_eventData.ID == "Anno")
         {
+           StartCoroutine( ResetTimer());
             monthCounter = 0;
             IncreaseYear();
+           
 
         }
         #endregion
@@ -65,6 +65,7 @@ public class TimeFlow : MonoBehaviour
     {
         yearCounter++;
         YearText.text = yearCounter.ToString();
+        
     }
 
     /// <summary>
@@ -107,18 +108,20 @@ public class TimeFlow : MonoBehaviour
             case 11:
                 MonthImage[10].color = Color.green;
                 break;
-            case 12:
-                MonthImage[11].color = Color.green;
-                for (int i = 0; i < GetComponentsInChildren<Image>().Length; i++)
-                {
-                    MonthImage[i].color = Color.white;
-                }
-                break;
+       
             default:
                 break;
         }
     }
-
+    IEnumerator ResetTimer()
+    {
+        MonthImage[11].color = Color.green;
+        yield return new WaitForSeconds(0.2f);
+        for (int i = 0; i < GetComponentsInChildren<Image>().Length - 1; i++)
+        {
+            MonthImage[i].color = Color.white;
+        }
+    }
 
     #endregion
 }
