@@ -210,6 +210,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114239827312617918, guid: cbe962c29f64b7d42b236fd3f51b6084,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4236048387081648, guid: cbe962c29f64b7d42b236fd3f51b6084, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -247,6 +252,24 @@ Prefab:
       propertyPath: MaxCellCost
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114239827312617918, guid: cbe962c29f64b7d42b236fd3f51b6084,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0da94849228b5a1418711b4322cf6e54,
+        type: 2}
+    - target: {fileID: 114239827312617918, guid: cbe962c29f64b7d42b236fd3f51b6084,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: cf26e262108d35a41b2ed481f45ec65d,
+        type: 2}
+    - target: {fileID: 114239827312617918, guid: cbe962c29f64b7d42b236fd3f51b6084,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: dd6a41771605e80488cd02f56db39902,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbe962c29f64b7d42b236fd3f51b6084, type: 2}
   m_IsPrefabParent: 0
@@ -1314,6 +1337,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4137709451974644, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1350,6 +1378,11 @@ Prefab:
         type: 2}
       propertyPath: MaxCellCost
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
+        type: 2}
+      propertyPath: BuildingsDataPrefabs.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}

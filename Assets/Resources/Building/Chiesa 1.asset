@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
+  m_Name: Chiesa 1
+  m_EditorClassIdentifier: 
+  currentState: 0
+  TimedEvents: []
+  BaseResources:
+  - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}
+  Ambition: Cleric
+  BuildingTime: 15
+  ID: Chiesa
+  PopulationLimit: 5
+  WoodToBuild: 80
+  StoneToBuild: 50
+  BuildPrefab: {fileID: 114322596599644798, guid: c2d48951f9dce594c99750b2b3e3005e,
+    type: 2}
+  Attack: 0
+  FireRateo: 0
+  DamageResistance: 0
+  Maintenance: 0
+  IncreaseMaxPopulation: 0
+  BuildingLife: 2147483647
+  DecreaseBuildingLife: 2
