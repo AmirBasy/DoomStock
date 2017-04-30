@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerMenuComponent : MenuBase
 {
 
-
+    /// <summary>
+    /// carica le possibili scelte selezionabili.
+    /// </summary>
     public override void LoadSelections()
     {
 
@@ -69,6 +71,9 @@ public class PlayerMenuComponent : MenuBase
         IndiceDellaSelezioneEvidenziata = 0;
     }
 
+    /// <summary>
+    /// esegue un'azione alla selezione.
+    /// </summary>
     public override void DoAction()
     {
         CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
@@ -97,6 +102,10 @@ public class PlayerMenuComponent : MenuBase
         Close();
     }
 
+    /// <summary>
+    /// crea gli oggetti selezionabili.
+    /// </summary>
+    /// <param name="_item"></param>
     protected override void CreateMenuItem(ISelectable _item)
     {
         GameObject newGO = Instantiate(ButtonPrefab, MenuItemsContainer);
@@ -104,4 +113,30 @@ public class PlayerMenuComponent : MenuBase
         newItem.SetData(_item);
     }
 
+    #region event subscriptions
+    private void OnEnable()
+    {
+        PopulationManager.OnFreePopulationChanged += RefreshList;
+    }
+
+   /// <summary>
+   /// ricarica le scelte del menu, se ce ne sono di nuove.
+   /// </summary>
+    void RefreshList()
+    {
+        StartCoroutine(RefreshActualList());
+    }
+
+    IEnumerator RefreshActualList()
+    {
+        yield return new WaitForSeconds(0.1f);
+        LoadSelections();
+        yield return null;
+    }
+
+    private void OnDisable()
+    {  
+        PopulationManager.OnFreePopulationChanged -= RefreshList;
+    }
+    #endregion
 }

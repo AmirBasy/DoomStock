@@ -146,4 +146,10 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     /// Carico la lista dei CurrentSelectables.
     /// </summary>
     public abstract void LoadSelections();
+    IEnumerator RefreshActualList()
+    {
+        yield return new WaitForSeconds(0.1f);
+        LoadSelections();
+        yield return null;
+    }
 }
