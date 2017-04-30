@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMenuComponent : MenuBase {
-    
+public class PlayerMenuComponent : MenuBase
+{
 
-    public override void LoadSelections() {
-        
+
+    public override void LoadSelections()
+    {
+
         PossibiliScelteAttuali.Clear();
-        switch (ScelteFatte.Count) {
+        switch (ScelteFatte.Count)
+        {
             case 0:
                 if (firstLevelSelections != null)
                 {
@@ -22,7 +25,7 @@ public class PlayerMenuComponent : MenuBase {
             case 1:
                 CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
                 switch (ScelteFatte[0].UniqueID)
-                {   
+                {
                     case " + Building":
 
                         foreach (BuildingData building in CurrentPlayer.BuildingsDataPrefabs)
@@ -32,11 +35,11 @@ public class PlayerMenuComponent : MenuBase {
                         }
                         break;
                     case " - Building":
-                        //TODO: deve solo togliere il building
-                            PossibiliScelteAttuali.Add(cell.building);
+                        DoAction();
                         break;
                     case " -  People":
-                        foreach (PopulationData item in cell.building.Population) { 
+                        foreach (PopulationData item in cell.building.Population)
+                        {
                             PossibiliScelteAttuali.Add(item);
                         }
                         break;
@@ -45,18 +48,18 @@ public class PlayerMenuComponent : MenuBase {
                         {
                             PossibiliScelteAttuali.Add(p);
                         }
-                       break;
+                        break;
                     case " Info ":
 
                         break;
-                case " - Debris":
-                DoAction();
-                break;
+                    case " - Debris":
+                        DoAction();
+                        break;
                     default:
                         break;
                 }
-                break; 
-         
+                break;
+
 
             default:
                 DoAction();
@@ -66,7 +69,8 @@ public class PlayerMenuComponent : MenuBase {
         IndiceDellaSelezioneEvidenziata = 0;
     }
 
-    public override void DoAction() {
+    public override void DoAction()
+    {
         CellDoomstock cell = GameManager.I.gridController.Cells[CurrentPlayer.XpositionOnGrid, CurrentPlayer.YpositionOnGrid];
         switch (ScelteFatte[0].UniqueID)
         {
@@ -74,21 +78,21 @@ public class PlayerMenuComponent : MenuBase {
                 CurrentPlayer.DeployBuilding(ScelteFatte[1] as BuildingData);
                 break;
             case " - Building":
-                CurrentPlayer.DestroyBuilding(ScelteFatte[1].UniqueID);
+                CurrentPlayer.DestroyBuilding(cell.building.UniqueID);
                 break;
             case " -  People":
                 CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell.building);
                 break;
             case " + People":
-                CurrentPlayer.AddPopulation(cell.building,ScelteFatte[1].UniqueID);
+                CurrentPlayer.AddPopulation(cell.building, ScelteFatte[1].UniqueID);
                 break;
             case " Info ":
-            break;
+                break;
             case " - Debris":
-            CurrentPlayer.RemoveBuildingDebris(cell.building);
-            break;
+                CurrentPlayer.RemoveBuildingDebris(cell.building);
+                break;
             default:
-                break;   
+                break;
         }
         Close();
     }
