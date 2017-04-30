@@ -7,7 +7,7 @@ public class PopulationData : ISelectable
 {
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
-
+    public BuildingData building;
     public string Name, Ambition;
     public bool IndividualHappiness;
     public int Age, MaxAge, FoodRequirements, EatingTime, Month;

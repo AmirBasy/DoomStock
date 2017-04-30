@@ -59,6 +59,8 @@ public class BuildingView : MonoBehaviour
             if (_eventData.ID == "FoodProduction")
             {
                 GameManager.I.buildingManager.IncreaseResources(this);
+                if (Data.Population.Count <= 0)
+                    UpdateAspect();
 
             }
             if (_eventData.ID == "WoodProduction")

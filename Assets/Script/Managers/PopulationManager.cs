@@ -136,6 +136,25 @@ public class PopulationManager : MonoBehaviour
         unitToInstantiate.Awake();
         return unitToInstantiate;
     }
+
+    /// <summary>
+    /// morte di un popolano
+    /// </summary>
+    void UnitDeath(PopulationData unit) {
+        FoodRequirement -= unit.FoodRequirements;
+        GameManager.I.messagesManager.ShowMessage(unit, PopulationMessageType.Death);
+     
+        AllFreePeople.Remove(unit);
+        AllPopulation.Remove(unit);
+        if (unit.building)
+        {
+            unit.building.Population.Remove(unit);
+            unit.building = null;
+        }
+            
+    
+
+    }
     #endregion
 
     #region Events
@@ -180,13 +199,8 @@ public class PopulationManager : MonoBehaviour
                     AllPopulation[i].MaxAge--;
                     if (AllPopulation[i].MaxAge <= 0)
                     {
-                        FoodRequirement -= AllPopulation[i].FoodRequirements;
-                        Debug.Log("sono morto. " + AllPopulation[i].Name);
-                        GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
-                        //Logger.I.WriteInLogger( p_data.Name + " è morto di vecchiaia. ", logType.LowPriority);
-                        AllFreePeople.Remove(AllPopulation[i]);
-                        AllPopulation.Remove(AllPopulation[i]);
 
+                        UnitDeath(AllPopulation[i]);
                     }
 
 
@@ -223,11 +237,9 @@ public class PopulationManager : MonoBehaviour
                         GameManager.I.GetResourceDataByID("Food").Value = 0;
                         FoodRequirement -= AllPopulation[i].FoodRequirements;
                         GameManager.I.uiManager.FoodText.color = Color.red;
-                        Debug.Log("sono morto. " + AllPopulation[i].Name);
-                        Logger.I.WriteInLogger(AllPopulation[i].Name + " è morto perchè non c'era cibo. ", logType.LowPriority);
-                        GameManager.I.messagesManager.ShowMessage(AllPopulation[i], PopulationMessageType.Death);
-                        AllFreePeople.Remove(AllPopulation[i]);
-                        AllPopulation.Remove(AllPopulation[i]);
+                        UnitDeath(AllPopulation[i]);
+
+
                     }
                     #endregion
                 }
