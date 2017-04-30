@@ -58,6 +58,7 @@ public class PopulationMenuComponent : MenuBase
     {
         StartCoroutine(RefreshActualList());
     }
+
     void RefreshList2()
     {
         StartCoroutine(RefreshActualList());

@@ -5,7 +5,6 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
 
-    private Vector3 _movement;
     public float speed = 10;
     // Use this for initialization
     void Start()
