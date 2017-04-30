@@ -42,7 +42,7 @@ public class BuildingManager : MonoBehaviour
     /// Aumento della risorsa
     /// </summary>
     /// <param name="_buildingData"></param>
-    public void IncreaseResources(BuildingView _buildingview)
+    public void IncreaseResources(BuildingView _buildingview, BaseResourceData _resource)
     {
         if (_buildingview.Data.Population.Count == 0)
         {
@@ -50,22 +50,13 @@ public class BuildingManager : MonoBehaviour
         }
         if (_buildingview.Data.Population.Count > 0)
         {
-            foreach (BaseResourceData resource in _buildingview.Data.BaseResources)
+
+            if (_buildingview.Data.BaseResources != null)
             {
-                if (_buildingview.Data.BaseResources != null)
-                {
-                    for (int i = 0; i < GameManager.I.resourcesManager.resourcesPrefabs.Count; i++)
-                    {
-                        if (resource.ID== GameManager.I.resourcesManager.resourcesPrefabs[i].ID)
-                        {
-                            GameManager.I.GetResourceDataByID(resource.ID).Value += (int)(_buildingview.Data.Population.Count * 10)/4;
-                            Debug.Log("Actual Resources = " + GameManager.I.resources[i].ID + " il valore e' di " + GameManager.I.resources[i].Value);
+                GameManager.I.GetResourceDataByID(_resource.ID).Value += (int)(_buildingview.Data.Population.Count * 5) ;
 
-                        }
-
-                    }
-                }
             }
+
         }
     }
 

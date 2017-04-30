@@ -13,7 +13,9 @@ public class BuildingView : MonoBehaviour
     public int PopulationBarCounter
     {
         get { return populationBarCounter; }
-        set { populationBarCounter = value;
+        set
+        {
+            populationBarCounter = value;
             //SetPopulationBar();
         }
     }
@@ -54,69 +56,51 @@ public class BuildingView : MonoBehaviour
                 UpdateAspect();
             }
         }
-        if (Data.currentState == BuildingData.BuildingState.Producing )
+        if (Data.currentState == BuildingData.BuildingState.Producing)
         {
-            if (_eventData.ID == "FoodProduction")
+            switch (_eventData.ID)
             {
-                GameManager.I.buildingManager.IncreaseResources(this);
-                if (Data.Population.Count <= 0)
-                    UpdateAspect();
+                case "FoodProduction":
+                    foreach (var res in Data.BaseResources)
+                    {
+                        if (res.ID == "Food")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    if (Data.Population.Count <= 0)
+                        UpdateAspect();
+                    break;
 
+                case "WoodProduction":
+                    foreach (var res in Data.BaseResources)
+                    {
+                        if (res.ID == "Wood")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                case "StoneProduction":
+                    foreach (var res in Data.BaseResources)
+                    {
+                        if (res.ID == "Stone")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                case "FaithProduction":
+                    foreach (var res in Data.BaseResources)
+                    {
+                        if (res.ID == "Faith")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                case "SpiritProduction":
+                    foreach (var res in Data.BaseResources)
+                    {
+                        if (res.ID == "Spirit")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                default:
+                    break;
             }
-            if (_eventData.ID == "WoodProduction")
-            {
-                GameManager.I.buildingManager.IncreaseResources(this);
-
-            }
-            if (_eventData.ID == "StoneProduction")
-            {
-                GameManager.I.buildingManager.IncreaseResources(this);
-
-            }
-            if (_eventData.ID == "FaithProduction")
-            {
-                GameManager.I.buildingManager.IncreaseResources(this);
-
-            }
-            if (_eventData.ID == "SpiritProduction")
-            {
-                GameManager.I.buildingManager.IncreaseResources(this);
-
-            }
-            //foreach (TimedEventData ev in GameManager.I.timeEventManager.EventsPrefab)
-            //{
-            //    switch (ev.ID)
-            //    {
-            //        case "FineMese":
-            //            Debug.Log("Mese");
-            //            break;
-            //        case "FoodProduction":
-            //            GameManager.I.buildingManager.IncreaseResources(this);
-            //            break;
-            //        case "WoodProduction":
-            //            GameManager.I.buildingManager.IncreaseResources(this);
-            //            break;
-            //        case "StoneProduction":
-            //            GameManager.I.buildingManager.IncreaseResources(this);
-            //            break;
-            //        case "FaithProduction":
-            //            GameManager.I.buildingManager.IncreaseResources(this);
-            //            break;
-            //        case "SpiritProduction":
-            //            GameManager.I.buildingManager.IncreaseResources(this);
-            //            break;
-            //        case "FineAnno":
-            //            break;
-            //        case "Degrado":
-            //            GameManager.I.buildingManager.RemoveLife(this);
-            //            if (Data.BuildingLife < 1)
-            //                destroyMe();
-            //            break;
-            //        default:
-            //            break;
-            //    }
-
-            //}
         }
         Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
         #endregion
@@ -184,7 +168,7 @@ public class BuildingView : MonoBehaviour
         }
     }
 
-   
+
     public void RemoveDebris()
     {
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
@@ -201,7 +185,8 @@ public class BuildingView : MonoBehaviour
 
     }
 
-    public void DecreasePopulationBar() {
+    public void DecreasePopulationBar()
+    {
         if (PopulationBarCounter < 1)
         {
             return;
