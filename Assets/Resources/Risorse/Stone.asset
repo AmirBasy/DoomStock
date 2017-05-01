@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   ID: Stone
-  Value: 800
-  Limit: -1
+  Value: 0
+  Limit: 30
   HasNegativeValue: 0

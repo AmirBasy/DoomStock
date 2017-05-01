@@ -74,20 +74,25 @@ public class Player : PlayerBase
     #region Population
 
     /// <summary>
-    /// Aggiungie la risorsa Population all'Edificio
+    /// Aggiunge all'edificio _building l'unità di popolazione con l'ID _unitIDToAdd
     /// </summary>
     /// <param name="_building"></param>
     public void AddPopulation(BuildingData _building, string _unitIDToAdd)
     {
-        // TO DO : SPOSTARE IL CONTROLLO(FORSE) DECIDETEVI
+    
         if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
         {
+            //aggiunge il popolano all'edificio
             PopulationData pdata = GameManager.I.populationManager.GetUnit(_unitIDToAdd);
             _building.Population.Add(pdata);
             pdata.building = _building;
+
+            //cambia lo stato del building a Producing.
+            if (_building.Population.Count == 1)
             _building.currentState = BuildingData.BuildingState.Producing;
+
+            //cambia la grafica
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
-            //GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).SetPopulationBar();
             GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
 

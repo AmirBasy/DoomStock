@@ -204,6 +204,18 @@ public class BuildingData : ScriptableObject, ISelectable
             case "Farm":
                 BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Food"));
                 break;
+            case "EstrattoreStone":
+                BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Stone"));
+                break;
+            case "EstrattoreWood":
+                BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Wood"));
+                break;
+            case "Chiesa":
+                BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Faith"));
+                break;
+            case "Torretta":
+                BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Spirit"));
+                break;
             default:
                 break;
         }

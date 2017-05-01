@@ -4,13 +4,6 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
-    #region Events
-
-    public delegate void BuildingEvent();
-
-    public static BuildingEvent OnLimitReached;
-
-    #endregion
 
     #region API
     /// <summary>
@@ -44,28 +37,6 @@ public class BuildingManager : MonoBehaviour
         NewIstanceView.Init(NewIstanceBuildingData);
         NewIstanceView.Data.Population = new List<PopulationData>();
         return NewIstanceView;
-    }
-
-    /// <summary>
-    /// Aumento della risorsa
-    /// </summary>
-    /// <param name="_buildingData"></param>
-    public void IncreaseResources(BuildingView _buildingview, BaseResourceData _resource)
-    {
-      
-        if (_buildingview.Data.Population.Count == 0)
-        {
-            return;
-        }
-        if (_buildingview.Data.Population.Count > 0)
-        {
-
-            if (_buildingview.Data.BuildingResources != null)
-            {
-               
-            }
-
-        }
     }
 
     /// <summary>

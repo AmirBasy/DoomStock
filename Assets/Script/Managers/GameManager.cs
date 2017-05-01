@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager I;
 
+    public int InitialFood, InitialWood, InitialStone;
+
     #region Managers
     public GridControllerDoomstock gridController;
     public TimeEventManager timeEventManager;
@@ -172,6 +174,16 @@ public class GameManager : MonoBehaviour {
         foreach (BaseResourceData item in Resources.LoadAll<BaseResourceData>("Risorse"))
         {
             resources.Add(Instantiate(item));
+        }
+
+        foreach (var item in resources)
+        {
+            if (item.ID == "Wood")
+                item.Value = InitialWood;
+            if (item.ID == "Stone")
+                item.Value = InitialStone;
+            if (item.ID == "Food")
+                item.Value = InitialFood;
         }
     }
 

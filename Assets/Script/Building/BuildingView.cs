@@ -152,6 +152,7 @@ public class BuildingView : MonoBehaviour
     void OnUnitEvent(TimedEventData _eventData)
     {
         #region Event
+
         if (_eventData.ID == "Costruzione" && Data.currentState == BuildingData.BuildingState.Construction)
         {
             Data.BuildingTime--;
@@ -161,6 +162,7 @@ public class BuildingView : MonoBehaviour
                 UpdateAspect();
             }
         }
+
         if (Data.currentState == BuildingData.BuildingState.Producing)
         {
             switch (_eventData.ID)
@@ -169,59 +171,81 @@ public class BuildingView : MonoBehaviour
                     foreach (var res in Data.BuildingResources)
                     {
                         if (res.ID == "Food")
-                            res.Value += (int)(Data.Population.Count * 5);
-
-                        if (res.Value >= res.Limit)
                         {
-                            res.Value = 0;
-                            Data.currentState = BuildingData.BuildingState.Ready;
-                            UpdateAspect();
-                            //if (OnLimitReached != null)
-                            //    OnLimitReached();
+                            res.Value += (int)(Data.Population.Count * 5);
+                            LimitReached(res);
                         }
+
                     }
-                    if (Data.Population.Count <= 0)
-                        UpdateAspect();
+                    
                     break;
 
                 case "WoodProduction":
                     foreach (var res in Data.BuildingResources)
                     {
                         if (res.ID == "Wood")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                        {
+                            res.Value += (int)(Data.Population.Count * 5);
+                            LimitReached(res);
+                        }
+                            
                     }
                     break;
                 case "StoneProduction":
                     foreach (var res in Data.BuildingResources)
                     {
                         if (res.ID == "Stone")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                        {
+                            res.Value += (int)(Data.Population.Count * 5);
+                            LimitReached(res);
+                        }
+                            
                     }
                     break;
                 case "FaithProduction":
                     foreach (var res in Data.BuildingResources)
                     {
                         if (res.ID == "Faith")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                        {
+                            res.Value += (int)(Data.Population.Count * 5);
+                            LimitReached(res);
+                        }
+                            
                     }
                     break;
                 case "SpiritProduction":
                     foreach (var res in Data.BuildingResources)
                     {
                         if (res.ID == "Spirit")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                        {
+                            res.Value += (int)(Data.Population.Count * 5);
+                            LimitReached(res);
+                        }
+                            
                     }
                     break;
                 default:
                     break;
             }
+            if (Data.Population.Count <= 0)
+                UpdateAspect();
         }
-        Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+
         #endregion
     }
 
     #endregion
 
+
+    void LimitReached(BaseResourceData res)
+    {
+        if (res.Value >= res.Limit)
+        {
+            res.Value = 0;
+            Data.currentState = BuildingData.BuildingState.Ready;
+            UpdateAspect();
+        }
+    }
     #region BARRA commentata
     public Image BuildingLifeBar;
     public Image PopulationBar;
