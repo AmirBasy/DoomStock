@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
+    #region API
     /// <summary>
     /// Lista di BuildingView che i player Istanziano nella scena.
     /// </summary>
@@ -23,7 +24,6 @@ public class BuildingManager : MonoBehaviour
         }
         return newBuildingList;
     }
-
 
     /// <summary>
     /// Crea una BuildData restituisce una nuova istanza appena creata
@@ -51,9 +51,9 @@ public class BuildingManager : MonoBehaviour
         if (_buildingview.Data.Population.Count > 0)
         {
 
-            if (_buildingview.Data.BaseResources != null)
+            if (_buildingview.Data.BuildingResources != null)
             {
-                GameManager.I.GetResourceDataByID(_resource.ID).Value += (int)(_buildingview.Data.Population.Count * 5) ;
+                GameManager.I.GetResourceDataByID(_resource.ID).Value += (int)(_buildingview.Data.Population.Count * 5);
 
             }
 
@@ -76,10 +76,13 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// toglie vita all'edificio.
+    /// </summary>
+    /// <param name="_buildingView"></param>
     public void RemoveLife(BuildingView _buildingView)
     {
         _buildingView.Data.BuildingLife -= _buildingView.Data.DecreaseBuildingLife;
-        Debug.Log("Actual Life = " + _buildingView.Data.BuildingLife);
     }
 
     /// <summary>
@@ -102,6 +105,12 @@ public class BuildingManager : MonoBehaviour
         if (GetBuildingView(id) != null)
             Destroy(GetBuildingView(id));
     }
+
+    /// <summary>
+    /// restituisce l'edificio a cui appartiene l'unità passatagli.
+    /// </summary>
+    /// <param name="unit"></param>
+    /// <returns></returns>
     public Vector3 GetBuildingContainingUnit(PopulationData unit)
     {
         foreach (BuildingView b in GetAllBuildingInScene())
@@ -111,6 +120,12 @@ public class BuildingManager : MonoBehaviour
         }
         return GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition;
     }
+
+    /// <summary>
+    /// restituisce la view dell'edificio con l'ID passatogli.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public BuildingView GetBuildingView(string id)
     {
         foreach (BuildingView building in GetAllBuildingInScene())
@@ -122,9 +137,13 @@ public class BuildingManager : MonoBehaviour
         }
         return null;
     }
+
+    #endregion
+
     #region Unique ID
 
     int counter = 0;
+
     /// <summary>
     /// Genera un id univoco.
     /// </summary>
@@ -134,6 +153,7 @@ public class BuildingManager : MonoBehaviour
         counter++;
         return counter;
     }
+
     #endregion
 }
 

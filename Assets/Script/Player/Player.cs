@@ -8,20 +8,8 @@ using XInputDotNetPure;
 
 public class Player : PlayerBase
 {
-    /// <summary>
-    /// Elenco dei BuildingView che sono stati istanziati nella scena di gioco
-    /// </summary>
-    public List<BuildingView> BuildingsInScene;
-    public List<BuildingData> BuildingsDataPrefabs = new List<BuildingData>();
-    public BuildingView CurrentBuildView;
-    private void Start()
-    {
-        Population = 0;
-        //GameManager.I.UIPlayerManager.SendBuildingDataToMenuBuilding(BuildingsDataPrefabs, this);
-        playerInput = new PlayerInput(InputPlayerIndex);
-    }
-
     #region Setup
+
     /// <summary>
     /// Setto l'input per questo player.
     /// </summary>
@@ -40,9 +28,18 @@ public class Player : PlayerBase
         transform.localScale = new Vector3(_size, _size, _size);
         GameManager.I.gridController.MoveToGridPosition(_initialX, _initialY, this);
     }
+
+    private void Start()
+    {
+        Population = 0;
+        //GameManager.I.UIPlayerManager.SendBuildingDataToMenuBuilding(BuildingsDataPrefabs, this);
+        playerInput = new PlayerInput(InputPlayerIndex);
+    }
+
     #endregion
 
     #region Menu
+
     /// <summary>
     /// Apre il menu della popolazione libera
     /// </summary>
@@ -52,6 +49,7 @@ public class Player : PlayerBase
             return null;
         return GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
     }
+
     /// <summary>
     /// Apre il Menu del Player
     /// </summary>
@@ -102,7 +100,6 @@ public class Player : PlayerBase
         else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; }
     }
 
-
     /// <summary>
     /// Rimuove un popolano dalla lista Population del building
     /// </summary>
@@ -120,9 +117,26 @@ public class Player : PlayerBase
             _buildingData.currentState = BuildingData.BuildingState.Built;
         }
     }
+
     #endregion
 
     #region Buildings
+
+    /// <summary>
+    /// Elenco dei BuildingView che sono stati istanziati nella scena di gioco
+    /// </summary>
+    public List<BuildingView> BuildingsInScene;
+
+    /// <summary>
+    /// Lista degli edifici che il player può usare.
+    /// </summary>
+    public List<BuildingData> BuildingsDataPrefabs = new List<BuildingData>();
+
+    /// <summary>
+    /// building da istanziare.
+    /// </summary>
+    BuildingView CurrentBuildView;
+
     /// <summary>
     /// Istanzia una nuovo oggetto Building
     /// </summary>
@@ -160,6 +174,7 @@ public class Player : PlayerBase
         }
         return false;
     }
+
     /// <summary>
     /// Tramite la ui, distrugge un edificio
     /// </summary>
@@ -174,6 +189,11 @@ public class Player : PlayerBase
             }
         }
     }
+
+    /// <summary>
+    /// Rimuove le macerie dell'edificio passatogli.
+    /// </summary>
+    /// <param name="_building"></param>
     public void RemoveBuildingDebris(BuildingData _building)
     {
         if (GameManager.I.buildingManager.GetBuildingView(_building.UniqueID))
@@ -181,6 +201,10 @@ public class Player : PlayerBase
 
     }
 
+    /// <summary>
+    /// se è vera, il player può rimuovere le macerie.
+    /// </summary>
+    /// <returns></returns>
     public bool CanRemoveDebris()
     {
         if (ID == "PlayerTwo")
@@ -188,13 +212,16 @@ public class Player : PlayerBase
         else
             return false;
     }
+
     #endregion
 
     #region Input
+
     /// <summary>
     /// Indice che viene passato alla classe PlayerInput per determinare quale input si sta ricevendo
     /// </summary>
     public PlayerIndex InputPlayerIndex;
+
     /// <summary>
     /// Classe che legge gli input sia da tastiera che da controller
     /// </summary>
@@ -204,6 +231,7 @@ public class Player : PlayerBase
     /// Variabile che controlla se la levetta sinistra (movimento verticale) è stata rilasciata per evitare che il movimento sia continuo
     /// </summary>
     bool isReleasedHorizontal = true;
+
     /// <summary>
     /// Variabile che controlla se la levetta sinistra (movimento orizzontale) è stata rilasciata per evitare che il movimento sia continuo
     /// </summary>
@@ -306,15 +334,15 @@ public class Player : PlayerBase
 
     }
 
-    #endregion
-
     void Update()
     {
         // chiamata alla funzione che legge gli input
         CheckInputStatus(playerInput.GetPlayerInputStatus());
     }
 
-    #region Events Subscription
+    #endregion
+
+    #region Events
 
     private void OnEnable()
     {

@@ -7,28 +7,31 @@ using System;
 
 public class UIManager : MonoBehaviour {
 
+    /// <summary>
+    /// testo visibile per ogni risorsa.
+    /// </summary>
+    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText, HappinessText;
+
     #region Logger
 
     public Logger logger;
 
     #endregion
 
-    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText, HappinessText;
-    // public Button GridButton, ResourcesButton;
-    void Awake() {
+    #region LifeCylce
+
+    void Awake()
+    {
         DontDestroyOnLoad(this.gameObject);
     }
-    public void GoToGridScene() {
-        SceneManager.LoadScene("TestGridScene");
-    }
-    public void GoToResourcesScene() {
-        SceneManager.LoadScene("TestPlayerScene");
-    }
-    private void Update() {
+
+    private void Update()
+    {
         UpdateGraphic();
     }
 
-    private void UpdateGraphic() {
+    private void UpdateGraphic()
+    {
         FoodText.text = " = " + GameManager.I.GetResourceDataByID("Food").Value.ToString();
         StoneText.text = " = " + GameManager.I.GetResourceDataByID("Stone").Value.ToString();
         WoodText.text = " = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
@@ -38,9 +41,12 @@ public class UIManager : MonoBehaviour {
         HappinessText.text = " = " + GameManager.I.GetResourceDataByID("Happiness").Value.ToString();
     }
 
+    #endregion
+
     #region Functionalities
 
     #region Menu
+
     [Header("All Menu")]
     public MenuBase _menuBase;
     public PlayerMenuComponent P1_Menu;
@@ -77,29 +83,29 @@ public class UIManager : MonoBehaviour {
             switch (cell.Status) {
                 case CellDoomstock.CellStatus.Empty:
                 FirstLevelSelectables.Add(
-              new mySelector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
+              new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
                 break;
                 case CellDoomstock.CellStatus.Filled:
                 if (cell.building.PlayerOwner == _player) {
-                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
+                    FirstLevelSelectables.Add(new Selector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
                     if (cell.building.Population.Count > 0) {
-                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
+                        FirstLevelSelectables.Add(new Selector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
                     }
                     if (GameManager.I.populationManager.GetAllFreePeople().Count > 0 && cell.building.Population.Count < cell.building.PopulationLimit) {
-                        FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                        FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
                     }
                 } else {
-                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                    FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
                 }
 
                 break;
                 case CellDoomstock.CellStatus.Hole:
-                FirstLevelSelectables.Add(new mySelector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
                 break;
                 case CellDoomstock.CellStatus.Debris:
-                FirstLevelSelectables.Add(new mySelector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
                 if (_player.CanRemoveDebris()) {
-                    FirstLevelSelectables.Add(new mySelector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
+                    FirstLevelSelectables.Add(new Selector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
                 }
                 
                     
@@ -117,7 +123,7 @@ public class UIManager : MonoBehaviour {
                 return P2_Menu;
                 case "PlayerThree":
                 FirstLevelSelectables.Add(
-                    new mySelector() { UniqueID = "Miracle" } as ISelectable
+                    new Selector() { UniqueID = "Miracle" } as ISelectable
                 );
                 P3_Menu.Init(_player, FirstLevelSelectables);
                 return P3_Menu;
@@ -147,7 +153,8 @@ public class UIManager : MonoBehaviour {
     #endregion
 }
 
-public class mySelector : ISelectable {
+
+public class Selector : ISelectable {
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
 }

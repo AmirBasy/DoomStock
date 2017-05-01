@@ -6,27 +6,28 @@ using DG.Tweening;
 
 public class BuildingView : MonoBehaviour
 {
-    public Image BuildingLifeBar;
-    public Image PopulationBar;
-    private int populationBarCounter;
 
-    public int PopulationBarCounter
-    {
-        get { return populationBarCounter; }
-        set
-        {
-            populationBarCounter = value;
-            //SetPopulationBar();
-        }
-    }
+    #region Proprietà
 
-
-
+    /// <summary>
+    /// Dato della view.
+    /// </summary>
     public BuildingData Data;
+
+    /// <summary>
+    /// Materiali momentanei della view.
+    /// </summary>
     Renderer rend;
     public Material[] Materials;
-    public Animation anim;
 
+    /// <summary>
+    /// animazione della view.
+    /// </summary>
+    public Animation anim; 
+
+    #endregion
+
+    #region LifeCycle
     private void Start()
     {
         //PopulationBarCounter = 0;
@@ -35,81 +36,18 @@ public class BuildingView : MonoBehaviour
         UpdateAspect();
 
     }
-    public void Init(BuildingData _buildingData)
+
+    private void OnDisable()
     {
+        TimeEventManager.OnEvent -= OnUnitEvent;
 
-        Data = _buildingData;
-        TimeEventManager.OnEvent += OnUnitEvent;
+    } 
+    #endregion
 
-    }
-
-
-    void OnUnitEvent(TimedEventData _eventData)
-    {
-        #region Event
-        if (_eventData.ID == "Costruzione" && Data.currentState == BuildingData.BuildingState.Construction)
-        {
-            Data.BuildingTime--;
-            if (Data.BuildingTime == 0)
-            {
-                Data.currentState = BuildingData.BuildingState.Built;
-                UpdateAspect();
-            }
-        }
-        if (Data.currentState == BuildingData.BuildingState.Producing)
-        {
-            switch (_eventData.ID)
-            {
-                case "FoodProduction":
-                    foreach (var res in Data.BaseResources)
-                    {
-                        if (res.ID == "Food")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
-                    }
-                    if (Data.Population.Count <= 0)
-                        UpdateAspect();
-                    break;
-
-                case "WoodProduction":
-                    foreach (var res in Data.BaseResources)
-                    {
-                        if (res.ID == "Wood")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
-                    }
-                    break;
-                case "StoneProduction":
-                    foreach (var res in Data.BaseResources)
-                    {
-                        if (res.ID == "Stone")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
-                    }
-                    break;
-                case "FaithProduction":
-                    foreach (var res in Data.BaseResources)
-                    {
-                        if (res.ID == "Faith")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
-                    }
-                    break;
-                case "SpiritProduction":
-                    foreach (var res in Data.BaseResources)
-                    {
-                        if (res.ID == "Spirit")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
-        #endregion
-    }
-
-
+    #region API
 
     /// <summary>
-    /// API che distrugge il building.
+    /// Distrugge il building.
     /// </summary>
     public void destroyMe()
     {
@@ -128,9 +66,11 @@ public class BuildingView : MonoBehaviour
         });
 
     }
+
     /// <summary>
     /// aggiorna la grafica del building
     /// </summary>
+    /// 
     public void UpdateAspect()
     {
         Animator _animator = GetComponent<Animator>();
@@ -168,7 +108,9 @@ public class BuildingView : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Toglie le macerie, rende libera la cella e recupera 1/4 del materiale.
+    /// </summary>
     public void RemoveDebris()
     {
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
@@ -179,24 +121,116 @@ public class BuildingView : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDisable()
+    /// <summary>
+    /// inizializzazione del buildingData.
+    /// </summary>
+    /// <param name="_buildingData"></param>
+    public void Init(BuildingData _buildingData)
     {
-        TimeEventManager.OnEvent -= OnUnitEvent;
+
+        Data = _buildingData;
+        TimeEventManager.OnEvent += OnUnitEvent;
 
     }
 
-    public void DecreasePopulationBar()
-    {
-        if (PopulationBarCounter < 1)
-        {
-            return;
+    #endregion
 
-        }
-        else
+    #region Events
+
+    public delegate void BuildingEvent(BuildingView _buildingView);
+    public static BuildingEvent OnDestroy;
+    public static BuildingEvent OnRemoveDebris;
+
+    void OnUnitEvent(TimedEventData _eventData)
+    {
+        #region Event
+        if (_eventData.ID == "Costruzione" && Data.currentState == BuildingData.BuildingState.Construction)
         {
-            PopulationBarCounter -= 1;
+            Data.BuildingTime--;
+            if (Data.BuildingTime == 0)
+            {
+                Data.currentState = BuildingData.BuildingState.Built;
+                UpdateAspect();
+            }
+        }
+        if (Data.currentState == BuildingData.BuildingState.Producing)
+        {
+            switch (_eventData.ID)
+            {
+                case "FoodProduction":
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        if (res.ID == "Food")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    if (Data.Population.Count <= 0)
+                        UpdateAspect();
+                    break;
+
+                case "WoodProduction":
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        if (res.ID == "Wood")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                case "StoneProduction":
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        if (res.ID == "Stone")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                case "FaithProduction":
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        if (res.ID == "Faith")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                case "SpiritProduction":
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        if (res.ID == "Spirit")
+                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        Debug.LogFormat("Edificio {0} ha ricevuto l'evento {1}", Data.ID, _eventData.ID);
+        #endregion
+    }
+
+    #endregion
+
+    #region BARRA commentata
+    public Image BuildingLifeBar;
+    public Image PopulationBar;
+    private int populationBarCounter;
+
+    public int PopulationBarCounter
+    {
+        get { return populationBarCounter; }
+        set
+        {
+            populationBarCounter = value;
+            //SetPopulationBar();
         }
     }
+    //public void DecreasePopulationBar()
+    //{
+    //    if (PopulationBarCounter < 1)
+    //    {
+    //        return;
+
+    //    }
+    //    else
+    //    {
+    //        PopulationBarCounter -= 1;
+    //    }
+    //}
 
     //public void SetPopulationBar() {
     //    if (Data.Population.Count < Data.PopulationLimit)
@@ -213,12 +247,5 @@ public class BuildingView : MonoBehaviour
     //    }
     //    PopulationBar.fillAmount = (float)PopulationBarCounter/Data.PopulationLimit;
     //}
-
-    #region Events
-    public delegate void BuildingEvent(BuildingView _buildingView);
-
-    public static BuildingEvent OnDestroy;
-    public static BuildingEvent OnRemoveDebris;
-
     #endregion
 }

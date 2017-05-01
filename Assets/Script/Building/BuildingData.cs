@@ -8,102 +8,120 @@ using System.Linq;
 
 public class BuildingData : ScriptableObject, ISelectable
 {
+    #region Liste
 
 
-    [HideInInspector]
-
-    public BuildingState currentState = BuildingState.Construction;
-    //public bool IsEnded;
     /// <summary>
     /// Lista degli eventi a cui questo edificio risponde.
     /// </summary>
     public List<TimedEventData> TimedEvents;
+
     /// <summary>
     /// Lista di Risorse che l'edifico puo creare.
     /// </summary>
-    public List<BaseResourceData> BaseResources;
+    public List<BaseResourceData> BuildingResources;
+
     /// <summary>
     /// la risorsa population che ha è assegnata al
     /// </summary>
-    public List<PopulationData> Population;
+    public List<PopulationData> Population; 
+    #endregion
 
     #region Proprietà
-    private Player _playerOwner;
 
+    /// <summary>
+    /// player che possiede l'edificio
+    /// </summary>
+    private Player _playerOwner;
     public Player PlayerOwner
     {
         get { return _playerOwner; }
         set { _playerOwner = value; }
     }
 
+    /// <summary>
+    /// ID unico
+    /// </summary>
     public string UniqueID { get; set; }
+
+    /// <summary>
+    /// nome dell'edicio
+    /// </summary>
     public string NameLable { get; set; }
 
-
+    /// <summary>
+    /// l'ambizione che un popolano deve avere per lavorare in questo edificio producendo Happiness.
+    /// </summary>
     public string Ambition;
+
     /// <summary>
     /// Tempo di costruzione per l'edificio
     /// </summary>
     public int BuildingTime;
+
     /// <summary>
     /// identifica il tipo di edificio
     /// </summary>
     public String ID;
+
     /// <summary>
     /// Variabile che indica quanta Popolazione massima posso possedere
     /// </summary>
     public int PopulationLimit;
+
     /// <summary>
     /// Elenco di risorse necessarie per costruire l'edificio
     /// </summary>
     public int WoodToBuild, StoneToBuild;
-    ///// <summary>
-    ///// Dichiara se un Building ha termianto il suo tempo di costruzione
-    ///// </summary>
-    //public bool isBuilt;
+
     /// <summary>
     /// Oggetto prefab dell edificio
     /// </summary> 
     public BuildingView BuildPrefab;
+
     /// <summary>
     /// Variabile che indica la potenza di "fuoco" dell'edificio
     /// </summary>
     public int Attack;
+
     /// <summary>
     /// Variabile che indica ogni quanto l'deificio può attaccare
     /// </summary>
     public float FireRateo;
+
     /// <summary>
     /// Variabile che indica la resistenza al danno dei nemici
     /// </summary>
     public int DamageResistance;
+
     /// <summary>
     /// Variabile che indica il costo di Manuntenzione
     /// </summary>
     public int Maintenance;
+
     /// <summary>
     /// Aumenta il LimiteMassimo della Popolazione
     /// </summary>
     public int IncreaseMaxPopulation;
+
     /// <summary>
     /// Vita dell' edificio
     /// </summary>
     public int BuildingLife;
+
     /// <summary>
     /// Variabile utilizzata per il Degrado
     /// </summary>
     public int DecreaseBuildingLife;
+
     #endregion
 
-    public void Awake()
-    {
-        if (!GameManager.I)
-            return;
-        UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
-        NameLable = ID + " (" + UniqueID + ")";
-    }
-
     #region API
+
+    /// <summary>
+    /// Restituisce la posizione sulla griglia.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetGridPosition()
     {
 
@@ -124,6 +142,7 @@ public class BuildingData : ScriptableObject, ISelectable
         Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
 
     }
+
     /// <summary>
     /// toglie tutta la popolazione dall'edificio e la rimette nella pozza
     /// </summary>
@@ -147,15 +166,34 @@ public class BuildingData : ScriptableObject, ISelectable
         }
         return false;
     }
+
     #endregion
 
-
+    #region Stati edificio
+    /// <summary>
+    /// Stati dell'edificio.
+    /// </summary>
     public enum BuildingState
     {
         Construction = 0,
         Built = 1,
         Debris = 2,
-        Producing =3
+        Producing = 3
     }
+
+    [HideInInspector]
+    public BuildingState currentState = BuildingState.Construction;
+    #endregion
+
+    #region Setup
+    public void Awake()
+    {
+        if (!GameManager.I)
+            return;
+        UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
+        NameLable = ID + " (" + UniqueID + ")";
+
+    } 
+    #endregion
 }
 

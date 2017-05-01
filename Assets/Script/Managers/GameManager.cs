@@ -8,27 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    /// <summary>
+    /// se è vera si vede la mappa
+    /// </summary>
     public bool DebugMode = false;
 
     public static GameManager I;
-    public List<Player> Players;
-    public GameObject PlayerPrefab;
-    public List<BaseResourceData> resources;
-    
-    int healthcare;
-
-    public int Healthcare
-    {
-        get { return healthcare; }
-        set {
-            if (value <= 0)
-                value = 0;
-            healthcare = value;
-            
-            GameManager.I.populationManager.MaxLife += value;
-        }
-    }
-
 
     #region Managers
     public GridControllerDoomstock gridController;
@@ -42,7 +27,15 @@ public class GameManager : MonoBehaviour {
 
     #region Players
 
-    // TODO : vecchio sistema di input da cancellare
+    /// <summary>
+    /// Lista dei player.
+    /// </summary>
+    public List<Player> Players;
+
+    /// <summary>
+    /// cursore
+    /// </summary>
+    public GameObject PlayerPrefab;
 
     public void SetupPlayers() {
         CellDoomstock hole = gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole);
@@ -113,6 +106,7 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
+    #region SETUP
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -120,17 +114,57 @@ public class GameManager : MonoBehaviour {
         {
             I = this;
         }
-       
+
     }
 
     private void Start()
     {
-        //TODO: mettere nel SetUp del gioco
         GridSetUp();
         SetupPlayers();
         SetupResources();
+    } 
+    #endregion
+
+    #region GRID
+    public int GridWidth, GridHeight;
+    public float CellSize = 1;
+    void GridSetUp()
+    {
+        gridController.CellSize = CellSize;
+        gridController.CreateMap(GridWidth, GridHeight, DebugMode);
+        Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
+
+
+    } 
+    #endregion
+
+    #region Risorse
+
+    /// <summary>
+    /// Risorse generali del villaggio.
+    /// </summary>
+    public List<BaseResourceData> resources;
+
+    /// <summary>
+    /// Risorsa che influenza la durata massima della vita dei popolani.
+    /// </summary>
+    int healthcare;
+    public int Healthcare
+    {
+        get { return healthcare; }
+        set
+        {
+            if (value <= 0)
+                value = 0;
+            healthcare = value;
+
+            GameManager.I.populationManager.MaxLife += value;
+        }
     }
 
+    /// <summary>
+    /// Riempie la lista resources di nuove istanze di BaseResouceData.
+    /// </summary>
     void SetupResources()
     {
         foreach (BaseResourceData item in Resources.LoadAll<BaseResourceData>("Risorse"))
@@ -139,9 +173,23 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void BackToMenu()
+    #endregion
+
+    #region API
+
+    /// <summary>
+    /// Restituisce la risorsa se gli si passa la stringa
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public BaseResourceData GetResourceDataByID(string id)
     {
-        SceneManager.LoadScene("Menu");
+        foreach (BaseResourceData item in resources)
+        {
+            if (item.ID == id)
+                return item;
+        }
+        return null;
     }
 
     /// <summary>
@@ -153,27 +201,7 @@ public class GameManager : MonoBehaviour {
         GetResourceDataByID("Stone").Value -= data.StoneToBuild;
     }
 
-    public int GridWidth, GridHeight;
-    public float CellSize = 1;
-    void GridSetUp() {
-        gridController.CellSize = CellSize;
-        gridController.CreateMap(GridWidth,GridHeight, DebugMode);
-        Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
-      
+    #endregion
 
-    }
-    /// <summary>
-    /// Restituisce la risorsa se gli si passa la stringa
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public BaseResourceData GetResourceDataByID(string id) {
-        foreach (BaseResourceData item in resources)
-        {
-            if (item.ID == id)
-                return item;
-        }
-        return null;
-    }
 }
 

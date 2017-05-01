@@ -66,7 +66,6 @@ public class PopulationManager : MonoBehaviour
 
     #endregion
 
-
     #region Init
     void Awake()
     {
@@ -273,6 +272,7 @@ public class PopulationManager : MonoBehaviour
     #endregion
 
     #region Api
+
     /// <summary>
     /// aggiunge un'unità di popolazione alla lista di popolani liberi.
     /// </summary>
@@ -283,6 +283,7 @@ public class PopulationManager : MonoBehaviour
         if (OnFreePopulationChanged != null)
             OnFreePopulationChanged();
     }
+
     /// <summary>
     /// toglie un'unità di popolazione dalla lista di popolani liberi.
     /// </summary>
@@ -297,11 +298,21 @@ public class PopulationManager : MonoBehaviour
 
         return pdata;
     }
+
+    /// <summary>
+    /// resituisce la lista di tutta la popolazione non assegnata.
+    /// </summary>
+    /// <returns></returns>
     public List<PopulationData> GetAllFreePeople()
     {
         return AllFreePeople;
     }
 
+    /// <summary>
+    /// Restituisce un populationData se gli si passa il suo ID unico.
+    /// </summary>
+    /// <param name="uniqueID"></param>
+    /// <returns></returns>
     public PopulationData GetPopulationDataByID(string uniqueID)
     {
         foreach (PopulationData item in AllPopulation)
@@ -311,8 +322,11 @@ public class PopulationManager : MonoBehaviour
         }
         return null;
     }
-    #endregion
 
+    /// <summary>
+    /// restituisce vero se Food è sufficiente per tutti i popolani in scena.
+    /// </summary>
+    /// <returns></returns>
     public bool IsFoodEnough()
     {
         if (FoodRequirement <= GameManager.I.GetResourceDataByID("Food").Value)
@@ -321,4 +335,8 @@ public class PopulationManager : MonoBehaviour
         }
         return false;
     }
+
+    #endregion
+
+
 }
