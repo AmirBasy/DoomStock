@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Eat
   m_EditorClassIdentifier: 
   ID: Eat
-  TimeUnitsToInvoke: 1000000
+  TimeUnitsToInvoke: 50
   CurrentTimeUnit: 15
   isRepeating: 1

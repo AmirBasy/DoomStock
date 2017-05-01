@@ -116,11 +116,12 @@ public class Player : PlayerBase
         GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
-        if (_buildingData.Population.Count<1)
+        if (_buildingData.Population.Count<1 && _buildingData.currentState != BuildingData.BuildingState.Ready)
         {
             GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).UpdateAspect();
             _buildingData.currentState = BuildingData.BuildingState.Built;
         }
+        
     }
 
     #endregion

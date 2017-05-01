@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     /// <summary>
     /// testo visibile per ogni risorsa.
@@ -58,7 +59,8 @@ public class UIManager : MonoBehaviour {
     #endregion
 
     #region API
-    public void SetFoodTextColor() {
+    public void SetFoodTextColor()
+    {
         if (GameManager.I.populationManager.IsFoodEnough() == false)
         {
             FoodText.color = Color.yellow;
@@ -71,71 +73,85 @@ public class UIManager : MonoBehaviour {
 
     public List<ISelectable> FirstLevelSelectables = new List<ISelectable>();
 
-    public IMenu ShowMenu(MenuTypes _type, Player _player) {
+    public IMenu ShowMenu(MenuTypes _type, Player _player)
+    {
         FirstLevelSelectables.Clear();
-        switch (_type) {
+        switch (_type)
+        {
             case MenuTypes.PopulationMenu:
-            _menuBase.Init(_player);
-            return _menuBase;
+                _menuBase.Init(_player);
+                return _menuBase;
             case MenuTypes.Player:
 
-            CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
-            switch (cell.Status) {
-                case CellDoomstock.CellStatus.Empty:
-                FirstLevelSelectables.Add(
-              new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
-                break;
-                case CellDoomstock.CellStatus.Filled:
-                if (cell.building.PlayerOwner == _player) {
-                    FirstLevelSelectables.Add(new Selector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
-                    if (cell.building.Population.Count > 0) {
-                        FirstLevelSelectables.Add(new Selector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
-                    }
-                    if (GameManager.I.populationManager.GetAllFreePeople().Count > 0 && cell.building.Population.Count < cell.building.PopulationLimit) {
-                        FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
-                    }
-                } else {
-                    FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
-                }
+                CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
+                switch (cell.Status)
+                {
+                    case CellDoomstock.CellStatus.Empty:
+                        FirstLevelSelectables.Add(
+                      new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
+                        break;
+                    case CellDoomstock.CellStatus.Filled:
+                        if (cell.building.PlayerOwner == _player)
+                        {
+                            FirstLevelSelectables.Add(new Selector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
+                            if (cell.building.Population.Count > 0)
+                            {
+                                FirstLevelSelectables.Add(new Selector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
+                            }
+                            if (GameManager.I.populationManager.GetAllFreePeople().Count > 0 && cell.building.Population.Count < cell.building.PopulationLimit)
+                            {
+                                FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                            }
+                            if(cell.building.currentState == BuildingData.BuildingState.Ready)
+                            {
+                                FirstLevelSelectables.Add(new Selector() { UniqueID = " Prendi ", NameLable = " Prendi " } as ISelectable);
+                            }
+                        }
+                        else
+                        {
+                            FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                        }
 
-                break;
-                case CellDoomstock.CellStatus.Hole:
-                FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
-                break;
-                case CellDoomstock.CellStatus.Debris:
-                FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
-                if (_player.CanRemoveDebris()) {
-                    FirstLevelSelectables.Add(new Selector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
+                        break;
+                    case CellDoomstock.CellStatus.Hole:
+                        FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                        break;
+                    case CellDoomstock.CellStatus.Debris:
+                        FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                        if (_player.CanRemoveDebris())
+                        {
+                            FirstLevelSelectables.Add(new Selector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
+                        }
+
+
+                        break;
+
+                    default:
+                        break;
                 }
-                
-                    
+                switch (_player.ID)
+                {
+                    case "PlayerOne":
+                        P1_Menu.Init(_player, FirstLevelSelectables);
+                        return P1_Menu;
+                    case "PlayerTwo":
+                        P2_Menu.Init(_player, FirstLevelSelectables);
+                        return P2_Menu;
+                    case "PlayerThree":
+                        FirstLevelSelectables.Add(
+                            new Selector() { UniqueID = "Miracle" } as ISelectable
+                        );
+                        P3_Menu.Init(_player, FirstLevelSelectables);
+                        return P3_Menu;
+                    case "PlayerFour":
+                        P4_Menu.Init(_player, FirstLevelSelectables);
+                        return P4_Menu;
+                    default:
+                        break;
+                }
                 break;
-                
-                default:
-                break;
-            }
-            switch (_player.ID) {
-                case "PlayerOne":
-                P1_Menu.Init(_player, FirstLevelSelectables);
-                return P1_Menu;
-                case "PlayerTwo":
-                P2_Menu.Init(_player, FirstLevelSelectables);
-                return P2_Menu;
-                case "PlayerThree":
-                FirstLevelSelectables.Add(
-                    new Selector() { UniqueID = "Miracle" } as ISelectable
-                );
-                P3_Menu.Init(_player, FirstLevelSelectables);
-                return P3_Menu;
-                case "PlayerFour":
-                P4_Menu.Init(_player, FirstLevelSelectables);
-                return P4_Menu;
-                default:
-                break;
-            }
-            break;
             default:
-            break;
+                break;
         }
         return null; // Menù not found
     }
@@ -144,7 +160,8 @@ public class UIManager : MonoBehaviour {
     /// Funzione per scrivere all'interno del logger
     /// </summary>
     /// <param name="_stringToWrite">Cosa scrivere all'interno del logger</param>
-    public void WriteInLogger(string _stringToWrite, logType _typeOfLog) {
+    public void WriteInLogger(string _stringToWrite, logType _typeOfLog)
+    {
         //controlla se c'è il collegamento al logger 
         if (logger != null)
             logger.WriteInLogger(_stringToWrite, _typeOfLog);
@@ -154,7 +171,8 @@ public class UIManager : MonoBehaviour {
 }
 
 
-public class Selector : ISelectable {
+public class Selector : ISelectable
+{
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
 }

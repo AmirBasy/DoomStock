@@ -182,7 +182,6 @@ public class BuildingData : ScriptableObject, ISelectable
         Ready = 4
     }
 
-    [HideInInspector]
     public BuildingState currentState = BuildingState.Construction;
     #endregion
 
