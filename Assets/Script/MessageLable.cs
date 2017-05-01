@@ -103,6 +103,12 @@ public class MessageLable : MonoBehaviour
                     Destroy(this.gameObject);
                 });
                 break;
+            case BuildingMessageType.Ready:
+                text.text = "Pronto!";
+                background.color = Color.grey;
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4);
+               
+                break;
             default:
                 break;
                 

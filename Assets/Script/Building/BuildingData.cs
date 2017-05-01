@@ -178,7 +178,8 @@ public class BuildingData : ScriptableObject, ISelectable
         Construction = 0,
         Built = 1,
         Debris = 2,
-        Producing = 3
+        Producing = 3,
+        Ready = 4
     }
 
     [HideInInspector]
@@ -193,7 +194,20 @@ public class BuildingData : ScriptableObject, ISelectable
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
         NameLable = ID + " (" + UniqueID + ")";
 
+       
     } 
+
+    public void Init()
+    {
+        switch (ID)
+        {
+            case "Farm":
+                BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Food"));
+                break;
+            default:
+                break;
+        }
+    }
     #endregion
 }
 

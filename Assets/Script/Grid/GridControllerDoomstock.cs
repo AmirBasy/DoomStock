@@ -22,7 +22,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         Cells[(int)(GridSize.x / 2), (int)(GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
         int cellWidth = heightmap.width / (int)GridSize.x;
         int cellHeight = heightmap.height / (int)GridSize.y;
-        Debug.LogFormat("HM {0} x {1} -> {2} x {3}", heightmap.width, heightmap.height, cellWidth, cellHeight);
+      //  Debug.LogFormat("HM {0} x {1} -> {2} x {3}", heightmap.width, heightmap.height, cellWidth, cellHeight);
         foreach (CellDoomstock cell in Cells) {
             int x = (int)(cell.GridPosition.x * cellWidth) + (cellWidth / 2);
             int y = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
@@ -32,7 +32,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
                 cell.Cost = 10;
             float colorPixelValue = resultColor.grayscale;
 
-            Debug.LogFormat("Color {0} x {1} -> {2}", cell.GridPosition.x, cell.GridPosition.y, colorPixelValue);
+           // Debug.LogFormat("Color {0} x {1} -> {2}", cell.GridPosition.x, cell.GridPosition.y, colorPixelValue);
 
             cell.WorldPosition += new Vector3(0, colorPixelValue * 5, 0);
             if(createView)

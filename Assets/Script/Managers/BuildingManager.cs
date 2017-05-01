@@ -4,6 +4,14 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
+    #region Events
+
+    public delegate void BuildingEvent();
+
+    public static BuildingEvent OnLimitReached;
+
+    #endregion
+
     #region API
     /// <summary>
     /// Lista di BuildingView che i player Istanziano nella scena.
@@ -44,6 +52,7 @@ public class BuildingManager : MonoBehaviour
     /// <param name="_buildingData"></param>
     public void IncreaseResources(BuildingView _buildingview, BaseResourceData _resource)
     {
+      
         if (_buildingview.Data.Population.Count == 0)
         {
             return;
@@ -53,8 +62,7 @@ public class BuildingManager : MonoBehaviour
 
             if (_buildingview.Data.BuildingResources != null)
             {
-                GameManager.I.GetResourceDataByID(_resource.ID).Value += (int)(_buildingview.Data.Population.Count * 5);
-
+               
             }
 
         }

@@ -1278,6 +1278,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114576703097330152, guid: d57b80e9cda99ca49808bec2d24b6e57,
+        type: 2}
+      propertyPath: Names.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4980768663897844, guid: d57b80e9cda99ca49808bec2d24b6e57, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1334,6 +1339,21 @@ Prefab:
         type: 2}
       propertyPath: MaxLife
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114576703097330152, guid: d57b80e9cda99ca49808bec2d24b6e57,
+        type: 2}
+      propertyPath: Names.Array.data[9]
+      value: Don Vincenzo
+      objectReference: {fileID: 0}
+    - target: {fileID: 114576703097330152, guid: d57b80e9cda99ca49808bec2d24b6e57,
+        type: 2}
+      propertyPath: Names.Array.data[6]
+      value: Eugenio
+      objectReference: {fileID: 0}
+    - target: {fileID: 114576703097330152, guid: d57b80e9cda99ca49808bec2d24b6e57,
+        type: 2}
+      propertyPath: Names.Array.data[7]
+      value: Roberto Lardera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d57b80e9cda99ca49808bec2d24b6e57, type: 2}

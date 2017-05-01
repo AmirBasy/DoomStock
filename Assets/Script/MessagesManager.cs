@@ -36,31 +36,8 @@ public class MessagesManager : MonoBehaviour
     public void ShowBuildingMessage(BuildingView _building, BuildingMessageType _type, PopulationData _population = null)
     {
         MessageLable message;
-        switch (_type)
-        {
-            case BuildingMessageType.Construction:
-                message = Instantiate(MessageLablePrefab, _building.transform.position, transform.rotation);
-                message.ShowBuilding(_building.Data, _type);
-                break;
-            case BuildingMessageType.Builded:
-                message = Instantiate(MessageLablePrefab, _building.transform.position, transform.rotation);
-                message.ShowBuilding(_building.Data, _type);
-                break;
-            case BuildingMessageType.Debris:
-                message = Instantiate(MessageLablePrefab, _building.transform.position, transform.rotation);
-                message.ShowBuilding(_building.Data, _type);
-                break;
-            case BuildingMessageType.PeopleAdded:
-                message = Instantiate(MessageLablePrefab, _building.transform.position, transform.rotation);
-                message.ShowBuilding(_building.Data, _type);
-                break;
-            case BuildingMessageType.PeopleRemoved:
-                message = Instantiate(MessageLablePrefab, _building.transform.position, transform.rotation);
-                message.ShowBuilding(_building.Data, _type);
-                break;
-            default:
-                break;
-        }
+        message = Instantiate(MessageLablePrefab, _building.transform.position, transform.rotation);
+        message.ShowBuilding(_building.Data, _type);
     }
 }
 
@@ -78,5 +55,6 @@ public enum BuildingMessageType
     Builded,
     Debris,
     PeopleAdded,
-    PeopleRemoved
+    PeopleRemoved,
+    Ready
 }

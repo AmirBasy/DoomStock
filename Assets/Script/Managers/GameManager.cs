@@ -122,6 +122,8 @@ public class GameManager : MonoBehaviour {
         GridSetUp();
         SetupPlayers();
         SetupResources();
+
+        
     } 
     #endregion
 
@@ -199,6 +201,20 @@ public class GameManager : MonoBehaviour {
     {
         GetResourceDataByID("Wood").Value -= data.WoodToBuild;
         GetResourceDataByID("Stone").Value -= data.StoneToBuild;
+    }
+
+    /// <summary>
+    /// Restituisce una nuova istanza di resourceData attraverso l'ID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public BaseResourceData GetNewInstanceOfResourceData(string id) {
+        foreach (BaseResourceData item in Resources.LoadAll<BaseResourceData>("Risorse"))
+        {
+            if (item.ID == id)
+                return Instantiate(item);
+        }
+        return null;
     }
 
     #endregion

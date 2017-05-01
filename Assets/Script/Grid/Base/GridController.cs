@@ -100,7 +100,7 @@ namespace Framework.Grid {
             _player.transform.DOMove(GetCellWorldPosition(_x, _y),
                         0.3f).OnComplete(delegate
                         {
-                            Debug.LogFormat("Movimento player {0} - [{1}, {2}]", _player.ID, _x, _y);
+                            //Debug.LogFormat("Movimento player {0} - [{1}, {2}]", _player.ID, _x, _y);
                         }).SetEase(Ease.OutBack);
 
             _player.XpositionOnGrid = _x;

@@ -11,13 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Farm1
   m_EditorClassIdentifier: 
-  currentState: 0
   TimedEvents: []
-  BaseResources:
-  - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
+  BuildingResources: []
   Ambition: Farmer
   BuildingTime: 3
-  ID: Farm1
+  ID: Farm
   PopulationLimit: 2
   WoodToBuild: 10
   StoneToBuild: 10
@@ -30,3 +28,4 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 1
+  currentState: 0

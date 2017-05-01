@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class BuildingView : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class BuildingView : MonoBehaviour
     #region LifeCycle
     private void Start()
     {
+        Data.Init();
         //PopulationBarCounter = 0;
         anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
@@ -37,10 +39,11 @@ public class BuildingView : MonoBehaviour
 
     }
 
+
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
-
+        
     } 
     #endregion
 
@@ -103,6 +106,11 @@ public class BuildingView : MonoBehaviour
                     _animator.enabled = false;
                 }
                 break;
+            case BuildingData.BuildingState.Ready:
+                _animator.enabled = false;
+                GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Ready);
+                break;
+
             default:
                 break;
         }
@@ -161,7 +169,16 @@ public class BuildingView : MonoBehaviour
                     foreach (var res in Data.BuildingResources)
                     {
                         if (res.ID == "Food")
-                            GameManager.I.buildingManager.IncreaseResources(this, res);
+                            res.Value += (int)(Data.Population.Count * 5);
+
+                        if (res.Value >= res.Limit)
+                        {
+                            res.Value = 0;
+                            Data.currentState = BuildingData.BuildingState.Ready;
+                            UpdateAspect();
+                            //if (OnLimitReached != null)
+                            //    OnLimitReached();
+                        }
                     }
                     if (Data.Population.Count <= 0)
                         UpdateAspect();
