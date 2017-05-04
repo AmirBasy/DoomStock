@@ -53,7 +53,7 @@ public static class IPathFindingExtension {
                 if (!neighbour.isTraversable || Closed.Contains(neighbour)) {
                     continue;
                 }
-                neighbour.SetCost(startNode, lastNode);
+                //neighbour.SetCost(startNode, lastNode);
                 
                 if (!Open.Contains(neighbour)) {
                     neighbour.parent = current;
@@ -61,9 +61,11 @@ public static class IPathFindingExtension {
                 } else {
                     for (int i = 0; i < Open.Count; i++) {
                         if(Open[i].GetGridPosition() == neighbour.GetGridPosition()) {
-                            if (neighbour.G_Cost < Open[i].G_Cost) {
+                            int newCost = current.G_Cost + current.CalculateCost(current, neighbour);
+                            if ( newCost < Open[i].G_Cost) {
                                 Open[i].parent = current;
-                                Open[i].SetCost(startNode, lastNode);
+                                Open[i].G_Cost = newCost;
+                                Open[i].H_Cost = Open[i].CalculateCost(Open[i], lastNode);
                                 //Open[i].G_Cost = neighbour.G_Cost;
                                 //Open[i].H_Cost = neighbour.H_Cost;
                             }
