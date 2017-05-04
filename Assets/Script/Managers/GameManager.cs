@@ -138,7 +138,8 @@ public class GameManager : MonoBehaviour {
         gridController.CreateMap(GridWidth, GridHeight, DebugMode);
         Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
 
-
+        if (OnGridCreated != null)
+            OnGridCreated();
     } 
     #endregion
 
@@ -229,6 +230,12 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
+    #endregion
+
+    #region Eventi
+    public delegate void GameEvent();
+
+    public static GameEvent OnGridCreated;
     #endregion
 
 }

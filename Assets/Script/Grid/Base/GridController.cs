@@ -11,7 +11,7 @@ namespace Framework.Grid {
 
         public float CellSize = 1;
         public GameObject TilePrefab;
-        public Vector2 GridSize = new Vector2(3,3);
+        public Vector2 GridSize = new Vector2(3, 3);
         public T[,] Cells;
         public List<Vector2> GridInvalidPositions = new List<Vector2>();
         [HideInInspector]
@@ -23,23 +23,22 @@ namespace Framework.Grid {
         protected virtual void GenerateMap(bool createView = false) {
 
             for (int x = 0; x < GridSize.x; x++) {
-                for (int z = 0; z < GridSize.y; z++)
-                {
+                for (int z = 0; z < GridSize.y; z++) {
                     Vector3 tilePosition = new Vector3(x * CellSize, 0, z * CellSize);
                     Cells[x, z] = Activator.CreateInstance<T>();
                     Cells[x, z].WorldPosition = tilePosition;
-                    Cells[x, z].GridPosition = new Vector2(x,z);
-                    
+                    Cells[x, z].GridPosition = new Vector2(x, z);
+
                     if (createView)
                         CreateGridTileView(tilePosition, Cells[x, z]);
                 }
             }
-            
+
         }
 
         protected virtual GameObject CreateGridTileView(Vector3 tilePosition, T cellData) {
             GameObject newTile = Instantiate<GameObject>(TilePrefab, tilePosition, Quaternion.identity, this.transform);
-            newTile.name = "Cell["+ tilePosition.x+","+ tilePosition.y + "]";
+            newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
             return newTile;
         }
 
@@ -53,7 +52,7 @@ namespace Framework.Grid {
             return Cells[_x, _y].WorldPosition + new Vector3(0, -CellSize, CellSize / 2);
         }
 
-        
+
 
         /// <summary>
         /// Api che crea la mappa con le dimensioni passate
@@ -76,8 +75,16 @@ namespace Framework.Grid {
             List<T> returnList = new List<T>();
             for (int x = -1; x <= 1; x++) {
                 for (int y = -1; y <= 1; y++) {
-                    if (x != 0 && y != 0)
-                        returnList.Add(Cells[(int)cell.GridPosition.x + x, (int)cell.GridPosition.y + y]);
+                    if (x == 0 && y == 0)
+                        continue;
+                    int cellx = (int)cell.GridPosition.x + x;
+                    int celly = (int)cell.GridPosition.y + y;
+                    if (cellx >= GridSize.x || cellx < 0)
+                        continue;
+                    if (celly >= GridSize.y || celly < 0)
+                        continue;
+                    returnList.Add(Cells[cellx, celly]);
+
                 }
             }
             return returnList;
@@ -87,8 +94,7 @@ namespace Framework.Grid {
         /// <summary>
         /// Muove il player sulla griglia alla posizione indicata.
         /// </summary>
-        public virtual void MoveToGridPosition(int _x, int _y, Player _player)
-        {
+        public virtual void MoveToGridPosition(int _x, int _y, Player _player) {
 
             if (_x < 0 || _y < 0 || _x > GridSize.x - 1 || _y > GridSize.y - 1)
                 return;
@@ -98,8 +104,7 @@ namespace Framework.Grid {
 
             //Actual translation
             _player.transform.DOMove(GetCellWorldPosition(_x, _y),
-                        0.3f).OnComplete(delegate
-                        {
+                        0.3f).OnComplete(delegate {
                             //Debug.LogFormat("Movimento player {0} - [{1}, {2}]", _player.ID, _x, _y);
                         }).SetEase(Ease.OutBack);
 

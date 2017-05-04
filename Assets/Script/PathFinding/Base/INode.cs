@@ -76,6 +76,6 @@ public static class INodeExtension {
             // asse Y corta
             resultDistance = distanceY * 14 + (distanceY - distanceX) * (10);
         }
-        return resultDistance;
+        return Mathf.Abs(resultDistance);
     }
 }

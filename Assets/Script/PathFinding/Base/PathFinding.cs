@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public interface PathFinding {
-    List<INode> Open{ get; set; }
-    List<INode> Closed { get; set; }
-    INode current { get; set; }
+public interface IPathFinding {
+    
 
 }
 
-public static class PathFindingExtension {
+public static class IPathFindingExtension {
+ 
     /// <summary>
     /// trova il percorso dallo startNode al lastNode
     /// </summary>
     /// <param name="_this"></param>
     /// <param name="startNode"></param>
     /// <param name="lastNode"></param>
-    public static void Find(this PathFinding _this, INode startNode, INode lastNode) {
+    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode) {
+        List<INode> Open = new List<INode>();
+        List<INode> Closed = new List<INode>();
+        INode current;
+        List<INode> path = new List<INode>();
+        Open.Add(startNode);
 
-        _this.Open.Add(startNode);
-
-        for (int i = 0; i < _this.Open.Count; i++) {
+        do {
             //assegna a current l'INode con f cost più basso
             INode lower = null;
 
-            foreach (var item in _this.Open) {
+            foreach (var item in Open) {
                 if (lower == null)
                     lower = item;
                 else {
@@ -34,30 +36,47 @@ public static class PathFindingExtension {
                 }
             }
             // mette current nella lista dei già analizzati e lo rimuove dai disponibili
-            _this.current = lower;
-            _this.Open.Remove(_this.current);
-            _this.Closed.Add(_this.current);
+            current = lower;
+            Open.Remove(current);
+            Closed.Add(current);
             //controllo se il currentNode è uguale al lastNode
-            if (_this.current == lastNode) 
-                return;
-            foreach (var neighbour in _this.current.GetNeighbours()) {
-                if (!neighbour.isTraversable || _this.Closed.Contains(neighbour)) {
+            if (current == lastNode) {
+                path.Add(lastNode.parent);
+                while (path[path.Count - 1] != startNode) {
+                    path.Add(path[path.Count - 1].parent);
+                }
+
+                return path;
+            }
+                
+            foreach (var neighbour in current.GetNeighbours()) {
+                if (!neighbour.isTraversable || Closed.Contains(neighbour)) {
                     continue;
                 }
                 neighbour.SetCost(startNode, lastNode);
-                if (!_this.Open.Contains(neighbour)) {
-                    _this.Open.Add(neighbour);
+                
+                if (!Open.Contains(neighbour)) {
+                    neighbour.parent = current;
+                    Open.Add(neighbour);
                 } else {
-                    INode n = _this.Open.Find(node => node.GetGridPosition() == neighbour.GetGridPosition());
-                    if (neighbour.F_Cost < n.F_Cost) {
-                        n = neighbour;
+                    for (int i = 0; i < Open.Count; i++) {
+                        if(Open[i].GetGridPosition() == neighbour.GetGridPosition()) {
+                            if (neighbour.G_Cost < Open[i].G_Cost) {
+                                Open[i].parent = current;
+                                Open[i].SetCost(startNode, lastNode);
+                                //Open[i].G_Cost = neighbour.G_Cost;
+                                //Open[i].H_Cost = neighbour.H_Cost;
+                            }
+                        }
                     }
+                    
                 }
-                // TODO : set parent
+
             }
         }
+        while (current != lastNode);
 
-
+        return path;
     }
 
 }
