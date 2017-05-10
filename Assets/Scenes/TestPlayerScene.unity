@@ -956,7 +956,8 @@ MonoBehaviour:
   - {x: 0, y: 3}
   - {x: 0, y: 4}
   heightmap: {fileID: 2800000, guid: 35ae7e2aab3449e4fbf851a9835941ae, type: 3}
-  heightmapBlackList: {fileID: 2800000, guid: 0a32936f4fae4034c864c14b3aee2e82, type: 3}
+  heightmapTerreinType: {fileID: 2800000, guid: 0a32936f4fae4034c864c14b3aee2e82,
+    type: 3}
 --- !u!1001 &739383992
 Prefab:
   m_ObjectHideFlags: 0

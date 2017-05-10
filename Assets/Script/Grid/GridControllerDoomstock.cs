@@ -4,7 +4,7 @@ using UnityEngine;
 using Framework.Grid;
 public class GridControllerDoomstock : GridController<CellDoomstock> {
 
-    public Texture2D heightmap, heightmapBlackList;
+    public Texture2D heightmap, heightmapTerreinType;
 
     public Vector2 GetBuildingPositionByUniqueID(string uniqueID) {
         foreach (CellDoomstock item in Cells) {
@@ -27,7 +27,15 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             int x = (int)(cell.GridPosition.x * cellWidth) + (cellWidth / 2);
             int y = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
             Color resultColor = heightmap.GetPixel(x, y);
-            Color resultColorBL = heightmapBlackList.GetPixel(x, y);
+            Color resultColorBL = heightmapTerreinType.GetPixel(x, y);
+            //foresta: #ff009933
+            //secco: #ffcc9966
+            //erba: #ffcccc33
+            //roccia: #ff999999
+            //nullo: #ffffffff --> 1 1 1 1
+            Color color;
+            ColorUtility.TryParseHtmlString("#ffffffff", out color);
+            Debug.Log(color);
             if (resultColorBL.a > 0.5)
             {
                 cell.SetType(CellDoomstock.CellType.Nullo);
