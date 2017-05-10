@@ -47,7 +47,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     {
         GameObject returnCellView = base.CreateGridTileView(tilePosition, cellData);
         returnCellView.GetComponent<CellView>().Init(cellData as CellDoomstock);
-        returnCellView.transform.GetChild(0).transform.localScale = new Vector3(returnCellView.transform.GetChild(0).transform.localScale.x * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize);
+        returnCellView.transform.GetChild(0).transform.localScale = new Vector3(returnCellView.transform.GetChild(0).transform.localScale.x * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.z * GameManager.I.CellSize);
         return returnCellView;
     }
     public override void MoveToGridPosition(int Xnext, int Ynext, Player _player)
