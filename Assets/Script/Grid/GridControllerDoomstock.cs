@@ -29,7 +29,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             Color resultColor = heightmap.GetPixel(x, y);
             Color resultColorBL = heightmapBlackList.GetPixel(x, y);
             if (resultColorBL.a > 0.5)
-                cell.Cost = 10;
+                cell.SetType(CellDoomstock.CellType.Nullo);
             float colorPixelValue = resultColor.grayscale;
 
            // Debug.LogFormat("Color {0} x {1} -> {2}", cell.GridPosition.x, cell.GridPosition.y, colorPixelValue);
@@ -47,7 +47,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     {
         GameObject returnCellView = base.CreateGridTileView(tilePosition, cellData);
         returnCellView.GetComponent<CellView>().Init(cellData as CellDoomstock);
-        returnCellView.transform.GetChild(0).transform.localScale = new Vector3(GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y, GameManager.I.CellSize);
+        returnCellView.transform.GetChild(0).transform.localScale = new Vector3(returnCellView.transform.GetChild(0).transform.localScale.x * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize);
         return returnCellView;
     }
     public override void MoveToGridPosition(int Xnext, int Ynext, Player _player)

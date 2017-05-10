@@ -7,7 +7,7 @@ using System;
 public class CellDoomstock : Cell, INode {
     public BuildingData building;
     public CellStatus Status = CellStatus.Empty;
-   
+    public CellType Type = CellType.Erba;
     //BuildingView _buildingView;
     private List<Player> playersQueue = new List<Player>();
 
@@ -56,15 +56,29 @@ public class CellDoomstock : Cell, INode {
         Hole,
         Debris
     }
-	
+
+    public enum CellType
+    {
+        Forest,
+        Secco,
+        Erba,
+        Roccia,
+        Nullo
+    }
     public void SetStatus(CellStatus status, BuildingData _building = null) {
         Status = status;
         building = _building;
         if (OnDataChanged != null)
             OnDataChanged(this);
     }
+    public void SetType(CellType type)
+    {
+        Type = type;
+       
+        if (OnDataChanged != null)
+            OnDataChanged(this);
+    }
 
-  
 
     #region Events
     public delegate void CellEvent(CellDoomstock data);

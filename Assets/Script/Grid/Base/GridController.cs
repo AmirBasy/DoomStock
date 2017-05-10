@@ -5,12 +5,14 @@ using DG.Tweening;
 using Framework.Grid;
 using System;
 
-namespace Framework.Grid {
+namespace Framework.Grid
+{
 
-    public class GridController<T> : MonoBehaviour where T : Cell {
+    public class GridController<T> : MonoBehaviour where T : Cell
+    {
 
         public float CellSize = 1;
-        public GameObject TilePrefab;
+        public GameObject[] TilePrefab;
         public Vector2 GridSize = new Vector2(3, 3);
         public T[,] Cells;
         public List<Vector2> GridInvalidPositions = new List<Vector2>();
@@ -20,10 +22,13 @@ namespace Framework.Grid {
         /// <summary>
         /// Generates la griglia utilizzando il TilePrefab
         /// </summary>
-        protected virtual void GenerateMap(bool createView = false) {
+        protected virtual void GenerateMap(bool createView = false)
+        {
 
-            for (int x = 0; x < GridSize.x; x++) {
-                for (int z = 0; z < GridSize.y; z++) {
+            for (int x = 0; x < GridSize.x; x++)
+            {
+                for (int z = 0; z < GridSize.y; z++)
+                {
                     Vector3 tilePosition = new Vector3(x * CellSize, 0, z * CellSize);
                     Cells[x, z] = Activator.CreateInstance<T>();
                     Cells[x, z].WorldPosition = tilePosition;
@@ -36,10 +41,42 @@ namespace Framework.Grid {
 
         }
 
-        protected virtual GameObject CreateGridTileView(Vector3 tilePosition, T cellData) {
-            GameObject newTile = Instantiate<GameObject>(TilePrefab, tilePosition, Quaternion.identity, this.transform);
-            newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
-            return newTile;
+        protected virtual GameObject CreateGridTileView(Vector3 tilePosition, T cellData)
+        {
+            CellDoomstock cell = cellData as CellDoomstock;
+            GameObject newTile;
+            switch (cell.Type)
+            {
+                case CellDoomstock.CellType.Forest:
+                    newTile = Instantiate<GameObject>(TilePrefab[2], tilePosition, Quaternion.identity, this.transform);
+                    newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
+                    return newTile;
+                    
+                case CellDoomstock.CellType.Secco:
+                    newTile = Instantiate<GameObject>(TilePrefab[4], tilePosition, Quaternion.identity, this.transform);
+                    newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
+                    return newTile;
+                    
+                case CellDoomstock.CellType.Erba:
+                    newTile = Instantiate<GameObject>(TilePrefab[0], tilePosition, Quaternion.identity, this.transform);
+                    newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
+                    return newTile;
+                    
+                case CellDoomstock.CellType.Roccia:
+                    newTile = Instantiate<GameObject>(TilePrefab[3], tilePosition, Quaternion.identity, this.transform);
+                    newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
+                    return newTile;
+
+                case CellDoomstock.CellType.Nullo:
+                    newTile = Instantiate<GameObject>(TilePrefab[1], tilePosition, Quaternion.identity, this.transform);
+                    newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
+                    return newTile;
+
+                default:
+                    break;
+            }
+            return null;
+            
         }
 
         #region API
@@ -47,7 +84,8 @@ namespace Framework.Grid {
         /// Restituisce la posizione world della cella alla grid position richiesta
         /// </summary>
         /// <returns></returns>
-        public Vector3 GetCellWorldPosition(int _x, int _y) {
+        public Vector3 GetCellWorldPosition(int _x, int _y)
+        {
             //Vector3 tileSize = TilePrefab.transform.localScale;
             return Cells[_x, _y].WorldPosition + new Vector3(0, -CellSize, CellSize / 2);
         }
@@ -59,7 +97,8 @@ namespace Framework.Grid {
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void CreateMap(int x, int y, bool withView = false) {
+        public void CreateMap(int x, int y, bool withView = false)
+        {
             GridSize.x = x;
             GridSize.y = y;
             Cells = new T[(int)GridSize.x, (int)GridSize.y];
@@ -71,10 +110,13 @@ namespace Framework.Grid {
         /// </summary>
         /// <param name="cell"></param>
         /// <returns></returns>
-        public List<T> GetNeighboursStar(T cell) {
+        public List<T> GetNeighboursStar(T cell)
+        {
             List<T> returnList = new List<T>();
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
                     if (x == 0 && y == 0)
                         continue;
                     int cellx = (int)cell.GridPosition.x + x;
@@ -94,7 +136,8 @@ namespace Framework.Grid {
         /// <summary>
         /// Muove il player sulla griglia alla posizione indicata.
         /// </summary>
-        public virtual void MoveToGridPosition(int _x, int _y, Player _player) {
+        public virtual void MoveToGridPosition(int _x, int _y, Player _player)
+        {
 
             if (_x < 0 || _y < 0 || _x > GridSize.x - 1 || _y > GridSize.y - 1)
                 return;
@@ -104,7 +147,8 @@ namespace Framework.Grid {
 
             //Actual translation
             _player.transform.DOMove(GetCellWorldPosition(_x, _y),
-                        0.3f).OnComplete(delegate {
+                        0.3f).OnComplete(delegate
+                        {
                             //Debug.LogFormat("Movimento player {0} - [{1}, {2}]", _player.ID, _x, _y);
                         }).SetEase(Ease.OutBack);
 
@@ -118,7 +162,8 @@ namespace Framework.Grid {
     }
 
 
-    public enum Direction {
+    public enum Direction
+    {
         up,
         left,
         down,
