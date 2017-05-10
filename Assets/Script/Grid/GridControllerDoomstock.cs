@@ -29,7 +29,11 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             Color resultColor = heightmap.GetPixel(x, y);
             Color resultColorBL = heightmapBlackList.GetPixel(x, y);
             if (resultColorBL.a > 0.5)
+            {
                 cell.SetType(CellDoomstock.CellType.Nullo);
+                cell.Cost = 10;
+            }
+                
             float colorPixelValue = resultColor.grayscale;
 
            // Debug.LogFormat("Color {0} x {1} -> {2}", cell.GridPosition.x, cell.GridPosition.y, colorPixelValue);
