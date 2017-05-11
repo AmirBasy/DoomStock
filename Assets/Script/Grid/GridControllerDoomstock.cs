@@ -4,8 +4,16 @@ using UnityEngine;
 using Framework.Grid;
 public class GridControllerDoomstock : GridController<CellDoomstock> {
 
+    /// <summary>
+    /// Texture da cui prendere i dati.
+    /// </summary>
     public Texture2D heightmap, heightmapTerreinType;
 
+    /// <summary>
+    /// Restituisce la posizione del building dal suo ID.
+    /// </summary>
+    /// <param name="uniqueID"></param>
+    /// <returns></returns>
     public Vector2 GetBuildingPositionByUniqueID(string uniqueID) {
         foreach (CellDoomstock item in Cells) {
             if (item.building) {
@@ -16,6 +24,10 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         return new Vector2 (-1,-1);
     }
 
+    /// <summary>
+    /// Genera la mappa leggendo i dati dalle texture.
+    /// </summary>
+    /// <param name="createView"></param>
     protected override void GenerateMap(bool createView = false)
     {
         int heightAmount = 5;
@@ -68,6 +80,13 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
 
     }
 
+    /// <summary>
+    /// Legge i dati della texture
+    /// </summary>
+    /// <param name="_texture"></param>
+    /// <param name="gridWidth"></param>
+    /// <param name="gridHeight"></param>
+    /// <returns></returns>
     Color[,] GetGridDataFromTexture(Texture2D _texture, int gridWidth, int gridHeight) {
         Color[,] returnColors = new Color[gridWidth, gridHeight];
 
@@ -85,6 +104,13 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         return returnColors;
 
     }
+
+    /// <summary>
+    /// Crea la view della tile.
+    /// </summary>
+    /// <param name="tilePosition"></param>
+    /// <param name="cellData"></param>
+    /// <returns></returns>
     protected override GameObject CreateGridTileView(Vector3 tilePosition, CellDoomstock cellData)
     {
         GameObject returnCellView = base.CreateGridTileView(tilePosition, cellData);
@@ -92,6 +118,13 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         returnCellView.transform.GetChild(0).transform.localScale = new Vector3(returnCellView.transform.GetChild(0).transform.localScale.x * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.z * GameManager.I.CellSize);
         return returnCellView;
     }
+
+    /// <summary>
+    /// Sposta _player nella posizione della griglia [Xnext, Ynext].
+    /// </summary>
+    /// <param name="Xnext"></param>
+    /// <param name="Ynext"></param>
+    /// <param name="_player"></param>
     public override void MoveToGridPosition(int Xnext, int Ynext, Player _player)
     {
         int XOldPlayer = _player.XpositionOnGrid ;
@@ -104,6 +137,12 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         Cells[Xnext, Ynext].PlayersQueue.Add(_player);
         
     }
+
+    /// <summary>
+    /// se è vera, _player può aprire iL menu.
+    /// </summary>
+    /// <param name="_player"></param>
+    /// <returns></returns>
     public bool CanUseMenu(Player _player)
     {
         if (Cells[_player.XpositionOnGrid, _player.YpositionOnGrid].PlayersQueue.LastIndexOf(_player) == 0)
@@ -111,6 +150,11 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         else { return false; }
     }
 
+    /// <summary>
+    /// Restituisce la posizione della cella dato lo stato.
+    /// </summary>
+    /// <param name="status"></param>
+    /// <returns></returns>
     public CellDoomstock GetCellPositionByStatus (CellDoomstock.CellStatus status) {
         foreach (CellDoomstock item in Cells) {
             if (item.Status == status)
@@ -118,8 +162,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         }
         return null;
     }
-
-   
+  
 }
 
 

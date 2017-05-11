@@ -89,21 +89,24 @@ public class GameManager : MonoBehaviour {
             
             Players[2].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y + 1, CellSize);
         }
-        if (Players[3] != null) {
-            Players[3].SetupInput(
-            new PlayerInputData() {
-                Up = KeyCode.Keypad8,
-                Left = KeyCode.Keypad4,
-                Down = KeyCode.Keypad5,
-                Right = KeyCode.Keypad6,
-                Confirm = KeyCode.KeypadMultiply,
-                PopulationMenu = KeyCode.KeypadPlus,
-                GoBack = KeyCode.KeypadMinus,
-                
-            });
-            
-            Players[3].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y - 1, CellSize);
-        }
+
+        #region Quarto player commento
+        //if (Players[3] != null) {
+        //    Players[3].SetupInput(
+        //    new PlayerInputData() {
+        //        Up = KeyCode.Keypad8,
+        //        Left = KeyCode.Keypad4,
+        //        Down = KeyCode.Keypad5,
+        //        Right = KeyCode.Keypad6,
+        //        Confirm = KeyCode.KeypadMultiply,
+        //        PopulationMenu = KeyCode.KeypadPlus,
+        //        GoBack = KeyCode.KeypadMinus,
+
+        //    });
+
+        //    Players[3].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y - 1, CellSize);
+        //} 
+        #endregion
     }
 
     #endregion

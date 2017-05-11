@@ -132,6 +132,7 @@ namespace Framework.Grid
             return returnList;
         }
         #endregion
+
         #region grid Movement
         /// <summary>
         /// Muove il player sulla griglia alla posizione indicata.

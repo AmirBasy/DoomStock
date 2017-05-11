@@ -31,8 +31,6 @@ public class Player : PlayerBase
 
     private void Start()
     {
-        Population = 0;
-        //GameManager.I.UIPlayerManager.SendBuildingDataToMenuBuilding(BuildingsDataPrefabs, this);
         playerInput = new PlayerInput(InputPlayerIndex);
     }
 
