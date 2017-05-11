@@ -28,19 +28,43 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             int y = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
             Color resultColor = heightmap.GetPixel(x, y);
             Color resultColorBL = heightmapTerreinType.GetPixel(x, y);
-            //foresta: #ff009933
-            //secco: #ffcc9966
-            //erba: #ffcccc33
-            //roccia: #ff999999
+            //foresta: #000000ff
+            //secco: #ff0000ff
+            //erba: #00ff00ff
+            //roccia: #0000ffff 
             //nullo: #ffffffff --> 1 1 1 1
+            //525252FF
+            //
             Color color;
             ColorUtility.TryParseHtmlString("#ffffffff", out color);
             Debug.Log(color);
-            if (resultColorBL.a > 0.5)
+            switch (ColorUtility.ToHtmlStringRGBA(resultColorBL))
             {
-                cell.SetType(CellDoomstock.CellType.Nullo);
-                cell.Cost = 10;
+                case "ffffffff":
+                    cell.SetType(CellDoomstock.CellType.Nullo);
+                    cell.Cost = 10;
+                    break;
+                case "000000ff":
+                    cell.SetType(CellDoomstock.CellType.Forest);
+                    break;
+                case "ff0000ff":
+                    cell.SetType(CellDoomstock.CellType.Secco);
+                    break;
+                case "00ff00ff":
+                    cell.SetType(CellDoomstock.CellType.Erba);
+                    break;
+                case "0000ffff":
+                    cell.SetType(CellDoomstock.CellType.Roccia);
+                    break;
+                default:
+                    Debug.Log("colore non trovato " + ColorUtility.ToHtmlStringRGBA(resultColorBL));
+                    break;
             }
+            //if (ColorUtility.ToHtmlStringRGBA(resultColorBL))
+            //{
+            //    cell.SetType(CellDoomstock.CellType.Nullo);
+            //    cell.Cost = 10;
+            //}
                 
             float colorPixelValue = resultColor.grayscale;
 
