@@ -10,8 +10,7 @@ public class PopulationManager : MonoBehaviour
     #region Variables
     public Text MainPeopleText;
 
-    public int HealthCare;
-
+    
     /// <summary>
     /// scegliere nomi tra questi.
     /// </summary>
@@ -125,11 +124,11 @@ public class PopulationManager : MonoBehaviour
         PopulationData unitToInstantiate = new PopulationData
         {
             MaxAge = UnityEngine.Random.Range(MinLife, MaxLife),
-            Name = Names[randomIndex],
+            //Name = Names[randomIndex],
             FoodRequirements = UnityEngine.Random.Range(MinFoodRequirement, MaxFoodRequirement),
             EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
-            IndividualHappiness = false,
-            Ambition = Ambitions[randomAmbition]
+           
+            
 
         };
         unitToInstantiate.Awake();

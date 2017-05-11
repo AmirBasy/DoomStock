@@ -49,10 +49,6 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public string NameLable { get; set; }
 
-    /// <summary>
-    /// l'ambizione che un popolano deve avere per lavorare in questo edificio producendo Happiness.
-    /// </summary>
-    public string Ambition;
 
     /// <summary>
     /// Tempo di costruzione per l'edificio

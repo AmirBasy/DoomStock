@@ -153,22 +153,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public List<BaseResourceData> resources;
 
-    /// <summary>
-    /// Risorsa che influenza la durata massima della vita dei popolani.
-    /// </summary>
-    int healthcare;
-    public int Healthcare
-    {
-        get { return healthcare; }
-        set
-        {
-            if (value <= 0)
-                value = 0;
-            healthcare = value;
 
-            GameManager.I.populationManager.MaxLife += value;
-        }
-    }
 
     /// <summary>
     /// Riempie la lista resources di nuove istanze di BaseResouceData.

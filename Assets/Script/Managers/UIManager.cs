@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// testo visibile per ogni risorsa.
     /// </summary>
-    public Text FoodText, StoneText, WoodText, FaithText, SpiritText, HealthcareText, HappinessText;
+    public Text FoodText, StoneText, WoodText, FaithText, SpiritText;
 
     #region Logger
 
@@ -38,8 +38,7 @@ public class UIManager : MonoBehaviour
         WoodText.text = " = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
         FaithText.text = " = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
         SpiritText.text = " = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
-        HealthcareText.text = " = " + GameManager.I.GetResourceDataByID("Healthcare").Value.ToString();
-        HappinessText.text = " = " + GameManager.I.GetResourceDataByID("Happiness").Value.ToString();
+ 
     }
 
     #endregion

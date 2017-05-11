@@ -95,12 +95,7 @@ public class Player : PlayerBase
             GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
 
         }
-        if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
-        {
-            GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
-            GameManager.I.GetResourceDataByID("Happiness").Value++;
-        }
-        else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; }
+
     }
 
     /// <summary>
@@ -112,7 +107,7 @@ public class Player : PlayerBase
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
         GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
-        GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
+        
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count<1 && _buildingData.currentState != BuildingData.BuildingState.Ready)
         {
