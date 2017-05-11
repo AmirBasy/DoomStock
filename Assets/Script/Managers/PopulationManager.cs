@@ -10,8 +10,7 @@ public class PopulationManager : MonoBehaviour
     #region Variables
     public Text MainPeopleText;
 
-    public int HealthCare;
-
+    
     /// <summary>
     /// scegliere nomi tra questi.
     /// </summary>
@@ -32,6 +31,7 @@ public class PopulationManager : MonoBehaviour
     /// Scegliere ogni quanto mangiare di ciascun popolano tra MinEatingTime e MaxEatingTime.
     /// </summary>
     public int MinEatingTime, MaxEatingTime;
+
     /// <summary>
     /// PER DEBUG
     /// </summary>
@@ -125,11 +125,11 @@ public class PopulationManager : MonoBehaviour
         PopulationData unitToInstantiate = new PopulationData
         {
             MaxAge = UnityEngine.Random.Range(MinLife, MaxLife),
-            Name = Names[randomIndex],
+            //Name = Names[randomIndex],
             FoodRequirements = UnityEngine.Random.Range(MinFoodRequirement, MaxFoodRequirement),
-            EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
-            IndividualHappiness = false,
-            Ambition = Ambitions[randomAmbition]
+           // EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
+           
+            
 
         };
         unitToInstantiate.Awake();
@@ -177,8 +177,8 @@ public class PopulationManager : MonoBehaviour
         {
 
             PopulationData newUnit = CreatePopulation();
-            Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
-            Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
+           // Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
+           // Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
             FoodRequirement += newUnit.FoodRequirements;
@@ -222,7 +222,7 @@ public class PopulationManager : MonoBehaviour
                 {
                     AllPopulation[i].EatingTime = 0;
                     Debug.Log("devo mangiare. " + AllPopulation[i].Name);
-                    Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
+                    //Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
 
                     GameManager.I.GetResourceDataByID("Food").Value -= AllPopulation[i].FoodRequirements;
                     if (AllPopulation[i].EatingTime <= 0)

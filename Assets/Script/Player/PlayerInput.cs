@@ -137,7 +137,7 @@ public class PlayerInput
                 }
                 if (Input.GetKeyDown(KeyCode.X))
                 {
-                    // Population Menu
+                    //  Add Population
                     inputStatus.X = ButtonState.Pressed;
                 }
 

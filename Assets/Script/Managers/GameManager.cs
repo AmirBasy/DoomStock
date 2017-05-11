@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
                     Down = KeyCode.S,// | KeyCode.Joystick1Button5,
                     Right = KeyCode.D,// | KeyCode.Joystick1Button0,
                     Confirm = KeyCode.Z,// | KeyCode.Joystick1Button0,
-                    PopulationMenu = KeyCode.X, // | KeyCode.Joystick1Button4,
+                    AddPopulationUnit = KeyCode.X, // | KeyCode.Joystick1Button4,
                     GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
 
                 });
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
                 Down = KeyCode.K,
                 Right = KeyCode.L,
                 Confirm = KeyCode.N,
-                PopulationMenu = KeyCode.U,
+                AddPopulationUnit = KeyCode.U,
                 GoBack = KeyCode.O,
                 
             });
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
                 Down = KeyCode.DownArrow,
                 Right = KeyCode.RightArrow,
                 Confirm = KeyCode.Home,
-                PopulationMenu = KeyCode.PageUp,
+                AddPopulationUnit = KeyCode.PageUp,
                 GoBack = KeyCode.PageDown,
                 
             });
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour {
     {
         gridController.CellSize = CellSize;
         gridController.CreateMap(GridWidth, GridHeight, DebugMode);
-        Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
+       
 
         if (OnGridCreated != null)
             OnGridCreated();
@@ -153,22 +153,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public List<BaseResourceData> resources;
 
-    /// <summary>
-    /// Risorsa che influenza la durata massima della vita dei popolani.
-    /// </summary>
-    int healthcare;
-    public int Healthcare
-    {
-        get { return healthcare; }
-        set
-        {
-            if (value <= 0)
-                value = 0;
-            healthcare = value;
 
-            GameManager.I.populationManager.MaxLife += value;
-        }
-    }
 
     /// <summary>
     /// Riempie la lista resources di nuove istanze di BaseResouceData.

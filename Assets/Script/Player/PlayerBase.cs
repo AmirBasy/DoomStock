@@ -8,7 +8,6 @@ using Framework.Grid;
 public abstract class PlayerBase : MonoBehaviour {
 
     public string ID;
-    public Text PeopleText;
     public int MaxCellCost;
 
     public PlayerInputData inputData;
@@ -18,7 +17,7 @@ public abstract class PlayerBase : MonoBehaviour {
 
     public virtual void UpdateGraphic(string newText)
     {
-        PeopleText.text = newText;
+        //PeopleText.text = newText;
     }
     /// <summary>
     /// Istanzia un edificio
@@ -46,7 +45,7 @@ public class PlayerInputData {
     public KeyCode Right;
     public KeyCode Left;
 
-    public KeyCode PopulationMenu;
+    public KeyCode AddPopulationUnit;
     public KeyCode GoBack;
     public KeyCode Confirm;
 

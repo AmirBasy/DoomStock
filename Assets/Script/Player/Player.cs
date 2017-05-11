@@ -91,16 +91,11 @@ public class Player : PlayerBase
 
             //cambia la grafica
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
-            //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
-            //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
+            GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
+            GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
 
         }
-        if (GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).Ambition == _building.Ambition)
-        {
-            GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = true;
-            GameManager.I.GetResourceDataByID("Happiness").Value++;
-        }
-        else { GameManager.I.populationManager.GetPopulationDataByID(_unitIDToAdd).IndividualHappiness = false; }
+
     }
 
     /// <summary>
@@ -111,8 +106,8 @@ public class Player : PlayerBase
     {
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
-        GameManager.I.messagesManager.Showinformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position);
-        GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).IndividualHappiness = false;
+        GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
+        
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count<1 && _buildingData.currentState != BuildingData.BuildingState.Ready)
         {
@@ -283,15 +278,29 @@ public class Player : PlayerBase
             }
             if (_inputStatus.X == ButtonState.Pressed) // POPULATION MENU
             {
-                if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status == CellDoomstock.CellStatus.Hole)
+                if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
-                    currentMenu = OpenMenuPopulation();
+                    if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
+                    {
+                        List<PopulationData> freePeople = GameManager.I.populationManager.GetAllFreePeople();
+                        int randomInd = Random.Range(0, freePeople.Count - 1);
+                        AddPopulation(GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building, freePeople[randomInd].UniqueID);
+                    } 
                 }
+                else { return; }
+                
             }
             if (_inputStatus.B == ButtonState.Pressed) // DESELECT
             {
-
+                if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building != null)
+                {
+                    BuildingData _building = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building;
+                    if (_building.Population.Count > 0)
+                        RemovePopulationFromBuilding(_building.Population[_building.Population.Count - 1].UniqueID, _building);
+                } 
+                else { return; }
             }
+
         }
         else
         {
