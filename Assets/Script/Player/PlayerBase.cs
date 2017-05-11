@@ -45,7 +45,7 @@ public class PlayerInputData {
     public KeyCode Right;
     public KeyCode Left;
 
-    public KeyCode PopulationMenu;
+    public KeyCode AddPopulationUnit;
     public KeyCode GoBack;
     public KeyCode Confirm;
 

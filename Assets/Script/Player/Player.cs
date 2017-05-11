@@ -278,10 +278,17 @@ public class Player : PlayerBase
             }
             if (_inputStatus.X == ButtonState.Pressed) // POPULATION MENU
             {
-                if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status == CellDoomstock.CellStatus.Hole)
+                if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
-                    currentMenu = OpenMenuPopulation();
+                    if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
+                    {
+                        List<PopulationData> freePeople = GameManager.I.populationManager.GetAllFreePeople();
+                        int randomInd = Random.Range(0, freePeople.Count - 1);
+                        AddPopulation(GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building, freePeople[randomInd].UniqueID);
+                    } 
                 }
+                else { return; }
+                
             }
             if (_inputStatus.B == ButtonState.Pressed) // DESELECT
             {

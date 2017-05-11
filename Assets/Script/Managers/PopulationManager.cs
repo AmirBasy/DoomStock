@@ -177,7 +177,7 @@ public class PopulationManager : MonoBehaviour
         {
 
             PopulationData newUnit = CreatePopulation();
-            Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
+           // Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
            // Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);

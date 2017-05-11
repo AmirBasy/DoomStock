@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
                     Down = KeyCode.S,// | KeyCode.Joystick1Button5,
                     Right = KeyCode.D,// | KeyCode.Joystick1Button0,
                     Confirm = KeyCode.Z,// | KeyCode.Joystick1Button0,
-                    PopulationMenu = KeyCode.X, // | KeyCode.Joystick1Button4,
+                    AddPopulationUnit = KeyCode.X, // | KeyCode.Joystick1Button4,
                     GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
 
                 });
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
                 Down = KeyCode.K,
                 Right = KeyCode.L,
                 Confirm = KeyCode.N,
-                PopulationMenu = KeyCode.U,
+                AddPopulationUnit = KeyCode.U,
                 GoBack = KeyCode.O,
                 
             });
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
                 Down = KeyCode.DownArrow,
                 Right = KeyCode.RightArrow,
                 Confirm = KeyCode.Home,
-                PopulationMenu = KeyCode.PageUp,
+                AddPopulationUnit = KeyCode.PageUp,
                 GoBack = KeyCode.PageDown,
                 
             });
