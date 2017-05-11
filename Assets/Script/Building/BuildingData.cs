@@ -136,7 +136,7 @@ public class BuildingData : ScriptableObject, ISelectable
         foreach (var item in Population.FindAll(p => p.UniqueID == _unitToRemoveID))
         {
             GameManager.I.populationManager.AddPopulation(item);
-            GameManager.I.messagesManager.ShowMessage(item, PopulationMessageType.BackToHole);
+            //GameManager.I.messagesManager.ShowMessage(item, PopulationMessageType.BackToHole);
         }
 
         Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
