@@ -31,6 +31,7 @@ public class PopulationManager : MonoBehaviour
     /// Scegliere ogni quanto mangiare di ciascun popolano tra MinEatingTime e MaxEatingTime.
     /// </summary>
     public int MinEatingTime, MaxEatingTime;
+
     /// <summary>
     /// PER DEBUG
     /// </summary>
@@ -126,7 +127,7 @@ public class PopulationManager : MonoBehaviour
             MaxAge = UnityEngine.Random.Range(MinLife, MaxLife),
             //Name = Names[randomIndex],
             FoodRequirements = UnityEngine.Random.Range(MinFoodRequirement, MaxFoodRequirement),
-            EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
+           // EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
            
             
 
@@ -177,7 +178,7 @@ public class PopulationManager : MonoBehaviour
 
             PopulationData newUnit = CreatePopulation();
             Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
-            Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
+           // Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
             FoodRequirement += newUnit.FoodRequirements;

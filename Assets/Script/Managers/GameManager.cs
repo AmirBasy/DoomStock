@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour {
     {
         gridController.CellSize = CellSize;
         gridController.CreateMap(GridWidth, GridHeight, DebugMode);
-        Logger.I.WriteInLogger(string.Format("pozza creata in {0} {1}", (int)(gridController.GridSize.x / 2), (int)(gridController.GridSize.y / 2)), logType.LowPriority);
+       
 
         if (OnGridCreated != null)
             OnGridCreated();

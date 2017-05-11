@@ -39,24 +39,24 @@ public class PlayerMenuComponent : MenuBase
                     case " - Building":
                         DoAction();
                         break;
-                    case " -  People":
-                        foreach (PopulationData item in cell.building.Population)
-                        {
-                            PossibiliScelteAttuali.Add(item);
-                        }
-                        break;
-                    case " + People":
-                        foreach (PopulationData p in GameManager.I.populationManager.GetAllFreePeople())
-                        {
-                            PossibiliScelteAttuali.Add(p);
-                        }
-                        break;
+                    //case " -  People":
+                    //    foreach (PopulationData item in cell.building.Population)
+                    //    {
+                    //        PossibiliScelteAttuali.Add(item);
+                    //    }
+                    //    break;
+                    //case " + People":
+                    //    foreach (PopulationData p in GameManager.I.populationManager.GetAllFreePeople())
+                    //    {
+                    //        PossibiliScelteAttuali.Add(p);
+                    //    }
+                    //    break;
                     case " Info ":
 
                         break;
-                    case " - Debris":
-                        DoAction();
-                        break;
+                    //case " - Debris":
+                    //    DoAction();
+                    //    break;
                     case " Prendi ":
                         DoAction();
                         break;
@@ -88,17 +88,17 @@ public class PlayerMenuComponent : MenuBase
             case " - Building":
                 CurrentPlayer.DestroyBuilding(cell.building.UniqueID);
                 break;
-            case " -  People":
-                CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell.building);
-                break;
-            case " + People":
-                CurrentPlayer.AddPopulation(cell.building, ScelteFatte[1].UniqueID);
-                break;
+            //case " -  People":
+            //    CurrentPlayer.RemovePopulationFromBuilding(ScelteFatte[1].UniqueID, cell.building);
+            //    break;
+            //case " + People":
+            //    CurrentPlayer.AddPopulation(cell.building, ScelteFatte[1].UniqueID);
+            //    break;
             case " Info ":
                 break;
-            case " - Debris":
-                CurrentPlayer.RemoveBuildingDebris(cell.building);
-                break;
+            //case " - Debris":
+            //    CurrentPlayer.RemoveBuildingDebris(cell.building);
+            //    break;
             case " Prendi ":
                 foreach (var item in cell.building.BuildingResources)
                 {

@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P1_Menu;
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;
-    public PlayerMenuComponent P4_Menu;
+   
     #endregion
 
     #endregion
@@ -93,14 +93,14 @@ public class UIManager : MonoBehaviour
                         if (cell.building.PlayerOwner == _player)
                         {
                             FirstLevelSelectables.Add(new Selector() { UniqueID = " - Building", NameLable = "Rem Building" } as ISelectable);
-                            if (cell.building.Population.Count > 0)
-                            {
-                                FirstLevelSelectables.Add(new Selector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
-                            }
-                            if (GameManager.I.populationManager.GetAllFreePeople().Count > 0 && cell.building.Population.Count < cell.building.PopulationLimit)
-                            {
-                                FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
-                            }
+                            //if (cell.building.Population.Count > 0)
+                            //{
+                            //    FirstLevelSelectables.Add(new Selector() { UniqueID = " -  People", NameLable = "Rem People" } as ISelectable);
+                            //}
+                            //if (GameManager.I.populationManager.GetAllFreePeople().Count > 0 && cell.building.Population.Count < cell.building.PopulationLimit)
+                            //{
+                            //    FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                            //}
                             if(cell.building.currentState == BuildingData.BuildingState.Ready)
                             {
                                 FirstLevelSelectables.Add(new Selector() { UniqueID = " Prendi ", NameLable = " Prendi " } as ISelectable);
@@ -112,15 +112,15 @@ public class UIManager : MonoBehaviour
                         }
 
                         break;
-                    case CellDoomstock.CellStatus.Hole:
-                        FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
-                        break;
-                    case CellDoomstock.CellStatus.Debris:
-                        FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
-                        if (_player.CanRemoveDebris())
-                        {
-                            FirstLevelSelectables.Add(new Selector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
-                        }
+                    //case CellDoomstock.CellStatus.Hole:
+                    //    FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
+                    //    break;
+                    //case CellDoomstock.CellStatus.Debris:
+                    //    FirstLevelSelectables.Add(new Selector() { UniqueID = " Info ", NameLable = "Info" } as ISelectable);
+                    //    if (_player.CanRemoveDebris())
+                    //    {
+                    //        FirstLevelSelectables.Add(new Selector() { UniqueID = " - Debris", NameLable = "Remove debris" } as ISelectable);
+                    //    }
 
 
                         break;
@@ -142,9 +142,7 @@ public class UIManager : MonoBehaviour
                         );
                         P3_Menu.Init(_player, FirstLevelSelectables);
                         return P3_Menu;
-                    case "PlayerFour":
-                        P4_Menu.Init(_player, FirstLevelSelectables);
-                        return P4_Menu;
+                    
                     default:
                         break;
                 }
