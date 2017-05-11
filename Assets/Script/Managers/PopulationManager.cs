@@ -142,7 +142,7 @@ public class PopulationManager : MonoBehaviour
     void UnitDeath(PopulationData unit) {
         FoodRequirement -= unit.FoodRequirements;
         //GameManager.I.messagesManager.ShowMessage(unit, PopulationMessageType.Death);
-        GameManager.I.messagesManager.Showinformation(MessageLableType.Death,GameManager.I.buildingManager.GetBuildingContainingUnit(unit));
+        GameManager.I.messagesManager.ShowiInformation(MessageLableType.Death,GameManager.I.buildingManager.GetBuildingContainingUnit(unit));
         AllFreePeople.Remove(unit);
         AllPopulation.Remove(unit);
         if (unit.building)
@@ -182,7 +182,7 @@ public class PopulationManager : MonoBehaviour
             AddPopulation(newUnit);
             AllPopulation.Add(newUnit);
             FoodRequirement += newUnit.FoodRequirements;
-            GameManager.I.messagesManager.Showinformation(MessageLableType.Birth, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition);
+            GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition);
         }
         #endregion
 

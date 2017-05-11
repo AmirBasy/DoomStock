@@ -80,16 +80,16 @@ public class BuildingView : MonoBehaviour
         switch (Data.currentState)
         {
             case BuildingData.BuildingState.Construction:
-                //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 rend.material = Materials[1];
                 transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
                 break;
             case BuildingData.BuildingState.Built:
-                //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
+                //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
                 rend.material = Materials[0];
                 break;
             case BuildingData.BuildingState.Debris:
-                //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
+                //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 rend.material = Materials[2];
                 transform.DOMoveY(transform.position.y - 0.5f, 2).OnComplete(() => { });
                 _animator.enabled = false;
@@ -108,7 +108,7 @@ public class BuildingView : MonoBehaviour
                 break;
             case BuildingData.BuildingState.Ready:
                 _animator.enabled = false;
-                //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Ready);
+                //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Ready);
                 rend.material = Materials[1];
                 break;
 

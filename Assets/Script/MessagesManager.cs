@@ -8,7 +8,7 @@ public class MessagesManager : MonoBehaviour
     public UiInformation uiInformationPrefab;
 
 
-    public void Showinformation(MessageLableType _message, Vector3 WorldPosition) {
+    public void ShowiInformation(MessageLableType _message, Vector3 WorldPosition) {
 
         UiInformation info = Instantiate(uiInformationPrefab, WorldPosition,this.transform.rotation);
         info.ShowMessage(_message);
