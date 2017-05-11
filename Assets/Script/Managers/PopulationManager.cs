@@ -222,7 +222,7 @@ public class PopulationManager : MonoBehaviour
                 {
                     AllPopulation[i].EatingTime = 0;
                     Debug.Log("devo mangiare. " + AllPopulation[i].Name);
-                    Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
+                    //Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
 
                     GameManager.I.GetResourceDataByID("Food").Value -= AllPopulation[i].FoodRequirements;
                     if (AllPopulation[i].EatingTime <= 0)

@@ -39,7 +39,7 @@ public class PlayerMenuComponent : MenuBase
                     case " - Building":
                         DoAction();
                         break;
-             
+           
                     case " Info ":
 
                         break;
@@ -77,7 +77,7 @@ public class PlayerMenuComponent : MenuBase
             case " - Building":
                 CurrentPlayer.DestroyBuilding(cell.building.UniqueID);
                 break;
-    
+     
             case " Info ":
                 break;
             //case " - Debris":

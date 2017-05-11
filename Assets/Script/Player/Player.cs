@@ -292,8 +292,15 @@ public class Player : PlayerBase
             }
             if (_inputStatus.B == ButtonState.Pressed) // DESELECT
             {
-
+                if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building != null)
+                {
+                    BuildingData _building = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building;
+                    if (_building.Population.Count > 0)
+                        RemovePopulationFromBuilding(_building.Population[_building.Population.Count - 1].UniqueID, _building);
+                } 
+                else { return; }
             }
+
         }
         else
         {
