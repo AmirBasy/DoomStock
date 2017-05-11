@@ -10,13 +10,13 @@ public class PopulationManager : MonoBehaviour
     #region Variables
     public Text MainPeopleText;
 
-    
-    /// <summary>
-    /// scegliere nomi tra questi.
-    /// </summary>
-    public List<String> Names;
 
-    public List<String> Ambitions;
+    ///// <summary>
+    ///// scegliere nomi tra questi.
+    ///// </summary>
+    //public List<String> Names;
+
+    //public List<String> Ambitions;
     /// <summary>
     /// Scegliere età massima di ciascun popolano tra MinLife e MaxLife.
     /// </summary>
@@ -27,10 +27,7 @@ public class PopulationManager : MonoBehaviour
     /// </summary>
     public int MinFoodRequirement, MaxFoodRequirement;
 
-    /// <summary>
-    /// Scegliere ogni quanto mangiare di ciascun popolano tra MinEatingTime e MaxEatingTime.
-    /// </summary>
-    public int MinEatingTime, MaxEatingTime;
+  
 
     /// <summary>
     /// PER DEBUG
@@ -119,17 +116,12 @@ public class PopulationManager : MonoBehaviour
     /// <returns></returns>
     PopulationData CreatePopulation()
     {
-        int randomIndex = UnityEngine.Random.Range(0, Names.Count);
-        int randomAmbition = UnityEngine.Random.Range(0, Ambitions.Count);
 
         PopulationData unitToInstantiate = new PopulationData
         {
             MaxAge = UnityEngine.Random.Range(MinLife, MaxLife),
-            //Name = Names[randomIndex],
             FoodRequirements = UnityEngine.Random.Range(MinFoodRequirement, MaxFoodRequirement),
-           // EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
-           
-            
+            // EatingTime = UnityEngine.Random.Range(MinEatingTime, MaxEatingTime),
 
         };
         unitToInstantiate.Awake();
@@ -139,10 +131,11 @@ public class PopulationManager : MonoBehaviour
     /// <summary>
     /// morte di un popolano
     /// </summary>
-    void UnitDeath(PopulationData unit) {
+    void UnitDeath(PopulationData unit)
+    {
         FoodRequirement -= unit.FoodRequirements;
         //GameManager.I.messagesManager.ShowMessage(unit, PopulationMessageType.Death);
-        GameManager.I.messagesManager.ShowiInformation(MessageLableType.Death,GameManager.I.buildingManager.GetBuildingContainingUnit(unit));
+        GameManager.I.messagesManager.ShowiInformation(MessageLableType.Death, GameManager.I.buildingManager.GetBuildingContainingUnit(unit));
         AllFreePeople.Remove(unit);
         AllPopulation.Remove(unit);
         if (unit.building)
@@ -150,8 +143,8 @@ public class PopulationManager : MonoBehaviour
             unit.building.Population.Remove(unit);
             unit.building = null;
         }
-            
-    
+
+
 
     }
     #endregion
@@ -176,13 +169,15 @@ public class PopulationManager : MonoBehaviour
         if (_eventData.ID == "Birth")
         {
 
-            PopulationData newUnit = CreatePopulation();
-           // Debug.Log("è nato " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition);
-           // Logger.I.WriteInLogger("E' nato. " + newUnit.Name + " con l'ambizione di essere un " + newUnit.Ambition, logType.Population);
-            AddPopulation(newUnit);
-            AllPopulation.Add(newUnit);
-            FoodRequirement += newUnit.FoodRequirements;
-            GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition);
+            if (GameManager.I.GetResourceDataByID("Food").Value > 0)
+            {
+                PopulationData newUnit = CreatePopulation();
+                AddPopulation(newUnit);
+                AllPopulation.Add(newUnit);
+                FoodRequirement += newUnit.FoodRequirements;
+                GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition);
+                GameManager.I.GetResourceDataByID("Food").Value -= newUnit.FoodRequirements; 
+            }
         }
         #endregion
 
@@ -211,40 +206,38 @@ public class PopulationManager : MonoBehaviour
         #endregion
 
         #region Food
-        if (_eventData.ID == "Eat")
-        {
+        //if (_eventData.ID == "Eat")
+        //{
 
-            for (int i = 0; i < AllPopulation.Count; i++)
-            {
-                int eatingTime = AllPopulation[i].EatingTime;
-                AllPopulation[i].EatingTime--;
-                if (AllPopulation[i].EatingTime <= 0)
-                {
-                    AllPopulation[i].EatingTime = 0;
-                    Debug.Log("devo mangiare. " + AllPopulation[i].Name);
-                    //Logger.I.WriteInLogger(AllPopulation[i].Name + " deve mangiare.", logType.Building);
-
-                    GameManager.I.GetResourceDataByID("Food").Value -= AllPopulation[i].FoodRequirements;
-                    if (AllPopulation[i].EatingTime <= 0)
-                    {
-                        AllPopulation[i].EatingTime = eatingTime;
-                    }
-
-                    #region morte di fame
-                    if (GameManager.I.GetResourceDataByID("Food").Value <= 0)
-                    {
-                        GameManager.I.GetResourceDataByID("Food").Value = 0;
-                        FoodRequirement -= AllPopulation[i].FoodRequirements;
-                        GameManager.I.uiManager.FoodText.color = Color.red;
-                        UnitDeath(AllPopulation[i]);
+        //    for (int i = 0; i < AllPopulation.Count; i++)
+        //    {
+        //        int eatingTime = AllPopulation[i].EatingTime;
+        //        AllPopulation[i].EatingTime--;
+        //        if (AllPopulation[i].EatingTime <= 0)
+        //        {
+        //            AllPopulation[i].EatingTime = 0;
 
 
-                    }
-                    #endregion
-                }
-            }
-            #endregion
-        }
+
+        //            if (AllPopulation[i].EatingTime <= 0)
+        //            {
+        //                AllPopulation[i].EatingTime = eatingTime;
+        //            }
+
+        //            #region morte di fame
+        //            if (GameManager.I.GetResourceDataByID("Food").Value <= 0)
+        //            {
+        //                GameManager.I.GetResourceDataByID("Food").Value = 0;
+        //                FoodRequirement -= AllPopulation[i].FoodRequirements;
+        //                GameManager.I.uiManager.FoodText.color = Color.red;
+        //                UnitDeath(AllPopulation[i]);
+
+
+        //            }
+        //            #endregion
+        //        }
+        //    }
+        #endregion
     }
 
     private void OnDisable()

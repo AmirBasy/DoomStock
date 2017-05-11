@@ -9,24 +9,22 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
-  m_Name: MuroCurvo
+  m_Name: Casa
   m_EditorClassIdentifier: 
-  currentState: 0
   TimedEvents: []
-  BaseResources:
-  - {fileID: 11400000, guid: 376f8d38d695a4e4bacea0d9e542aa04, type: 2}
-  Ambition: 
+  BuildingResources: []
   BuildingTime: 10
-  ID: Muro Curvo
+  ID: Casa
   PopulationLimit: 0
-  WoodToBuild: 10
-  StoneToBuild: 10
-  BuildPrefab: {fileID: 114642226398826778, guid: 1c0be8d655d52ed42a82f7b736674608,
+  WoodToBuild: 0
+  StoneToBuild: 0
+  BuildPrefab: {fileID: 114373493021348228, guid: 9f7b0aee1ebe30840941ef55972acbbf,
     type: 2}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
   Maintenance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 100
+  BuildingLife: 2147483647
   DecreaseBuildingLife: 0
+  currentState: 0

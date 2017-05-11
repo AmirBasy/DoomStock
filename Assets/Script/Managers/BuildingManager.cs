@@ -50,7 +50,6 @@ public class BuildingManager : MonoBehaviour
             if (_buildingView.Data.BuildingLife <= 0)
             {
                 Destroy(_buildingView.gameObject);
-                Debug.Log("Ho distrutto l edifico" + _buildingView.Data.ID);
             }
         }
     }

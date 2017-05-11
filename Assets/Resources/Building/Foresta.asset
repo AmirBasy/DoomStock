@@ -9,17 +9,14 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
-  m_Name: EstrattoreStone
+  m_Name: Foresta
   m_EditorClassIdentifier: 
-  currentState: 0
   TimedEvents: []
-  BaseResources:
-  - {fileID: 11400000, guid: aae1c9385edc6c14ab8416ec38d20513, type: 2}
-  Ambition: Carpenter
+  BuildingResources: []
   BuildingTime: 10
-  ID: EstrattoreStone
+  ID: Foresta
   PopulationLimit: 5
-  WoodToBuild: 50
+  WoodToBuild: 40
   StoneToBuild: 15
   BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
     type: 2}
@@ -30,3 +27,4 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 1
+  currentState: 0

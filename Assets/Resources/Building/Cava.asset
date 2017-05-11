@@ -9,18 +9,16 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
-  m_Name: House
+  m_Name: Cava
   m_EditorClassIdentifier: 
-  currentState: 0
   TimedEvents: []
-  BaseResources: []
-  Ambition: 
+  BuildingResources: []
   BuildingTime: 10
-  ID: House
-  PopulationLimit: 0
-  WoodToBuild: 0
-  StoneToBuild: 0
-  BuildPrefab: {fileID: 114373493021348228, guid: 9f7b0aee1ebe30840941ef55972acbbf,
+  ID: Cava
+  PopulationLimit: 5
+  WoodToBuild: 50
+  StoneToBuild: 15
+  BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
     type: 2}
   Attack: 0
   FireRateo: 0
@@ -28,4 +26,5 @@ MonoBehaviour:
   Maintenance: 0
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
-  DecreaseBuildingLife: 0
+  DecreaseBuildingLife: 1
+  currentState: 0
