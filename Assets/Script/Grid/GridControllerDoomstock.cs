@@ -18,67 +18,73 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
 
     protected override void GenerateMap(bool createView = false)
     {
+        int heightAmount = 5;
+
         base.GenerateMap(false);
         Cells[(int)(GridSize.x / 2), (int)(GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
-        int cellWidth = heightmap.width / (int)GridSize.x;
-        int cellHeight = heightmap.height / (int)GridSize.y;
-      //  Debug.LogFormat("HM {0} x {1} -> {2} x {3}", heightmap.width, heightmap.height, cellWidth, cellHeight);
-        foreach (CellDoomstock cell in Cells) {
-            int x = (int)(cell.GridPosition.x * cellWidth) + (cellWidth / 2);
-            int y = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
-            Color resultColor = heightmap.GetPixel(x, y);
-            Color resultColorBL = heightmapTerreinType.GetPixel(x, y);
+
+ 
+
+        Color[,] terrainTypeColors = GetGridDataFromTexture(heightmapTerreinType, (int)GridSize.x, (int)GridSize.y);
+        Color[,] heightValues = GetGridDataFromTexture(heightmap, (int)GridSize.x, (int)GridSize.y);
+
+        foreach (var cell in Cells) {
+            // Calcolo altezza
+            float colorPixelValue = heightValues[(int)cell.GetGridPosition().x, (int)cell.GetGridPosition().y].grayscale;
+            cell.WorldPosition += new Vector3(0, colorPixelValue * heightAmount, 0);
+            // Calcolo il tipo di terreno
             //foresta: #000000ff
             //secco: #ff0000ff
             //erba: #00ff00ff
             //roccia: #0000ffff 
-            //nullo: #ffffffff --> 1 1 1 1
-            //525252FF
-            //
-            Color color;
-            ColorUtility.TryParseHtmlString("#ffffffff", out color);
-            Debug.Log(color);
-            switch (ColorUtility.ToHtmlStringRGBA(resultColorBL))
-            {
-                case "ffffffff":
+            //nullo: #ffffffff
+            string colorRGB = ColorUtility.ToHtmlStringRGB(terrainTypeColors[(int)cell.GetGridPosition().x, (int)cell.GetGridPosition().y]);
+            switch (colorRGB) {
+                case "FFFFFF":
                     cell.SetType(CellDoomstock.CellType.Nullo);
                     cell.Cost = 10;
                     break;
-                case "000000ff":
+                case "000000":
                     cell.SetType(CellDoomstock.CellType.Forest);
                     break;
-                case "ff0000ff":
+                case "FF0000":
                     cell.SetType(CellDoomstock.CellType.Secco);
                     break;
-                case "00ff00ff":
+                case "00FF00":
                     cell.SetType(CellDoomstock.CellType.Erba);
                     break;
-                case "0000ffff":
+                case "0000FF":
                     cell.SetType(CellDoomstock.CellType.Roccia);
                     break;
                 default:
-                    Debug.Log("colore non trovato " + ColorUtility.ToHtmlStringRGBA(resultColorBL));
+                    Debug.Log("colore non trovato " + colorRGB);
                     break;
+                    
             }
-            //if (ColorUtility.ToHtmlStringRGBA(resultColorBL))
-            //{
-            //    cell.SetType(CellDoomstock.CellType.Nullo);
-            //    cell.Cost = 10;
-            //}
-                
-            float colorPixelValue = resultColor.grayscale;
 
-           // Debug.LogFormat("Color {0} x {1} -> {2}", cell.GridPosition.x, cell.GridPosition.y, colorPixelValue);
-
-            cell.WorldPosition += new Vector3(0, colorPixelValue * 5, 0);
-            if(createView)
+            if (createView)
                 CreateGridTileView(cell.WorldPosition, cell);
         }
 
-
     }
 
+    Color[,] GetGridDataFromTexture(Texture2D _texture, int gridWidth, int gridHeight) {
+        Color[,] returnColors = new Color[gridWidth, gridHeight];
 
+        int cellWidth = _texture.width / gridWidth;
+        int cellHeight = _texture.height / gridHeight;
+
+        foreach (CellDoomstock cell in Cells) {
+            int xPixelPosition = (int)(cell.GridPosition.x * cellWidth) + (cellWidth / 2);
+            int yPixelPosition = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
+            Color resultColor = _texture.GetPixel(xPixelPosition, yPixelPosition);
+            returnColors[(int)cell.GridPosition.x, (int)cell.GridPosition.y] = resultColor;
+
+        }
+
+        return returnColors;
+
+    }
     protected override GameObject CreateGridTileView(Vector3 tilePosition, CellDoomstock cellData)
     {
         GameObject returnCellView = base.CreateGridTileView(tilePosition, cellData);
