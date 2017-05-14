@@ -111,7 +111,7 @@ public class PopulationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// genera un'unità di populationData con nome, età massima e fabbisogno random 
+    /// genera un'unità di populationData
     /// </summary>
     /// <returns></returns>
     PopulationData CreatePopulation()
@@ -164,16 +164,18 @@ public class PopulationManager : MonoBehaviour
     private void OnEvent(TimedEventData _eventData)
     {
 
-
+        
         #region Birth
         if (_eventData.ID == "Birth")
         {
 
-            if (GameManager.I.GetResourceDataByID("Food").Value > 0)
+           
+            if (GameManager.I.GetResourceDataByID("Food").Value > 0 && GameManager.I.buildingManager.IsThereAnySpace())
             {
                 PopulationData newUnit = CreatePopulation();
                 AddPopulation(newUnit);
                 AllPopulation.Add(newUnit);
+                GameManager.I.buildingManager.GetFirstOpening().Data.Population.Add(newUnit);
                 FoodRequirement += newUnit.FoodRequirements;
                 GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition);
                 GameManager.I.GetResourceDataByID("Food").Value -= newUnit.FoodRequirements; 

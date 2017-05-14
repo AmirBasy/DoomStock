@@ -116,6 +116,38 @@ public class BuildingManager : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// restituisce true se c'è posto nelle case.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsThereAnySpace()
+    {
+        foreach (var item in GetAllBuildingInScene())
+        {
+            if (item.Data.ID == "Casa" && item.Data.PopulationLimit >= item.Data.Population.Count)
+                return true;
+                
+        }
+        return false;
+    }
+
+
+    public BuildingView GetFirstOpening()
+    {
+        List<BuildingView> houses = new List<BuildingView>();
+        foreach (var item in GetAllBuildingInScene())
+        {
+            if (item.Data.ID == "Casa")
+                houses.Add(item);
+        }
+
+        foreach (var item in houses)
+        {
+            if (item.Data.Population.Count <= item.Data.PopulationLimit)
+                return item;
+        }
+        return null;
+    }
     #endregion
 
     #region Unique ID

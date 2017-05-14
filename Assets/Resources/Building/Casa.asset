@@ -15,7 +15,7 @@ MonoBehaviour:
   BuildingResources: []
   BuildingTime: 10
   ID: Casa
-  PopulationLimit: 0
+  PopulationLimit: 1
   WoodToBuild: 0
   StoneToBuild: 0
   BuildPrefab: {fileID: 114373493021348228, guid: 9f7b0aee1ebe30840941ef55972acbbf,

@@ -153,7 +153,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116780491158182}
-  m_Text: 'People: 0'
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -178,8 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: f2d3e403e65a12145978bb9fe77f1fd6, type: 2}
+  Materials:
+  - {fileID: 2100000, guid: 6aa6771a1b05f0b48b283c6b34b540ac, type: 2}
+  - {fileID: 2100000, guid: 963e8ac7c337fdc4bb192ba38ffc3d4c, type: 2}
+  - {fileID: 2100000, guid: f2dbf1b287a5a0c4aa876fdfcf44e55c, type: 2}
+  anim: {fileID: 0}
   BuildingLifeBar: {fileID: 0}
   PopulationBar: {fileID: 0}
-  Data: {fileID: 11400000, guid: f2d3e403e65a12145978bb9fe77f1fd6, type: 2}
-  Materials: []
-  anim: {fileID: 0}

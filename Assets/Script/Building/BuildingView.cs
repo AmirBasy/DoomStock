@@ -24,7 +24,7 @@ public class BuildingView : MonoBehaviour
     /// <summary>
     /// animazione della view.
     /// </summary>
-    public Animation anim; 
+    public Animation anim;
 
     #endregion
 
@@ -43,8 +43,8 @@ public class BuildingView : MonoBehaviour
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
-        
-    } 
+
+    }
     #endregion
 
     #region API
@@ -76,7 +76,12 @@ public class BuildingView : MonoBehaviour
     /// 
     public void UpdateAspect()
     {
-        Animator _animator = GetComponent<Animator>();
+        Animator _animator = new Animator();
+        if (GetComponent<Animator>())
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         switch (Data.currentState)
         {
             case BuildingData.BuildingState.Construction:
@@ -92,22 +97,26 @@ public class BuildingView : MonoBehaviour
                 //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 rend.material = Materials[2];
                 transform.DOMoveY(transform.position.y - 0.5f, 2).OnComplete(() => { });
-                _animator.enabled = false;
+                if (_animator)
+                    _animator.enabled = false;
                 break;
             case BuildingData.BuildingState.Producing:
                 rend.material = Materials[0];
                 Data.IsBuildingProducing();
                 if (Data.IsBuildingProducing() == true)
                 {
-                    _animator.enabled = true;
+                    if (_animator)
+                        _animator.enabled = true;
                 }
                 else
                 {
-                    _animator.enabled = false;
+                    if (_animator)
+                        _animator.enabled = false;
                 }
                 break;
             case BuildingData.BuildingState.Ready:
-                _animator.enabled = false;
+                if (_animator)
+                    _animator.enabled = false;
                 //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Ready);
                 rend.material = Materials[1];
                 break;
@@ -178,7 +187,7 @@ public class BuildingView : MonoBehaviour
                         }
 
                     }
-                    
+
                     break;
 
                 case "WoodProduction":
@@ -189,7 +198,7 @@ public class BuildingView : MonoBehaviour
                             res.Value += (int)(Data.Population.Count * 5);
                             LimitReached(res);
                         }
-                            
+
                     }
                     break;
                 case "StoneProduction":
@@ -200,7 +209,7 @@ public class BuildingView : MonoBehaviour
                             res.Value += (int)(Data.Population.Count * 5);
                             LimitReached(res);
                         }
-                            
+
                     }
                     break;
                 case "FaithProduction":
@@ -211,7 +220,7 @@ public class BuildingView : MonoBehaviour
                             res.Value += (int)(Data.Population.Count * 5);
                             LimitReached(res);
                         }
-                            
+
                     }
                     break;
                 case "SpiritProduction":
@@ -222,7 +231,7 @@ public class BuildingView : MonoBehaviour
                             res.Value += (int)(Data.Population.Count * 5);
                             LimitReached(res);
                         }
-                            
+
                     }
                     break;
                 default:

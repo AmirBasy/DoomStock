@@ -86,9 +86,13 @@ public class Player : PlayerBase
             pdata.building = _building;
 
             //cambia lo stato del building a Producing.
-            if (_building.Population.Count == 1)
-            _building.currentState = BuildingData.BuildingState.Producing;
-
+                if (_building.Population.Count == 1 && _building.ID != "Casa")
+            {
+                _building.currentState = BuildingData.BuildingState.Producing;
+            }
+                   
+            
+           
             //cambia la grafica
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
             //TODO : //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
