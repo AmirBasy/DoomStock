@@ -86,8 +86,12 @@ public class UIManager : MonoBehaviour
                 switch (cell.Status)
                 {
                     case CellDoomstock.CellStatus.Empty:
-                        FirstLevelSelectables.Add(
-                      new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
+
+                        if (cell.Type != CellDoomstock.CellType.Forest)
+                        {
+                            FirstLevelSelectables.Add(
+                                       new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable); 
+                        }
                         break;
                     case CellDoomstock.CellStatus.Filled:
                         if (cell.building.PlayerOwner == _player)
