@@ -281,7 +281,7 @@ public class Player : PlayerBase
             {
                 currentMenu = OpenMenuPlayerID();
             }
-            if (_inputStatus.X == ButtonState.Pressed) // POPULATION MENU
+            if (_inputStatus.X == ButtonState.Pressed) // ADD POPULATION 
             {
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
@@ -337,7 +337,10 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed)// SELECT
             {
-                currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
+                if (currentMenu.PossibiliScelteAttuali.Count > 0)
+                {
+                    currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]); 
+                }
             }
             if (_inputStatus.X == ButtonState.Pressed)// POPULATION MENU
             {
