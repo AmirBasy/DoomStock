@@ -1000,8 +1000,8 @@ MonoBehaviour:
   - {x: 0, y: 2}
   - {x: 0, y: 3}
   - {x: 0, y: 4}
-  heightmap: {fileID: 2800000, guid: 35ae7e2aab3449e4fbf851a9835941ae, type: 3}
-  heightmapTerreinType: {fileID: 2800000, guid: 144b46f4e810eb84a96691494e534d7d,
+  heightmap: {fileID: 2800000, guid: 4a0a9935b86a7aa4e9e3ce3799e9db44, type: 3}
+  heightmapTerreinType: {fileID: 2800000, guid: a3a27f6a080dde2489a7ba8ac7af8664,
     type: 3}
 --- !u!1001 &866308595
 Prefab:
