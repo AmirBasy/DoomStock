@@ -156,6 +156,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4095922474383816}
   - component: {fileID: 114425454665475942}
+  - component: {fileID: 95183218623188330}
+  - component: {fileID: 111128246382767792}
   m_Layer: 0
   m_Name: meraviglia
   m_TagString: Untagged
@@ -673,6 +675,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619446871531484}
   m_Mesh: {fileID: 4300002, guid: 739b6251f4bae094f8642a35a62a7a19, type: 3}
+--- !u!95 &95183218623188330
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824901984550158}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: c276351b22d91494e8c1be50686384ff, type: 3}
+  m_Controller: {fileID: 9100000, guid: 2743ea896bb406a4da938fc068bb2aaa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111128246382767792
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824901984550158}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: abfa7b55ec626f647b18f630efa6f24d, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114425454665475942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -684,8 +717,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
-  Materials: []
-  anim: {fileID: 0}
+  Data: {fileID: 11400000, guid: eedfd560196d7204eb13af8f4c5dbca8, type: 2}
+  Materials:
+  - {fileID: 2100000, guid: d091b2915fd965d4f8348e457d74358b, type: 2}
+  - {fileID: 2100000, guid: 0045a7f35f100a343bdec0cb111f8780, type: 2}
+  - {fileID: 2100000, guid: a602e5f85afb59440b9f96baa8f025dc, type: 2}
+  anim: {fileID: 111268850121464834, guid: c2d48951f9dce594c99750b2b3e3005e, type: 2}
   BuildingLifeBar: {fileID: 0}
   PopulationBar: {fileID: 0}
