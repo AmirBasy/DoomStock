@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4872541648267126}
   - component: {fileID: 33551950735273062}
   - component: {fileID: 23347365373147798}
+  - component: {fileID: 114378576108520764}
   m_Layer: 0
   m_Name: Bushy Tree
   m_TagString: Untagged
@@ -96,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502339869341714}
   m_LocalRotation: {x: -0.000000022787017, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.681, z: -0.12}
+  m_LocalPosition: {x: 0, y: 0.629, z: -0.119}
   m_LocalScale: {x: 0.3, y: 0.30018252, z: 0.30018252}
   m_Children: []
   m_Father: {fileID: 4080486386713732}
@@ -180,6 +181,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502339869341714}
   m_Mesh: {fileID: 4300000, guid: 1438fe4789f99c94ca2e4d8bf93562d3, type: 3}
+--- !u!114 &114378576108520764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502339869341714}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: 92612a42ff1432243830c1f2c32a9dee, type: 2}
+  Materials:
+  - {fileID: 2100000, guid: 6aa6771a1b05f0b48b283c6b34b540ac, type: 2}
+  - {fileID: 2100000, guid: 963e8ac7c337fdc4bb192ba38ffc3d4c, type: 2}
+  anim: {fileID: 0}
+  BuildingLifeBar: {fileID: 0}
+  PopulationBar: {fileID: 0}
 --- !u!114 &114813176931689998
 MonoBehaviour:
   m_ObjectHideFlags: 1

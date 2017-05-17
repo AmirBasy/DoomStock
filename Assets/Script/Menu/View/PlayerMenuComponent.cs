@@ -83,24 +83,7 @@ public class PlayerMenuComponent : MenuBase
             //case " - Debris":
             //    CurrentPlayer.RemoveBuildingDebris(cell.building);
             //    break;
-            case " Prendi ":
-                foreach (var item in cell.building.BuildingResources)
-                {
-                    GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
-                    item.Value = 0;
-                    if (cell.building.Population.Count > 0)
-                    {
-                        cell.building.currentState = BuildingData.BuildingState.Producing;
-                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
 
-                    }
-                    else
-                    {
-                        cell.building.currentState = BuildingData.BuildingState.Built;
-                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
-                    }
-                }
-                break;
             default:
                 break;
         }
