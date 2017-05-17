@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005132d0c700d8444a48a1ed6e1db281, type: 3}
   m_Name: FoodProduction
   m_EditorClassIdentifier: 
-  ID: FoodProduction
+  ID: Production
   TimeUnitsToInvoke: 10
-  CurrentTimeUnit: 3
+  CurrentTimeUnit: 10
   isRepeating: 1
