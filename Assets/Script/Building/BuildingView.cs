@@ -88,7 +88,7 @@ public class BuildingView : MonoBehaviour
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 if (rend.material != null)
                 {
-                    rend.material = Materials[1]; 
+                    rend.material = Materials[1];
                 }
                 transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
                 break;
@@ -96,14 +96,14 @@ public class BuildingView : MonoBehaviour
                 //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
                 if (rend.material != null)
                 {
-                    rend.material = Materials[0]; 
+                    rend.material = Materials[0];
                 }
                 break;
             case BuildingData.BuildingState.Debris:
                 //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 if (rend.material != null)
                 {
-                    rend.material = Materials[2]; 
+                    rend.material = Materials[2];
                 }
                 transform.DOMoveY(transform.position.y - 0.5f, 2).OnComplete(() => { });
                 if (_animator)
@@ -112,7 +112,7 @@ public class BuildingView : MonoBehaviour
             case BuildingData.BuildingState.Producing:
                 if (rend.material != null)
                 {
-                    rend.material = Materials[0]; 
+                    rend.material = Materials[0];
                 }
                 Data.IsBuildingProducing();
                 if (Data.IsBuildingProducing() == true)
@@ -173,87 +173,37 @@ public class BuildingView : MonoBehaviour
 
     void OnUnitEvent(TimedEventData _eventData)
     {
-        #region Event
-
-        if (_eventData.ID == "Costruzione" && Data.currentState == BuildingData.BuildingState.Construction)
+        switch (_eventData.ID)
         {
-            Data.BuildingTime--;
-            if (Data.BuildingTime == 0)
-            {
-                Data.currentState = BuildingData.BuildingState.Built;
-                UpdateAspect();
-            }
+            case "Production":
+                if (Data.currentState == BuildingData.BuildingState.Producing)
+                {
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        res.Value += (int)(Data.Population.Count * 5);
+                        LimitReached(res);
+                    }
+                }
+                break;
+
+            case "Costruzione":
+                if (Data.currentState == BuildingData.BuildingState.Construction)
+                {
+                    Data.BuildingTime--;
+                    if (Data.BuildingTime == 0)
+                    {
+                        Data.currentState = BuildingData.BuildingState.Built;
+                        UpdateAspect();
+                    }
+                }
+
+                break;
+            default:
+                break;
         }
+        if (Data.Population.Count <= 0)
+            UpdateAspect();
 
-        if (Data.currentState == BuildingData.BuildingState.Producing)
-        {
-            switch (_eventData.ID)
-            {
-                case "FoodProduction":
-                    foreach (var res in Data.BuildingResources)
-                    {
-                        if (res.ID == "Food")
-                        {
-                            res.Value += (int)(Data.Population.Count * 5);
-                            LimitReached(res);
-                        }
-
-                    }
-
-                    break;
-
-                case "WoodProduction":
-                    foreach (var res in Data.BuildingResources)
-                    {
-                        if (res.ID == "Wood")
-                        {
-                            res.Value += (int)(Data.Population.Count * 5);
-                            LimitReached(res);
-                        }
-
-                    }
-                    break;
-                case "StoneProduction":
-                    foreach (var res in Data.BuildingResources)
-                    {
-                        if (res.ID == "Stone")
-                        {
-                            res.Value += (int)(Data.Population.Count * 5);
-                            LimitReached(res);
-                        }
-
-                    }
-                    break;
-                case "FaithProduction":
-                    foreach (var res in Data.BuildingResources)
-                    {
-                        if (res.ID == "Faith")
-                        {
-                            res.Value += (int)(Data.Population.Count * 5);
-                            LimitReached(res);
-                        }
-
-                    }
-                    break;
-                case "SpiritProduction":
-                    foreach (var res in Data.BuildingResources)
-                    {
-                        if (res.ID == "Spirit")
-                        {
-                            res.Value += (int)(Data.Population.Count * 5);
-                            LimitReached(res);
-                        }
-
-                    }
-                    break;
-                default:
-                    break;
-            }
-            if (Data.Population.Count <= 0)
-                UpdateAspect();
-        }
-
-        #endregion
     }
 
     #endregion
