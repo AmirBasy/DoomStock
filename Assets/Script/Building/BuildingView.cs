@@ -142,7 +142,7 @@ public class BuildingView : MonoBehaviour
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
-               // rend.material = Materials[1];
+                // rend.material = Materials[1];
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             default:
@@ -172,17 +172,17 @@ public class BuildingView : MonoBehaviour
                         switch (res.ID)
                         {
                             case "Faith":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, transform.position);
                                 break;
 
                             case "Stone":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, transform.position);
                                 break;
                             case "Spirit":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, transform.position);
                                 break;
                             case "Food":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, transform.position);
                                 break;
                             default:
                                 break;
@@ -198,25 +198,12 @@ public class BuildingView : MonoBehaviour
                         LimitReached(res);
                         if (res.ID == "Wood")
                         {
-                            // GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                             GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, transform.position);
                         }
                     }
                 }
                 break;
 
-            //case "Costruzione":
-            //    if (Data.currentState == BuildingData.BuildingState.Construction)
-            //    {
-            //        Data.BuildingTime--;
-            //        if (Data.BuildingTime == 0)
-            //        {
-            //            Data.SetBuildingStatus(BuildingData.BuildingState.Built);
-            //            if (Data.ID == "Foresta")
-            //                Data.currentState = BuildingData.BuildingState.Producing;
-            //        }
-            //    }
-
-             //   break;
             default:
                 break;
         }

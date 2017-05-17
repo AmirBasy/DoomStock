@@ -126,12 +126,13 @@ public class GameManager : MonoBehaviour {
     public BuildingData forest;
     private void Start()
     {
+     
+        GridSetUp();
         foreach (var item in buildingManager.buildingsData)
         {
             if (item.ID == "Foresta")
                 forest = item;
         }
-        GridSetUp();
         SetupForest(forest);
         SetupPlayers();
         SetupResources();
