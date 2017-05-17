@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
-
+    public BuildingData[] buildingsData;
     #region API
     /// <summary>
     /// Lista di BuildingView che i player Istanziano nella scena.
@@ -27,7 +27,7 @@ public class BuildingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Crea una BuildData restituisce una nuova istanza appena creata
+    /// Restituisce la view del data passato in parametro.
     /// </summary>
     public BuildingView CreateBuild(BuildingData _buildingDataPrefab)
     {

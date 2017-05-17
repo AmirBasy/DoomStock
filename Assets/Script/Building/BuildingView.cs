@@ -86,12 +86,21 @@ public class BuildingView : MonoBehaviour
         {
             case BuildingData.BuildingState.Construction:
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
-                if (rend.material != null)
+                if (Data.ID != "Foresta")
                 {
-                    rend.material = Materials[1];
+                    if (rend.material != null)
+                    {
+                        rend.material = Materials[1];
+                    }
+                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
                 }
-                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
+                else
+                {
+                    Data.currentState = BuildingData.BuildingState.Producing;
+                }
+
                 break;
+
             case BuildingData.BuildingState.Built:
                 //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
                 if (rend.material != null)
@@ -110,20 +119,28 @@ public class BuildingView : MonoBehaviour
                     _animator.enabled = false;
                 break;
             case BuildingData.BuildingState.Producing:
-                if (rend.material != null)
+                if (Data.ID != "Foresta")
                 {
-                    rend.material = Materials[0];
+                    if (rend.material != null)
+                    {
+                        rend.material = Materials[0];
+                    }
+                    Data.IsBuildingProducing();
+                    if (Data.IsBuildingProducing() == true)
+                    {
+                        if (_animator)
+                            _animator.enabled = true;
+                    }
+                    else
+                    {
+                        if (_animator)
+                            _animator.enabled = false;
+                    }
                 }
-                Data.IsBuildingProducing();
-                if (Data.IsBuildingProducing() == true)
+                else if (Data.ID == "Foresta")
                 {
-                    if (_animator)
-                        _animator.enabled = true;
-                }
-                else
-                {
-                    if (_animator)
-                        _animator.enabled = false;
+                 
+                    transform.DOMoveY(transform.position.y + 0.05f, 1.5f).OnComplete(() => { });
                 }
                 break;
             case BuildingData.BuildingState.Ready:
@@ -176,11 +193,19 @@ public class BuildingView : MonoBehaviour
         switch (_eventData.ID)
         {
             case "Production":
-                if (Data.currentState == BuildingData.BuildingState.Producing)
+                if (Data.currentState == BuildingData.BuildingState.Producing && Data.ID != "Foresta")
                 {
                     foreach (var res in Data.BuildingResources)
                     {
-                        res.Value += (int)(Data.Population.Count * 5);
+                        res.Value += (int)(Data.Population.Count * 1);
+                        LimitReached(res);
+                    }
+                }
+                else if (Data.currentState == BuildingData.BuildingState.Producing && Data.ID == "Foresta")
+                {
+                    foreach (var res in Data.BuildingResources)
+                    {
+                        res.Value += 1;
                         LimitReached(res);
                     }
                 }
@@ -194,6 +219,8 @@ public class BuildingView : MonoBehaviour
                     {
                         Data.currentState = BuildingData.BuildingState.Built;
                         UpdateAspect();
+                        if (Data.ID == "Foresta")
+                            Data.currentState = BuildingData.BuildingState.Producing;
                     }
                 }
 

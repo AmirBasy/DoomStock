@@ -86,7 +86,7 @@ public class Player : PlayerBase
             pdata.building = _building;
 
             //cambia lo stato del building a Producing.
-            if (_building.Population.Count == 1 && _building.ID != "Casa")
+            if (_building.Population.Count == 1 && _building.ID != "Casa" && _building.ID != "Foresta")
             {
                 _building.currentState = BuildingData.BuildingState.Producing;
             }
@@ -296,8 +296,18 @@ public class Player : PlayerBase
                             }
                             else
                             {
-                                cell.building.currentState = BuildingData.BuildingState.Built;
-                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
+                                if (cell.building.ID != "Foresta")
+                                {
+                                    cell.building.currentState = BuildingData.BuildingState.Built;
+                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect(); 
+                                }
+                                else
+                                {
+                                    cell.building.currentState = BuildingData.BuildingState.Producing;
+
+                                    //GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
+                                }
+                                
                             }
                         }
                     } 

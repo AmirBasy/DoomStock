@@ -46,9 +46,9 @@ public class PlayerMenuComponent : MenuBase
                     //case " - Debris":
                     //    DoAction();
                     //    break;
-                    case " Prendi ":
-                        DoAction();
-                        break;
+                    //case " Prendi ":
+                    //    DoAction();
+                    //    break;
                     default:
                         break;
                 }

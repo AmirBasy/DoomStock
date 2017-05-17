@@ -156,7 +156,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <returns></returns>
     public bool IsBuildingProducing()
     {
-        if (Population.Count > 0)
+        if (Population.Count > 0 && ID != "Foresta")
         {
             return true;
         }
