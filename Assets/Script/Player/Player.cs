@@ -280,11 +280,36 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed && GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status != CellDoomstock.CellStatus.Hole) // SELECT
             {
+                CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
+                if (cell.building)
+                {
+                    if (cell.building.currentState == BuildingData.BuildingState.Ready)
+                    {
+                        foreach (var item in cell.building.BuildingResources)
+                        {
+                            GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
+                            item.Value = 0;
+                            if (cell.building.Population.Count > 0)
+                            {
+                                cell.building.currentState = BuildingData.BuildingState.Producing;
+                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
 
+                            }
+                            else
+                            {
+                                cell.building.currentState = BuildingData.BuildingState.Built;
+                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
+                            }
+                        }
+                    } 
+                }
 
-                currentMenu = OpenMenuPlayerID();
-                if (currentMenu.PossibiliScelteAttuali.Count < 1)
-                    currentMenu.Close();
+                else
+                {
+                    currentMenu = OpenMenuPlayerID();
+                    if (currentMenu.PossibiliScelteAttuali.Count < 1)
+                        currentMenu.Close(); 
+                }
 
 
 
