@@ -88,13 +88,9 @@ public class Player : PlayerBase
             //cambia lo stato del building a Producing.
             if (_building.Population.Count == 1 && _building.ID != "Casa" && _building.ID != "Foresta")
             {
-                _building.currentState = BuildingData.BuildingState.Producing;
+                GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).SetBuildingStatus(BuildingState.Producing);
             }
 
-
-
-            //cambia la grafica
-            GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
             //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
             GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).transform.position,true);
@@ -115,10 +111,9 @@ public class Player : PlayerBase
         GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position,true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
-        if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingData.BuildingState.Ready)
+        if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
         {
-            GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).UpdateAspect();
-            _buildingData.currentState = BuildingData.BuildingState.Built;
+            GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetBuildingStatus(BuildingState.Built);
         }
 
     }
@@ -283,7 +278,7 @@ public class Player : PlayerBase
                 CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
                 if (cell.building)
                 {
-                    if (cell.building.currentState == BuildingData.BuildingState.Ready)
+                    if (cell.building.currentState == BuildingState.Ready)
                     {
                         foreach (var item in cell.building.BuildingResources)
                         {
@@ -291,20 +286,18 @@ public class Player : PlayerBase
                             item.Value = 0;
                             if (cell.building.Population.Count > 0)
                             {
-                                cell.building.currentState = BuildingData.BuildingState.Producing;
-                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
+                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
 
                             }
                             else
                             {
                                 if (cell.building.ID != "Foresta")
                                 {
-                                    cell.building.currentState = BuildingData.BuildingState.Built;
-                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect(); 
+                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
                                 }
                                 else
                                 {
-                                    cell.building.currentState = BuildingData.BuildingState.Producing;
+                                    cell.building.currentState = BuildingState.Producing;
 
                                     //GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
                                 }

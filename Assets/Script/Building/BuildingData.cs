@@ -150,36 +150,16 @@ public class BuildingData : ScriptableObject, ISelectable
         }
     }
 
-    /// <summary>
-    /// Ritorna True se l'edifico sta producendo
-    /// </summary>
-    /// <returns></returns>
-    public bool IsBuildingProducing()
-    {
-        if (Population.Count > 0 && ID != "Foresta")
-        {
-            return true;
-        }
-        return false;
-    }
+ 
+
+
 
     #endregion
 
-    #region Stati edificio
-    /// <summary>
-    /// Stati dell'edificio.
-    /// </summary>
-    public enum BuildingState
-    {
-        Construction = 0,
-        Built = 1,
-        Debris = 2,
-        Producing = 3,
-        Ready = 4
-    }
+   
 
     public BuildingState currentState = BuildingState.Construction;
-    #endregion
+   
 
     #region Setup
     public void Awake()
@@ -217,4 +197,15 @@ public class BuildingData : ScriptableObject, ISelectable
     }
     #endregion
 }
-
+#region Stati edificio
+/// <summary>
+/// Stati dell'edificio.
+/// </summary>
+public enum BuildingState
+{
+    Construction = 0,
+    Built = 1,
+    Producing = 2,
+    Ready = 3
+}
+#endregion

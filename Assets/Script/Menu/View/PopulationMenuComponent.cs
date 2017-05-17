@@ -21,10 +21,10 @@ public class PopulationMenuComponent : MenuBase
             case 1:
                 foreach (var bView in CurrentPlayer.BuildingsInScene)
                 {
-                    if (bView.Data.currentState != BuildingData.BuildingState.Debris)
-                    {
-                        PossibiliScelteAttuali.Add(bView.Data);
-                    }
+                    //if (bView.Data.currentState != BuildingData.BuildingState.Debris)
+                    //{
+                    //    PossibiliScelteAttuali.Add(bView.Data);
+                    //}
                 }
                     break;
             case 2:

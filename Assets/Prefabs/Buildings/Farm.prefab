@@ -142,7 +142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1075678503156298}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalPosition: {x: -9, y: 19.02094, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224810803329463934}
@@ -402,14 +402,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildingLifeBar: {fileID: 114920860539068002}
-  PopulationBar: {fileID: 0}
   Data: {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
   Materials:
   - {fileID: 2100000, guid: 4dfcc1e8aacdef34d91c75880c81052c, type: 2}
   - {fileID: 2100000, guid: 0045a7f35f100a343bdec0cb111f8780, type: 2}
   - {fileID: 2100000, guid: a602e5f85afb59440b9f96baa8f025dc, type: 2}
   anim: {fileID: 111924073297172510}
+  BuildingLifeBar: {fileID: 114920860539068002}
+  PopulationBar: {fileID: 0}
 --- !u!114 &114920860539068002
 MonoBehaviour:
   m_ObjectHideFlags: 1

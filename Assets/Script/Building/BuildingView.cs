@@ -35,7 +35,14 @@ public class BuildingView : MonoBehaviour
         //PopulationBarCounter = 0;
         anim = GetComponent<Animation>();
         rend = GetComponent<Renderer>();
-        UpdateAspect();
+        if (Data.ID != "Foresta")
+        {
+            SetBuildingStatus(BuildingState.Construction);
+        }
+        else
+        {
+            SetBuildingStatus(BuildingState.Producing);
+        }
 
     }
 
@@ -62,95 +69,16 @@ public class BuildingView : MonoBehaviour
         //toglie tutti i popolani dall'edificio e le rimette in POZZA
         Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
-        Data.currentState = BuildingData.BuildingState.Debris;
-        transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
-        {
-            UpdateAspect();
-        });
+        // Data.currentState = BuildingData.BuildingState.Debris;
+        //transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
+        //{
+        //    UpdateAspect();
+        //});
 
     }
 
-    /// <summary>
-    /// aggiorna la grafica del building
-    /// </summary>
-    /// 
-    public void UpdateAspect()
-    {
-        Animator _animator = new Animator();
-        if (GetComponent<Animator>())
-        {
-            _animator = GetComponent<Animator>();
-        }
 
-        switch (Data.currentState)
-        {
-            case BuildingData.BuildingState.Construction:
-                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
-                if (Data.ID != "Foresta")
-                {
-                    if (rend.material != null)
-                    {
-                        rend.material = Materials[1];
-                    }
-                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { });
-                }
-                else
-                {
-                    Data.currentState = BuildingData.BuildingState.Producing;
-                }
 
-                break;
-
-            case BuildingData.BuildingState.Built:
-                if (rend.material != null)
-                {
-                    rend.material = Materials[0];
-                }
-                break;
-            case BuildingData.BuildingState.Debris:
-                if (rend.material != null)
-                {
-                    rend.material = Materials[2];
-                }
-                transform.DOMoveY(transform.position.y - 0.5f, 2).OnComplete(() => { });
-                if (_animator)
-                    _animator.enabled = false;
-                break;
-            case BuildingData.BuildingState.Producing:
-                if (Data.ID != "Foresta")
-                {
-                    if (rend.material != null)
-                    {
-                        rend.material = Materials[0];
-                    }
-                    Data.IsBuildingProducing();
-                    if (Data.IsBuildingProducing() == true)
-                    {
-                        if (_animator)
-                            _animator.enabled = true;
-                    }
-                    else
-                    {
-                        if (_animator)
-                            _animator.enabled = false;
-                    }
-                }
-                else if (Data.ID == "Foresta")
-                {
-                 
-                    transform.DOMoveY(transform.position.y + 0.05f, 1.5f).OnComplete(() => { });
-                }
-                break;
-            case BuildingData.BuildingState.Ready:
-                if (_animator)
-                    _animator.enabled = false;
-                rend.material = Materials[1];
-                break;
-
-            default:
-                break;
-        }
-    }
 
     /// <summary>
     /// Toglie le macerie, rende libera la cella e recupera 1/4 del materiale.
@@ -177,6 +105,51 @@ public class BuildingView : MonoBehaviour
 
     }
 
+
+    public void SetBuildingStatus(BuildingState _status)
+    {
+
+        Data.currentState = _status;
+        OnStatusChanged();
+    }
+    /// <summary>
+    /// Chiamata ogni volta che viene settato lo status di un edificio.
+    /// </summary>
+    public void OnStatusChanged()
+    {
+        switch (Data.currentState)
+        {
+            case BuildingState.Construction:
+                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { SetBuildingStatus(BuildingState.Built); });
+                break;
+            case BuildingState.Built:
+                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                break;
+            case BuildingState.Producing:
+                if (Data.ID != "Foresta")
+                {
+                    if (rend.material != null)
+                    {
+                        rend.material = Materials[0];
+                    }
+
+                }
+                else if (Data.ID == "Foresta")
+                {
+
+                    transform.DOMoveY(transform.position.y + 0.05f, 1.5f).OnComplete(() => { });
+                }
+                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                break;
+            case BuildingState.Ready:
+               // rend.material = Materials[1];
+                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                break;
+            default:
+                break;
+        }
+    }
+
     #endregion
 
     #region Events
@@ -190,27 +163,18 @@ public class BuildingView : MonoBehaviour
         switch (_eventData.ID)
         {
             case "Production":
-                if (Data.currentState == BuildingData.BuildingState.Producing && Data.ID != "Foresta")
+                if (Data.currentState == BuildingState.Producing && Data.ID != "Foresta")
                 {
                     foreach (var res in Data.BuildingResources)
                     {
                         res.Value += (int)(Data.Population.Count * 1);
                         LimitReached(res);
-                    }
-                }
-                else if (Data.currentState == BuildingData.BuildingState.Producing && Data.ID == "Foresta")
-                {
-                    foreach (var res in Data.BuildingResources)
-                    {
-                        res.Value += 1;
-                        LimitReached(res);
-                        switch (res.ID) {
+                        switch (res.ID)
+                        {
                             case "Faith":
                                 GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
                                 break;
-                            case "Wood":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
-                                break;
+
                             case "Stone":
                                 GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
                                 break;
@@ -224,28 +188,43 @@ public class BuildingView : MonoBehaviour
                                 break;
                         }
                     }
-                }
-                break;
 
-            case "Costruzione":
-                if (Data.currentState == BuildingData.BuildingState.Construction)
+                }
+                else if (Data.currentState == BuildingState.Producing && Data.ID == "Foresta")
                 {
-                    Data.BuildingTime--;
-                    if (Data.BuildingTime == 0)
+                    foreach (var res in Data.BuildingResources)
                     {
-                        Data.currentState = BuildingData.BuildingState.Built;
-                        UpdateAspect();
-                        if (Data.ID == "Foresta")
-                            Data.currentState = BuildingData.BuildingState.Producing;
+                        res.Value += 1;
+                        LimitReached(res);
+                        if (res.ID == "Wood")
+                        {
+                            // GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                        }
                     }
                 }
-
                 break;
+
+            //case "Costruzione":
+            //    if (Data.currentState == BuildingData.BuildingState.Construction)
+            //    {
+            //        Data.BuildingTime--;
+            //        if (Data.BuildingTime == 0)
+            //        {
+            //            Data.SetBuildingStatus(BuildingData.BuildingState.Built);
+            //            if (Data.ID == "Foresta")
+            //                Data.currentState = BuildingData.BuildingState.Producing;
+            //        }
+            //    }
+
+             //   break;
             default:
                 break;
         }
-        if (Data.Population.Count <= 0)
-            UpdateAspect();
+        //if (Data.Population.Count <= 0)
+        //    if (Data.ID != "Foresta")
+        //    {
+        //        Data.SetBuildingStatus(BuildingData.BuildingState.Built);
+        //    }
 
     }
 
@@ -257,10 +236,8 @@ public class BuildingView : MonoBehaviour
         if (res.Value >= res.Limit)
         {
             res.Value = 0;
-            Data.currentState = BuildingData.BuildingState.Ready;
+            SetBuildingStatus(BuildingState.Ready);
             //TODO : da inserire messaggio con icona fissa quando termina la produzione
-            
-            UpdateAspect();
         }
     }
     #region BARRA commentata
