@@ -304,12 +304,13 @@ public class Player : PlayerBase
                             }
                         }
                     }
-                    else
-                    {
-                        currentMenu = OpenMenuPlayerID();
-                        if (currentMenu.PossibiliScelteAttuali.Count < 1)
-                            currentMenu.Close();
-                    }
+
+                }
+                else
+                {
+                    currentMenu = OpenMenuPlayerID();
+                    if (currentMenu.PossibiliScelteAttuali.Count < 1)
+                        currentMenu.Close();
                 }
             }
 

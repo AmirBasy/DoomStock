@@ -408,23 +408,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
-        type: 2}
-      propertyPath: MaxCellCost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183,
-        type: 2}
-    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0da94849228b5a1418711b4322cf6e54,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab2b1793e28cb254b99880fe04f78be6, type: 2}
   m_IsPrefabParent: 0
@@ -447,11 +430,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114611047149273296, guid: f0cd91c10c3a35340b81c61c9a61b0e5,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4623608940179498, guid: f0cd91c10c3a35340b81c61c9a61b0e5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -484,23 +462,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114611047149273296, guid: f0cd91c10c3a35340b81c61c9a61b0e5,
-        type: 2}
-      propertyPath: MaxCellCost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114611047149273296, guid: f0cd91c10c3a35340b81c61c9a61b0e5,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: f2d3e403e65a12145978bb9fe77f1fd6,
-        type: 2}
-    - target: {fileID: 114611047149273296, guid: f0cd91c10c3a35340b81c61c9a61b0e5,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: eedfd560196d7204eb13af8f4c5dbca8,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0cd91c10c3a35340b81c61c9a61b0e5, type: 2}
   m_IsPrefabParent: 0
@@ -1477,11 +1438,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4137709451974644, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1514,17 +1470,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
-        type: 2}
-      propertyPath: MaxCellCost
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
-        type: 2}
-      propertyPath: BuildingsDataPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
   m_IsPrefabParent: 0
