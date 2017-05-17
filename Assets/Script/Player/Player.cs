@@ -93,7 +93,7 @@ public class Player : PlayerBase
 
             //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
-            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).transform.position,true);
+            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).transform.position, true);
 
         }
 
@@ -108,7 +108,7 @@ public class Player : PlayerBase
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
         //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
-        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position,true);
+        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
@@ -284,6 +284,7 @@ public class Player : PlayerBase
                         {
                             GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
                             item.Value = 0;
+
                             if (cell.building.Population.Count > 0)
                             {
                                 GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
@@ -295,26 +296,25 @@ public class Player : PlayerBase
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
                                 }
-                                else
+                                else if (cell.building.ID == "Foresta")
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
                                 }
-                                
+
                             }
                         }
-                    } 
+                    }
+                    else
+                    {
+                        currentMenu = OpenMenuPlayerID();
+                        if (currentMenu.PossibiliScelteAttuali.Count < 1)
+                            currentMenu.Close();
+                    }
                 }
-
-                else
-                {
-                    currentMenu = OpenMenuPlayerID();
-                    if (currentMenu.PossibiliScelteAttuali.Count < 1)
-                        currentMenu.Close(); 
-                }
-
-
-
             }
+
+
+
             if (_inputStatus.X == ButtonState.Pressed) // ADD POPULATION 
             {
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
@@ -326,7 +326,7 @@ public class Player : PlayerBase
                             List<PopulationData> freePeople = GameManager.I.populationManager.GetAllFreePeople();
                             int randomInd = Random.Range(0, freePeople.Count - 1);
                             AddPopulation(GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building, freePeople[randomInd].UniqueID);
-                        } 
+                        }
                     }
                     else { return; }
                 }

@@ -53,9 +53,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1143260192825844}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4623608940179498}
   m_RootOrder: 0
@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1961974256354332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4119817032845354}
   m_Father: {fileID: 0}
@@ -190,11 +190,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: PlayerThree
-  PeopleText: {fileID: 0}
+  MaxCellCost: 5
   XpositionOnGrid: 0
   YpositionOnGrid: 0
   BuildingsInScene: []
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: 6c52c0e700f90d7428c57a26b219b471, type: 2}
-  CurrentBuildView: {fileID: 0}
+  - {fileID: 11400000, guid: f2d3e403e65a12145978bb9fe77f1fd6, type: 2}
+  - {fileID: 11400000, guid: eedfd560196d7204eb13af8f4c5dbca8, type: 2}
   InputPlayerIndex: 2

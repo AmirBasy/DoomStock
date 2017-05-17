@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
     public int InitialFood, InitialWood, InitialStone;
 
-
+    public List<BuildingView> forestInScene;
     
     #region Managers
     public GridControllerDoomstock gridController;
@@ -188,20 +188,17 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     void SetupForest(BuildingData forest)
-    {
-        
-        BuildingView CurrentBuildView;
-        
-     
+    {       
+       BuildingView CurrentBuildView;
         
         foreach (var item in gridController.Cells)
         {
             if (item.Type == CellDoomstock.CellType.Forest)
             {
-   
                 CurrentBuildView = buildingManager.CreateBuild(forest);
                 CurrentBuildView.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                 CurrentBuildView.transform.position = new Vector3(item.WorldPosition.x, item.WorldPosition.y - (CellSize / 2) - 1 , item.WorldPosition.z);
+                forestInScene.Add(CurrentBuildView);
                 item.SetStatus(CellDoomstock.CellStatus.Filled, CurrentBuildView.Data);
             }
         }

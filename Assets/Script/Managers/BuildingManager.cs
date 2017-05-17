@@ -23,6 +23,10 @@ public class BuildingManager : MonoBehaviour
                 }
             }
         }
+        foreach (var item in GameManager.I.forestInScene)
+        {
+            newBuildingList.Add(item);
+        }
         return newBuildingList;
     }
 
