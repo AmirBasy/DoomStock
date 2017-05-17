@@ -95,8 +95,9 @@ public class Player : PlayerBase
 
             //cambia la grafica
             GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).UpdateAspect();
-            //TODO : //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
-            //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
+            //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
+            //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
+            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).transform.position,true);
 
         }
 
@@ -110,8 +111,8 @@ public class Player : PlayerBase
     {
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
-        //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
-        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position);
+        //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
+        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position,true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingData.BuildingState.Ready)

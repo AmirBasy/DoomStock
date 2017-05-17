@@ -5,14 +5,35 @@ using UnityEngine;
 
 public class MessagesManager : MonoBehaviour
 {
+    #region Colors
+    public static string PopulationColor = "#0AAE19FF";
+    public static string FoodColor = "#DB6FA3FF";
+    public static string WoodColor = "#DF5C21FF";
+    public static string StoneColor= "#8D8D8DFF";
+    public static string FaithColor = "#C700FFFF";
+    public static string SpiritColor = "#00FF80FF";
+    public static string MajorColor = "#FF0000FF";
+    public static string UndefinedColor = "#FF0079FF"; 
+    #endregion
 
     public UiInformation uiInformationPrefab;
+    float MinRange = 0;
+    float MaxRange = 1;
 
 
-    public void ShowiInformation(MessageLableType _message, Vector3 WorldPosition) {
-           
+    public void ShowiInformation(MessageLableType _message, Vector3 _worldPosition, bool isImmediate = false) {
+        float delay =0 ;
+        if (!isImmediate) {
+            delay = Random.Range(MinRange, MaxRange);
+            ;
+        }
+        StartCoroutine(ShowMessage(delay, _message, _worldPosition));
 
-        UiInformation info = Instantiate(uiInformationPrefab, WorldPosition,this.transform.rotation);
+    }
+
+    IEnumerator ShowMessage(float waitTime, MessageLableType _message, Vector3 _worldPosition) {
+        yield return new WaitForSeconds(waitTime);
+        UiInformation info = Instantiate(uiInformationPrefab, _worldPosition, this.transform.rotation);
         info.ShowMessage(_message);
     }
     //public void ShowMessage(PopulationData unit, PopulationMessageType _type, BuildingView building = null)

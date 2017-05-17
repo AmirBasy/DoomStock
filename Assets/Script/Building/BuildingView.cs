@@ -102,14 +102,12 @@ public class BuildingView : MonoBehaviour
                 break;
 
             case BuildingData.BuildingState.Built:
-                //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Builded);
                 if (rend.material != null)
                 {
                     rend.material = Materials[0];
                 }
                 break;
             case BuildingData.BuildingState.Debris:
-                //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debris);
                 if (rend.material != null)
                 {
                     rend.material = Materials[2];
@@ -146,7 +144,6 @@ public class BuildingView : MonoBehaviour
             case BuildingData.BuildingState.Ready:
                 if (_animator)
                     _animator.enabled = false;
-                //TODO :  //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Ready);
                 rend.material = Materials[1];
                 break;
 
@@ -207,6 +204,25 @@ public class BuildingView : MonoBehaviour
                     {
                         res.Value += 1;
                         LimitReached(res);
+                        switch (res.ID) {
+                            case "Faith":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Wood":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Stone":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Spirit":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Food":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
                 break;
@@ -242,6 +258,8 @@ public class BuildingView : MonoBehaviour
         {
             res.Value = 0;
             Data.currentState = BuildingData.BuildingState.Ready;
+            //TODO : da inserire messaggio con icona fissa quando termina la produzione
+            
             UpdateAspect();
         }
     }
