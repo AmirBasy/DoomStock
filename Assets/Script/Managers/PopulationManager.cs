@@ -143,7 +143,7 @@ public class PopulationManager : MonoBehaviour
             unit.building.Population.Remove(unit);
             unit.building = null;
         }
-
+       
 
 
     }
