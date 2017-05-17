@@ -7,12 +7,23 @@ public class MessagesManager : MonoBehaviour
 {
 
     public UiInformation uiInformationPrefab;
+    float MinRange = 0;
+    float MaxRange = 1;
 
 
-    public void ShowiInformation(MessageLableType _message, Vector3 WorldPosition) {
-           
+    public void ShowiInformation(MessageLableType _message, Vector3 _worldPosition, bool isImmediate = false) {
+        float delay =0 ;
+        if (!isImmediate) {
+            delay = Random.Range(MinRange, MaxRange);
+            ;
+        }
+        StartCoroutine(ShowMessage(delay, _message, _worldPosition));
 
-        UiInformation info = Instantiate(uiInformationPrefab, WorldPosition,this.transform.rotation);
+    }
+
+    IEnumerator ShowMessage(float waitTime, MessageLableType _message, Vector3 _worldPosition) {
+        yield return new WaitForSeconds(waitTime);
+        UiInformation info = Instantiate(uiInformationPrefab, _worldPosition, this.transform.rotation);
         info.ShowMessage(_message);
     }
     //public void ShowMessage(PopulationData unit, PopulationMessageType _type, BuildingView building = null)

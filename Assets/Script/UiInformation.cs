@@ -25,10 +25,6 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.Birth:
                 ColorUtility.TryParseHtmlString("#0AAE19FF", out backgroundColor);
-                transform.DOShakeScale(3).SetDelay(1);
-                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).SetDelay(1).OnComplete(() => {
-                    Destroy(this.gameObject);
-                });
                 break;
             case MessageLableType.WoodProduction:
                 ColorUtility.TryParseHtmlString("DF5C21FF", out backgroundColor);
@@ -36,9 +32,18 @@ public class UiInformation : MonoBehaviour {
             case MessageLableType.StoneProduction:
                 ColorUtility.TryParseHtmlString("8D8D8DFF", out backgroundColor);
                 break;
+            case MessageLableType.AddPopulation:
+                ColorUtility.TryParseHtmlString("8D8D8DFF", out backgroundColor);
+                break;
+            case MessageLableType.RemovePopulation:
+                ColorUtility.TryParseHtmlString("8D8D8DFF", out backgroundColor);
+                break;
             default:
                 break;
         }
+        transform.DOShakeScale(3);
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {Destroy(this.gameObject);
+        });
         BackgroundColor.color = backgroundColor;
         //Icon.color = iconColor;
     }
@@ -52,5 +57,6 @@ public enum MessageLableType {
     Birth,
     WoodProduction,
     StoneProduction,
-    RemovePopulation
+    RemovePopulation,
+    AddPopulation
 }
