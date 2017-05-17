@@ -297,9 +297,7 @@ public class Player : PlayerBase
                                 }
                                 else
                                 {
-                                    cell.building.currentState = BuildingState.Producing;
-
-                                    //GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).UpdateAspect();
+                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
                                 }
                                 
                             }
@@ -321,12 +319,16 @@ public class Player : PlayerBase
             {
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
-                    if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
+                    if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building)
                     {
-                        List<PopulationData> freePeople = GameManager.I.populationManager.GetAllFreePeople();
-                        int randomInd = Random.Range(0, freePeople.Count - 1);
-                        AddPopulation(GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building, freePeople[randomInd].UniqueID);
+                        if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
+                        {
+                            List<PopulationData> freePeople = GameManager.I.populationManager.GetAllFreePeople();
+                            int randomInd = Random.Range(0, freePeople.Count - 1);
+                            AddPopulation(GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building, freePeople[randomInd].UniqueID);
+                        } 
                     }
+                    else { return; }
                 }
                 else { return; }
 
