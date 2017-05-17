@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MessagesManager : MonoBehaviour
 {
 
@@ -9,6 +10,7 @@ public class MessagesManager : MonoBehaviour
 
 
     public void ShowiInformation(MessageLableType _message, Vector3 WorldPosition) {
+           
 
         UiInformation info = Instantiate(uiInformationPrefab, WorldPosition,this.transform.rotation);
         info.ShowMessage(_message);

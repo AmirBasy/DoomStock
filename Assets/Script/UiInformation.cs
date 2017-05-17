@@ -25,8 +25,8 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.Birth:
                 ColorUtility.TryParseHtmlString("#0AAE19FF", out backgroundColor);
-                transform.DOShakeScale(3);
-                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
+                transform.DOShakeScale(3).SetDelay(1);
+                transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).SetDelay(1).OnComplete(() => {
                     Destroy(this.gameObject);
                 });
                 break;
