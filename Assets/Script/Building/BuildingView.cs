@@ -178,6 +178,25 @@ public class BuildingView : MonoBehaviour
                     {
                         res.Value += (int)(Data.Population.Count * 5);
                         LimitReached(res);
+                        switch (res.ID) {
+                            case "Faith":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Wood":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Stone":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Spirit":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            case "Food":
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, GameManager.I.buildingManager.GetBuildingView(this.Data.UniqueID).transform.position);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
                 break;
@@ -211,6 +230,8 @@ public class BuildingView : MonoBehaviour
         {
             res.Value = 0;
             Data.currentState = BuildingData.BuildingState.Ready;
+            //TODO : da inserire messaggio con icona fissa quando termina la produzione
+            
             UpdateAspect();
         }
     }

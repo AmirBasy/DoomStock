@@ -15,7 +15,7 @@ MonoBehaviour:
   BuildingResources: []
   BuildingTime: 3
   ID: Fattoria
-  PopulationLimit: 2
+  PopulationLimit: 50
   WoodToBuild: 10
   StoneToBuild: 10
   BuildPrefab: {fileID: 114864723372019696, guid: 9cc16ee383968c942925416ab59b38ef,

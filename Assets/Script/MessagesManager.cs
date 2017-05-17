@@ -7,9 +7,13 @@ public class MessagesManager : MonoBehaviour
 {
     #region Colors
     public static string PopulationColor = "#0AAE19FF";
+    public static string FoodColor = "#DB6FA3FF";
     public static string WoodColor = "#DF5C21FF";
     public static string StoneColor= "#8D8D8DFF";
-    public static string UndefinedColor = "#000000FF"; 
+    public static string FaithColor = "#C700FFFF";
+    public static string SpiritColor = "#00FF80FF";
+    public static string MajorColor = "#FF0000FF";
+    public static string UndefinedColor = "#FF0079FF"; 
     #endregion
 
     public UiInformation uiInformationPrefab;

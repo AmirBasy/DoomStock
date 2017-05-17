@@ -16,7 +16,7 @@ public class UiInformation : MonoBehaviour {
         string IconString = "";
         switch (_message) {
             case MessageLableType.FoodProduction:
-                ColorUtility.TryParseHtmlString(MessagesManager.UndefinedColor, out backgroundColor);
+                ColorUtility.TryParseHtmlString(MessagesManager.FoodColor, out backgroundColor);
                 IconString = "1+";
                 break;
             case MessageLableType.Death:
@@ -24,7 +24,7 @@ public class UiInformation : MonoBehaviour {
                 IconString = "Death";
                 break;
             case MessageLableType.FaithProduction:
-                ColorUtility.TryParseHtmlString(MessagesManager.UndefinedColor, out backgroundColor);
+                ColorUtility.TryParseHtmlString(MessagesManager.FaithColor, out backgroundColor);
                 IconString = "1+";
                 break;
             case MessageLableType.Birth:
@@ -47,6 +47,10 @@ public class UiInformation : MonoBehaviour {
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
                 IconString = "1-";
                 break;
+            case MessageLableType.SpiritProduction:
+                ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
+                IconString = "Spirit";
+                break; 
             default:
                 break;
         }
@@ -73,5 +77,7 @@ public enum MessageLableType {
     WoodProduction,
     StoneProduction,
     RemovePopulation,
-    AddPopulation
+    AddPopulation,
+    SpiritProduction,
+    Limit
 }
