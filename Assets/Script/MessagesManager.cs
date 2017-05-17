@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class MessagesManager : MonoBehaviour
 {
+    #region Colors
+    public static string PopulationColor = "#0AAE19FF";
+    public static string WoodColor = "#DF5C21FF";
+    public static string StoneColor= "#8D8D8DFF";
+    public static string UndefinedColor = "#000000FF"; 
+    #endregion
 
     public UiInformation uiInformationPrefab;
     float MinRange = 0;
