@@ -121,6 +121,7 @@ public class TimeFlow : MonoBehaviour
         {
             MonthImage[i].color = Color.white;
         }
+        MonthImage[0].color = Color.green;
     }
 
     #endregion
