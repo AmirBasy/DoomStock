@@ -225,7 +225,8 @@ public class Player : PlayerBase
     /// </summary>
     public ResProductionModifier ProdModifiers = new ResProductionModifier();
 
-    void LoadResourcesProductionModifiers() {
+    void LoadResourcesProductionModifiers()
+    {
 
         //GameSettings = new Settings() {
         //    ResProductionModifier = new List<ResProductionModifier>() {
@@ -236,14 +237,15 @@ public class Player : PlayerBase
 
         //string resultJson = JsonUtility.ToJson(GameSettings);
 
-        if (GameSettings == null) { 
+        if (GameSettings == null)
+        {
             TextAsset settingsFile = Resources.Load<TextAsset>("Settings/Settings");
             string jsonData = settingsFile.text;
             GameSettings = JsonUtility.FromJson<Settings>(jsonData);
             Debug.Log(GameSettings);
         }
 
-        ProdModifiers =  GameSettings.ResProductionModifier.Find(m => m.Player == ID);
+        ProdModifiers = GameSettings.ResProductionModifier.Find(m => m.Player == ID);
     }
 
     #endregion
@@ -338,6 +340,11 @@ public class Player : PlayerBase
 
                             }
                         }
+                    }
+                    else if (cell.building.currentState == BuildingState.Producing)
+                    {
+
+                        AddResourceOnClick(cell.building);
                     }
 
                 }
@@ -455,6 +462,60 @@ public class Player : PlayerBase
         BuildingView.OnRemoveDebris -= OnBuildingDebrisRemove;
     }
     #endregion
+
+
+    void AddResourceOnClick(BuildingData building)
+    {
+
+        switch (building.ID)
+        {
+            case "Cava":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Cava;
+                }
+                break;
+            case "Foresta":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Foresta;
+                }
+                break;
+            case "Fattoria":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Fattoria;
+                }
+                break;
+            case "Chiesa":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Chiesa;
+                }
+                break;
+            case "Torretta":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Torretta;
+                }
+                break;
+            case "Muro":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Muro;
+                }
+                
+                break;
+            case "Casa":
+                foreach (var res in building.BuildingResources)
+                {
+                    res.Value += ProdModifiers.Casa;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 
