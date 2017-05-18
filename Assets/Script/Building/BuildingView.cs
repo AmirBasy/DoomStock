@@ -142,6 +142,14 @@ public class BuildingView : MonoBehaviour
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
+                switch (Data.ID) {
+                    case "Foresta":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitWood, this.transform.position);
+                        break;
+                        
+                    default:
+                        break;
+                }
                 // rend.material = Materials[1];
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;

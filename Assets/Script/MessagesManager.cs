@@ -34,7 +34,7 @@ public class MessagesManager : MonoBehaviour
     IEnumerator ShowMessage(float waitTime, MessageLableType _message, Vector3 _worldPosition) {
         yield return new WaitForSeconds(waitTime);
         UiInformation info = Instantiate(uiInformationPrefab, _worldPosition, this.transform.rotation);
-        info.ShowMessage(_message);
+        info.ShowMessagePop_up(_message);
     }
     //public void ShowMessage(PopulationData unit, PopulationMessageType _type, BuildingView building = null)
     //{

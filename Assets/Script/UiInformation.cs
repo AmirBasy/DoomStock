@@ -10,7 +10,7 @@ public class UiInformation : MonoBehaviour {
     public SpriteRenderer BackgroundColor;
     public SpriteRenderer Icon;
     
-    public void ShowMessage(MessageLableType _message) {
+    public void ShowMessagePop_up(MessageLableType _message) {
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0,0,0,0);
         string IconString = "";
@@ -67,17 +67,54 @@ public class UiInformation : MonoBehaviour {
 
     }
 
-  
+    public void ShowMessageStuck(MessageLableType _message) {
+        Color iconColor = new Color(0, 0, 0, 0);
+        Color backgroundColor = new Color(0, 0, 0, 0);
+        string IconString = "";
+        switch (_message) {
+            case MessageLableType.LimitFaith:
+                ColorUtility.TryParseHtmlString(MessagesManager.FaithColor, out backgroundColor);
+                IconString = "Faith";
+                break;
+            case MessageLableType.LimitFood:
+                ColorUtility.TryParseHtmlString(MessagesManager.FoodColor, out backgroundColor);
+                IconString = "Food";
+                break;
+            case MessageLableType.LimitSpirit:
+                ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
+                IconString = "Spirit";
+                break;
+            case MessageLableType.LimitStone:
+                ColorUtility.TryParseHtmlString(MessagesManager.StoneColor, out backgroundColor);
+                IconString = "Stone";
+                break;
+            case MessageLableType.LimitWood:
+                ColorUtility.TryParseHtmlString(MessagesManager.WoodColor, out backgroundColor);
+                IconString = "Wood";
+                break;
+            default:
+                break;
+        }
+        if (IconString != null) {
+            Icon.gameObject.SetActive(true);
+            Icon.sprite = Resources.Load<Sprite>("Icons/vector/" + IconString);
+        } else {
+            Icon.gameObject.SetActive(false);
+        }
+        transform.DOShakeScale(3);
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
+            Destroy(this.gameObject);
+        });
+        BackgroundColor.color = backgroundColor;
+
+    }
 }
 public enum MessageLableType {
-    FoodProduction,
-    Death,
-    FaithProduction,
-    Birth,
-    WoodProduction,
-    StoneProduction,
-    RemovePopulation,
-    AddPopulation,
-    SpiritProduction,
-    Limit
+    FoodProduction, FaithProduction, WoodProduction, SpiritProduction, StoneProduction,
+
+    Death,Birth,RemovePopulation,AddPopulation,
+    
+    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone
+
+
 }
