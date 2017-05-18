@@ -95,7 +95,7 @@ public class Player : PlayerBase
 
             //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
-            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).transform.position, true);
+            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid] , true);
 
         }
 
@@ -110,7 +110,7 @@ public class Player : PlayerBase
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
         //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
-        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
+       // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
@@ -318,7 +318,7 @@ public class Player : PlayerBase
                         foreach (var item in cell.building.BuildingResources)
                         {
                             GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
-                            GameManager.I.messagesManager.DesotryUiInformation(this.transform.position);
+                           GameManager.I.messagesManager.DesotryUiInformation(cell);
                             item.Value = 0;
 
                             if (cell.building.Population.Count > 0)

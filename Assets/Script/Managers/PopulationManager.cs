@@ -135,7 +135,7 @@ public class PopulationManager : MonoBehaviour
     {
         FoodRequirement -= unit.FoodRequirements;
         //GameManager.I.messagesManager.ShowMessage(unit, PopulationMessageType.Death);
-        GameManager.I.messagesManager.ShowiInformation(MessageLableType.Death, GameManager.I.buildingManager.GetBuildingContainingUnit(unit));
+       // GameManager.I.messagesManager.ShowiInformation(MessageLableType.Death, GameManager.I.buildingManager.GetBuildingContainingUnit(unit));
         AllFreePeople.Remove(unit);
         AllPopulation.Remove(unit);
         if (unit.building)
@@ -177,7 +177,7 @@ public class PopulationManager : MonoBehaviour
                 AllPopulation.Add(newUnit);
                 GameManager.I.buildingManager.GetFirstOpening().Data.Population.Add(newUnit);
                 FoodRequirement += newUnit.FoodRequirements;
-                GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition);
+                GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.Cells[(int)GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).GetWorldPosition().x, (int)GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).GetWorldPosition().y]);
                 GameManager.I.GetResourceDataByID("Food").Value -= newUnit.FoodRequirements; 
             }
         }

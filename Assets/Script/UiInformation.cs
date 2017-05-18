@@ -10,8 +10,10 @@ public class UiInformation : MonoBehaviour {
     public Vector3 CellWorldPosition;
     public SpriteRenderer BackgroundColor;
     public SpriteRenderer Icon;
+    public CellDoomstock cell;
     
     public void ShowMessagePop_up(MessageLableType _message) {
+
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0,0,0,0);
         string IconString = "";
@@ -69,6 +71,7 @@ public class UiInformation : MonoBehaviour {
     }
 
     public void ShowMessageStuck(MessageLableType _message) {
+       
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0, 0, 0, 0);
         string IconString = "";

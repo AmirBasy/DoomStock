@@ -21,7 +21,8 @@ public class MessagesManager : MonoBehaviour
     float MaxRange = 1;
 
 
-    public void ShowiInformation(MessageLableType _message, Vector3 _worldPosition, bool isImmediate = false) {
+    public void ShowiInformation(MessageLableType _message, CellDoomstock _worldPosition, bool isImmediate = false) {
+        
         float delay =0 ;
         if (!isImmediate) {
             delay = Random.Range(MinRange, MaxRange);
@@ -31,9 +32,12 @@ public class MessagesManager : MonoBehaviour
 
     }
 
-    IEnumerator ShowMessage(float waitTime, MessageLableType _message, Vector3 _worldPosition) {
+    IEnumerator ShowMessage(float waitTime, MessageLableType _message, CellDoomstock _worldPosition) {
+        
         yield return new WaitForSeconds(waitTime);
-        UiInformation info = Instantiate(uiInformationPrefab, _worldPosition, this.transform.rotation);
+        UiInformation info = Instantiate(uiInformationPrefab, _worldPosition.GetWorldPosition(), this.transform.rotation);
+        info.cell = _worldPosition;
+        //info.cell = GameManager.I.gridController.Cells[(int)_worldPosition.GetWorldPosition().x, (int)_worldPosition.GetWorldPosition().y];
         switch (_message) {
             case MessageLableType.FoodProduction:
             case MessageLableType.FaithProduction:
@@ -53,7 +57,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.LimitStone:
             case MessageLableType.LimitPopulation:
                 info.ShowMessageStuck(_message);
-                info.CellWorldPosition = _worldPosition;
+               // info.CellWorldPosition = _worldPosition;
                 break;
             default:
                 break;
@@ -61,10 +65,10 @@ public class MessagesManager : MonoBehaviour
         
     }
 
-    public void DesotryUiInformation(Vector3 _worldPosition) {
+    public void DesotryUiInformation(CellDoomstock _cell) {
         UiInformation[] uiToReturn = FindObjectsOfType<UiInformation>();
         foreach (var item in uiToReturn) {
-            if (item.CellWorldPosition == _worldPosition) {
+            if (item.cell == _cell) {
                 Destroy(item.gameObject);
 
             }

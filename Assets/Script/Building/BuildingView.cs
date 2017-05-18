@@ -142,25 +142,26 @@ public class BuildingView : MonoBehaviour
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
+                CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                 switch (Data.ID) {
                     case "Foresta":
-                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitWood, this.transform.position);
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitWood, cell);
                         break;
                     case "Cava":
-                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitStone, this.transform.position);
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitStone, cell);
                         break;
                     case "Chiesa":
-                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFaith, this.transform.position);
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFaith, cell);
                         break;
                     case "Fattoria":
-                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFood, this.transform.position);
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFood, cell);
                         break;
                     case "Muro":
                         break;
                     case "Torretta":
                         break;
                     case "Casa":
-                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);
+                       // GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);
                         break;
                     default:
                         break;
@@ -186,6 +187,7 @@ public class BuildingView : MonoBehaviour
         switch (_eventData.ID)
         {
             case "Production":
+                CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                 if (Data.currentState == BuildingState.Producing && Data.ID != "Foresta")
                 {
                     foreach (var res in Data.BuildingResources)
@@ -195,17 +197,17 @@ public class BuildingView : MonoBehaviour
                         switch (res.ID)
                         {
                             case "Faith":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell);
                                 break;
 
                             case "Stone":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell);
                                 break;
                             case "Spirit":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, cell);
                                 break;
                             case "Food":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, transform.position);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell);
                                 break;
                             default:
                                 break;
@@ -221,7 +223,7 @@ public class BuildingView : MonoBehaviour
                         LimitReached(res);
                         if (res.ID == "Wood")
                         {
-                             GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, transform.position);
+                             GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell);
                         }
                     }
                 }
