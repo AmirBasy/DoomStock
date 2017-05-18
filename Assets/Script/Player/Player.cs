@@ -344,7 +344,7 @@ public class Player : PlayerBase
                     else if (cell.building.currentState == BuildingState.Producing)
                     {
 
-                        AddResourceOnClick(cell.building);
+                        AddResourceOnClick(cell.building, cell);
                     }
 
                 }
@@ -464,7 +464,7 @@ public class Player : PlayerBase
     #endregion
 
 
-    void AddResourceOnClick(BuildingData building)
+    void AddResourceOnClick(BuildingData building, CellDoomstock cell)
     {
 
         switch (building.ID)
@@ -473,12 +473,14 @@ public class Player : PlayerBase
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Cava;
+
                 }
                 break;
             case "Foresta":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Foresta;
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell);
                 }
                 break;
             case "Fattoria":
