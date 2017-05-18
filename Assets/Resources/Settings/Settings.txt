@@ -1,0 +1,34 @@
+{
+  "ResProductionModifier" : [
+    {
+      "Player" : "Esercito",
+      "Casa" : 2,
+      "Cava" : 2,
+      "Chiesa" : 1,
+      "Fattoria" : 1,
+      "Foresta" : 2,
+      "Muro" : 3,
+      "Torretta" : 3
+    },
+    {
+      "Player" : "Clero",
+      "Casa" : 3,
+      "Cava" : 1,
+      "Chiesa" : 3,
+      "Fattoria" : 2,
+      "Foresta" : 2,
+      "Muro" : 2,
+      "Torretta" : 1
+    },
+    {
+      "Player" : "Sindaco",
+      "Casa" : 2,
+      "Cava" : 3,
+      "Chiesa" : 1,
+      "Fattoria" : 3,
+      "Foresta" : 2,
+      "Muro" : 1,
+      "Torretta" : 2
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -32,6 +33,7 @@ public class Player : PlayerBase
     private void Start()
     {
         playerInput = new PlayerInput(InputPlayerIndex);
+        LoadResourcesProductionModifiers();
     }
 
     #endregion
@@ -207,10 +209,41 @@ public class Player : PlayerBase
     /// <returns></returns>
     public bool CanRemoveDebris()
     {
-        if (ID == "PlayerTwo")
+        if (ID == "Esercito")
             return true;
         else
             return false;
+    }
+
+    #endregion
+
+    #region Resource collection
+
+    public static Settings GameSettings = null;
+    /// <summary>
+    /// Contiene tutti i prod modifiers del player.
+    /// </summary>
+    public ResProductionModifier ProdModifiers = new ResProductionModifier();
+
+    void LoadResourcesProductionModifiers() {
+
+        //GameSettings = new Settings() {
+        //    ResProductionModifier = new List<ResProductionModifier>() {
+        //        new ResProductionModifier(){ Casa = 1, Cava = 1, Chiesa = 1, Fattoria = 1, Foresta = 1, Muro = 1, Player = "asda", Torretta = 1 },
+        //        new ResProductionModifier(){ Casa = 1, Cava = 1, Chiesa = 1, Fattoria = 1, Foresta = 1, Muro = 1, Player = "asda", Torretta = 1 },
+        //    }
+        //};
+
+        //string resultJson = JsonUtility.ToJson(GameSettings);
+
+        if (GameSettings == null) { 
+            TextAsset settingsFile = Resources.Load<TextAsset>("Settings/Settings");
+            string jsonData = settingsFile.text;
+            GameSettings = JsonUtility.FromJson<Settings>(jsonData);
+            Debug.Log(GameSettings);
+        }
+
+        ProdModifiers =  GameSettings.ResProductionModifier.Find(m => m.Player == ID);
     }
 
     #endregion

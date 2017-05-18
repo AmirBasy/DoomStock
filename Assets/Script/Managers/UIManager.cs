@@ -134,13 +134,13 @@ public class UIManager : MonoBehaviour
                 }
                 switch (_player.ID)
                 {
-                    case "PlayerOne":
+                    case "Sindaco":
                         P1_Menu.Init(_player, FirstLevelSelectables);
                         return P1_Menu;
-                    case "PlayerTwo":
+                    case "Esercito":
                         P2_Menu.Init(_player, FirstLevelSelectables);
                         return P2_Menu;
-                    case "PlayerThree":
+                    case "Clero":
                         FirstLevelSelectables.Add(
                             new Selector() { UniqueID = "Miracle" } as ISelectable
                         );

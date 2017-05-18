@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fce945deba41a94f81e01ae1ee3343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: PlayerOne
+  ID: Sindaco
   MaxCellCost: 5
   XpositionOnGrid: 0
   YpositionOnGrid: 0
@@ -198,4 +198,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
   - {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0, type: 2}
   - {fileID: 11400000, guid: 92612a42ff1432243830c1f2c32a9dee, type: 2}
+  ProdModifiers:
+    Player: 
+    Casa: 0
+    Cava: 0
+    Chiesa: 0
+    Fattoria: 0
+    Foresta: 0
+    Muro: 0
+    Torretta: 0
   InputPlayerIndex: 0

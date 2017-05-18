@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fce945deba41a94f81e01ae1ee3343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: PlayerTwo
+  ID: Esercito
   MaxCellCost: 5
   XpositionOnGrid: 0
   YpositionOnGrid: 0
@@ -197,4 +197,13 @@ MonoBehaviour:
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183, type: 2}
   - {fileID: 11400000, guid: 0da94849228b5a1418711b4322cf6e54, type: 2}
+  ProdModifiers:
+    Player: 
+    Casa: 0
+    Cava: 0
+    Chiesa: 0
+    Fattoria: 0
+    Foresta: 0
+    Muro: 0
+    Torretta: 0
   InputPlayerIndex: 1
