@@ -34,7 +34,41 @@ public class MessagesManager : MonoBehaviour
     IEnumerator ShowMessage(float waitTime, MessageLableType _message, Vector3 _worldPosition) {
         yield return new WaitForSeconds(waitTime);
         UiInformation info = Instantiate(uiInformationPrefab, _worldPosition, this.transform.rotation);
-        info.ShowMessagePop_up(_message);
+        switch (_message) {
+            case MessageLableType.FoodProduction:
+            case MessageLableType.FaithProduction:
+            case MessageLableType.WoodProduction:
+            case MessageLableType.SpiritProduction:
+            case MessageLableType.StoneProduction:
+            case MessageLableType.Death:
+            case MessageLableType.Birth:
+            case MessageLableType.RemovePopulation:
+            case MessageLableType.AddPopulation:
+                info.ShowMessagePop_up(_message);
+                break;
+            case MessageLableType.LimitFood:
+            case MessageLableType.LimitFaith:
+            case MessageLableType.LimitWood:
+            case MessageLableType.LimitSpirit:
+            case MessageLableType.LimitStone:
+            case MessageLableType.LimitPopulation:
+                info.ShowMessageStuck(_message);
+                info.CellWorldPosition = _worldPosition;
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    public void DesotryUiInformation(Vector3 _worldPosition) {
+        UiInformation[] uiToReturn = FindObjectsOfType<UiInformation>();
+        foreach (var item in uiToReturn) {
+            if (item.CellWorldPosition == _worldPosition) {
+                Destroy(item.gameObject);
+
+            }
+        }
     }
     //public void ShowMessage(PopulationData unit, PopulationMessageType _type, BuildingView building = null)
     //{

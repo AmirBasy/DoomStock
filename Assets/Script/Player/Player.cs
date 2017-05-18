@@ -316,6 +316,7 @@ public class Player : PlayerBase
                         foreach (var item in cell.building.BuildingResources)
                         {
                             GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
+                            GameManager.I.messagesManager.DesotryUiInformation(this.transform.position);
                             item.Value = 0;
 
                             if (cell.building.Population.Count > 0)
@@ -332,6 +333,7 @@ public class Player : PlayerBase
                                 else if (cell.building.ID == "Foresta")
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
+                                   
                                 }
 
                             }

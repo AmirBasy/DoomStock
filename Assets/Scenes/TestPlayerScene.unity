@@ -1470,11 +1470,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
-        type: 2}
-      propertyPath: ID
-      value: Sindaco
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
   m_IsPrefabParent: 0

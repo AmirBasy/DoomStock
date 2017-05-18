@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class UiInformation : MonoBehaviour {
 
+    public Vector3 CellWorldPosition;
     public SpriteRenderer BackgroundColor;
     public SpriteRenderer Icon;
     
@@ -103,7 +104,7 @@ public class UiInformation : MonoBehaviour {
         }
         transform.DOShakeScale(3);
         transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
-            Destroy(this.gameObject);
+            
         });
         BackgroundColor.color = backgroundColor;
 
@@ -114,7 +115,7 @@ public enum MessageLableType {
 
     Death,Birth,RemovePopulation,AddPopulation,
     
-    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone
+    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone,LimitPopulation
 
 
 }

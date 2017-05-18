@@ -146,7 +146,22 @@ public class BuildingView : MonoBehaviour
                     case "Foresta":
                         GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitWood, this.transform.position);
                         break;
-                        
+                    case "Cava":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitStone, this.transform.position);
+                        break;
+                    case "Chiesa":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFaith, this.transform.position);
+                        break;
+                    case "Fattoria":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFood, this.transform.position);
+                        break;
+                    case "Muro":
+                        break;
+                    case "Torretta":
+                        break;
+                    case "Casa":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);
+                        break;
                     default:
                         break;
                 }
