@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205546810265706}
   m_LocalRotation: {x: -0.000000022787017, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,9 +93,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 92612a42ff1432243830c1f2c32a9dee, type: 2}
-  Materials:
-  - {fileID: 2100000, guid: 6aa6771a1b05f0b48b283c6b34b540ac, type: 2}
-  - {fileID: 2100000, guid: 963e8ac7c337fdc4bb192ba38ffc3d4c, type: 2}
-  anim: {fileID: 0}
-  BuildingLifeBar: {fileID: 0}
-  PopulationBar: {fileID: 0}
