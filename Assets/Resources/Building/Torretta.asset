@@ -11,17 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Torretta
   m_EditorClassIdentifier: 
-  currentState: 0
   TimedEvents: []
-  BaseResources:
-  - {fileID: 11400000, guid: 376f8d38d695a4e4bacea0d9e542aa04, type: 2}
-  Ambition: 
+  BuildingResources: []
   BuildingTime: 10
   ID: Torretta
   PopulationLimit: 10
   WoodToBuild: 50
   StoneToBuild: 35
-  BuildPrefab: {fileID: 114059088595996622, guid: 2e4ed826e9cbfc04d966c17655c6f084,
+  BuildPrefab: {fileID: 114657442535318722, guid: 131778c113a4faa44af8709629858256,
     type: 2}
   Attack: 0
   FireRateo: 0
@@ -30,3 +27,4 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 2
+  currentState: 0

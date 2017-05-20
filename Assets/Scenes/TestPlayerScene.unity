@@ -364,48 +364,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 899876367}
   m_Script: {fileID: 11500000, guid: ff36f896304c990448359689d04adc15, type: 3}
---- !u!1001 &253348379
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.008726535
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999619
-      objectReference: {fileID: 0}
-    - target: {fileID: 4222645077189224, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!114 &370798806 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114376980982606524, guid: 6b4addf624016f043a898b00b64338fa,
@@ -934,6 +892,24 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153800874396192, guid: 2acaa43a67287ad48ae8c110837ac6df, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114608207533662876, guid: 2acaa43a67287ad48ae8c110837ac6df,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Add Pop
+
+        U'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583420825640090, guid: 2acaa43a67287ad48ae8c110837ac6df,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Back
+
+        O'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2acaa43a67287ad48ae8c110837ac6df, type: 2}

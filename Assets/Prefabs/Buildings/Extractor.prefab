@@ -21,8 +21,6 @@ GameObject:
   - component: {fileID: 4026809017492852}
   - component: {fileID: 33344224242576656}
   - component: {fileID: 23735944800737984}
-  - component: {fileID: 95655389218227180}
-  - component: {fileID: 111039297571367750}
   - component: {fileID: 114924793947049800}
   m_Layer: 0
   m_Name: Extractor
@@ -134,23 +132,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1123306350743274}
   m_Mesh: {fileID: 4300000, guid: f801352f327fd4e45971e53ce5256259, type: 3}
---- !u!95 &95655389218227180
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123306350743274}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: f801352f327fd4e45971e53ce5256259, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2743ea896bb406a4da938fc068bb2aaa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!102 &102055847397946174
 TextMesh:
   serializedVersion: 3
@@ -172,20 +153,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!111 &111039297571367750
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123306350743274}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: abfa7b55ec626f647b18f630efa6f24d, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114924793947049800
 MonoBehaviour:
   m_ObjectHideFlags: 1

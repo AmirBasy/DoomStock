@@ -145,8 +145,10 @@ public class BuildingView : MonoBehaviour
                         GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFood, cell);
                         break;
                     case "Muro":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitSpirit, cell);
                         break;
                     case "Torretta":
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitFood, cell);
                         break;
                     case "Casa":
                        // GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);

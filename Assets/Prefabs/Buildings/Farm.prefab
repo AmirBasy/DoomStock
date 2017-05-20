@@ -38,8 +38,6 @@ GameObject:
   - component: {fileID: 4556249021517614}
   - component: {fileID: 33271501733275866}
   - component: {fileID: 23558730339373722}
-  - component: {fileID: 95712486142810466}
-  - component: {fileID: 111924073297172510}
   - component: {fileID: 114864723372019696}
   m_Layer: 0
   m_Name: Farm
@@ -221,23 +219,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1075678503156298}
   m_Mesh: {fileID: 4300000, guid: abcc8e153c1dd2946a8c4287627098b4, type: 3}
---- !u!95 &95712486142810466
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1075678503156298}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2743ea896bb406a4da938fc068bb2aaa, type: 2}
-  m_CullingMode: 2
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!102 &102436494181243668
 TextMesh:
   serializedVersion: 3
@@ -259,20 +240,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!111 &111924073297172510
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1075678503156298}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: abfa7b55ec626f647b18f630efa6f24d, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114312577034218482
 MonoBehaviour:
   m_ObjectHideFlags: 1
