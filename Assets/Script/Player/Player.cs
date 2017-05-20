@@ -152,7 +152,7 @@ public class Player : PlayerBase
             newInstanceOfView.Data.PlayerOwner = this;
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.localScale = new Vector3(GameManager.I.CellSize, GameManager.I.CellSize, GameManager.I.CellSize);
-            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize / 2) - 1, this.transform.position.z);
+            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize / 2) -0.5f, this.transform.position.z);
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
             BuildingsInScene.Add(newInstanceOfView);
             GameManager.I.populationManager.IncreaseMaxPopulation();

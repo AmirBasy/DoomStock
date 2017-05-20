@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: cf4a1abeeac52d448a2094f7b6f84a58
-timeCreated: 1495017108
+guid: b7e42bbd151909643a5d0dfeb3fdfe08
+timeCreated: 1495313789
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Object011
+    4300000: chiesa
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -56,7 +56,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
