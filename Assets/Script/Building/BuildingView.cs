@@ -15,16 +15,6 @@ public class BuildingView : MonoBehaviour
     /// </summary>
     public BuildingData Data;
 
-    /// <summary>
-    /// Materiali momentanei della view.
-    /// </summary>
-    Renderer rend;
-    public Material[] Materials;
-
-    /// <summary>
-    /// animazione della view.
-    /// </summary>
-    public Animation anim;
 
     #endregion
 
@@ -33,8 +23,6 @@ public class BuildingView : MonoBehaviour
     {
         Data.Init();
         //PopulationBarCounter = 0;
-        anim = GetComponent<Animation>();
-        rend = GetComponent<Renderer>();
         if (Data.ID != "Foresta")
         {
             SetBuildingStatus(BuildingState.Construction);
@@ -128,16 +116,16 @@ public class BuildingView : MonoBehaviour
             case BuildingState.Producing:
                 if (Data.ID != "Foresta")
                 {
-                    if (rend.material != null)
-                    {
-                        rend.material = Materials[0];
-                    }
+                    //if (rend.material != null)
+                    //{
+                    //    rend.material = Materials[0];
+                    //}
 
                 }
                 else if (Data.ID == "Foresta")
                 {
 
-                    transform.DOMoveY(transform.position.y + 0.05f, 1.5f).OnComplete(() => { });
+                    transform.DOMoveY(transform.position.y + 0.1f, 1.5f).OnComplete(() => { });
                 }
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
@@ -253,19 +241,19 @@ public class BuildingView : MonoBehaviour
         }
     }
     #region BARRA commentata
-    public Image BuildingLifeBar;
-    public Image PopulationBar;
-    private int populationBarCounter;
+    //public Image BuildingLifeBar;
+    //public Image PopulationBar;
+    //private int populationBarCounter;
 
-    public int PopulationBarCounter
-    {
-        get { return populationBarCounter; }
-        set
-        {
-            populationBarCounter = value;
-            //SetPopulationBar();
-        }
-    }
+    //public int PopulationBarCounter
+    //{
+    //    get { return populationBarCounter; }
+    //    set
+    //    {
+    //        populationBarCounter = value;
+    //        //SetPopulationBar();
+    //    }
+    //}
     //public void DecreasePopulationBar()
     //{
     //    if (PopulationBarCounter < 1)

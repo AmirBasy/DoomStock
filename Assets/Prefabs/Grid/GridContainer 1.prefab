@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4497645643453024}
-  - component: {fileID: 114339023798415358}
+  - component: {fileID: 114579272899063886}
   m_Layer: 0
   m_Name: GridContainer 1
   m_TagString: Untagged
@@ -34,13 +34,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1374556731352996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.24, y: 6.54, z: 6.17}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114339023798415358
+--- !u!114 &114579272899063886
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,10 +48,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374556731352996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1e850b6108ae54ca597c268da7f347, type: 3}
+  m_Script: {fileID: 11500000, guid: cbc9bece4ca23074ca17933f969011e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 4476553913969040, guid: 46a7c3b71dbb54b4c88e5273641272fa, type: 2}
-  GridSize: {x: 10, y: 10}
-  GridInvalidPositions: []
-  gridSize: 
+  CellSize: 0.3
+  TilePrefab:
+  - {fileID: 1157076348367308, guid: edf35065a7830fa4ebf6c80bbcc97dc5, type: 2}
+  - {fileID: 1267335651835680, guid: 5aaeb2f7e12af974da18b6e8eb5a04e5, type: 2}
+  - {fileID: 1004780974669124, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
+  - {fileID: 1595073235191474, guid: adb73111ca5c194439d84b2c9e2f4c7c, type: 2}
+  - {fileID: 1323465541271624, guid: 42d31b23995a88743a0e5f0728d3b043, type: 2}
+  GridSize: {x: 3, y: 3}
+  GridInvalidPositions:
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  - {x: 0, y: 3}
+  - {x: 0, y: 4}
+  heightmap: {fileID: 2800000, guid: 4a0a9935b86a7aa4e9e3ce3799e9db44, type: 3}
+  heightmapTerreinType: {fileID: 2800000, guid: a3a27f6a080dde2489a7ba8ac7af8664,
+    type: 3}

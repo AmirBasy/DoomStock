@@ -52,13 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 1
-  Players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  PlayerPrefab: {fileID: 0}
-  resources: []
+  InitialFood: 200
+  InitialWood: 700
+  InitialStone: 700
+  forestInScene: []
   gridController: {fileID: 0}
   timeEventManager: {fileID: 0}
   populationManager: {fileID: 0}
@@ -66,6 +63,13 @@ MonoBehaviour:
   resourcesManager: {fileID: 0}
   uiManager: {fileID: 0}
   messagesManager: {fileID: 0}
-  GridWidth: 50
-  GridHeight: 50
-  CellSize: 0.3
+  Players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PlayerPrefab: {fileID: 0}
+  forest: {fileID: 0}
+  GridWidth: 20
+  GridHeight: 20
+  CellSize: 0.8
+  resources: []

@@ -27,4 +27,4 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 1
-  currentState: 3
+  currentState: 2

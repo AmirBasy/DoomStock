@@ -52,26 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainPeopleText: {fileID: 0}
-  HealthCare: 0
-  Names:
-  - Harry Potter
-  - Marco Conio
-  - Pablo Escobar
-  - Geppetto
-  - Freddie Mercury
-  - Giorgia Meloni
-  - Viviana Figus
-  - Alberto Lardera
-  - Brago
-  - Don Vincenzo
-  Ambitions:
-  - Farmer
-  - Cleric
-  - Carpenter
-  MinLife: 3
-  MaxLife: 4
-  MinFoodRequirement: 20
-  MaxFoodRequirement: 30
-  MinEatingTime: 2
-  MaxEatingTime: 3
+  MinLife: 5
+  MaxLife: 6
+  MinFoodRequirement: 1
+  MaxFoodRequirement: 1
   Startpop: 0

@@ -51,5 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347fd52d076fbba4d9157cbd93d11586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MessageLablePrefab: {fileID: 114909772783104224, guid: 3a4c8e6157d7b0b46b96b577833497c6,
-    type: 2}
+  uiInformationPrefab: {fileID: 0}

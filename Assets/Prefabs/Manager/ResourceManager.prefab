@@ -52,7 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourcesPrefabs:
+  - {fileID: 11400000, guid: f2f0c2728db61d443ab2c88f40a9902c, type: 2}
   - {fileID: 11400000, guid: 33750a0154d8cca4f8737ad9eddcf0b6, type: 2}
   - {fileID: 11400000, guid: aae1c9385edc6c14ab8416ec38d20513, type: 2}
   - {fileID: 11400000, guid: b1beb373801c0f34aa769c6597bb6e13, type: 2}
+  - {fileID: 11400000, guid: 376f8d38d695a4e4bacea0d9e542aa04, type: 2}
   resources: []

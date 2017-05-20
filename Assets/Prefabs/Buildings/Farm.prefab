@@ -195,7 +195,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4dfcc1e8aacdef34d91c75880c81052c, type: 2}
+  - {fileID: 2100000, guid: 9dc15713c5734da40a7ed3dc495c54c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -403,13 +403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
-  Materials:
-  - {fileID: 2100000, guid: 4dfcc1e8aacdef34d91c75880c81052c, type: 2}
-  - {fileID: 2100000, guid: 0045a7f35f100a343bdec0cb111f8780, type: 2}
-  - {fileID: 2100000, guid: a602e5f85afb59440b9f96baa8f025dc, type: 2}
-  anim: {fileID: 111924073297172510}
-  BuildingLifeBar: {fileID: 114920860539068002}
-  PopulationBar: {fileID: 0}
 --- !u!114 &114920860539068002
 MonoBehaviour:
   m_ObjectHideFlags: 1

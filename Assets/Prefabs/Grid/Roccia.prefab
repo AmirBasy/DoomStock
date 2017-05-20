@@ -11,23 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1595073235191474}
   m_IsPrefabParent: 1
---- !u!1 &1158346550003008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4916552610250390}
-  - component: {fileID: 33012079217896902}
-  - component: {fileID: 23691213139106142}
-  m_Layer: 0
-  m_Name: roccia
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1595073235191474
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +27,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1705873036033276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4973051963741828}
+  - component: {fileID: 33840064308429224}
+  - component: {fileID: 23289934606662220}
+  - component: {fileID: 95281090621289006}
+  - component: {fileID: 114741763914305630}
+  m_Layer: 0
+  m_Name: Cubo_Roccioso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4797936246071134
 Transform:
   m_ObjectHideFlags: 1
@@ -54,29 +56,29 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4916552610250390}
+  - {fileID: 4973051963741828}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4916552610250390
+--- !u!4 &4973051963741828
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1158346550003008}
-  m_LocalRotation: {x: 0.008726536, y: -0, z: -0, w: 0.9999619}
+  m_GameObject: {fileID: 1705873036033276}
+  m_LocalRotation: {x: -0.008726535, y: 0, z: -0, w: 0.9999619}
   m_LocalPosition: {x: 0, y: -1.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4797936246071134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23691213139106142
+--- !u!23 &23289934606662220
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1158346550003008}
+  m_GameObject: {fileID: 1705873036033276}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,7 +86,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4feccaf8f58a75e4b9a4f367418fe35e, type: 2}
+  - {fileID: 2100000, guid: aa24dee6d136e6b42a6e15dd4bd45a57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,13 +105,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33012079217896902
+--- !u!33 &33840064308429224
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1158346550003008}
-  m_Mesh: {fileID: 4300000, guid: 291f02afb69c78e448133ce65b9f1b15, type: 3}
+  m_GameObject: {fileID: 1705873036033276}
+  m_Mesh: {fileID: 4300000, guid: 578aa5a57f77e0b4aafe43cde555abe7, type: 3}
+--- !u!95 &95281090621289006
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705873036033276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 578aa5a57f77e0b4aafe43cde555abe7, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114465311290417922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,3 +143,15 @@ MonoBehaviour:
   Color:
   - {fileID: 2100000, guid: b1e1ef8ff9c21fa4790bc2e6b5f764d4, type: 2}
   - {fileID: 2100000, guid: a7ded790204f1a14b88e0f0e54b30e2d, type: 2}
+--- !u!114 &114741763914305630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705873036033276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c605e456fac5d847bc983205a37f298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Color: []

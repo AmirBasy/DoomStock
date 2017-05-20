@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23340049011690392}
   - component: {fileID: 95990014094032302}
   - component: {fileID: 114059088595996622}
-  - component: {fileID: 111235412762995846}
   m_Layer: 0
   m_Name: torre
   m_TagString: Untagged
@@ -57,11 +56,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 012e135969e34544cac90298d5f30ff2, type: 2}
-  - {fileID: 2100000, guid: 2865e219485e88b40ba3c923fd7dcac3, type: 2}
-  - {fileID: 2100000, guid: 68b4635d96999934e9e5b2fae8123581, type: 2}
-  - {fileID: 2100000, guid: 6eec9b7316652884fa666ce7167e1312, type: 2}
-  - {fileID: 2100000, guid: 60707fe413e191540b68ec0e85f6d2b0, type: 2}
+  - {fileID: 2100000, guid: aa24dee6d136e6b42a6e15dd4bd45a57, type: 2}
+  - {fileID: 2100000, guid: aa24dee6d136e6b42a6e15dd4bd45a57, type: 2}
+  - {fileID: 2100000, guid: aa24dee6d136e6b42a6e15dd4bd45a57, type: 2}
+  - {fileID: 2100000, guid: aa24dee6d136e6b42a6e15dd4bd45a57, type: 2}
+  - {fileID: 2100000, guid: aa24dee6d136e6b42a6e15dd4bd45a57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,20 +103,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &111235412762995846
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1860272301301634}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: abfa7b55ec626f647b18f630efa6f24d, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114059088595996622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,11 +114,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildingLifeBar: {fileID: 0}
-  PopulationBar: {fileID: 0}
   Data: {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183, type: 2}
-  Materials:
-  - {fileID: 2100000, guid: 012e135969e34544cac90298d5f30ff2, type: 2}
-  - {fileID: 2100000, guid: 012e135969e34544cac90298d5f30ff2, type: 2}
-  - {fileID: 2100000, guid: a602e5f85afb59440b9f96baa8f025dc, type: 2}
-  anim: {fileID: 111138966210692730, guid: 84e5c6ca0ede82346a25f86f02a0d7b0, type: 2}
