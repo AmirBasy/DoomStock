@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Name: Chiesa
   m_EditorClassIdentifier: 
   TimedEvents: []
-  BuildingResources: []
+  BuildingResources:
+  - {fileID: 0}
+  - {fileID: 0}
   BuildingTime: 15
   ID: Chiesa
   PopulationLimit: 5
   WoodToBuild: 80
   StoneToBuild: 50
-  BuildPrefab: {fileID: 114459302934936186, guid: 85f8255d290ac3a489a4e3a7041733c2,
+  BuildPrefab: {fileID: 114225814474140188, guid: c1c006da71f82d04cad209c3aa17624a,
     type: 2}
   Attack: 0
   FireRateo: 0
@@ -27,4 +29,4 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 2
-  currentState: 0
+  currentState: 1

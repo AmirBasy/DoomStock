@@ -18,7 +18,7 @@ MonoBehaviour:
   PopulationLimit: 5
   WoodToBuild: 50
   StoneToBuild: 15
-  BuildPrefab: {fileID: 114924793947049800, guid: c459fe6ce14d5a8498f7e523e55d9b29,
+  BuildPrefab: {fileID: 114025149121243994, guid: 2b16a15fd9e59ad44bd3d15a118402bd,
     type: 2}
   Attack: 0
   FireRateo: 0
