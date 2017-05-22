@@ -125,7 +125,7 @@ public class BuildingView : MonoBehaviour
                 else if (Data.ID == "Foresta")
                 {
 
-                    transform.DOMoveY(transform.position.y + 0.1f, 1.5f).OnComplete(() => { });
+                   // transform.DOMoveY(transform.position.y + 0.1f, 1.5f).OnComplete(() => { });
                 }
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
