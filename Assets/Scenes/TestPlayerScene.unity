@@ -108,60 +108,6 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &29901631
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -6.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 4.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4304887015015436, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a53b1fd751fb47340aeef64298deabe5, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &47707498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1060,11 @@ Prefab:
       propertyPath: m_Name
       value: GridContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 114579272899063886, guid: 99d012a5256e5a149b60793e0e510d39,
+        type: 2}
+      propertyPath: heightmap
+      value: 
+      objectReference: {fileID: 2800000, guid: 4a0a9935b86a7aa4e9e3ce3799e9db44, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99d012a5256e5a149b60793e0e510d39, type: 2}
   m_IsPrefabParent: 0
