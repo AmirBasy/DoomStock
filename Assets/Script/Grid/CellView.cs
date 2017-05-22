@@ -34,6 +34,7 @@ public class CellView : MonoBehaviour
 
     private void OnDisable()
     {
+        if(data !=null)
         data.OnDataChanged -= OnDataChanged;
     }
 }
