@@ -196,8 +196,8 @@ public class GameManager : MonoBehaviour {
             if (item.Type == CellDoomstock.CellType.Forest)
             {
                 CurrentBuildView = buildingManager.CreateBuild(forest);
-                CurrentBuildView.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                CurrentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) , item.WorldPosition.y - (CellSize / 2) , item.WorldPosition.z );
+                CurrentBuildView.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                CurrentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) +0.5f, item.WorldPosition.y - (CellSize / 2) -0.30f , item.WorldPosition.z+0.5f );
                 forestInScene.Add(CurrentBuildView);
                 item.SetStatus(CellDoomstock.CellStatus.Filled, CurrentBuildView.Data);
             }
