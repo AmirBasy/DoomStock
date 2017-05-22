@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: a6d17874f16cd164e858556632d5c475
-timeCreated: 1495464593
+guid: 2aff62829c6cb594a84a4cdf22f534f0
+timeCreated: 1495468016
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -23,10 +23,10 @@ ModelImporter:
     3300002: grano
     3300004: mulino
     3300006: Plane013
-    4300000: Plane013
-    4300002: grano
-    4300004: Box001
-    4300006: mulino
+    4300000: mulino
+    4300002: Box001
+    4300004: grano
+    4300006: Plane013
     7400000: Take 001
     9500000: //RootNode
   materials:

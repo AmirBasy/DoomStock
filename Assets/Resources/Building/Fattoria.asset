@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Name: Fattoria
   m_EditorClassIdentifier: 
   TimedEvents: []
-  BuildingResources: []
+  BuildingResources:
+  - {fileID: 0}
   BuildingTime: 3
   ID: Fattoria
   PopulationLimit: 50
   WoodToBuild: 10
   StoneToBuild: 10
-  BuildPrefab: {fileID: 114363276829482540, guid: f98e6d2c826e3c44fbe56ed5a21de46a,
+  BuildPrefab: {fileID: 114464016365255892, guid: f98e6d2c826e3c44fbe56ed5a21de46a,
     type: 2}
   Attack: 0
   FireRateo: 0
