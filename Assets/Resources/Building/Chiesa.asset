@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Name: Chiesa
   m_EditorClassIdentifier: 
   TimedEvents: []
-  BuildingResources:
-  - {fileID: 0}
-  - {fileID: 0}
+  BuildingResources: []
   BuildingTime: 15
   ID: Chiesa
   PopulationLimit: 5
