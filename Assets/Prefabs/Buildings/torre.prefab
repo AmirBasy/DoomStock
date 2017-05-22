@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95144944392281474}
   - component: {fileID: 114657442535318722}
   m_Layer: 0
-  m_Name: torre
+  m_Name: Torre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
