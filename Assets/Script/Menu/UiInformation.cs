@@ -52,7 +52,7 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.SpiritProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
-                IconString = "Spirit";
+                IconString = "1+";
                 break; 
             default:
                 break;

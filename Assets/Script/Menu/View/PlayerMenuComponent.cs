@@ -33,6 +33,7 @@ public class PlayerMenuComponent : MenuBase
                         foreach (BuildingData building in CurrentPlayer.BuildingsDataPrefabs)
                         {
                             BuildingData newBuildingInstance = Instantiate<BuildingData>(building);
+                            //TODO : check del terreno con cambio di Layer
                             PossibiliScelteAttuali.Add(newBuildingInstance);
                         }
                         break;
