@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 676ac2c745d801b42a688e6b3e43e3a4
-timeCreated: 1490009653
+guid: 38ce03b595955454abf9654952f4d59a
+timeCreated: 1495440324
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -20,6 +20,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -53,7 +55,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
