@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33234255044842480}
   - component: {fileID: 23875557030331124}
   m_Layer: 0
-  m_Name: Ceppo
+  m_Name: CEPPO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
