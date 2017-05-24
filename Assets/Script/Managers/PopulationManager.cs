@@ -199,7 +199,7 @@ public class PopulationManager : MonoBehaviour
                         UnitDeath(AllPopulation[i]);
                     }
 
-
+                   
                     AllPopulation[i].Month = 0;
                 }
             }
