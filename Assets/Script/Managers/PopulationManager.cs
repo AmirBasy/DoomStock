@@ -195,12 +195,10 @@ public class PopulationManager : MonoBehaviour
                     AllPopulation[i].MaxAge--;
                     if (AllPopulation[i].MaxAge <= 0)
                     {
-
+                        AllPopulation[i].Month = 0;
                         UnitDeath(AllPopulation[i]);
-                    }
-
+                    }       
                    
-                    AllPopulation[i].Month = 0;
                 }
             }
 
