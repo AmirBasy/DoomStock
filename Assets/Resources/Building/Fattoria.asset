@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Name: Fattoria
   m_EditorClassIdentifier: 
   TimedEvents: []
-  BuildingResources:
-  - {fileID: 0}
+  BuildingResources: []
   BuildingTime: 3
   ID: Fattoria
   PopulationLimit: 50
@@ -28,4 +27,4 @@ MonoBehaviour:
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
   DecreaseBuildingLife: 1
-  currentState: 1
+  currentState: 0
