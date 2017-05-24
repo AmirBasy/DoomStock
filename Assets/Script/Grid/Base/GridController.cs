@@ -110,12 +110,12 @@ namespace Framework.Grid
         /// </summary>
         /// <param name="cell"></param>
         /// <returns></returns>
-        public List<T> GetNeighboursStar(T cell)
+        public List<T> GetNeighboursStar(T cell, int _range = 1)
         {
             List<T> returnList = new List<T>();
-            for (int x = -1; x <= 1; x++)
+            for (int x = -_range; x <= _range; x++)
             {
-                for (int y = -1; y <= 1; y++)
+                for (int y = -_range; y <= _range; y++)
                 {
                     if (x == 0 && y == 0)
                         continue;
