@@ -110,6 +110,11 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public int DecreaseBuildingLife;
 
+
+    public CellDoomstock Cell {
+        get { return GameManager.I.gridController.GetCellFromBuilding(this); }
+        
+    }
     #endregion
 
     #region API
@@ -150,7 +155,7 @@ public class BuildingData : ScriptableObject, ISelectable
         }
     }
 
- 
+    
 
 
 

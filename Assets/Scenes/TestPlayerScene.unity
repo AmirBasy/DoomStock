@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5749357, g: 0.7264643, b: 0.86369693, a: 1}
+  m_IndirectSpecularColor: {r: 0.5748306, g: 0.72637105, b: 0.8637631, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &163266156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,9 +224,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 163266155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a802408b600574aa7fd1bf37997897, type: 3}
+  m_Script: {fileID: 11500000, guid: bded1cff4afc4c14294ec2b937906b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
+  Life: 0
+  Attck: 0
+  RangeView: 2
+  AttackSpeed: 0
+  MovementSpeed: 1
+  Priority1: {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183, type: 2}
+  Priority2: {fileID: 11400000, guid: 0da94849228b5a1418711b4322cf6e54, type: 2}
 --- !u!23 &163266157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -285,8 +293,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 163266155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4693146, y: 2.3383334, z: 6.9345355}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15

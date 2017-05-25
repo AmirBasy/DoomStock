@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public interface IPathFinding {
-    
+
 
 }
-
+public interface IPathFindingMover : IPathFinding {
+    List<INode> CurrentPath { get; set; }
+    int CurrentNodeIndex { get; set; }
+    void DoMoveStep(INode _step);
+}
 public static class IPathFindingExtension {
- 
+
     /// <summary>
     /// trova il percorso dallo startNode al lastNode
     /// </summary>
     /// <param name="_this"></param>
     /// <param name="startNode"></param>
     /// <param name="lastNode"></param>
-    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode) {
+    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode, bool ignoreTraversable = false) {
         List<INode> Open = new List<INode>();
         List<INode> Closed = new List<INode>();
         INode current;
@@ -48,21 +53,24 @@ public static class IPathFindingExtension {
 
                 return path;
             }
-                
+            if (current == null) {
+                Debug.Log("dajd");
+            }
             foreach (var neighbour in current.GetNeighbours()) {
+                // if ((!neighbour.isTraversable && !ignoreTraversable) || Closed.Contains(neighbour)) {
                 if (!neighbour.isTraversable || Closed.Contains(neighbour)) {
                     continue;
                 }
                 //neighbour.SetCost(startNode, lastNode);
-                
+
                 if (!Open.Contains(neighbour)) {
                     neighbour.parent = current;
                     Open.Add(neighbour);
                 } else {
                     for (int i = 0; i < Open.Count; i++) {
-                        if(Open[i].GetGridPosition() == neighbour.GetGridPosition()) {
+                        if (Open[i].GetGridPosition() == neighbour.GetGridPosition()) {
                             int newCost = current.G_Cost + current.CalculateCost(current, neighbour);
-                            if ( newCost < Open[i].G_Cost) {
+                            if (newCost < Open[i].G_Cost) {
                                 Open[i].parent = current;
                                 Open[i].G_Cost = newCost;
                                 Open[i].H_Cost = Open[i].CalculateCost(Open[i], lastNode);
@@ -71,7 +79,7 @@ public static class IPathFindingExtension {
                             }
                         }
                     }
-                    
+
                 }
 
             }
@@ -81,4 +89,10 @@ public static class IPathFindingExtension {
         return path;
     }
 
+    public static void DoMove(this IPathFindingMover _this) {
+        if (_this.CurrentPath.Count >= _this.CurrentNodeIndex + 1)
+            _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex + 1]);
+    }
+
+    
 }
