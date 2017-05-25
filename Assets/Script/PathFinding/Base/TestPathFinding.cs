@@ -20,7 +20,7 @@ public class TestPathFinding : MonoBehaviour, IPathFinding {
         Gizmos.color = Color.yellow;
         foreach (var item in path) {
 
-            Gizmos.DrawCube(item.GetWorldPosition(), new Vector3(0.2f, 0.2f, 0.2f));  
+            Gizmos.DrawCube(new Vector3(item.GetWorldPosition().x, item.GetWorldPosition().y +1, item.GetWorldPosition().z), new Vector3(0.2f, 0.2f, 0.2f));  
         }
     }
     private void OnEnable() {

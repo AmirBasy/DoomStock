@@ -1311,7 +1311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1815494383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,8 +1323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca94c2bab62246d46abac5a3925bf122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 10, y: 20}
-  lastPos: {x: 20, y: 22}
+  startPos: {x: 0, y: 0}
+  lastPos: {x: 6, y: 8}
 --- !u!23 &1815494384
 MeshRenderer:
   m_ObjectHideFlags: 0

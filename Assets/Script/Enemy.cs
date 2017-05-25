@@ -19,12 +19,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         set {
             _currenTarget = value;
             if (_currenTarget == null) {
-                _currenTarget = FindTarget();
+                //_currenTarget = FindTarget();
             }
 
             if (_currenTarget) {
                 CurrentPath = this.Find(CurrentPosition, _currenTarget.Cell);
-                this.DoMove();
+                //this.DoMove();
             }
         }
     }
@@ -53,20 +53,20 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         if (targetTypeList.Count > 0) {
             return NearestBuildingPriority(targetTypeList);
         }
-        //controlla nel suo raggio se è presente una priorità 2.
-        targetTypeList = FindPrioritiesInRange(Priority2);
-        if (targetTypeList.Count > 0) {
-            return NearestBuildingPriority(targetTypeList);
-        }
-        //controllare edifici nella mappa di Priority1
-        foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene()) {
-            if (item.Data.ID == Priority1.ID) {
-                targetTypeList.Add(item.Data);
-            }
-        }
-        if (targetTypeList.Count > 0) {
-            return NearestBuildingPriority(targetTypeList);
-        }
+        ////controlla nel suo raggio se è presente una priorità 2.
+        //targetTypeList = FindPrioritiesInRange(Priority2);
+        //if (targetTypeList.Count > 0) {
+        //    return NearestBuildingPriority(targetTypeList);
+        //}
+        ////controllare edifici nella mappa di Priority1
+        //foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene()) {
+        //    if (item.Data.ID == Priority1.ID) {
+        //        targetTypeList.Add(item.Data);
+        //    }
+        //}
+        //if (targetTypeList.Count > 0) {
+        //    return NearestBuildingPriority(targetTypeList);
+        //}
         return null;
     }
 
@@ -98,7 +98,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         switch (Type) {
             case enemyType.Tank:
                 foreach (var _building in _buildings) {
-                    int distance = this.Find(CurrentPosition, _building.Cell, true).Count;
+                    CurrentPosition = GameManager.I.gridController.Cells[0, 0];
+                    int distance = this.Find(CurrentPosition, _building.Cell).Count;
                     if (distance < lowerDistance) {
                         lowerDistance = distance;
                         closestBuilding = _building;
@@ -137,7 +138,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
        
         transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() => {
             CurrentPosition = _startPos;
-            CurrentTarget = FindTarget();
+            //CurrentTarget = FindTarget();
         });
         
 
@@ -161,6 +162,20 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
     void OnDisable() {
         GameManager.OnGridCreated -= GridCreated;
+    }
+
+    private void OnDrawGizmos() {
+        if (this.CurrentPath == null || this.CurrentPath.Count < 2)
+            return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(CurrentPath[0].GetWorldPosition(), new Vector3(0.2f, 0.2f, 0.2f));
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(CurrentPath[CurrentPath.Count-1].GetWorldPosition(), new Vector3(0.2f, 0.2f, 0.2f));
+        Gizmos.color = Color.yellow;
+        foreach (var item in CurrentPath) {
+
+            Gizmos.DrawCube(new Vector3(item.GetWorldPosition().x, item.GetWorldPosition().y + 1, item.GetWorldPosition().z), new Vector3(0.2f, 0.2f, 0.2f));
+        }
     }
 }
 

@@ -21,7 +21,7 @@ public static class IPathFindingExtension {
     /// <param name="_this"></param>
     /// <param name="startNode"></param>
     /// <param name="lastNode"></param>
-    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode, bool ignoreTraversable = false) {
+    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode) {
         List<INode> Open = new List<INode>();
         List<INode> Closed = new List<INode>();
         INode current;
@@ -54,7 +54,8 @@ public static class IPathFindingExtension {
                 return path;
             }
             if (current == null) {
-                Debug.Log("dajd");
+                Debug.Log("Path non trovato");
+                return path;
             }
             foreach (var neighbour in current.GetNeighbours()) {
                 // if ((!neighbour.isTraversable && !ignoreTraversable) || Closed.Contains(neighbour)) {
