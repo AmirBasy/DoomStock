@@ -281,7 +281,12 @@ public class Player : PlayerBase
     void CheckInputStatus(InputStatus _inputStatus)
     {
         if (currentMenu == null)
+
         {
+            CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
+            if (_inputStatus.X == ButtonState.Pressed)
+          
+            { Ability(cell); }
             // controllo che la levetta sia stata rilasciata nei due sensi o quasi
             if (_inputStatus.LeftThumbSticksAxisY <= 0.2 && _inputStatus.LeftThumbSticksAxisY >= -0.2)
                 isReleasedVertical = true;
@@ -310,7 +315,7 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed && GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status != CellDoomstock.CellStatus.Hole) // SELECT
             {
-                CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
+               
                 if (cell.building)
                 {
                     
@@ -428,9 +433,7 @@ public class Player : PlayerBase
                     currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
                 }
             }
-            if (_inputStatus.X == ButtonState.Pressed)
-            // TODO : Power
-            { }
+           
             if (_inputStatus.B == ButtonState.Pressed)// DESELECT
             {
                 currentMenu.GoBack();
