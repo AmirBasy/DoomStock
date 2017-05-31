@@ -211,6 +211,7 @@ public enum BuildingState
     Construction = 0,
     Built = 1,
     Producing = 2,
-    Ready = 3
+    Ready = 3, 
+    Destroyed = 4,
 }
 #endregion
