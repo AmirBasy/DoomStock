@@ -37,7 +37,12 @@ public class PlayerMenuComponent : MenuBase
                             PossibiliScelteAttuali.Add(newBuildingInstance);
                         }
                         break;
-                    case " - Building":
+                    case "Destroy":
+                        foreach (BuildingView item in GameManager.I.buildingManager.GetAllBuildingInScene())
+                        {
+                            cell.building = item.Data;
+                            PossibiliScelteAttuali.Add(item.Data);
+                        }
                         DoAction();
                         break;
            
@@ -75,7 +80,7 @@ public class PlayerMenuComponent : MenuBase
             case " + Building":
                 CurrentPlayer.DeployBuilding(ScelteFatte[1] as BuildingData);
                 break;
-            case " - Building":
+            case "Destroy":
                 CurrentPlayer.DestroyBuilding(cell.building.UniqueID);
                 break;
      

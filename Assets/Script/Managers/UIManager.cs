@@ -127,7 +127,7 @@ public class UIManager : MonoBehaviour
                     //    }
 
 
-                        break;
+                    //    break;
 
                     default:
                         break;
@@ -138,12 +138,16 @@ public class UIManager : MonoBehaviour
                         P1_Menu.Init(_player, FirstLevelSelectables);
                         return P1_Menu;
                     case "Esercito":
+                        if (cell.Status == CellDoomstock.CellStatus.Filled)
+                        {
+                            FirstLevelSelectables.Add(
+                                                new Selector() { UniqueID = "Destroy", NameLable = "Destroy" } as ISelectable); 
+                        }
                         P2_Menu.Init(_player, FirstLevelSelectables);
                         return P2_Menu;
                     case "Clero":
                         FirstLevelSelectables.Add(
-                            new Selector() { UniqueID = "Miracle" } as ISelectable
-                        );
+                            new Selector() { UniqueID = "Miracle", NameLable = "Miracle" } as ISelectable);
                         P3_Menu.Init(_player, FirstLevelSelectables);
                         return P3_Menu;
                     
