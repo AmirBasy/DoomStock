@@ -57,11 +57,10 @@ public class BuildingView : MonoBehaviour
         //toglie tutti i popolani dall'edificio e le rimette in POZZA
         Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
-        // Data.currentState = BuildingData.BuildingState.Debris;
-        //transform.DOPunchScale(Vector3.one, 0.5f).OnComplete(() =>
-        //{
-        //    UpdateAspect();
-        //});
+        Data.currentState = BuildingState.Destroyed;
+        transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => {
+            //UpdateAspect();
+        });
 
     }
 

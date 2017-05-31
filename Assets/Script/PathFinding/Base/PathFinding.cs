@@ -21,7 +21,7 @@ public static class IPathFindingExtension {
     /// <param name="_this"></param>
     /// <param name="startNode"></param>
     /// <param name="lastNode"></param>
-    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode) {
+    public static List<INode> Find(this IPathFinding _this, INode startNode, INode lastNode, bool ignoreTraversable = false) {
         List<INode> Open = new List<INode>();
         List<INode> Closed = new List<INode>();
         INode current;
@@ -57,11 +57,15 @@ public static class IPathFindingExtension {
                 Debug.Log("Path non trovato");
                 return path;
             }
-            foreach (var neighbour in current.GetNeighbours()) {
+            List<INode> neighboursNodes = current.GetNeighbours();
+            foreach (var neighbour in neighboursNodes) {
                 // if ((!neighbour.isTraversable && !ignoreTraversable) || Closed.Contains(neighbour)) {
-                if (!neighbour.isTraversable || Closed.Contains(neighbour)) {
-                    continue;
-                }
+                //if (!neighbour.isTraversable || Closed.Contains(neighbour)) {
+                //    continue;
+                //}
+                if (Closed.Contains(neighbour)) { continue; }
+                if (!neighbour.isTraversable && !ignoreTraversable) { continue; }
+
                 //neighbour.SetCost(startNode, lastNode);
 
                 if (!Open.Contains(neighbour)) {
@@ -90,9 +94,10 @@ public static class IPathFindingExtension {
         return path;
     }
 
-    public static void DoMove(this IPathFindingMover _this) {
-        if (_this.CurrentPath.Count >= _this.CurrentNodeIndex + 1)
-            _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex + 1]);
+    public static void DoMoveToCurrentPathStep(this IPathFindingMover _this) {
+        
+        if (_this.CurrentPath.Count >= _this.CurrentNodeIndex)
+            _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex]);
     }
 
     
