@@ -113,6 +113,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public int BuildingLife;
 
+    public int InitialLife;
     /// <summary>
     /// Variabile utilizzata per il Degrado
     /// </summary>

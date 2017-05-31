@@ -526,6 +526,28 @@ public class Player : PlayerBase
                 break;
         }
     }
+
+    void Ability(CellDoomstock cell)
+    {
+        switch (ID)
+        {
+            case "Sindaco":
+                cell.building.BuildingLife = cell.building.InitialLife;
+                break;
+            case"Esercito":
+                DestroyBuilding(cell.building.UniqueID);
+                break;
+            case "Clero":
+                foreach (var item in cell.building.BuildingResources)
+                {
+                    item.Value = item.Limit;
+                    cell.building.currentState = BuildingState.Ready;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 
