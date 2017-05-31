@@ -49,6 +49,10 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public string NameLable { get; set; }
 
+    /// <summary>
+    /// Range di attacco della torretta
+    /// </summary>
+    public Vector2 AttackRange;
 
     /// <summary>
     /// Tempo di costruzione per l'edificio
@@ -74,6 +78,10 @@ public class BuildingData : ScriptableObject, ISelectable
     /// Oggetto prefab dell edificio
     /// </summary> 
     public BuildingView BuildPrefab;
+    /// <summary>
+    /// Target Enemy
+    /// </summary>
+    public Enemy EnemyTarget;
 
     /// <summary>
     /// Variabile che indica la potenza di "fuoco" dell'edificio
@@ -93,7 +101,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Variabile che indica il costo di Manuntenzione
     /// </summary>
-    public int Maintenance;
+    //public int Maintenance;
 
     /// <summary>
     /// Aumenta il LimiteMassimo della Popolazione
@@ -105,6 +113,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public int BuildingLife;
 
+    public int InitialLife;
     /// <summary>
     /// Variabile utilizzata per il Degrado
     /// </summary>
@@ -112,7 +121,7 @@ public class BuildingData : ScriptableObject, ISelectable
 
 
     public CellDoomstock Cell {
-        get { return GameManager.I.gridController.GetCellFromBuilding(this); }
+            get { return GameManager.I.gridController.GetCellFromBuilding(this); }
         
     }
     #endregion

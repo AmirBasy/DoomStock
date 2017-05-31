@@ -47,13 +47,17 @@ public class GameManager : MonoBehaviour {
             Players[0].SetupInput(
                 new PlayerInputData()
                 {
-                    Up = KeyCode.W, //| Input.GetAxis() 
-                    Left = KeyCode.A,// | KeyCode.Joystick1Button4,
-                    Down = KeyCode.S,// | KeyCode.Joystick1Button5,
-                    Right = KeyCode.D,// | KeyCode.Joystick1Button0,
-                    Confirm = KeyCode.Z,// | KeyCode.Joystick1Button0,
-                    AddPopulationUnit = KeyCode.X, // | KeyCode.Joystick1Button4,
-                    GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
+                    Up = KeyCode.W,
+                    Left = KeyCode.A,
+                    Down = KeyCode.S,
+                    Right = KeyCode.D,
+                    Confirm = KeyCode.Z,
+                    AddPopulationUnit = KeyCode.X,
+                    GoBack = KeyCode.E,
+                    PlayerPower = KeyCode.Q,
+                    RemovePopulation = KeyCode.C
+                    
+                    
 
                 });
 
@@ -70,6 +74,8 @@ public class GameManager : MonoBehaviour {
                 Confirm = KeyCode.N,
                 AddPopulationUnit = KeyCode.U,
                 GoBack = KeyCode.O,
+                PlayerPower = KeyCode.P,
+                RemovePopulation = KeyCode.M
                 
             });
             
@@ -86,7 +92,9 @@ public class GameManager : MonoBehaviour {
                 Confirm = KeyCode.Home,
                 AddPopulationUnit = KeyCode.PageUp,
                 GoBack = KeyCode.PageDown,
-                
+                PlayerPower = KeyCode.Insert,
+                RemovePopulation = KeyCode.Keypad0
+
             });
             
             Players[2].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y + 1, CellSize);

@@ -48,6 +48,8 @@ public class PlayerInputData {
     public KeyCode AddPopulationUnit;
     public KeyCode GoBack;
     public KeyCode Confirm;
+    public KeyCode PlayerPower;
+    public KeyCode RemovePopulation;
 
 }
 

@@ -37,13 +37,18 @@ public class PlayerMenuComponent : MenuBase
                             PossibiliScelteAttuali.Add(newBuildingInstance);
                         }
                         break;
-                    case " - Building":
-                        DoAction();
-                        break;
+                    //case "Destroy":
+                    //    foreach (BuildingView item in GameManager.I.buildingManager.GetAllBuildingInScene())
+                    //    {
+                    //        cell.building = item.Data;
+                    //        PossibiliScelteAttuali.Add(item.Data);
+                    //    }
+                    //    DoAction();
+                    //    break;
            
-                    case " Info ":
+                    //case " Info ":
 
-                        break;
+                    //    break;
                     //case " - Debris":
                     //    DoAction();
                     //    break;
@@ -75,12 +80,12 @@ public class PlayerMenuComponent : MenuBase
             case " + Building":
                 CurrentPlayer.DeployBuilding(ScelteFatte[1] as BuildingData);
                 break;
-            case " - Building":
-                CurrentPlayer.DestroyBuilding(cell.building.UniqueID);
-                break;
+            //case "Destroy":
+            //    CurrentPlayer.DestroyBuilding(cell.building.UniqueID);
+            //    break;
      
-            case " Info ":
-                break;
+            //case " Info ":
+            //    break;
             //case " - Debris":
             //    CurrentPlayer.RemoveBuildingDebris(cell.building);
             //    break;

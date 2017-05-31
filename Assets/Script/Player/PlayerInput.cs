@@ -68,7 +68,7 @@ public class PlayerInput
 
         if (prevState.Buttons.A == XInputDotNetPure.ButtonState.Released && state.Buttons.A == XInputDotNetPure.ButtonState.Pressed)
         {
-            // confirm
+            // confirm/Open Menu
             inputStatus.A = ButtonState.Pressed;
         }
 
@@ -77,11 +77,20 @@ public class PlayerInput
             // go back
             inputStatus.B = ButtonState.Pressed;
         }
-
         if (prevState.Buttons.X == XInputDotNetPure.ButtonState.Released && state.Buttons.X == XInputDotNetPure.ButtonState.Pressed)
         {
-            // population menu
+            // Power
             inputStatus.X = ButtonState.Pressed;
+        }
+        if (prevState.Buttons.RightShoulder == XInputDotNetPure.ButtonState.Released && state.Buttons.RightShoulder == XInputDotNetPure.ButtonState.Pressed)
+        {
+            // Add Population
+            inputStatus.RightShoulder = ButtonState.Pressed;
+        }
+        if (prevState.Buttons.LeftShoulder == XInputDotNetPure.ButtonState.Released && state.Buttons.LeftShoulder == XInputDotNetPure.ButtonState.Pressed)
+        {
+            // Remove Population
+            inputStatus.LeftShoulder = ButtonState.Pressed;
         }
 
         if (prevState.DPad.Up == XInputDotNetPure.ButtonState.Released && state.DPad.Up == XInputDotNetPure.ButtonState.Pressed)
@@ -138,7 +147,17 @@ public class PlayerInput
                 if (Input.GetKeyDown(KeyCode.X))
                 {
                     //  Add Population
+                    inputStatus.RightShoulder = ButtonState.Pressed;
+                }
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    //  POWER
                     inputStatus.X = ButtonState.Pressed;
+                }
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    //  Remove Population
+                    inputStatus.LeftShoulder = ButtonState.Pressed;
                 }
 
                 if (Input.GetKeyDown(KeyCode.W))
@@ -181,7 +200,18 @@ public class PlayerInput
                 }
                 if (Input.GetKeyDown(KeyCode.U))
                 {
-                    // Population Menu
+                    // Add Population
+                    inputStatus.RightShoulder = ButtonState.Pressed;
+                }
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    //  Remove Population
+                    inputStatus.LeftShoulder = ButtonState.Pressed;
+                }
+
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    //  POWER
                     inputStatus.X = ButtonState.Pressed;
                 }
 
@@ -225,10 +255,19 @@ public class PlayerInput
                 }
                 if (Input.GetKeyDown(KeyCode.PageUp))
                 {
-                    // Population Menu
+                    // Add Population
+                    inputStatus.RightShoulder = ButtonState.Pressed;
+                }
+                if (Input.GetKeyDown(KeyCode.Insert))
+                {
+                    //  POWER
                     inputStatus.X = ButtonState.Pressed;
                 }
-
+                if (Input.GetKeyDown(KeyCode.Keypad0))
+                {
+                    //  Remove Population
+                    inputStatus.LeftShoulder = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     // Up

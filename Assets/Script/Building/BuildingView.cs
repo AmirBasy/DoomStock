@@ -232,13 +232,13 @@ public class BuildingView : MonoBehaviour
     #endregion
 
 
-    void LimitReached(BaseResourceData res)
+    public void LimitReached(BaseResourceData res)
     {
         if (res.Value >= res.Limit)
         {
             res.Value = 0;
             SetBuildingStatus(BuildingState.Ready);
-            //TODO : da inserire messaggio con icona fissa quando termina la produzione
+            
         }
     }
     #region BARRA commentata

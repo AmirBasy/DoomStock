@@ -95,7 +95,7 @@ public class Player : PlayerBase
 
             //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
-            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid] , true);
+            GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
 
         }
 
@@ -110,7 +110,7 @@ public class Player : PlayerBase
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
         //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
-       // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
+        // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
@@ -152,7 +152,7 @@ public class Player : PlayerBase
             newInstanceOfView.Data.PlayerOwner = this;
             CurrentBuildView = newInstanceOfView;
             CurrentBuildView.transform.localScale = new Vector3(GameManager.I.CellSize, GameManager.I.CellSize, GameManager.I.CellSize);
-            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize / 2) -0.5f, this.transform.position.z +0.1f);
+            CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize / 2) - 0.5f, this.transform.position.z + 0.1f);
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
             BuildingsInScene.Add(newInstanceOfView);
             GameManager.I.populationManager.IncreaseMaxPopulation();
@@ -313,12 +313,24 @@ public class Player : PlayerBase
                 CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
                 if (cell.building)
                 {
+                    
+                   
+                    if (cell.building.currentState == BuildingState.Built || cell.building.currentState == BuildingState.Producing)
+                    {
+                        AddResourceOnClick(cell.building, cell);
+                        foreach (var item in cell.building.BuildingResources)
+                        {
+                            GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
+                        }
+                           
+                    }
                     if (cell.building.currentState == BuildingState.Ready)
                     {
+                        GameManager.I.messagesManager.DesotryUiInformation(cell);
                         foreach (var item in cell.building.BuildingResources)
                         {
                             GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
-                           GameManager.I.messagesManager.DesotryUiInformation(cell);
+                          
                             item.Value = 0;
 
                             if (cell.building.Population.Count > 0)
@@ -331,22 +343,17 @@ public class Player : PlayerBase
                                 if (cell.building.ID != "Foresta")
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
+                                    
                                 }
                                 else if (cell.building.ID == "Foresta")
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
-                                   
+
                                 }
 
                             }
                         }
                     }
-                    else if (cell.building.currentState == BuildingState.Producing)
-                    {
-
-                        AddResourceOnClick(cell.building, cell);
-                    }
-
                 }
                 else
                 {
@@ -356,9 +363,7 @@ public class Player : PlayerBase
                 }
             }
 
-
-
-            if (_inputStatus.X == ButtonState.Pressed) // ADD POPULATION 
+            if (_inputStatus.RightShoulder == ButtonState.Pressed) // ADD POPULATION 
             {
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
@@ -376,7 +381,7 @@ public class Player : PlayerBase
                 else { return; }
 
             }
-            if (_inputStatus.B == ButtonState.Pressed) // DESELECT
+            if (_inputStatus.LeftShoulder == ButtonState.Pressed) // Remove Population
             {
                 if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building != null)
                 {
@@ -423,10 +428,9 @@ public class Player : PlayerBase
                     currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
                 }
             }
-            if (_inputStatus.X == ButtonState.Pressed)// POPULATION MENU
-            {
-
-            }
+            if (_inputStatus.X == ButtonState.Pressed)
+            // TODO : Power
+            { }
             if (_inputStatus.B == ButtonState.Pressed)// DESELECT
             {
                 currentMenu.GoBack();
@@ -473,7 +477,7 @@ public class Player : PlayerBase
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Cava;
-
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell);
                 }
                 break;
             case "Foresta":
@@ -487,18 +491,21 @@ public class Player : PlayerBase
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Fattoria;
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell);
                 }
                 break;
             case "Chiesa":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Chiesa;
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell);
                 }
                 break;
             case "Torretta":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Torretta;
+
                 }
                 break;
             case "Muro":
@@ -506,12 +513,34 @@ public class Player : PlayerBase
                 {
                     res.Value += ProdModifiers.Muro;
                 }
-                
+
                 break;
             case "Casa":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Casa;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    void Ability(CellDoomstock cell)
+    {
+        switch (ID)
+        {
+            case "Sindaco":
+                cell.building.BuildingLife = cell.building.InitialLife;
+                break;
+            case"Esercito":
+                DestroyBuilding(cell.building.UniqueID);
+                break;
+            case "Clero":
+                foreach (var item in cell.building.BuildingResources)
+                {
+                    item.Value = item.Limit;
+                    cell.building.currentState = BuildingState.Ready;
                 }
                 break;
             default:
