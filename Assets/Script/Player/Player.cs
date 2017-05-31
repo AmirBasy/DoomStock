@@ -111,7 +111,7 @@ public class Player : PlayerBase
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
         //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
         // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
-
+        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
         if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
         {
