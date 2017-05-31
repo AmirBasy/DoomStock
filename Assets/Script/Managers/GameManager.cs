@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour {
                     Confirm = KeyCode.Z,// | KeyCode.Joystick1Button0,
                     AddPopulationUnit = KeyCode.X, // | KeyCode.Joystick1Button4,
                     GoBack = KeyCode.E,// | KeyCode.Joystick1Button1,
+                    PlayerPower = KeyCode.Q
 
                 });
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour {
                 Confirm = KeyCode.N,
                 AddPopulationUnit = KeyCode.U,
                 GoBack = KeyCode.O,
+                PlayerPower = KeyCode.P,
                 
             });
             
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour {
                 Confirm = KeyCode.Home,
                 AddPopulationUnit = KeyCode.PageUp,
                 GoBack = KeyCode.PageDown,
+                PlayerPower = KeyCode.Insert,
                 
             });
             
