@@ -164,13 +164,20 @@ public class BuildingData : ScriptableObject, ISelectable
         }
     }
 
-    
-
-
+    /// <summary>
+    /// True se l'edificio è in una condizione attaccabile dai nemici.
+    /// </summary>
+    /// <returns></returns>
+    public bool CanBeAttacked() {
+        switch (currentState) {
+            case BuildingState.Destroyed:
+                return false;
+            default:
+                return true;
+        }
+    }
 
     #endregion
-
-   
 
     public BuildingState currentState = BuildingState.Construction;
    
