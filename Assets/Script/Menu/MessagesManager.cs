@@ -69,6 +69,7 @@ public class MessagesManager : MonoBehaviour
         UiInformation[] uiToReturn = FindObjectsOfType<UiInformation>();
         foreach (var item in uiToReturn) {
             if (item.cell == _cell) {
+               
                 Destroy(item.gameObject);
 
             }
