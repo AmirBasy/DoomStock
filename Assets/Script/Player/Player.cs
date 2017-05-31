@@ -363,7 +363,7 @@ public class Player : PlayerBase
                 }
             }
 
-            if (_inputStatus.X == ButtonState.Pressed) // ADD POPULATION 
+            if (_inputStatus.RightShoulder == ButtonState.Pressed) // ADD POPULATION 
             {
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
@@ -381,7 +381,7 @@ public class Player : PlayerBase
                 else { return; }
 
             }
-            if (_inputStatus.B == ButtonState.Pressed) // DESELECT
+            if (_inputStatus.LeftShoulder == ButtonState.Pressed) // Remove Population
             {
                 if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building != null)
                 {
@@ -428,10 +428,9 @@ public class Player : PlayerBase
                     currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
                 }
             }
-            if (_inputStatus.X == ButtonState.Pressed)// POPULATION MENU
-            {
-
-            }
+            if (_inputStatus.X == ButtonState.Pressed)
+            // TODO : Power
+            { }
             if (_inputStatus.B == ButtonState.Pressed)// DESELECT
             {
                 currentMenu.GoBack();
