@@ -1258,6 +1258,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114611047149273296, guid: f0cd91c10c3a35340b81c61c9a61b0e5,
+        type: 2}
+      propertyPath: CleroAbilityCost
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0cd91c10c3a35340b81c61c9a61b0e5, type: 2}
   m_IsPrefabParent: 0
@@ -1377,6 +1382,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114192726394160218, guid: ab2b1793e28cb254b99880fe04f78be6,
+        type: 2}
+      propertyPath: DemolitionCost
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab2b1793e28cb254b99880fe04f78be6, type: 2}
@@ -1615,6 +1625,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114612032748653892, guid: 138b3c0e415d48f4b9c9b654a5fb0f94,
+        type: 2}
+      propertyPath: RiparationCost
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 138b3c0e415d48f4b9c9b654a5fb0f94, type: 2}
