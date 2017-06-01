@@ -91,19 +91,19 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
         List<BuildingData> targetTypeList = new List<BuildingData>();
         ////controlla nel suo raggio se è presente una priorità 1.
-        //targetTypeList = FindPrioritiesInRange(Priority1);
-        //if (targetTypeList.Count > 0) {
-        //    return NearestBuildingPriority(targetTypeList);
-        //}
+        targetTypeList = FindPrioritiesInRange(Priority1);
+        if (targetTypeList.Count > 0) {
+            return NearestBuildingPriority(targetTypeList);
+        }
         ////controlla nel suo raggio se è presente una priorità 2.
-        //targetTypeList = FindPrioritiesInRange(Priority2);
-        //if (targetTypeList.Count > 0) {
-        //    return NearestBuildingPriority(targetTypeList);
-        //}
+        targetTypeList = FindPrioritiesInRange(Priority2);
+        if (targetTypeList.Count > 0) {
+            return NearestBuildingPriority(targetTypeList);
+        }
         //controllare edifici nella mappa di Priority1
         foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene()) {
             if (item.Data.ID == Priority1.ID) {
-                if(item.Data.CurrentState != BuildingState.Destroyed)
+                if(item.Data.CanBeAttacked())
                     targetTypeList.Add(item.Data);
             }
             
@@ -126,7 +126,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         foreach (CellDoomstock item in neightbours) {
             if (item.building != null)
                 if (item.building.ID == _building.ID) {
-                    returnList.Add(item.building);
+                    if(item.building.CanBeAttacked())
+                        returnList.Add(item.building);
                 }
         }
         return returnList;
@@ -256,7 +257,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                     if (CurrentTarget == null) {
                         CurrentTarget = FindTarget();
                     }
-                    waitTimeToFindTarget = 2.0f;
+                    waitTimeToFindTarget = 0.5f;
                 }
                 break;
             case enemyState.Attack:

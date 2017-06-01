@@ -208,6 +208,6 @@ public struct PathFindingSettings {
     /// </summary>
     public bool MoveToLastButOne;
 
-    public static PathFindingSettings Tank = new PathFindingSettings() { IgnoreObstacles = false, MoveToLastButOne = false };
-    public static PathFindingSettings Combattente = new PathFindingSettings() { IgnoreObstacles = true, MoveToLastButOne = false };
+    public static PathFindingSettings Tank = new PathFindingSettings() { IgnoreObstacles = false, MoveToLastButOne = true };
+    public static PathFindingSettings Combattente = new PathFindingSettings() { IgnoreObstacles = true, MoveToLastButOne = true };
 }
