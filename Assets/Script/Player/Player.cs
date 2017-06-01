@@ -113,7 +113,7 @@ public class Player : PlayerBase
         // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
-        if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
+        if (_buildingData.Population.Count < 1 && _buildingData.CurrentState != BuildingState.Ready)
         {
             GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetBuildingStatus(BuildingState.Built);
         }
