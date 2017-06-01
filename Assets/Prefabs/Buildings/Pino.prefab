@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114827150790123896}
   - component: {fileID: 23462037863615074}
   - component: {fileID: 33466551085934836}
+  - component: {fileID: 64306744870543030}
   m_Layer: 0
   m_Name: Pino
   m_TagString: Untagged
@@ -82,6 +83,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205546810265706}
   m_Mesh: {fileID: 4300000, guid: d0c560d6f654cc94285cc08280db2718, type: 3}
+--- !u!64 &64306744870543030
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1205546810265706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: f449be4efc4703b4c9174ef47ed90abc, type: 3}
 --- !u!114 &114827150790123896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 92612a42ff1432243830c1f2c32a9dee, type: 2}
+  Pino: {fileID: 4300000, guid: d0c560d6f654cc94285cc08280db2718, type: 3}
+  Ceppo: {fileID: 4300000, guid: f449be4efc4703b4c9174ef47ed90abc, type: 3}

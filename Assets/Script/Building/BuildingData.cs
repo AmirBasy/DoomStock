@@ -244,7 +244,7 @@ public class BuildingData : ScriptableObject, ISelectable
     } 
 
     public void Init()
-    {
+    {   
         switch (ID)
         {
             case "Fattoria":

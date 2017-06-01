@@ -14,7 +14,9 @@ public class BuildingView : MonoBehaviour
     /// Dato della view.
     /// </summary>
     public BuildingData Data;
-    
+    public Mesh Pino;
+    MeshFilter CurrentMesh;
+    public Mesh Ceppo;
 
     #endregion
 
@@ -22,6 +24,8 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         Data.Init();
+        CurrentMesh = GetComponent<MeshFilter>();
+        CurrentMesh.mesh = Pino;
         //PopulationBarCounter = 0;
         if (Data.ID != "Foresta")
         {
@@ -134,6 +138,7 @@ public class BuildingView : MonoBehaviour
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
+                CurrentMesh.mesh = Pino;
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                 switch (Data.ID) {
                     case "Foresta":
@@ -165,8 +170,10 @@ public class BuildingView : MonoBehaviour
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Waiting:
-                Data.ProductionCounter = 0;
                
+                Data.ProductionCounter = 0;
+                CurrentMesh.mesh = Ceppo;
+                
                 break;
             default:
                 break;
