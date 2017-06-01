@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class MessagesManager : MonoBehaviour
@@ -9,22 +10,25 @@ public class MessagesManager : MonoBehaviour
     public static string PopulationColor = "#0AAE19FF";
     public static string FoodColor = "#DB6FA3FF";
     public static string WoodColor = "#DF5C21FF";
-    public static string StoneColor= "#8D8D8DFF";
+    public static string StoneColor = "#8D8D8DFF";
     public static string FaithColor = "#C700FFFF";
     public static string SpiritColor = "#00FF80FF";
     public static string MajorColor = "#FF0000FF";
-    public static string UndefinedColor = "#FF0079FF"; 
+    public static string UndefinedColor = "#FF0079FF";
     #endregion
 
     public UiInformation uiInformationPrefab;
     float MinRange = 0;
     float MaxRange = 1;
+    public GameObject Target;
 
 
-    public void ShowiInformation(MessageLableType _message, CellDoomstock _worldPosition, bool isImmediate = false) {
-        
-        float delay =0 ;
-        if (!isImmediate) {
+    public void ShowiInformation(MessageLableType _message, CellDoomstock _worldPosition, bool isImmediate = false)
+    {
+
+        float delay = 0;
+        if (!isImmediate)
+        {
             delay = Random.Range(MinRange, MaxRange);
             ;
         }
@@ -32,13 +36,15 @@ public class MessagesManager : MonoBehaviour
 
     }
 
-    IEnumerator ShowMessage(float waitTime, MessageLableType _message, CellDoomstock _worldPosition) {
-        
+    IEnumerator ShowMessage(float waitTime, MessageLableType _message, CellDoomstock _worldPosition)
+    {
+
         yield return new WaitForSeconds(waitTime);
         UiInformation info = Instantiate(uiInformationPrefab, _worldPosition.GetWorldPosition(), this.transform.rotation);
         info.cell = _worldPosition;
         //info.cell = GameManager.I.gridController.Cells[(int)_worldPosition.GetWorldPosition().x, (int)_worldPosition.GetWorldPosition().y];
-        switch (_message) {
+        switch (_message)
+        {
             case MessageLableType.FoodProduction:
             case MessageLableType.FaithProduction:
             case MessageLableType.WoodProduction:
@@ -57,21 +63,24 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.LimitStone:
             case MessageLableType.LimitPopulation:
                 info.ShowMessageStuck(_message);
-               // info.CellWorldPosition = _worldPosition;
+                // info.CellWorldPosition = _worldPosition;
                 break;
             default:
                 break;
         }
-        
+
     }
 
-    public void DesotryUiInformation(CellDoomstock _cell) {
+    public void DesotryUiInformation(CellDoomstock _cell)
+    {
         UiInformation[] uiToReturn = FindObjectsOfType<UiInformation>();
-        foreach (var item in uiToReturn) {
-            if (item.cell == _cell) {
-               
-                Destroy(item.gameObject);
-
+        foreach (var item in uiToReturn)
+        {
+            if (item.cell == _cell)
+            {
+                item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 5).OnComplete(() => {
+                    Destroy(item.gameObject);
+                }); ;
             }
         }
     }

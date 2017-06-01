@@ -106,11 +106,8 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
-            
-        });
-        BackgroundColor.color = backgroundColor;
-
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {});
+        BackgroundColor.color = backgroundColor;    
     }
 }
 public enum MessageLableType {
