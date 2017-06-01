@@ -298,7 +298,10 @@ public class Player : PlayerBase
             CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
             if (_inputStatus.X == ButtonState.Pressed)
 
-            { Ability(cell); }
+            {
+                if (cell.building)
+                Ability(cell);
+            }
             // controllo che la levetta sia stata rilasciata nei due sensi o quasi
             if (_inputStatus.LeftThumbSticksAxisY <= 0.2 && _inputStatus.LeftThumbSticksAxisY >= -0.2)
                 isReleasedVertical = true;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Faith
   Value: 1
-  Limit: -1
+  Limit: 2
   HasNegativeValue: 1
