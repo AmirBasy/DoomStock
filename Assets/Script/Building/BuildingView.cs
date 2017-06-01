@@ -72,10 +72,13 @@ public class BuildingView : MonoBehaviour
     /// </summary>
     public void RemoveDebris()
     {
+        int stoneActualValue, woodActualValue;
+        stoneActualValue =(int) (Data.StoneToBuild * Data.BuildingLife) / Data.InitialLife;
+        woodActualValue = (int)(Data.WoodToBuild * Data.BuildingLife) / Data.InitialLife;
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
-        //TODO: da fare bene il calcolo.
-        GameManager.I.GetResourceDataByID("Wood").Value += Data.WoodToBuild / 2;
-        GameManager.I.GetResourceDataByID("Stone").Value += Data.StoneToBuild / 2;
+        
+        GameManager.I.GetResourceDataByID("Wood").Value += woodActualValue;
+        GameManager.I.GetResourceDataByID("Stone").Value += stoneActualValue;
         if (OnRemoveDebris != null)
             OnRemoveDebris(this);
         Destroy(gameObject);

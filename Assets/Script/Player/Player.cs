@@ -274,6 +274,10 @@ public class Player : PlayerBase
 
     // TODO: rifattorizzare creando state machine player
     IMenu currentMenu = null;
+    /// <summary>
+    /// costo di fede per la demolizione
+    /// </summary>
+    public int DemolitionCost;
 
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
@@ -551,7 +555,11 @@ public class Player : PlayerBase
                 cell.building.BuildingLife = cell.building.InitialLife;
                 break;
             case "Esercito":
-                DestroyBuilding(cell.building.UniqueID);
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= DemolitionCost)
+                {
+                    DestroyBuilding(cell.building.UniqueID);
+                    GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost; 
+                }
                 break;
             case "Clero":
                 foreach (var item in cell.building.BuildingResources)
