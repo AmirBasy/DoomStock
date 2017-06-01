@@ -15,6 +15,8 @@ public class MessagesManager : MonoBehaviour
     public static string SpiritColor = "#00FF80FF";
     public static string MajorColor = "#FF0000FF";
     public static string UndefinedColor = "#FF0079FF";
+    public static string ReparingColor = "#FBFF00FF";
+    public static string DestroingColor = "00FFEAFF";
     #endregion
 
     public UiInformation uiInformationPrefab;
@@ -54,6 +56,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.Birth:
             case MessageLableType.RemovePopulation:
             case MessageLableType.AddPopulation:
+            case MessageLableType.Reparing:
                 info.ShowMessagePop_up(_message);
                 break;
             case MessageLableType.LimitFood:
@@ -78,9 +81,10 @@ public class MessagesManager : MonoBehaviour
         {
             if (item.cell == _cell)
             {
-                item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 5).OnComplete(() => {
-                    Destroy(item.gameObject);
-                }); ;
+                item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 1f).SetEase(Ease.InOutCirc,1).OnComplete(() => {
+                        Destroy(item.gameObject);
+                });
+                item.transform.DOScale(0, 0.2f).SetDelay(0.8f);
             }
         }
     }
