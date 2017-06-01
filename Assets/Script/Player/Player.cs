@@ -365,22 +365,22 @@ public class Player : PlayerBase
 
                                     if (cell.building.Population.Count > 0)
                                     {
-                                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
+                                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Waiting);
 
                                     }
                                     else
                                     {
-                                        if (cell.building.ID != "Foresta")
-                                        {
-                                            GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
+                                        //if (cell.building.ID != "Foresta")
+                                        //{
+                                           GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Waiting);
 
-                                        }
-                                        else if (cell.building.ID == "Foresta")
-                                        {
-                                            GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Waiting);
+                                        //}
+                                        //else if (cell.building.ID == "Foresta")
+                                        //{
+                                        //    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Waiting);
                                            
 
-                                        }
+                                        //}
 
                                     }
                                 } 

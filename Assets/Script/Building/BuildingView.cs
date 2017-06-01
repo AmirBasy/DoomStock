@@ -24,8 +24,8 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         Data.Init();
-        CurrentMesh = GetComponent<MeshFilter>();
-        CurrentMesh.mesh = Pino;
+       
+       
         //PopulationBarCounter = 0;
         if (Data.ID != "Foresta")
         {
@@ -33,7 +33,9 @@ public class BuildingView : MonoBehaviour
         }
         else
         {
-            SetBuildingStatus(BuildingState.Producing);
+            CurrentMesh = GetComponent<MeshFilter>();
+            SetBuildingStatus(BuildingState.Ready);
+            CurrentMesh.mesh = Pino;
         }
 
     }
@@ -134,19 +136,17 @@ public class BuildingView : MonoBehaviour
                     //}
 
                 }
-                else if (Data.ID == "Foresta")
-                {
-
-                    // transform.DOMoveY(transform.position.y + 0.1f, 1.5f).OnComplete(() => { });
-                }
+               
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
-                CurrentMesh.mesh = Pino;
+
+                
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                 switch (Data.ID)
                 {
                     case "Foresta":
+                        CurrentMesh.mesh = Pino;
                         GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitWood, cell);
                         break;
                     case "Cava":

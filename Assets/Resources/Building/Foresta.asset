@@ -14,7 +14,7 @@ MonoBehaviour:
   TimedEvents: []
   BuildingResources: []
   ProductionCounter: 0
-  CounterLimit: 10
+  CounterLimit: 30
   AttackRange: {x: 0, y: 0}
   BuildingTime: 0
   ID: Foresta
