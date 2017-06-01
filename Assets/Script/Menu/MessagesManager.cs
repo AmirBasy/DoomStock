@@ -57,6 +57,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.RemovePopulation:
             case MessageLableType.AddPopulation:
             case MessageLableType.Reparing:
+            case MessageLableType.Destroing:
                 info.ShowMessagePop_up(_message);
                 break;
             case MessageLableType.LimitFood:
@@ -65,6 +66,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.LimitSpirit:
             case MessageLableType.LimitStone:
             case MessageLableType.LimitPopulation:
+            case MessageLableType.GetMacerie:
                 info.ShowMessageStuck(_message);
                 // info.CellWorldPosition = _worldPosition;
                 break;

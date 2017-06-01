@@ -490,9 +490,9 @@ public class Player : PlayerBase
     {
         if (BuildingsInScene.Contains(_buildingView))
             BuildingsInScene.Remove(_buildingView);
+            
     }
-
-    private void OnDisable()
+        private void OnDisable()
     {
         BuildingView.OnRemoveDebris -= OnBuildingDebrisRemove;
     }
@@ -577,6 +577,7 @@ public class Player : PlayerBase
                     DestroyBuilding(cell.building.UniqueID);
                     GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
                     GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.GetMacerie, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]);
                 }
                 break;
             case "Clero":

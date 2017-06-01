@@ -62,6 +62,7 @@ public class UiInformation : MonoBehaviour {
                 ColorUtility.TryParseHtmlString(MessagesManager.DestroingColor, out backgroundColor);
                 IconString = "piccone";
                 break;
+            
             default:
                 break;
         }
@@ -104,6 +105,10 @@ public class UiInformation : MonoBehaviour {
                 ColorUtility.TryParseHtmlString(MessagesManager.WoodColor, out backgroundColor);
                 IconString = "Wood";
                 break;
+            case MessageLableType.GetMacerie:
+                ColorUtility.TryParseHtmlString(MessagesManager.UndefinedColor, out backgroundColor);
+                IconString = "indicatore_quadro_edificabile";
+                break;
             default:
                 break;
         }
@@ -125,7 +130,7 @@ public enum MessageLableType {
     
     LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone,LimitPopulation,
 
-    Reparing,Destroing,Miracle
+    Reparing,Destroing,Miracle,GetMacerie
 
 
 }

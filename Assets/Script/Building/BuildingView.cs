@@ -79,6 +79,7 @@ public class BuildingView : MonoBehaviour
         GameManager.I.GetResourceDataByID("Stone").Value += Data.GetActualWoodValue();
         if (OnRemoveDebris != null)
             OnRemoveDebris(this);
+        
         Destroy(gameObject);
     }
 
