@@ -282,6 +282,10 @@ public class Player : PlayerBase
     /// costo di fede per l'abilità del clero.
     /// </summary>
     public int CleroAbilityCost;
+    /// <summary>
+    /// costo di fede per l'abilità di riparazione.
+    /// </summary>
+    public int RiparationCost;
 
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
@@ -556,7 +560,13 @@ public class Player : PlayerBase
         switch (ID)
         {
             case "Sindaco":
-                cell.building.BuildingLife = cell.building.InitialLife;
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= RiparationCost)
+                {
+                    GameManager.I.GetResourceDataByID("Faith").Value -= RiparationCost;
+                    cell.building.BuildingLife = cell.building.InitialLife;
+                    GameManager.I.GetResourceDataByID("Wood").Value += cell.building.GetActualWoodValue();
+                    GameManager.I.GetResourceDataByID("Stone").Value += cell.building.GetActualStoneValue();
+                }
                 break;
             case "Esercito":
                 if (GameManager.I.GetResourceDataByID("Faith").Value >= DemolitionCost)

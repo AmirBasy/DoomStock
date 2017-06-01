@@ -13,18 +13,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimedEvents: []
   BuildingResources: []
+  AttackRange: {x: 0, y: 0}
   BuildingTime: 10
   ID: Torretta
   PopulationLimit: 10
   WoodToBuild: 50
   StoneToBuild: 35
+  StoneActualValue: 0
+  WoodActualValue: 0
   BuildPrefab: {fileID: 114469526126114690, guid: 6e9c2a9ab95a7154cbed485048a80097,
     type: 2}
+  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
-  Maintenance: 0
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
+  InitialLife: 2147483647
   DecreaseBuildingLife: 2
   currentState: 0
