@@ -610,7 +610,7 @@ public class Player : PlayerBase
     float time;
     bool CanClick()
     {
-        if (time >= 1.5f) {
+        if (time >= 1.0f) {
             time = 0;
             return true;
         }

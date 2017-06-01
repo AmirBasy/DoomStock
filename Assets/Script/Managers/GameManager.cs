@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager I;
 
-    public int InitialFood, InitialWood, InitialStone;
+    public int InitialFood, InitialWood, InitialStone, InitialFaith;
 
     public List<BuildingView> forestInScene;
     
@@ -190,6 +190,8 @@ public class GameManager : MonoBehaviour {
                 item.Value = InitialStone;
             if (item.ID == "Food")
                 item.Value = InitialFood;
+            if (item.ID == "Faith")
+                item.Value = InitialFaith;
         }
     }
 
