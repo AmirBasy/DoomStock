@@ -1315,12 +1315,12 @@ Prefab:
     - target: {fileID: 114133672062508852, guid: 2acaa43a67287ad48ae8c110837ac6df,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114133672062508852, guid: 2acaa43a67287ad48ae8c110837ac6df,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114736053315091060, guid: 2acaa43a67287ad48ae8c110837ac6df,
         type: 2}

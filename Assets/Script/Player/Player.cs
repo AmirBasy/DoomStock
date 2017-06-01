@@ -113,7 +113,7 @@ public class Player : PlayerBase
         // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
-        if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
+        if (_buildingData.Population.Count < 1 && _buildingData.CurrentState != BuildingState.Ready)
         {
             GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetBuildingStatus(BuildingState.Built);
         }
@@ -320,7 +320,7 @@ public class Player : PlayerBase
                 {
                     
                    
-                    if (cell.building.currentState == BuildingState.Built || cell.building.currentState == BuildingState.Producing)
+                    if (cell.building.CurrentState == BuildingState.Built || cell.building.CurrentState == BuildingState.Producing)
                     {
                         AddResourceOnClick(cell.building, cell);
                         foreach (var item in cell.building.BuildingResources)
@@ -329,7 +329,7 @@ public class Player : PlayerBase
                         }
                            
                     }
-                    if (cell.building.currentState == BuildingState.Ready)
+                    if (cell.building.CurrentState == BuildingState.Ready)
                     {
                         GameManager.I.messagesManager.DesotryUiInformation(cell);
                         foreach (var item in cell.building.BuildingResources)
@@ -543,7 +543,7 @@ public class Player : PlayerBase
                 foreach (var item in cell.building.BuildingResources)
                 {
                     item.Value = item.Limit;
-                    cell.building.currentState = BuildingState.Ready;
+                    cell.building.CurrentState = BuildingState.Ready;
                 }
                 break;
             default:

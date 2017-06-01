@@ -169,8 +169,9 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     /// <returns></returns>
     public bool CanBeAttacked() {
-        switch (currentState) {
+        switch (CurrentState) {
             case BuildingState.Destroyed:
+            case BuildingState.Construction:
                 return false;
             default:
                 return true;
@@ -179,8 +180,18 @@ public class BuildingData : ScriptableObject, ISelectable
 
     #endregion
 
-    public BuildingState currentState = BuildingState.Construction;
-   
+    private BuildingState _currentState = BuildingState.Construction;
+    /// <summary>
+    /// 
+    /// </summary>
+    public BuildingState CurrentState {
+        get { return _currentState; }
+        set {
+            _currentState = value;
+        }
+    }
+
+
 
     #region Setup
     public void Awake()

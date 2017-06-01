@@ -57,7 +57,7 @@ public class BuildingView : MonoBehaviour
         //toglie tutti i popolani dall'edificio e le rimette in POZZA
         Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
-        Data.currentState = BuildingState.Destroyed;
+        Data.CurrentState = BuildingState.Destroyed;
         transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => {
             //UpdateAspect();
         });
@@ -96,7 +96,7 @@ public class BuildingView : MonoBehaviour
     public void SetBuildingStatus(BuildingState _status)
     {
 
-        Data.currentState = _status;
+        Data.CurrentState = _status;
         OnStatusChanged();
     }
     /// <summary>
@@ -104,10 +104,12 @@ public class BuildingView : MonoBehaviour
     /// </summary>
     public void OnStatusChanged()
     {
-        switch (Data.currentState)
+        switch (Data.CurrentState)
         {
             case BuildingState.Construction:
-                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { SetBuildingStatus(BuildingState.Built); });
+                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => {
+                        SetBuildingStatus(BuildingState.Built);
+                });
                 break;
             case BuildingState.Built:
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
@@ -177,7 +179,7 @@ public class BuildingView : MonoBehaviour
         {
             case "Production":
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
-                if (Data.currentState == BuildingState.Producing && Data.ID != "Foresta")
+                if (Data.CurrentState == BuildingState.Producing && Data.ID != "Foresta")
                 {
                     foreach (var res in Data.BuildingResources)
                     {
@@ -204,7 +206,7 @@ public class BuildingView : MonoBehaviour
                     }
 
                 }
-                else if (Data.currentState == BuildingState.Producing && Data.ID == "Foresta")
+                else if (Data.CurrentState == BuildingState.Producing && Data.ID == "Foresta")
                 {
                     foreach (var res in Data.BuildingResources)
                     {
