@@ -278,6 +278,10 @@ public class Player : PlayerBase
     /// costo di fede per la demolizione
     /// </summary>
     public int DemolitionCost;
+    /// <summary>
+    /// costo di fede per l'abilità del clero.
+    /// </summary>
+    public int CleroAbilityCost;
 
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
@@ -562,10 +566,14 @@ public class Player : PlayerBase
                 }
                 break;
             case "Clero":
-                foreach (var item in cell.building.BuildingResources)
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= CleroAbilityCost)
                 {
-                    item.Value = item.Limit;
-                    cell.building.currentState = BuildingState.Ready;
+                    GameManager.I.GetResourceDataByID("Faith").Value -= CleroAbilityCost;
+                    foreach (var item in cell.building.BuildingResources)
+                    {
+                        item.Value = item.Limit;
+                        cell.building.currentState = BuildingState.Ready;
+                    } 
                 }
                 break;
             default:
