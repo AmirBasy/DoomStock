@@ -13,18 +13,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimedEvents: []
   BuildingResources: []
+  AttackRange: {x: 0, y: 0}
   BuildingTime: 0
   ID: Foresta
   PopulationLimit: 0
   WoodToBuild: 0
   StoneToBuild: 0
+  StoneActualValue: 0
+  WoodActualValue: 0
   BuildPrefab: {fileID: 114827150790123896, guid: 73e93a7d4020d38468b5cd4f2dd43774,
     type: 2}
+  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
-  Maintenance: 0
   IncreaseMaxPopulation: 0
   BuildingLife: 2147483647
+  InitialLife: 2147483647
   DecreaseBuildingLife: 1
   currentState: 2

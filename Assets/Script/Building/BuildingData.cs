@@ -74,6 +74,8 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public int WoodToBuild, StoneToBuild;
 
+   public int StoneActualValue, WoodActualValue;
+
     /// <summary>
     /// Oggetto prefab dell edificio
     /// </summary> 
@@ -178,6 +180,39 @@ public class BuildingData : ScriptableObject, ISelectable
         }
     }
 
+
+    public int GetActualStoneValue()
+    {
+        
+        if (InitialLife > 0)
+        {
+            StoneActualValue = (int)(StoneToBuild * BuildingLife) / InitialLife;
+            return StoneActualValue;
+            
+        }
+        else
+        {
+            StoneActualValue = 0;
+            return StoneActualValue;
+            
+        }
+    }
+    public int GetActualWoodValue()
+    {
+
+        if (InitialLife > 0)
+        {
+            WoodActualValue = (int)(WoodToBuild * BuildingLife) / InitialLife;
+            return WoodActualValue;
+           
+        }
+        else
+        {
+            WoodActualValue = 0;
+            return WoodActualValue;
+           
+        }
+    }
     #endregion
 
     private BuildingState _currentState = BuildingState.Construction;

@@ -53,7 +53,16 @@ public class UiInformation : MonoBehaviour {
             case MessageLableType.SpiritProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
                 IconString = "1+";
-                break; 
+                break;
+            case MessageLableType.Reparing:
+                ColorUtility.TryParseHtmlString(MessagesManager.ReparingColor, out backgroundColor);
+                IconString = "accetta";
+                break;
+            case MessageLableType.Destroing:
+                ColorUtility.TryParseHtmlString(MessagesManager.DestroingColor, out backgroundColor);
+                IconString = "piccone";
+                break;
+            
             default:
                 break;
         }
@@ -64,7 +73,7 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {Destroy(this.gameObject);
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 1).OnComplete(() => {Destroy(this.gameObject);
         });
         BackgroundColor.color = backgroundColor;
 
@@ -96,6 +105,10 @@ public class UiInformation : MonoBehaviour {
                 ColorUtility.TryParseHtmlString(MessagesManager.WoodColor, out backgroundColor);
                 IconString = "Wood";
                 break;
+            case MessageLableType.GetMacerie:
+                ColorUtility.TryParseHtmlString(MessagesManager.UndefinedColor, out backgroundColor);
+                IconString = "indicatore_quadro_edificabile";
+                break;
             default:
                 break;
         }
@@ -106,11 +119,8 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {
-            
-        });
-        BackgroundColor.color = backgroundColor;
-
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {});
+        BackgroundColor.color = backgroundColor;    
     }
 }
 public enum MessageLableType {
@@ -118,7 +128,9 @@ public enum MessageLableType {
 
     Death,Birth,RemovePopulation,AddPopulation,
     
-    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone,LimitPopulation
+    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone,LimitPopulation,
+
+    Reparing,Destroing,Miracle,GetMacerie
 
 
 }

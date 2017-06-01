@@ -113,7 +113,7 @@ public class Player : PlayerBase
         // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
-        if (_buildingData.Population.Count < 1 && _buildingData.CurrentState != BuildingState.Ready)
+        if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
         {
             GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetBuildingStatus(BuildingState.Built);
         }
@@ -203,17 +203,17 @@ public class Player : PlayerBase
 
     }
 
-    /// <summary>
-    /// se è vera, il player può rimuovere le macerie.
-    /// </summary>
-    /// <returns></returns>
-    public bool CanRemoveDebris()
-    {
-        if (ID == "Esercito")
-            return true;
-        else
-            return false;
-    }
+    ///// <summary>
+    ///// se è vera, il player può rimuovere le macerie.
+    ///// </summary>
+    ///// <returns></returns>
+    //public bool CanRemoveDebris()
+    //{
+    //    if (ID == "Esercito")
+    //        return true;
+    //    else
+    //        return false;
+    //}
 
     #endregion
 
@@ -274,6 +274,18 @@ public class Player : PlayerBase
 
     // TODO: rifattorizzare creando state machine player
     IMenu currentMenu = null;
+    /// <summary>
+    /// costo di fede per la demolizione
+    /// </summary>
+    public int DemolitionCost;
+    /// <summary>
+    /// costo di fede per l'abilità del clero.
+    /// </summary>
+    public int CleroAbilityCost;
+    /// <summary>
+    /// costo di fede per l'abilità di riparazione.
+    /// </summary>
+    public int RiparationCost;
 
     /// <summary>
     /// Controlla se vengono premuti degli input da parte del player.
@@ -285,8 +297,11 @@ public class Player : PlayerBase
         {
             CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
             if (_inputStatus.X == ButtonState.Pressed)
-          
-            { Ability(cell); }
+
+            {
+                if (cell.building && cell.building.currentState != BuildingState.Destroyed)
+                Ability(cell);
+            }
             // controllo che la levetta sia stata rilasciata nei due sensi o quasi
             if (_inputStatus.LeftThumbSticksAxisY <= 0.2 && _inputStatus.LeftThumbSticksAxisY >= -0.2)
                 isReleasedVertical = true;
@@ -315,50 +330,61 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed && GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status != CellDoomstock.CellStatus.Hole) // SELECT
             {
-               
+
                 if (cell.building)
                 {
-                    
-                   
-                    if (cell.building.CurrentState == BuildingState.Built || cell.building.CurrentState == BuildingState.Producing)
+                    switch (cell.building.currentState)
                     {
-                        AddResourceOnClick(cell.building, cell);
-                        foreach (var item in cell.building.BuildingResources)
-                        {
-                            GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
-                        }
-                           
-                    }
-                    if (cell.building.CurrentState == BuildingState.Ready)
-                    {
-                        GameManager.I.messagesManager.DesotryUiInformation(cell);
-                        foreach (var item in cell.building.BuildingResources)
-                        {
-                            GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
-                          
-                            item.Value = 0;
-
-                            if (cell.building.Population.Count > 0)
+                        case BuildingState.Construction:
+                            break;
+                        case BuildingState.Built:
+                        case BuildingState.Producing:
+                            if (CanClick())
                             {
-                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
-
-                            }
-                            else
-                            {
-                                if (cell.building.ID != "Foresta")
+                                AddResourceOnClick(cell.building, cell);
+                                foreach (var item in cell.building.BuildingResources)
                                 {
-                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
-                                    
-                                }
-                                else if (cell.building.ID == "Foresta")
+                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
+                                } 
+                            }
+                            break;
+                        case BuildingState.Ready:
+                            GameManager.I.messagesManager.DesotryUiInformation(cell);
+                            foreach (var item in cell.building.BuildingResources)
+                            {
+                                GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
+
+                                item.Value = 0;
+
+                                if (cell.building.Population.Count > 0)
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
 
                                 }
+                                else
+                                {
+                                    if (cell.building.ID != "Foresta")
+                                    {
+                                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
 
+                                    }
+                                    else if (cell.building.ID == "Foresta")
+                                    {
+                                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
+
+                                    }
+
+                                }
                             }
-                        }
+                            break;
+                        case BuildingState.Destroyed:
+                            RemoveBuildingDebris(cell.building);
+                            break;
+                        default:
+                            break;
                     }
+
+
                 }
                 else
                 {
@@ -433,7 +459,7 @@ public class Player : PlayerBase
                     currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
                 }
             }
-           
+
             if (_inputStatus.B == ButtonState.Pressed)// DESELECT
             {
                 currentMenu.GoBack();
@@ -447,6 +473,8 @@ public class Player : PlayerBase
     {
         // chiamata alla funzione che legge gli input
         CheckInputStatus(playerInput.GetPlayerInputStatus());
+        time += Time.deltaTime;
+      
     }
 
     #endregion
@@ -462,9 +490,9 @@ public class Player : PlayerBase
     {
         if (BuildingsInScene.Contains(_buildingView))
             BuildingsInScene.Remove(_buildingView);
+            
     }
-
-    private void OnDisable()
+        private void OnDisable()
     {
         BuildingView.OnRemoveDebris -= OnBuildingDebrisRemove;
     }
@@ -534,22 +562,49 @@ public class Player : PlayerBase
         switch (ID)
         {
             case "Sindaco":
-                cell.building.BuildingLife = cell.building.InitialLife;
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= RiparationCost)
+                {
+                    GameManager.I.GetResourceDataByID("Faith").Value -= RiparationCost;
+                    cell.building.BuildingLife = cell.building.InitialLife;
+                    GameManager.I.GetResourceDataByID("Wood").Value += cell.building.GetActualWoodValue();
+                    GameManager.I.GetResourceDataByID("Stone").Value += cell.building.GetActualStoneValue();
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.Reparing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
+                }
                 break;
-            case"Esercito":
-                DestroyBuilding(cell.building.UniqueID);
+            case "Esercito":
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= DemolitionCost)
+                {
+                    DestroyBuilding(cell.building.UniqueID);
+                    GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.GetMacerie, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]);
+                }
                 break;
             case "Clero":
-                foreach (var item in cell.building.BuildingResources)
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= CleroAbilityCost)
                 {
-                    item.Value = item.Limit;
-                    cell.building.CurrentState = BuildingState.Ready;
+                    GameManager.I.GetResourceDataByID("Faith").Value -= CleroAbilityCost;
+                    foreach (var item in cell.building.BuildingResources)
+                    {
+                        item.Value = item.Limit;
+                        cell.building.currentState = BuildingState.Ready;
+                    } 
                 }
                 break;
             default:
                 break;
         }
     }
+    float time;
+    bool CanClick()
+    {
+        if (time >= 1) {
+            time = 0;
+            return true;
+        }
+        return false;
+    }
+    
 }
 
 

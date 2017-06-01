@@ -13,18 +13,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimedEvents: []
   BuildingResources: []
+  AttackRange: {x: 0, y: 0}
   BuildingTime: 10
   ID: Muro
   PopulationLimit: 2
   WoodToBuild: 10
   StoneToBuild: 10
+  StoneActualValue: 0
+  WoodActualValue: 0
   BuildPrefab: {fileID: 114022310690705468, guid: 480b557d356de5046a42d860b5ca9563,
     type: 2}
+  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0
-  Maintenance: 0
   IncreaseMaxPopulation: 0
   BuildingLife: 100
+  InitialLife: 100
   DecreaseBuildingLife: 0
   currentState: 0
