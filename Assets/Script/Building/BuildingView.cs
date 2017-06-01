@@ -14,7 +14,7 @@ public class BuildingView : MonoBehaviour
     /// Dato della view.
     /// </summary>
     public BuildingData Data;
-
+    
 
     #endregion
 
@@ -160,8 +160,13 @@ public class BuildingView : MonoBehaviour
                     default:
                         break;
                 }
+            
                 // rend.material = Materials[1];
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                break;
+            case BuildingState.Waiting:
+                Data.ProductionCounter = 0;
+               
                 break;
             default:
                 break;
@@ -222,6 +227,26 @@ public class BuildingView : MonoBehaviour
                     }
                 }
                 break;
+            case "Delay":
+                Data.ProductionCounter ++;
+                if (Data.CurrentState == BuildingState.Waiting)
+                {
+                    if (Data.ProductionCounter >= Data.CounterLimit)
+                    {
+                        if (Data.ID == "Foresta")
+                            Data.CurrentState = BuildingState.Producing;
+                        else
+                        {
+                            if (Data.Population.Count > 0)
+                                Data.CurrentState = BuildingState.Producing;
+                            else
+                            {
+                                Data.CurrentState = BuildingState.Built;
+                            }
+                        }
+                    }
+                }
+                break;
 
             default:
                 break;
@@ -235,7 +260,6 @@ public class BuildingView : MonoBehaviour
     }
 
     #endregion
-
 
     public void LimitReached(BaseResourceData res)
     {

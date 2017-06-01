@@ -11,12 +11,14 @@ public class UiInformation : MonoBehaviour {
     public SpriteRenderer BackgroundColor;
     public SpriteRenderer Icon;
     public CellDoomstock cell;
+    public string MessageType;
     
     public void ShowMessagePop_up(MessageLableType _message) {
 
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0,0,0,0);
         string IconString = "";
+      
         switch (_message) {
             case MessageLableType.FoodProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.FoodColor, out backgroundColor);
@@ -73,14 +75,13 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 1).OnComplete(() => {Destroy(this.gameObject);
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 0.5f, 1).OnComplete(() => {Destroy(this.gameObject);
         });
         BackgroundColor.color = backgroundColor;
 
     }
 
     public void ShowMessageStuck(MessageLableType _message) {
-       
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0, 0, 0, 0);
         string IconString = "";
@@ -119,7 +120,9 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {});
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 1.5f, 1).OnComplete(() => {
+
+        });
         BackgroundColor.color = backgroundColor;    
     }
 }

@@ -38,7 +38,11 @@ public class BuildingData : ScriptableObject, ISelectable
         get { return _playerOwner; }
         set { _playerOwner = value; }
     }
-
+    /// <summary>
+    /// Counter per far ripartire la produzione
+    /// </summary>
+    public float ProductionCounter;
+    public float CounterLimit;
     /// <summary>
     /// ID unico
     /// </summary>
@@ -275,5 +279,6 @@ public enum BuildingState
     Producing = 2,
     Ready = 3, 
     Destroyed = 4,
+    Waiting = 5,
 }
 #endregion

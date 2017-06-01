@@ -59,6 +59,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.Reparing:
             case MessageLableType.Destroing:
                 info.ShowMessagePop_up(_message);
+                info.MessageType = "PopUp";
                 break;
             case MessageLableType.LimitFood:
             case MessageLableType.LimitFaith:
@@ -68,6 +69,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.LimitPopulation:
             case MessageLableType.GetMacerie:
                 info.ShowMessageStuck(_message);
+                info.MessageType = "Stuck";
                 // info.CellWorldPosition = _worldPosition;
                 break;
             default:
@@ -81,7 +83,7 @@ public class MessagesManager : MonoBehaviour
         UiInformation[] uiToReturn = FindObjectsOfType<UiInformation>();
         foreach (var item in uiToReturn)
         {
-            if (item.cell == _cell)
+            if (item.cell == _cell && item.MessageType == "Stuck")
             {
                 item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 1f).SetEase(Ease.InOutCirc, 1).OnComplete(() =>
                 {
