@@ -335,17 +335,14 @@ public class Player : PlayerBase
                         case BuildingState.Construction:
                             break;
                         case BuildingState.Built:
-                            AddResourceOnClick(cell.building, cell);
-                            foreach (var item in cell.building.BuildingResources)
-                            {
-                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
-                            }
-                            break;
                         case BuildingState.Producing:
-                            AddResourceOnClick(cell.building, cell);
-                            foreach (var item in cell.building.BuildingResources)
+                            if (CanClick())
                             {
-                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
+                                AddResourceOnClick(cell.building, cell);
+                                foreach (var item in cell.building.BuildingResources)
+                                {
+                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
+                                } 
                             }
                             break;
                         case BuildingState.Ready:
@@ -473,6 +470,8 @@ public class Player : PlayerBase
     {
         // chiamata alla funzione che legge gli input
         CheckInputStatus(playerInput.GetPlayerInputStatus());
+        time += Time.deltaTime;
+      
     }
 
     #endregion
@@ -590,6 +589,16 @@ public class Player : PlayerBase
                 break;
         }
     }
+    float time;
+    bool CanClick()
+    {
+        if (time >= 1) {
+            time = 0;
+            return true;
+        }
+        return false;
+    }
+    
 }
 
 

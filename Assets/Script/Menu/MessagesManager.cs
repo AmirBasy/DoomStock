@@ -78,7 +78,8 @@ public class MessagesManager : MonoBehaviour
         {
             if (item.cell == _cell)
             {
-                item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 5).OnComplete(() => {
+                item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 5).OnComplete(() =>
+                {
                     Destroy(item.gameObject);
                 }); ;
             }

@@ -64,7 +64,7 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 4).OnComplete(() => {Destroy(this.gameObject);
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 2, 1).OnComplete(() => {Destroy(this.gameObject);
         });
         BackgroundColor.color = backgroundColor;
 
