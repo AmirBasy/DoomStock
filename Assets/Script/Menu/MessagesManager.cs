@@ -81,10 +81,17 @@ public class MessagesManager : MonoBehaviour
         {
             if (item.cell == _cell)
             {
+<<<<<<< HEAD
                 item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 1f).SetEase(Ease.InOutCirc,1).OnComplete(() => {
                         Destroy(item.gameObject);
                 });
                 item.transform.DOScale(0, 0.2f).SetDelay(0.8f);
+=======
+                item.transform.DOMove(new Vector3(Target.transform.position.x, Target.transform.position.y, Target.transform.position.z), 5).OnComplete(() =>
+                {
+                    Destroy(item.gameObject);
+                }); ;
+>>>>>>> 285e93318a03608ffaaf3eced1a224dd2dabc0bf
             }
         }
     }

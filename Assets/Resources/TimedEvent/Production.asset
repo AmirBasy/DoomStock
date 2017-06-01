@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Production
   m_EditorClassIdentifier: 
   ID: Production
-  TimeUnitsToInvoke: 10
+  TimeUnitsToInvoke: 3
   CurrentTimeUnit: 5
   isRepeating: 1
