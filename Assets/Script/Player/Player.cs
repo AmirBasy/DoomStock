@@ -113,9 +113,9 @@ public class Player : PlayerBase
         // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
-        if (_buildingData.Population.Count < 1 && _buildingData.currentState != BuildingState.Ready)
+        if (_buildingData.Population.Count < 1 && _buildingData.CurrentState != BuildingState.Ready)
         {
-            GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetBuildingStatus(BuildingState.Built);
+            GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetBuildingStatus(BuildingState.Built); 
         }
 
     }
@@ -299,7 +299,7 @@ public class Player : PlayerBase
             if (_inputStatus.X == ButtonState.Pressed)
 
             {
-                if (cell.building && cell.building.currentState != BuildingState.Destroyed)
+                if (cell.building && cell.building.CurrentState != BuildingState.Destroyed)
                 Ability(cell);
             }
             // controllo che la levetta sia stata rilasciata nei due sensi o quasi
@@ -333,7 +333,7 @@ public class Player : PlayerBase
 
                 if (cell.building)
                 {
-                    switch (cell.building.currentState)
+                    switch (cell.building.CurrentState)
                     {
                         case BuildingState.Construction:
                             break;
@@ -588,7 +588,7 @@ public class Player : PlayerBase
                     foreach (var item in cell.building.BuildingResources)
                     {
                         item.Value = item.Limit;
-                        cell.building.currentState = BuildingState.Ready;
+                        cell.building.CurrentState = BuildingState.Ready;
                     } 
                 }
                 break;

@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
                             //{
                             //    FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
                             //}
-                            if(cell.building.currentState == BuildingState.Ready)
+                            if(cell.building.CurrentState == BuildingState.Ready)
                             {
                                 FirstLevelSelectables.Add(new Selector() { UniqueID = " Prendi ", NameLable = " Prendi " } as ISelectable);
                             }

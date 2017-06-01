@@ -9,7 +9,13 @@ public class TestPathFinding : MonoBehaviour, IPathFinding {
     CellDoomstock startCell;
     CellDoomstock lastCell;
     List<INode> path = new List<INode>();
-   
+
+    public GridControllerDoomstock grid {
+        get {
+            return GameManager.I.gridController;
+        }
+    }
+
     private void OnDrawGizmos() {
         if (startCell == null)
             return;
@@ -31,11 +37,15 @@ public class TestPathFinding : MonoBehaviour, IPathFinding {
         transform.position = GameManager.I.gridController.GetCellWorldPosition((int)startPos.x, (int)startPos.y);
         startCell = GameManager.I.gridController.Cells[(int)startPos.x, (int)startPos.y];
         lastCell = GameManager.I.gridController.Cells[(int)lastPos.x, (int)lastPos.y];
-        path = this.Find(startCell, lastCell);
+        path = this.FindPath(startCell, lastCell, new PathFindingSettings());
         
     }
 
     private void OnDisable() {
         GameManager.OnGridCreated -= GridCreated;
+    }
+
+    public List<INode> GetNeighboursStar(INode node) {
+        throw new NotImplementedException();
     }
 }
