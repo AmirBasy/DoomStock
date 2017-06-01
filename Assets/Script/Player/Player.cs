@@ -183,11 +183,11 @@ public class Player : PlayerBase
     /// <param name="id"></param>
     public void DestroyBuilding(string id)
     {
-        for (int i = 0; i < BuildingsInScene.Count; i++)
+        for (int i = 0; i < GameManager.I.buildingManager.GetAllBuildingInScene().Count; i++)
         {
-            if (id == BuildingsInScene[i].Data.UniqueID)
+            if (id == GameManager.I.buildingManager.GetAllBuildingInScene()[i].Data.UniqueID)
             {
-                BuildingsInScene[i].destroyMe();
+                GameManager.I.buildingManager.GetAllBuildingInScene()[i].destroyMe();
             }
         }
     }
