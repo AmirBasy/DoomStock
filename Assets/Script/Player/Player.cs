@@ -203,17 +203,17 @@ public class Player : PlayerBase
 
     }
 
-    /// <summary>
-    /// se è vera, il player può rimuovere le macerie.
-    /// </summary>
-    /// <returns></returns>
-    public bool CanRemoveDebris()
-    {
-        if (ID == "Esercito")
-            return true;
-        else
-            return false;
-    }
+    ///// <summary>
+    ///// se è vera, il player può rimuovere le macerie.
+    ///// </summary>
+    ///// <returns></returns>
+    //public bool CanRemoveDebris()
+    //{
+    //    if (ID == "Esercito")
+    //        return true;
+    //    else
+    //        return false;
+    //}
 
     #endregion
 
@@ -285,7 +285,7 @@ public class Player : PlayerBase
         {
             CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
             if (_inputStatus.X == ButtonState.Pressed)
-          
+
             { Ability(cell); }
             // controllo che la levetta sia stata rilasciata nei due sensi o quasi
             if (_inputStatus.LeftThumbSticksAxisY <= 0.2 && _inputStatus.LeftThumbSticksAxisY >= -0.2)
@@ -315,50 +315,64 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed && GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].Status != CellDoomstock.CellStatus.Hole) // SELECT
             {
-               
+
                 if (cell.building)
                 {
-                    
-                   
-                    if (cell.building.currentState == BuildingState.Built || cell.building.currentState == BuildingState.Producing)
+                    switch (cell.building.currentState)
                     {
-                        AddResourceOnClick(cell.building, cell);
-                        foreach (var item in cell.building.BuildingResources)
-                        {
-                            GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
-                        }
-                           
-                    }
-                    if (cell.building.currentState == BuildingState.Ready)
-                    {
-                        GameManager.I.messagesManager.DesotryUiInformation(cell);
-                        foreach (var item in cell.building.BuildingResources)
-                        {
-                            GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
-                          
-                            item.Value = 0;
-
-                            if (cell.building.Population.Count > 0)
+                        case BuildingState.Construction:
+                            break;
+                        case BuildingState.Built:
+                            AddResourceOnClick(cell.building, cell);
+                            foreach (var item in cell.building.BuildingResources)
                             {
-                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
-
+                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
                             }
-                            else
+                            break;
+                        case BuildingState.Producing:
+                            AddResourceOnClick(cell.building, cell);
+                            foreach (var item in cell.building.BuildingResources)
                             {
-                                if (cell.building.ID != "Foresta")
-                                {
-                                    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
-                                    
-                                }
-                                else if (cell.building.ID == "Foresta")
+                                GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).LimitReached(item);
+                            }
+                            break;
+                        case BuildingState.Ready:
+                            GameManager.I.messagesManager.DesotryUiInformation(cell);
+                            foreach (var item in cell.building.BuildingResources)
+                            {
+                                GameManager.I.GetResourceDataByID(item.ID).Value += item.Limit;
+
+                                item.Value = 0;
+
+                                if (cell.building.Population.Count > 0)
                                 {
                                     GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
 
                                 }
+                                else
+                                {
+                                    if (cell.building.ID != "Foresta")
+                                    {
+                                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Built);
 
+                                    }
+                                    else if (cell.building.ID == "Foresta")
+                                    {
+                                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Producing);
+
+                                    }
+
+                                }
                             }
-                        }
+                            break;
+                        case BuildingState.Destroyed:
+                            RemoveBuildingDebris(cell.building);
+                            break;
+                        default:
+                            break;
                     }
+
+
                 }
                 else
                 {
@@ -433,7 +447,7 @@ public class Player : PlayerBase
                     currentMenu.AddSelection(currentMenu.PossibiliScelteAttuali[currentMenu.IndiceDellaSelezioneEvidenziata]);
                 }
             }
-           
+
             if (_inputStatus.B == ButtonState.Pressed)// DESELECT
             {
                 currentMenu.GoBack();
@@ -536,7 +550,7 @@ public class Player : PlayerBase
             case "Sindaco":
                 cell.building.BuildingLife = cell.building.InitialLife;
                 break;
-            case"Esercito":
+            case "Esercito":
                 DestroyBuilding(cell.building.UniqueID);
                 break;
             case "Clero":
