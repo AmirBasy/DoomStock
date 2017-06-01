@@ -378,6 +378,7 @@ public class Player : PlayerBase
                             }
                             break;
                         case BuildingState.Destroyed:
+                            GameManager.I.messagesManager.DesotryUiInformation(cell);
                             RemoveBuildingDebris(cell.building);
                             break;
                         default:
