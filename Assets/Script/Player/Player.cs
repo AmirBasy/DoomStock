@@ -299,7 +299,7 @@ public class Player : PlayerBase
             if (_inputStatus.X == ButtonState.Pressed)
 
             {
-                if (cell.building)
+                if (cell.building && cell.building.currentState != BuildingState.Destroyed)
                 Ability(cell);
             }
             // controllo che la levetta sia stata rilasciata nei due sensi o quasi
