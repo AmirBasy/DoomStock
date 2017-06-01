@@ -62,13 +62,14 @@ public class BuildingView : MonoBehaviour
         Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         Data.CurrentState = BuildingState.Destroyed;
-        transform.DOScale(Vector3.zero, 0.2f).OnComplete(() => {
+        transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
+        {
             //UpdateAspect();
         });
 
     }
 
-    
+
 
 
     /// <summary>
@@ -76,14 +77,14 @@ public class BuildingView : MonoBehaviour
     /// </summary>
     public void RemoveDebris()
     {
-       
+
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
-       
+
         GameManager.I.GetResourceDataByID("Wood").Value += Data.GetActualWoodValue();
         GameManager.I.GetResourceDataByID("Stone").Value += Data.GetActualWoodValue();
         if (OnRemoveDebris != null)
             OnRemoveDebris(this);
-        
+
         Destroy(gameObject);
     }
 
@@ -114,14 +115,17 @@ public class BuildingView : MonoBehaviour
         switch (Data.CurrentState)
         {
             case BuildingState.Construction:
-                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => {
-                        SetBuildingStatus(BuildingState.Built);
+                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() =>
+                {
+                    SetBuildingStatus(BuildingState.Built);
                 });
                 break;
             case BuildingState.Built:
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Producing:
+                if (Data.ID == "Foresta")
+                    CurrentMesh.mesh = Pino;
                 if (Data.ID != "Foresta")
                 {
                     //if (rend.material != null)
@@ -133,14 +137,15 @@ public class BuildingView : MonoBehaviour
                 else if (Data.ID == "Foresta")
                 {
 
-                   // transform.DOMoveY(transform.position.y + 0.1f, 1.5f).OnComplete(() => { });
+                    // transform.DOMoveY(transform.position.y + 0.1f, 1.5f).OnComplete(() => { });
                 }
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
                 CurrentMesh.mesh = Pino;
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
-                switch (Data.ID) {
+                switch (Data.ID)
+                {
                     case "Foresta":
                         GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitWood, cell);
                         break;
@@ -160,20 +165,21 @@ public class BuildingView : MonoBehaviour
                         GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitSpirit, cell);
                         break;
                     case "Casa":
-                       // GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);
+                        // GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);
                         break;
                     default:
                         break;
                 }
-            
+
                 // rend.material = Materials[1];
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Waiting:
-               
+
                 Data.ProductionCounter = 0;
-                CurrentMesh.mesh = Ceppo;
-                
+                if (Data.ID == "Foresta")
+                    CurrentMesh.mesh = Ceppo;
+
                 break;
             default:
                 break;
@@ -229,26 +235,27 @@ public class BuildingView : MonoBehaviour
                         LimitReached(res);
                         if (res.ID == "Wood")
                         {
-                             GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell);
+                            GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell);
                         }
                     }
                 }
                 break;
             case "Delay":
-                Data.ProductionCounter ++;
+                Data.ProductionCounter++;
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
                     if (Data.ProductionCounter >= Data.CounterLimit)
                     {
                         if (Data.ID == "Foresta")
-                            Data.CurrentState = BuildingState.Producing;
+                            SetBuildingStatus(BuildingState.Producing);
                         else
                         {
                             if (Data.Population.Count > 0)
-                                Data.CurrentState = BuildingState.Producing;
+                                SetBuildingStatus(BuildingState.Producing);
                             else
                             {
-                                Data.CurrentState = BuildingState.Built;
+                                SetBuildingStatus(BuildingState.Built);
+                              
                             }
                         }
                     }
@@ -274,7 +281,7 @@ public class BuildingView : MonoBehaviour
         {
             res.Value = 0;
             SetBuildingStatus(BuildingState.Ready);
-            
+
         }
     }
     #region BARRA commentata
