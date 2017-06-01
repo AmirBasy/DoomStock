@@ -568,13 +568,15 @@ public class Player : PlayerBase
                     cell.building.BuildingLife = cell.building.InitialLife;
                     GameManager.I.GetResourceDataByID("Wood").Value += cell.building.GetActualWoodValue();
                     GameManager.I.GetResourceDataByID("Stone").Value += cell.building.GetActualStoneValue();
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.Reparing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
                 }
                 break;
             case "Esercito":
                 if (GameManager.I.GetResourceDataByID("Faith").Value >= DemolitionCost)
                 {
                     DestroyBuilding(cell.building.UniqueID);
-                    GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost; 
+                    GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
                 }
                 break;
             case "Clero":

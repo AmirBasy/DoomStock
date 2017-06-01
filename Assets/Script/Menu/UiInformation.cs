@@ -53,7 +53,15 @@ public class UiInformation : MonoBehaviour {
             case MessageLableType.SpiritProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
                 IconString = "1+";
-                break; 
+                break;
+            case MessageLableType.Reparing:
+                ColorUtility.TryParseHtmlString(MessagesManager.ReparingColor, out backgroundColor);
+                IconString = "accetta";
+                break;
+            case MessageLableType.Destroing:
+                ColorUtility.TryParseHtmlString(MessagesManager.DestroingColor, out backgroundColor);
+                IconString = "piccone";
+                break;
             default:
                 break;
         }
@@ -115,7 +123,9 @@ public enum MessageLableType {
 
     Death,Birth,RemovePopulation,AddPopulation,
     
-    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone,LimitPopulation
+    LimitFood,LimitFaith,LimitWood,LimitSpirit,LimitStone,LimitPopulation,
+
+    Reparing,Destroing,Miracle
 
 
 }
