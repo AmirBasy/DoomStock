@@ -175,9 +175,10 @@ public class PopulationManager : MonoBehaviour
                 PopulationData newUnit = CreatePopulation();
                 AddPopulation(newUnit);
                 AllPopulation.Add(newUnit);
-                GameManager.I.buildingManager.GetFirstOpening().Data.Population.Add(newUnit);
+                BuildingView firstOpening = GameManager.I.buildingManager.GetFirstOpening();
+                firstOpening.Data.Population.Add(newUnit);
                 FoodRequirement += newUnit.FoodRequirements;
-                GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, GameManager.I.gridController.Cells[(int)GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).GetWorldPosition().x, (int)GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).GetWorldPosition().y]);
+                GameManager.I.messagesManager.ShowiInformation(MessageLableType.Birth, firstOpening.Data.Cell);
                 GameManager.I.GetResourceDataByID("Food").Value -= newUnit.FoodRequirements; 
             }
         }

@@ -24,8 +24,8 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         Data.Init();
-       
-       
+
+
         //PopulationBarCounter = 0;
         if (Data.ID != "Foresta")
         {
@@ -61,7 +61,8 @@ public class BuildingView : MonoBehaviour
         cell.SetStatus(CellDoomstock.CellStatus.Debris, cell.building);
         //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debis);
         //toglie tutti i popolani dall'edificio e le rimette in POZZA
-        Data.RemoveAllPopulationFromBuilding();
+        if (Data.ID != "Casa")
+            Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         Data.CurrentState = BuildingState.Destroyed;
         transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
@@ -136,12 +137,12 @@ public class BuildingView : MonoBehaviour
                     //}
 
                 }
-               
+
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Ready:
 
-                
+
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                 switch (Data.ID)
                 {
@@ -255,7 +256,7 @@ public class BuildingView : MonoBehaviour
                             else
                             {
                                 SetBuildingStatus(BuildingState.Built);
-                              
+
                             }
                         }
                     }
