@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ProductionCounter: 0
-  CounterLimit: 10
+  Delay: 10
   AttackRange: {x: 0, y: 0}
   BuildingTime: 3
   ID: Fattoria

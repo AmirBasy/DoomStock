@@ -259,7 +259,7 @@ public class BuildingView : MonoBehaviour
                             SetBuildingStatus(BuildingState.Producing);
                         else
                         {
-                            if (Data.Population.Count > 0)
+                            if (Data.Population.Count >= 0)
                                 SetBuildingStatus(BuildingState.Producing);
                             else
                             {
