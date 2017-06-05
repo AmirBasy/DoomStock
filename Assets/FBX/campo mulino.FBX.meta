@@ -1,32 +1,32 @@
 fileFormatVersion: 2
-guid: b2a959aa5861c0044ab96f4151ea4096
-timeCreated: 1496667321
+guid: ba6be83d00f0003449b35476efbf5d49
+timeCreated: 1496673415
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Box001
-    100002: //RootNode
-    100004: grano
-    100006: mulino
-    100008: Plane013
-    400000: Box001
-    400002: //RootNode
-    400004: grano
-    400006: mulino
-    400008: Plane013
-    2300000: Box001
-    2300002: grano
-    2300004: mulino
-    2300006: Plane013
-    3300000: Box001
-    3300002: grano
-    3300004: mulino
-    3300006: Plane013
-    4300000: mulino
-    4300002: Box001
-    4300004: grano
-    4300006: Plane013
+    100000: balle
+    100002: Box001
+    100004: //RootNode
+    100006: fieno
+    100008: Object001
+    400000: balle
+    400002: Box001
+    400004: //RootNode
+    400006: fieno
+    400008: Object001
+    2300000: balle
+    2300002: Box001
+    2300004: fieno
+    2300006: Object001
+    3300000: balle
+    3300002: Box001
+    3300004: fieno
+    3300006: Object001
+    4300000: Box001
+    4300002: Object001
+    4300004: balle
+    4300006: fieno
     7400000: Take 001
     9500000: //RootNode
   materials:
