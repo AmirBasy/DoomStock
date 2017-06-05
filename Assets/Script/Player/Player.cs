@@ -410,7 +410,8 @@ public class Player : PlayerBase
             {
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
-                    if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building)
+                    BuildingData _building = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building;
+                    if (_building && _building.ID != "Casa" && _building.ID != "Muro")
                     {
                         if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
                         {
@@ -575,7 +576,7 @@ public class Player : PlayerBase
         switch (ID)
         {
             case "Sindaco":
-                if (GameManager.I.GetResourceDataByID("Faith").Value >= RiparationCost)
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= RiparationCost && cell.building.ID != "Foresta")
                 {
                     GameManager.I.GetResourceDataByID("Faith").Value -= RiparationCost;
                     cell.building.BuildingLife = cell.building.InitialLife;
