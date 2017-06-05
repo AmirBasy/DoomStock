@@ -23,7 +23,7 @@ MonoBehaviour:
   StoneToBuild: 15
   StoneActualValue: 0
   WoodActualValue: 0
-  BuildPrefab: {fileID: 114413324907437648, guid: 30a92e53c595c5b4b943026b049957b2,
+  BuildPrefab: {fileID: 114684715355314972, guid: 1a6c3f3d07238404394dec7bc49084ac,
     type: 2}
   EnemyTarget: {fileID: 0}
   Attack: 0

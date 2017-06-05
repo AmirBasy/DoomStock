@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: Fattoria
   m_EditorClassIdentifier: 
   TimedEvents: []
-  BuildingResources: []
+  BuildingResources:
+  - {fileID: 0}
+  - {fileID: 0}
   ProductionCounter: 0
   CounterLimit: 10
   AttackRange: {x: 0, y: 0}
@@ -23,7 +25,7 @@ MonoBehaviour:
   StoneToBuild: 10
   StoneActualValue: 0
   WoodActualValue: 0
-  BuildPrefab: {fileID: 114242779667529430, guid: f98e6d2c826e3c44fbe56ed5a21de46a,
+  BuildPrefab: {fileID: 114682099603519146, guid: f98e6d2c826e3c44fbe56ed5a21de46a,
     type: 2}
   EnemyTarget: {fileID: 0}
   Attack: 0
