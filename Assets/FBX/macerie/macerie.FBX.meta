@@ -1,77 +1,15 @@
 fileFormatVersion: 2
 guid: 1002b9ed85e4cb742870b29bf885e892
-timeCreated: 1496656170
+timeCreated: 1496656930
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Gemstone_001
-    100002: Gemstone_002
-    100004: Gemstone_003
-    100006: Gemstone_004
-    100008: Gemstone_005
-    100010: Gemstone_006
-    100012: Gemstone_007
-    100014: Gemstone_008
-    100016: Gemstone_009
-    100018: Gemstone_010
-    100020: Gemstone_011
-    100022: Gemstone_012
-    100024: Gemstone_013
-    100026: //RootNode
-    400000: Gemstone_001
-    400002: Gemstone_002
-    400004: Gemstone_003
-    400006: Gemstone_004
-    400008: Gemstone_005
-    400010: Gemstone_006
-    400012: Gemstone_007
-    400014: Gemstone_008
-    400016: Gemstone_009
-    400018: Gemstone_010
-    400020: Gemstone_011
-    400022: Gemstone_012
-    400024: Gemstone_013
-    400026: //RootNode
-    2300000: Gemstone_001
-    2300002: Gemstone_002
-    2300004: Gemstone_003
-    2300006: Gemstone_004
-    2300008: Gemstone_005
-    2300010: Gemstone_006
-    2300012: Gemstone_007
-    2300014: Gemstone_008
-    2300016: Gemstone_009
-    2300018: Gemstone_010
-    2300020: Gemstone_011
-    2300022: Gemstone_012
-    2300024: Gemstone_013
-    3300000: Gemstone_001
-    3300002: Gemstone_002
-    3300004: Gemstone_003
-    3300006: Gemstone_004
-    3300008: Gemstone_005
-    3300010: Gemstone_006
-    3300012: Gemstone_007
-    3300014: Gemstone_008
-    3300016: Gemstone_009
-    3300018: Gemstone_010
-    3300020: Gemstone_011
-    3300022: Gemstone_012
-    3300024: Gemstone_013
-    4300000: Gemstone_001
-    4300002: Gemstone_002
-    4300004: Gemstone_003
-    4300006: Gemstone_004
-    4300008: Gemstone_005
-    4300010: Gemstone_006
-    4300012: Gemstone_007
-    4300014: Gemstone_008
-    4300016: Gemstone_009
-    4300018: Gemstone_010
-    4300020: Gemstone_011
-    4300022: Gemstone_012
-    4300024: Gemstone_013
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: macerie
   materials:
     importMaterials: 1
     materialName: 0

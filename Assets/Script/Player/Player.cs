@@ -585,12 +585,12 @@ public class Player : PlayerBase
                 }
                 break;
             case "Esercito":
-                if (GameManager.I.GetResourceDataByID("Faith").Value >= DemolitionCost)
+                if (GameManager.I.GetResourceDataByID("Faith").Value >= DemolitionCost && cell.building.ID != "Foresta")
                 {
                     DestroyBuilding(cell.building.UniqueID);
                     GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
                     GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
-                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.GetMacerie, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]);
+                   // GameManager.I.messagesManager.ShowiInformation(MessageLableType.GetMacerie, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]);
                 }
                 break;
             case "Clero":
@@ -600,7 +600,7 @@ public class Player : PlayerBase
                     foreach (var item in cell.building.BuildingResources)
                     {
                         item.Value = item.Limit;
-                        cell.building.CurrentState = BuildingState.Ready;
+                        GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Ready);
                     } 
                 }
                 break;

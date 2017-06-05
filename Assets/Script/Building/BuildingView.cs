@@ -17,7 +17,7 @@ public class BuildingView : MonoBehaviour
     public Mesh Pino;
     MeshFilter CurrentMesh;
     public Mesh Ceppo;
-
+    public Mesh Macerie;
     #endregion
 
     #region LifeCycle
@@ -64,11 +64,12 @@ public class BuildingView : MonoBehaviour
         if (Data.ID != "Casa")
             Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
-        Data.CurrentState = BuildingState.Destroyed;
-        transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
-        {
-            //UpdateAspect();
-        });
+        SetBuildingStatus(BuildingState.Destroyed);
+        //Data.CurrentState = BuildingState.Destroyed;
+        //transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
+        //{
+        //    //UpdateAspect();
+        //});
 
     }
 
@@ -118,6 +119,7 @@ public class BuildingView : MonoBehaviour
         switch (Data.CurrentState)
         {
             case BuildingState.Construction:
+                CurrentMesh = GetComponent<MeshFilter>();
                 transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() =>
                 {
                     SetBuildingStatus(BuildingState.Built);
@@ -182,6 +184,9 @@ public class BuildingView : MonoBehaviour
                     CurrentMesh.mesh = Ceppo;
 
                 break;
+            case BuildingState.Destroyed:
+                CurrentMesh.mesh = Macerie;
+                break; 
             default:
                 break;
         }
