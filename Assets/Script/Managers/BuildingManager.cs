@@ -128,7 +128,7 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (var item in GetAllBuildingInScene())
         {
-            if (item.Data.ID == "Casa" && item.Data.PopulationLimit >= item.Data.Population.Count && item.Data.CurrentState == BuildingState.Built)
+            if (item.Data.ID == "Casa" && item.Data.PopulationLimit > item.Data.Population.Count  && item.Data.CurrentState == BuildingState.Built)
                 return true;
                 
         }

@@ -18,7 +18,7 @@ MonoBehaviour:
   AttackRange: {x: 0, y: 0}
   BuildingTime: 10
   ID: Casa
-  PopulationLimit: 1
+  PopulationLimit: 2
   WoodToBuild: 0
   StoneToBuild: 0
   StoneActualValue: 0
