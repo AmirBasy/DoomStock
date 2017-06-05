@@ -7,6 +7,7 @@ using DG.Tweening;
 public class MessagesManager : MonoBehaviour
 {
     #region Colors
+    public static string RemovePopulationColor = "#FF0000FF";
     public static string PopulationColor = "#0AAE19FF";
     public static string FoodColor = "#DB6FA3FF";
     public static string WoodColor = "#DF5C21FF";

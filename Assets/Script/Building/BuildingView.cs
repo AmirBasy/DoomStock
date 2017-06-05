@@ -66,7 +66,8 @@ public class BuildingView : MonoBehaviour
         TimeEventManager.OnEvent -= OnUnitEvent;
         SetBuildingStatus(BuildingState.Destroyed);
         gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        gameObject.transform.rotation = new Quaternion(transform.rotation.x - 180, transform.rotation.y, transform.rotation.z, transform.rotation.w);
+        transform.eulerAngles = new Vector3(90, 20, 0);
+        //gameObject.transform.rotation = new Quaternion(transform.rotation.x - 180, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         //Data.CurrentState = BuildingState.Destroyed;
         //transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
         //{
