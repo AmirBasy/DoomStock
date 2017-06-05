@@ -92,7 +92,7 @@ public class Player : PlayerBase
             {
                 GameManager.I.buildingManager.GetBuildingView(_building.UniqueID).SetBuildingStatus(BuildingState.Producing);
             }
-
+           
             //GameManager.I.messagesManager.ShowMessage(pdata, PopulationMessageType.AddToBuilding, GameManager.I.buildingManager.GetBuildingView(_building.UniqueID));
             //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_building.UniqueID), BuildingMessageType.PeopleAdded);
             GameManager.I.messagesManager.ShowiInformation(MessageLableType.AddPopulation, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
@@ -109,7 +109,7 @@ public class Player : PlayerBase
     {
         _buildingData.RemoveUnitOfPopulationFromBuilding(_unitToRemove);
         GameManager.I.populationManager.GetPopulationDataByID(_unitToRemove).building = null;
-        //GameManager.I.messagesManager.ShowBuildingMessage(GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID), BuildingMessageType.PeopleRemoved);
+        
         // GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).transform.position, true);
 
         //GameManager.I.buildingManager.GetBuildingView(_buildingData.UniqueID).SetPopulationBar();
@@ -431,7 +431,11 @@ public class Player : PlayerBase
                 {
                     BuildingData _building = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building;
                     if (_building.Population.Count > 0)
+                    {
                         RemovePopulationFromBuilding(_building.Population[_building.Population.Count - 1].UniqueID, _building);
+                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.RemovePopulation, cell, true, "-1");
+                    }
+                    
                 }
                 else { return; }
             }
