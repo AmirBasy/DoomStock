@@ -253,13 +253,13 @@ public class BuildingView : MonoBehaviour
                 Data.ProductionCounter++;
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
-                    if (Data.ProductionCounter >= Data.CounterLimit)
+                    if (Data.ProductionCounter >= Data.Delay)
                     {
                         if (Data.ID == "Foresta")
                             SetBuildingStatus(BuildingState.Producing);
                         else
                         {
-                            if (Data.Population.Count > 0)
+                            if (Data.Population.Count >= 0)
                                 SetBuildingStatus(BuildingState.Producing);
                             else
                             {

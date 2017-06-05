@@ -42,7 +42,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// Counter per far ripartire la produzione
     /// </summary>
     public float ProductionCounter;
-    public float CounterLimit;
+    public float Delay;
     /// <summary>
     /// ID unico
     /// </summary>
