@@ -89,7 +89,7 @@ public class UiInformation : MonoBehaviour {
         switch (_message) {
             case MessageLableType.LimitFaith:
                 ColorUtility.TryParseHtmlString(MessagesManager.FaithColor, out backgroundColor);
-                IconString = "Faith";
+                IconString = "fede_cappella";
                 break;
             case MessageLableType.LimitFood:
                 ColorUtility.TryParseHtmlString(MessagesManager.FoodColor, out backgroundColor);

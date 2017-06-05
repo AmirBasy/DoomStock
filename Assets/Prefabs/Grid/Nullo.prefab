@@ -77,7 +77,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033991129901372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -109,7 +109,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033991129901372}
-  m_Mesh: {fileID: 4300000, guid: 578aa5a57f77e0b4aafe43cde555abe7, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!114 &114832986543555846
 MonoBehaviour:
   m_ObjectHideFlags: 1
