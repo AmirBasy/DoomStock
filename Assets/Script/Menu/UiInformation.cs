@@ -47,11 +47,11 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.AddPopulation:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
-                IconString = "1";
+                IconString = "aggiunta_popolano";
                 break;
             case MessageLableType.RemovePopulation:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
-                IconString = "1-";
+                IconString = "rimozione_popolano";
                 break;
             case MessageLableType.SpiritProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
