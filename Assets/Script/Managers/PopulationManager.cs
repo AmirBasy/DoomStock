@@ -20,7 +20,7 @@ public class PopulationManager : MonoBehaviour
     /// <summary>
     /// Scegliere età massima di ciascun popolano tra MinLife e MaxLife.
     /// </summary>
-    public int MinLife, MaxLife;
+   // public int MinLife, MaxLife;
 
     /// <summary>
     /// Scegliere fabbisogno di ciascun popolano tra MinFoodRequirement e MaxFoodRequirement.
@@ -119,8 +119,9 @@ public class PopulationManager : MonoBehaviour
 
         PopulationData unitToInstantiate = new PopulationData
         {
-            MaxAge = UnityEngine.Random.Range(MinLife, MaxLife),
-            FoodRequirements = 1,
+            // MaxAge = UnityEngine.Random.Range(MinLife, MaxLife),
+
+            FoodRequirements = UnityEngine.Random.Range(MinFoodRequirement, MaxFoodRequirement),
             EatingTime = 1
 
         };
