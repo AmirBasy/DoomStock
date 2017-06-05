@@ -13,7 +13,8 @@ public class UiInformation : MonoBehaviour {
     public CellDoomstock cell;
     public string MessageType;
     
-    public void ShowMessagePop_up(MessageLableType _message) {
+    public void ShowMessagePop_up(MessageLableType _message, string iconToGet) {
+       
 
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0,0,0,0);
@@ -22,7 +23,7 @@ public class UiInformation : MonoBehaviour {
         switch (_message) {
             case MessageLableType.FoodProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.FoodColor, out backgroundColor);
-                IconString = "1+";
+                IconString = iconToGet;
                 break;
             case MessageLableType.Death:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
@@ -30,7 +31,7 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.FaithProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.FaithColor, out backgroundColor);
-                IconString = "1+";
+                IconString = iconToGet;
                 break;
             case MessageLableType.Birth:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
@@ -38,15 +39,15 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.WoodProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.WoodColor, out backgroundColor);
-                IconString = "1+";
+                IconString = iconToGet;
                 break;
             case MessageLableType.StoneProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.StoneColor, out backgroundColor);
-                IconString = "1+";
+                IconString = iconToGet;
                 break;
             case MessageLableType.AddPopulation:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
-                IconString = "1+";
+                IconString = "1";
                 break;
             case MessageLableType.RemovePopulation:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
@@ -54,7 +55,7 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.SpiritProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
-                IconString = "1+";
+                IconString = iconToGet;
                 break;
             case MessageLableType.Reparing:
                 ColorUtility.TryParseHtmlString(MessagesManager.ReparingColor, out backgroundColor);
@@ -120,7 +121,7 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 1.5f, 1).OnComplete(() => {
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 0.5f, 1).OnComplete(() => {
 
         });
         BackgroundColor.color = backgroundColor;    

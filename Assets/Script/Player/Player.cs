@@ -520,28 +520,29 @@ public class Player : PlayerBase
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Cava;
-                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell);
+
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell, true,ProdModifiers.Cava.ToString());
                 }
                 break;
             case "Foresta":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Foresta;
-                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell);
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell, true, ProdModifiers.Foresta.ToString());
                 }
                 break;
             case "Fattoria":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Fattoria;
-                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell);
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell, true, ProdModifiers.Fattoria.ToString());
                 }
                 break;
             case "Chiesa":
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Chiesa;
-                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell);
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell, true, ProdModifiers.Chiesa.ToString());
                 }
                 break;
             case "Torretta":

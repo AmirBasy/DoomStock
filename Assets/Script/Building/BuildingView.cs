@@ -210,17 +210,17 @@ public class BuildingView : MonoBehaviour
                         switch (res.ID)
                         {
                             case "Faith":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell, true, "1");
                                 break;
 
                             case "Stone":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell,true, "1");
                                 break;
                             case "Spirit":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, cell);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, cell,true, "1");
                                 break;
                             case "Food":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell);
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell,true, "1");
                                 break;
                             default:
                                 break;
@@ -236,7 +236,7 @@ public class BuildingView : MonoBehaviour
                         LimitReached(res);
                         if (res.ID == "Wood")
                         {
-                            GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell);
+                            GameManager.I.messagesManager.ShowiInformation(MessageLableType.WoodProduction, cell, true, "1");
                         }
                     }
                 }

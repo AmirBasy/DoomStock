@@ -25,7 +25,7 @@ public class MessagesManager : MonoBehaviour
     public GameObject Target;
 
 
-    public void ShowiInformation(MessageLableType _message, CellDoomstock _worldPosition, bool isImmediate = false)
+    public void ShowiInformation(MessageLableType _message, CellDoomstock _worldPosition, bool isImmediate = false, string iconToGet = null)
     {
 
         float delay = 0;
@@ -34,15 +34,18 @@ public class MessagesManager : MonoBehaviour
             delay = Random.Range(MinRange, MaxRange);
             ;
         }
-        StartCoroutine(ShowMessage(delay, _message, _worldPosition));
+        StartCoroutine(ShowMessage(delay, _message, _worldPosition,  iconToGet));
 
     }
 
-    IEnumerator ShowMessage(float waitTime, MessageLableType _message, CellDoomstock _worldPosition)
+    IEnumerator ShowMessage(float waitTime, MessageLableType _message, CellDoomstock _worldPosition, string iconToGet = null)
     {
 
         yield return new WaitForSeconds(waitTime);
-        UiInformation info = Instantiate(uiInformationPrefab, _worldPosition.GetWorldPosition(), this.transform.rotation);
+        UiInformation info = Instantiate(uiInformationPrefab,
+            new Vector3 (_worldPosition.GetWorldPosition().x,
+            _worldPosition.GetWorldPosition().y,
+            _worldPosition.GetWorldPosition().z + 0.5f), this.transform.rotation);
         info.cell = _worldPosition;
         //info.cell = GameManager.I.gridController.Cells[(int)_worldPosition.GetWorldPosition().x, (int)_worldPosition.GetWorldPosition().y];
         switch (_message)
@@ -58,7 +61,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.AddPopulation:
             case MessageLableType.Reparing:
             case MessageLableType.Destroing:
-                info.ShowMessagePop_up(_message);
+                info.ShowMessagePop_up(_message, iconToGet);
                 info.MessageType = "PopUp";
                 break;
             case MessageLableType.LimitFood:
