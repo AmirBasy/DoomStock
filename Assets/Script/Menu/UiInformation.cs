@@ -35,7 +35,7 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.Birth:
                 ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
-                IconString = "Birth";
+                IconString = "nascita";
                 break;
             case MessageLableType.WoodProduction:
                 ColorUtility.TryParseHtmlString(MessagesManager.WoodColor, out backgroundColor);
@@ -101,7 +101,7 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.LimitStone:
                 ColorUtility.TryParseHtmlString(MessagesManager.StoneColor, out backgroundColor);
-                IconString = "Stone";
+                IconString = "rock";
                 break;
             case MessageLableType.LimitWood:
                 ColorUtility.TryParseHtmlString(MessagesManager.WoodColor, out backgroundColor);
