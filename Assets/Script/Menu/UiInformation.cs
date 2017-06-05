@@ -50,7 +50,7 @@ public class UiInformation : MonoBehaviour {
                 IconString = "aggiunta_popolano";
                 break;
             case MessageLableType.RemovePopulation:
-                ColorUtility.TryParseHtmlString(MessagesManager.PopulationColor, out backgroundColor);
+                ColorUtility.TryParseHtmlString(MessagesManager.RemovePopulationColor, out backgroundColor);
                 IconString = "rimozione_popolano";
                 break;
             case MessageLableType.SpiritProduction:
