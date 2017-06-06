@@ -7,7 +7,22 @@ using System;
 
 public class BuildingView : MonoBehaviour
 {
+    [Header("Barretta")]
+    public Image barretta;
+    private float barrettaGrow;
 
+    public float BarrettaGrow
+    {
+        get { return barrettaGrow; }
+        set { barrettaGrow = value;
+            barretta.fillAmount = BarrettaGrow;
+            BarrettaSetColor();
+        }
+    }
+
+
+
+    [Header("View")]
     #region Proprietà
 
     /// <summary>
@@ -24,9 +39,9 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         Data.Init();
+        if (barretta != null)
+            barretta.fillAmount = 0;
 
-
-        //PopulationBarCounter = 0;
         if (Data.ID != "Foresta")
         {
             SetBuildingStatus(BuildingState.Construction);
@@ -293,47 +308,20 @@ public class BuildingView : MonoBehaviour
 
         }
     }
-    #region BARRA commentata
-    //public Image BuildingLifeBar;
-    //public Image PopulationBar;
-    //private int populationBarCounter;
 
-    //public int PopulationBarCounter
-    //{
-    //    get { return populationBarCounter; }
-    //    set
-    //    {
-    //        populationBarCounter = value;
-    //        //SetPopulationBar();
-    //    }
-    //}
-    //public void DecreasePopulationBar()
-    //{
-    //    if (PopulationBarCounter < 1)
-    //    {
-    //        return;
-
-    //    }
-    //    else
-    //    {
-    //        PopulationBarCounter -= 1;
-    //    }
-    //}
-
-    //public void SetPopulationBar() {
-    //    if (Data.Population.Count < Data.PopulationLimit)
-    //    {
-    //        PopulationBarCounter ++;
-    //    }
-    //    else if (populationBarCounter <1)
-    //    {
-    //        return ;
-    //    }
-    //    else if (Data.Population.Count >= Data.PopulationLimit)
-    //    {
-    //        PopulationBarCounter--;
-    //    }
-    //    PopulationBar.fillAmount = (float)PopulationBarCounter/Data.PopulationLimit;
-    //}
-    #endregion
+    public void BarrettaSetColor() {
+        if (BarrettaGrow <= 0.25)
+        {
+            barretta.color = Color.red;
+        }
+        if (BarrettaGrow>= 0.25 && BarrettaGrow <= 0.75)
+        {
+            barretta.color = Color.yellow;
+        }
+        if (BarrettaGrow >= 0.75)
+        {
+            barretta.color = Color.green;
+            BarrettaGrow = 1;
+        }
+    }
 }
