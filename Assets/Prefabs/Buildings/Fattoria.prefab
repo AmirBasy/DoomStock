@@ -55,8 +55,10 @@ GameObject:
   - component: {fileID: 4596839886433650}
   - component: {fileID: 95638199180650062}
   - component: {fileID: 114682099603519146}
+  - component: {fileID: 33662458693163558}
+  - component: {fileID: 23909010977489416}
   m_Layer: 0
-  m_Name: campo mulino
+  m_Name: Fattoria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1339618213800016}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 42.7}
+  m_LocalPosition: {x: 3.1313155, y: -0.6139903, z: -1.8097129}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4253013368087582}
@@ -297,6 +299,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23909010977489416
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339618213800016}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 8c570d06269074d498328d9c0e5055f8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!33 &33004981428205424
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -311,6 +345,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035244845672044}
   m_Mesh: {fileID: 4300006, guid: cbb542593c7ff1243abceac656c311dd, type: 3}
+--- !u!33 &33662458693163558
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339618213800016}
+  m_Mesh: {fileID: 0}
 --- !u!33 &33751750469489646
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -353,7 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c99117f72528e459cad4ff22b2d27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barretta: {fileID: 0}
   Data: {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
   Pino: {fileID: 0}
   Ceppo: {fileID: 0}
-  Macerie: {fileID: 0}
+  Macerie: {fileID: 4300000, guid: 0d43820d598e9364aa51f0fb68a59459, type: 3}

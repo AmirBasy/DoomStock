@@ -149,7 +149,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 0da94849228b5a1418711b4322cf6e54, type: 2}
   Pino: {fileID: 0}
   Ceppo: {fileID: 0}
-  Macerie: {fileID: 4300000, guid: 1002b9ed85e4cb742870b29bf885e892, type: 3}
+  Macerie: {fileID: 4300000, guid: 0d43820d598e9364aa51f0fb68a59459, type: 3}
 --- !u!114 &114281480415820134
 MonoBehaviour:
   m_ObjectHideFlags: 1

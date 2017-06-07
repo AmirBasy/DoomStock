@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using System.Linq;
 
 public class BuildingView : MonoBehaviour
 {
+    #region Barretta
     [Header("Barretta")]
     public Image barretta;
     private float barrettaGrow;
@@ -14,11 +16,14 @@ public class BuildingView : MonoBehaviour
     public float BarrettaGrow
     {
         get { return barrettaGrow; }
-        set { barrettaGrow = value;
+        set
+        {
+            barrettaGrow = value;
             barretta.fillAmount = BarrettaGrow;
             BarrettaSetColor();
         }
-    }
+    } 
+    #endregion
 
 
 
@@ -80,6 +85,18 @@ public class BuildingView : MonoBehaviour
             Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         SetBuildingStatus(BuildingState.Destroyed);
+        //if (gameObject.GetComponent<MeshFilter>() != null)
+        //{
+        List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
+        myobject.Remove(transform);
+            foreach (Transform go in myobject)
+            {
+            //Destroy(go.gameObject.GetComponent<MeshFilter>());
+            go.gameObject.SetActive(false);
+
+            }
+        CurrentMesh.mesh = Macerie;
+        //} 
         gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         transform.eulerAngles = new Vector3(90, 20, 0);
         //gameObject.transform.rotation = new Quaternion(transform.rotation.x - 180, transform.rotation.y, transform.rotation.z, transform.rotation.w);
