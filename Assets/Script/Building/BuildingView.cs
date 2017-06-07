@@ -89,12 +89,12 @@ public class BuildingView : MonoBehaviour
         //{
         List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
         myobject.Remove(transform);
-            foreach (Transform go in myobject)
-            {
+        foreach (Transform go in myobject)
+        {
             //Destroy(go.gameObject.GetComponent<MeshFilter>());
             go.gameObject.SetActive(false);
 
-            }
+        }
         CurrentMesh.mesh = Macerie;
         //} 
         gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -221,7 +221,7 @@ public class BuildingView : MonoBehaviour
                 break;
             case BuildingState.Destroyed:
                 CurrentMesh.mesh = Macerie;
-                break; 
+                break;
             default:
                 break;
         }
@@ -254,13 +254,13 @@ public class BuildingView : MonoBehaviour
                                 break;
 
                             case "Stone":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell,true, "1");
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell, true, "1");
                                 break;
                             case "Spirit":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, cell,true, "1");
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, cell, true, "1");
                                 break;
                             case "Food":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell,true, "1");
+                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell, true, "1");
                                 break;
                             default:
                                 break;
@@ -285,19 +285,18 @@ public class BuildingView : MonoBehaviour
                 Data.ProductionCounter++;
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
+                    if (Data.Population.Count > 0)
+                        SetBuildingStatus(BuildingState.Producing);
                     if (Data.ProductionCounter >= Data.CounterLimit)
                     {
                         if (Data.ID == "Foresta")
                             SetBuildingStatus(BuildingState.Producing);
                         else
                         {
-                            if (Data.Population.Count >= 0)
-                                SetBuildingStatus(BuildingState.Producing);
-                            else
-                            {
-                                SetBuildingStatus(BuildingState.Built);
 
-                            }
+                            SetBuildingStatus(BuildingState.Built);
+                           
+
                         }
                     }
                 }
@@ -326,12 +325,13 @@ public class BuildingView : MonoBehaviour
         }
     }
 
-    public void BarrettaSetColor() {
+    public void BarrettaSetColor()
+    {
         if (BarrettaGrow <= 0.25)
         {
             barretta.color = Color.red;
         }
-        if (BarrettaGrow>= 0.25 && BarrettaGrow <= 0.75)
+        if (BarrettaGrow >= 0.25 && BarrettaGrow <= 0.75)
         {
             barretta.color = Color.yellow;
         }
