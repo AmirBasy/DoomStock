@@ -585,8 +585,8 @@ public class Player : PlayerBase
                 {
                     GameManager.I.GetResourceDataByID("Faith").Value -= RiparationCost;
                     cell.building.BuildingLife = cell.building.InitialLife;
-                    GameManager.I.GetResourceDataByID("Wood").Value += cell.building.GetActualWoodValue();
-                    GameManager.I.GetResourceDataByID("Stone").Value += cell.building.GetActualStoneValue();
+                    //GameManager.I.GetResourceDataByID("Wood").Value += cell.building.GetActualWoodValue();
+                    //GameManager.I.GetResourceDataByID("Stone").Value += cell.building.GetActualStoneValue();
                     GameManager.I.messagesManager.ShowiInformation(MessageLableType.Reparing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
                 }
                 break;
