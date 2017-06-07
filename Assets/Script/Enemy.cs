@@ -43,9 +43,11 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     private List<INode> _currentPath = null;
     public List<INode> CurrentPath {
         get { return _currentPath; }
-        set { _currentPath = value;
+        set {
+            _currentPath = value;
             if (_currentPath != null && _currentPath.Count > 0) {
                 CurrentNodeIndex = 0;
+                AttackNextStep();
                 this.DoMoveToCurrentPathStep();
             }
         }
@@ -103,10 +105,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         //controllare edifici nella mappa di Priority1
         foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene()) {
             if (item.Data.ID == Priority1.ID) {
-                if(item.Data.CanBeAttacked())
+                if (item.Data.CanBeAttacked())
                     targetTypeList.Add(item.Data);
             }
-            
+
         }
         if (targetTypeList.Count > 0) {
             return NearestBuildingPriority(targetTypeList.Where(b => b.CanBeAttacked() == true).ToList());
@@ -128,7 +130,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         foreach (CellDoomstock item in neightbours) {
             if (item.building != null)
                 if (item.building.ID == _building.ID) {
-                    if(item.building.CanBeAttacked())
+                    if (item.building.CanBeAttacked())
                         returnList.Add(item.building);
                 }
         }
@@ -180,8 +182,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
     public void DoMoveStep(INode _step) {
         transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() => {
-        CurrentNodeIndex++;
-        int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
+            CurrentNodeIndex++;
+            int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
             if (CurrentNodeIndex > lastNode) {
                 // ha raggiunto l'obbiettivo, attacca
@@ -192,6 +194,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                     currentState = enemyState.Attack;
 
             } else {
+                AttackNextStep();
+                if (currentState ==enemyState.MovingToTarget)
                 // prossimo step di movimento
                 this.DoMoveToCurrentPathStep();
             }
@@ -199,6 +203,23 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         });
     }
 
+    /// <summary>
+    /// Attacca il prossimo step se è presente un building.
+    /// </summary>
+    void AttackNextStep() {
+        CellDoomstock nextStep = CurrentPath[CurrentNodeIndex] as CellDoomstock;
+        if (Type == enemyType.Tank) {
+
+            if (nextStep.isTraversable == false) {
+                Attack(nextStep.building);
+            }
+        } else {
+            if (nextStep.isTraversable == false) {
+                resetTarget();
+                currentState = enemyState.Searching;
+            }
+        }
+    }
     public bool Attack(BuildingData target) {
         // TODO: al momento l'attacco ditrugge immediatamente l'edificio.
         GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
@@ -241,7 +262,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
     #region debug
 
-    float waitTimeToFindTarget = 0 ;
+    float waitTimeToFindTarget = 0;
     float waitTimeToAttackTarget = 0;
 
     void Update() {
@@ -266,7 +287,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                 waitTimeToAttackTarget -= Time.deltaTime;
                 if (waitTimeToAttackTarget < 0) {
                     if (CurrentTarget == null) {
-                        if (Attack(CurrentTarget)) { 
+                        if (Attack(CurrentTarget)) {
                             currentState = enemyState.Searching;
                             resetTarget();
                         }
@@ -276,7 +297,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                 break;
         }
 
-        
+
 
 
 
@@ -301,8 +322,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
             Gizmos.DrawCube(item.GetWorldPosition() + new Vector3(0f, 0.5f, 0f), gizmoDimension);
         }
         Gizmos.color = Color.black;
-        Gizmos.DrawCube(CurrentPosition.GetWorldPosition() + new Vector3(0f, 1f,0f), gizmoDimension);
-        
+        Gizmos.DrawCube(CurrentPosition.GetWorldPosition() + new Vector3(0f, 1f, 0f), gizmoDimension);
+
     }
 
     public enum enemyState { Searching, MovingToTarget, Attack }

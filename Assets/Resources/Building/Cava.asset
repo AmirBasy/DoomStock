@@ -14,7 +14,7 @@ MonoBehaviour:
   TimedEvents: []
   BuildingResources: []
   ProductionCounter: 0
-  Delay: 10
+  CounterLimit: 100
   AttackRange: {x: 0, y: 0}
   BuildingTime: 10
   ID: Cava

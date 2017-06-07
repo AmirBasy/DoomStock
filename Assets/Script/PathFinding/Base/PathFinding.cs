@@ -145,12 +145,6 @@ public static class IPathFindingExtension {
                     continue;
                 }
 
-                if(neighbour.isTraversable == false && neighbour != targetNode && _settings.IgnoreObstacles == false) {
-                    
-                }
-              
-
-
                 int newCostToNeighbour = node.G_Cost + GetDistance(node, neighbour, _settings);
                 if (newCostToNeighbour < neighbour.G_Cost || !openSet.Contains(neighbour)) {
                     neighbour.G_Cost = newCostToNeighbour;
@@ -205,6 +199,7 @@ public static class IPathFindingExtension {
 
         if (_this.CurrentPath.Count >= _this.CurrentNodeIndex)
             _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex]);
+        
     }
 
 
