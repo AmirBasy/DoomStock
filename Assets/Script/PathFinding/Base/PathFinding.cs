@@ -187,6 +187,8 @@ public static class IPathFindingExtension {
     /// <param name="_pathFindingSettings"></param>
     /// <returns></returns>
     public static int GetDistance(INode nodeA, INode nodeB, PathFindingSettings _pathFindingSettings) {
+        if (nodeA == null || nodeB == null)
+            return -10000;
         int dstX = Mathf.Abs((int)nodeA.GetGridPosition().y - (int)nodeB.GetGridPosition().y);
         int dstY = Mathf.Abs((int)nodeA.GetGridPosition().x - (int)nodeB.GetGridPosition().x);
 

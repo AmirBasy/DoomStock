@@ -119,14 +119,17 @@ namespace Framework.Grid
                 {
                     if (x == 0 && y == 0)
                         continue;
-                    int cellx = (int)cell.GridPosition.x + x;
-                    int celly = (int)cell.GridPosition.y + y;
-                    if (cellx >= GridSize.x || cellx < 0)
-                        continue;
-                    if (celly >= GridSize.y || celly < 0)
-                        continue;
-                    returnList.Add(Cells[cellx, celly]);
+                    if (cell != null)
+                    {
+                        int cellx = (int)cell.GridPosition.x + x;
+                        int celly = (int)cell.GridPosition.y + y;
+                        if (cellx >= GridSize.x || cellx < 0)
+                            continue;
+                        if (celly >= GridSize.y || celly < 0)
+                            continue;
+                        returnList.Add(Cells[cellx, celly]);
 
+                    }
                 }
             }
             return returnList;
