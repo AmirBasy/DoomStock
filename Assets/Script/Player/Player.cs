@@ -165,7 +165,7 @@ public class Player : PlayerBase
     /// </summary>
     public bool CheckResources(BuildingData newBuildingData)
     {
-        if (GameManager.I.GetResourceDataByID("Wood").Value > 0 && GameManager.I.GetResourceDataByID("Stone").Value > 0)
+        if (GameManager.I.GetResourceDataByID("Wood").Value >= 0 && GameManager.I.GetResourceDataByID("Stone").Value >= 0)
         {
             if (newBuildingData.WoodToBuild <= GameManager.I.GetResourceDataByID("Wood").Value &&
                 newBuildingData.StoneToBuild <= GameManager.I.GetResourceDataByID("Stone").Value)
