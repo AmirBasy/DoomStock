@@ -161,11 +161,12 @@ public class BuildingView : MonoBehaviour
                 });
                 break;
             case BuildingState.Built:
+                if (Data.ID == "Foresta")
+                    CurrentMesh.mesh = Pino;
                 //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Producing:
-                if (Data.ID == "Foresta")
-                    CurrentMesh.mesh = Pino;
+               
                 if (Data.ID != "Foresta")
                 {
                     //if (rend.material != null)
@@ -289,15 +290,15 @@ public class BuildingView : MonoBehaviour
                         SetBuildingStatus(BuildingState.Producing);
                     if (Data.ProductionCounter >= Data.CounterLimit)
                     {
-                        if (Data.ID == "Foresta")
-                            SetBuildingStatus(BuildingState.Producing);
-                        else
-                        {
+                        //if (Data.ID == "Foresta")
+                        //    SetBuildingStatus(BuildingState.Producing);
+                        //else
+                        //{
 
                             SetBuildingStatus(BuildingState.Built);
                            
 
-                        }
+                      //  }
                     }
                 }
                 break;
