@@ -247,17 +247,17 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
     }
 
-    void OnEnable() {
-        GameManager.OnGridCreated += GridCreated;
-    }
+    //void OnEnable() {
+    //    GameManager.OnGridCreated += GridCreated;
+    //}
 
-    private void GridCreated() {
-        Init(GameManager.I.gridController.Cells[3, 3]);
-    }
+    //private void GridCreated() {
+    //    Init(GameManager.I.gridController.Cells[3, 3]);
+    //}
 
-    void OnDisable() {
-        GameManager.OnGridCreated -= GridCreated;
-    }
+    //void OnDisable() {
+    //    GameManager.OnGridCreated -= GridCreated;
+    //}
     #endregion
 
     #region debug

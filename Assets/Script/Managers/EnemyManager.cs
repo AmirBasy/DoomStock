@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
 
-    public List<Enemy> enemyPrefab;
+    public Enemy TankPrefab, CombattentiPrefab;
+
     public int TankToSpawn, CombattentiToSpawn;
 
     public CellDoomstock StartPosition;
@@ -13,11 +14,33 @@ public class EnemyManager : MonoBehaviour {
 
     void OnUnitEvent(TimedEventData _eventData)
     {
-        StartPosition = GameManager.I.gridController.Cells[3,3];
 
         if (_eventData.ID == "EnemySpawn")
         {
-            //Instantiate(enemyPrefab,);
+            RandomSpawnPosition();
+            for (int i = 0; i < TankToSpawn; i++)
+            {
+                Instantiate(TankPrefab,GameManager.I.gridController.GetCellWorldPosition((int)StartPosition.GetGridPosition().x, (int)StartPosition.GetGridPosition().y), TankPrefab.transform.rotation).Init(StartPosition); 
+            }
+            //for (int i = 0; i < CombattentiToSpawn; i++)
+            //{
+            //    Instantiate(CombattentiPrefab, StartPosition, CombattentiPrefab.transform.rotation).Init(GameManager.I.gridController.Cells[(int)StartPosition.x, (int)StartPosition.y]);
+            //}
+            
         }
+    }
+
+    public void RandomSpawnPosition()
+    {
+        StartPosition = GameManager.I.gridController.Cells[3, 3];
+
+    }
+    private void OnEnable()
+    {
+        TimeEventManager.OnEvent += OnUnitEvent;
+    }
+    private void OnDisable()
+    {
+        TimeEventManager.OnEvent -= OnUnitEvent;
     }
 }
