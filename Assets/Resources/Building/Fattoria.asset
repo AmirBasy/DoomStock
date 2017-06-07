@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Name: Fattoria
   m_EditorClassIdentifier: 
   TimedEvents: []
-  BuildingResources:
-  - {fileID: 0}
-  - {fileID: 0}
+  BuildingResources: []
   ProductionCounter: 0
-  Delay: 10
+  CounterLimit: 0
   AttackRange: {x: 0, y: 0}
   BuildingTime: 3
   ID: Fattoria
