@@ -22,14 +22,14 @@ public class BuildingView : MonoBehaviour
             barretta.fillAmount = BarrettaGrow;
             BarrettaSetColor();
         }
-    } 
+    }
     #endregion
 
 
 
-    [Header("View")]
-    #region Proprietà
 
+    #region Proprietà
+    [Header("View")]
     /// <summary>
     /// Dato della view.
     /// </summary>

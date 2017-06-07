@@ -833,7 +833,7 @@ Prefab:
     - target: {fileID: 114176073411524906, guid: 9330cfb6442f47c45b481e4dda53038b,
         type: 2}
       propertyPath: EventsPrefab.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4270306544218378, guid: 9330cfb6442f47c45b481e4dda53038b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -878,6 +878,12 @@ Prefab:
       propertyPath: unitDuration
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114176073411524906, guid: 9330cfb6442f47c45b481e4dda53038b,
+        type: 2}
+      propertyPath: EventsPrefab.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 671c400d4c0611540905e8e2a3d99ae5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9330cfb6442f47c45b481e4dda53038b, type: 2}
   m_IsPrefabParent: 0
