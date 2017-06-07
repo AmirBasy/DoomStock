@@ -111,6 +111,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         if (targetTypeList.Count > 0) {
             return NearestBuildingPriority(targetTypeList.Where(b => b.CanBeAttacked() == true).ToList());
         }
+
+        // Altrimenti ritorna nullo e attende
         return null;
     }
 

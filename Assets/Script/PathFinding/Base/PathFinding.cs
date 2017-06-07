@@ -108,7 +108,7 @@ public static class IPathFindingExtension {
         List<INode> openSet = new List<INode>();
         HashSet<INode> closedSet = new HashSet<INode>();
         openSet.Add(startNode);
-
+        
         // Ciclo la collezione open fino a quando ha elementi e scelgo quello con il costo minore per avanzare con la ricerca
         while (openSet.Count > 0) {
             INode node = openSet[0];
@@ -141,6 +141,15 @@ public static class IPathFindingExtension {
                 if (closedSet.Contains(neighbour)) {
                     continue;
                 }
+                if (neighbour.isTraversable == false && neighbour != targetNode && _settings.IgnoreObstacles) {
+                    continue;
+                }
+
+                if(neighbour.isTraversable == false && neighbour != targetNode && _settings.IgnoreObstacles == false) {
+                    
+                }
+              
+
 
                 int newCostToNeighbour = node.G_Cost + GetDistance(node, neighbour, _settings);
                 if (newCostToNeighbour < neighbour.G_Cost || !openSet.Contains(neighbour)) {
@@ -193,12 +202,12 @@ public static class IPathFindingExtension {
     }
 
     public static void DoMoveToCurrentPathStep(this IPathFindingMover _this) {
-        
+
         if (_this.CurrentPath.Count >= _this.CurrentNodeIndex)
             _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex]);
     }
 
-    
+
 }
 
 public struct PathFindingSettings {

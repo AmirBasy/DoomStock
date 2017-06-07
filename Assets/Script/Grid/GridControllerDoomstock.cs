@@ -38,7 +38,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         int heightAmount = 5;
 
         base.GenerateMap(false);
-        Cells[(int)(GridSize.x / 2), (int)(GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
+       
 
  
 
@@ -81,6 +81,8 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
 
             if (createView)
                 CreateGridTileView(cell.WorldPosition, cell);
+            //cell.SetStatus(CellDoomstock.CellStatus.Empty);
+            Cells[(int)(GridSize.x / 2), (int)(GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
         }
 
     }
