@@ -1,15 +1,77 @@
 fileFormatVersion: 2
-guid: 2b4ef86a5c427a642ac36947ac16068a
-timeCreated: 1495460796
+guid: ae89d829366619149874e38b252858d5
+timeCreated: 1496914650
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Riverstone_001
+    100000: Line001
+    100002: //RootNode
+    100004: Object001
+    100006: Object002
+    100008: Object003
+    100010: Object004
+    100012: Object005
+    100014: Object036
+    100016: Object045
+    100018: Object046
+    100020: Object047
+    100022: Object048
+    100024: Object049
+    100026: Object050
+    400000: Line001
+    400002: //RootNode
+    400004: Object001
+    400006: Object002
+    400008: Object003
+    400010: Object004
+    400012: Object005
+    400014: Object036
+    400016: Object045
+    400018: Object046
+    400020: Object047
+    400022: Object048
+    400024: Object049
+    400026: Object050
+    2300000: Line001
+    2300002: Object001
+    2300004: Object002
+    2300006: Object003
+    2300008: Object004
+    2300010: Object005
+    2300012: Object036
+    2300014: Object045
+    2300016: Object046
+    2300018: Object047
+    2300020: Object048
+    2300022: Object050
+    3300000: Line001
+    3300002: Object001
+    3300004: Object002
+    3300006: Object003
+    3300008: Object004
+    3300010: Object005
+    3300012: Object036
+    3300014: Object045
+    3300016: Object046
+    3300018: Object047
+    3300020: Object048
+    3300022: Object050
+    4300000: Line001
+    4300002: Object001
+    4300004: Object002
+    4300006: Object003
+    4300008: Object050
+    4300010: Object004
+    4300012: Object005
+    4300014: Object036
+    4300016: Object045
+    4300018: Object046
+    4300020: Object047
+    4300022: Object048
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -32,7 +94,63 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Line001
+        weight: 1
+      - path: Object001
+        weight: 1
+      - path: Object002
+        weight: 1
+      - path: Object003
+        weight: 1
+      - path: Object003/Object049
+        weight: 1
+      - path: Object003/Object050
+        weight: 1
+      - path: Object004
+        weight: 1
+      - path: Object005
+        weight: 1
+      - path: Object036
+        weight: 1
+      - path: Object045
+        weight: 1
+      - path: Object046
+        weight: 1
+      - path: Object047
+        weight: 1
+      - path: Object048
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -71,10 +189,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

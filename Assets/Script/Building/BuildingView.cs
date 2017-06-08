@@ -25,11 +25,10 @@ public class BuildingView : MonoBehaviour
     }
     #endregion
 
-
-
-
     #region Proprietà
     [Header("View")]
+
+
     /// <summary>
     /// Dato della view.
     /// </summary>
@@ -38,6 +37,7 @@ public class BuildingView : MonoBehaviour
     MeshFilter CurrentMesh;
     public Mesh Ceppo;
     public Mesh Macerie;
+    public Animation animation;
     #endregion
 
     #region LifeCycle
@@ -46,7 +46,7 @@ public class BuildingView : MonoBehaviour
         Data.Init();
         if (barretta != null)
             barretta.fillAmount = 0;
-
+        
         if (Data.ID != "Foresta")
         {
             SetBuildingStatus(BuildingState.Construction);
@@ -60,10 +60,14 @@ public class BuildingView : MonoBehaviour
 
     }
 
-
+    private void OnEnable()
+    {
+       // BuildingView.OnAddingPeople += AnimationStart;
+    }
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
+       // BuildingView.OnAddingPeople -= AnimationStart;
 
     }
     #endregion
@@ -108,9 +112,6 @@ public class BuildingView : MonoBehaviour
 
     }
 
-
-
-
     /// <summary>
     /// Toglie le macerie, rende libera la cella e recupera 1/4 del materiale.
     /// </summary>
@@ -139,7 +140,6 @@ public class BuildingView : MonoBehaviour
 
     }
 
-
     public void SetBuildingStatus(BuildingState _status)
     {
 
@@ -163,24 +163,13 @@ public class BuildingView : MonoBehaviour
             case BuildingState.Built:
                 if (Data.ID == "Foresta")
                     CurrentMesh.mesh = Pino;
-                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Producing:
-               
-                if (Data.ID != "Foresta")
-                {
-                    //if (rend.material != null)
-                    //{
-                    //    rend.material = Materials[0];
-                    //}
-
-                }
-
-                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
+                AnimationStart(Data);
+                if (Data.ID != "Foresta");
                 break;
             case BuildingState.Ready:
-
-
+                AnimationStop(Data);
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                 switch (Data.ID)
                 {
@@ -209,13 +198,10 @@ public class BuildingView : MonoBehaviour
                     default:
                         break;
                 }
-
-                // rend.material = Materials[1];
-                //TODO : //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Construction);
                 break;
             case BuildingState.Waiting:
 
-                Data.ProductionCounter = 0;
+                Data.Delay = 0;
                 if (Data.ID == "Foresta")
                     CurrentMesh.mesh = Ceppo;
 
@@ -228,6 +214,31 @@ public class BuildingView : MonoBehaviour
         }
     }
 
+    public void AnimationStart(BuildingData _building) {
+
+            if (animation != null)
+            {
+                animation = GetComponent<Animation>();
+                animation.Play();
+            }
+            foreach (AnimationState state in animation)
+            {
+                state.speed = 0.3f;
+            }  
+
+    }
+    public void AnimationStop(BuildingData _building) {
+        StartCoroutine(StopAnimation(2));
+        if (animation != null)
+        {
+            animation.Stop();
+        }
+    }
+
+    IEnumerator StopAnimation(float waitTime) {
+        
+        yield return new WaitForSeconds(waitTime);
+    }
     #endregion
 
     #region Events
@@ -235,6 +246,7 @@ public class BuildingView : MonoBehaviour
     public delegate void BuildingEvent(BuildingView _buildingView);
     public static BuildingEvent OnDestroy;
     public static BuildingEvent OnRemoveDebris;
+
 
     void OnUnitEvent(TimedEventData _eventData)
     {
@@ -283,12 +295,12 @@ public class BuildingView : MonoBehaviour
                 }
                 break;
             case "Delay":
-                Data.ProductionCounter++;
+                Data.Delay++;
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
                     if (Data.Population.Count > 0)
                         SetBuildingStatus(BuildingState.Producing);
-                    if (Data.ProductionCounter >= Data.CounterLimit)
+                    if (Data.Delay >= Data.CounterLimit)
                     {
                         //if (Data.ID == "Foresta")
                         //    SetBuildingStatus(BuildingState.Producing);

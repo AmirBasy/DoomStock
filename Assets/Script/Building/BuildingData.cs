@@ -24,11 +24,10 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// la risorsa population che ha è assegnata al
     /// </summary>
-    public List<PopulationData> Population; 
+    public List<PopulationData> Population;
     #endregion
 
     #region Proprietà
-
     /// <summary>
     /// player che possiede l'edificio
     /// </summary>
@@ -41,7 +40,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Counter per far ripartire la produzione
     /// </summary>
-    public float ProductionCounter;
+    public float Delay;
     public float CounterLimit;
     /// <summary>
     /// ID unico

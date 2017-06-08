@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114682099603519146}
   - component: {fileID: 33662458693163558}
   - component: {fileID: 23909010977489416}
+  - component: {fileID: 111040338454206282}
   m_Layer: 0
   m_Name: Fattoria
   m_TagString: Untagged
@@ -375,7 +376,7 @@ Animator:
   m_GameObject: {fileID: 1339618213800016}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cbb542593c7ff1243abceac656c311dd, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69813be431a8dd94b9a76425a929e687, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -383,6 +384,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!111 &111040338454206282
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339618213800016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cbb542593c7ff1243abceac656c311dd, type: 3}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114682099603519146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,3 +414,4 @@ MonoBehaviour:
   Pino: {fileID: 0}
   Ceppo: {fileID: 0}
   Macerie: {fileID: 4300000, guid: 0d43820d598e9364aa51f0fb68a59459, type: 3}
+  animation: {fileID: 111040338454206282}

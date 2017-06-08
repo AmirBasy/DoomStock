@@ -503,6 +503,8 @@ public class Player : PlayerBase
         BuildingView.OnRemoveDebris += OnBuildingDebrisRemove;
     }
 
+    void AddingPeople() {
+    }
     void OnBuildingDebrisRemove(BuildingView _buildingView)
     {
         if (BuildingsInScene.Contains(_buildingView))
@@ -573,7 +575,10 @@ public class Player : PlayerBase
                 break;
             default:
                 break;
+                
         }
+        GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStart(building);
+        //GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
     }
 
     void Ability(CellDoomstock cell)
