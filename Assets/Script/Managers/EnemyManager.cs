@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyManager : MonoBehaviour {
 
@@ -20,7 +21,10 @@ public class EnemyManager : MonoBehaviour {
             RandomSpawnPosition();
             for (int i = 0; i < TankToSpawn; i++)
             {
-                Instantiate(TankPrefab,GameManager.I.gridController.GetCellWorldPosition((int)StartPosition.GetGridPosition().x, (int)StartPosition.GetGridPosition().y), TankPrefab.transform.rotation).Init(StartPosition); 
+               Enemy tank = Instantiate(TankPrefab,GameManager.I.gridController.GetCellWorldPosition((int)StartPosition.GetGridPosition().x, (int)StartPosition.GetGridPosition().y), TankPrefab.transform.rotation);
+                
+                tank.Init(StartPosition);
+                
             }
             //for (int i = 0; i < CombattentiToSpawn; i++)
             //{

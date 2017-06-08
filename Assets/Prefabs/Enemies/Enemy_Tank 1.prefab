@@ -136,9 +136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Life: 0
-  Attck: 0
+  _attack: 1
   RangeView: 3
-  AttackSpeed: 0
+  AttackSpeed: 2
   MovementSpeed: 0.8
   Priority1: {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183, type: 2}
   Priority2: {fileID: 11400000, guid: 0da94849228b5a1418711b4322cf6e54, type: 2}
