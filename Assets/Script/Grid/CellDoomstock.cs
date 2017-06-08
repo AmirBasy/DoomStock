@@ -25,7 +25,15 @@ public class CellDoomstock : Cell, INode {
     public bool isTraversable {
         get {
             if (Status == CellStatus.Empty)
+            {
                 return true;
+
+            }
+            else if (Status == CellStatus.Filled && Type == CellType.Forest)
+            {
+                return true;
+            }
+                
             return false;
         }
        
