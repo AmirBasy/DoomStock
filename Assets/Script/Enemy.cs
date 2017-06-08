@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     public float MovementSpeed = 0.8f;
     public BuildingData Priority1;
     public BuildingData Priority2;
+    public List<BuildingData> Priorities2;
     #endregion
 
     #region Runtime properties and variables
@@ -112,15 +113,24 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             return NearestBuildingPriority(targetTypeList);
         }
         ////controlla nel suo raggio se è presente una priorità 2.
+       
+        int randomindex = UnityEngine.Random.Range(0, Priorities2.Count);
+        Priority2 = Priorities2[randomindex];
         targetTypeList = FindPrioritiesInRange(Priority2);
         if (targetTypeList.Count > 0)
         {
             return NearestBuildingPriority(targetTypeList);
         }
+        
         //controllare edifici nella mappa di Priority1
         foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene())
         {
             if (item.Data.ID == Priority1.ID)
+            {
+                if (item.Data.CanBeAttacked())
+                    targetTypeList.Add(item.Data);
+            }
+            else if(item.Data.ID == Priority2.ID)
             {
                 if (item.Data.CanBeAttacked())
                     targetTypeList.Add(item.Data);
