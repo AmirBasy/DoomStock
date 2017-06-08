@@ -5,34 +5,41 @@ using UnityEngine;
 using DG.Tweening;
 using System.Linq;
 
-public class Enemy : MonoBehaviour, IPathFindingMover {
+public class Enemy : MonoBehaviour, IPathFindingMover
+{
 
     #region settings
     public enemyType Type;
-    public int Life, Attck, RangeView;
+    public int Life, _attack, RangeView;
     public float AttackSpeed;
     public float MovementSpeed = 0.8f;
     public BuildingData Priority1;
     public BuildingData Priority2;
+    public List<BuildingData> Priorities2;
     #endregion
 
     #region Runtime properties and variables
     enemyState currentState = enemyState.Searching;
 
     private CellDoomstock _currentPosition;
-    public CellDoomstock CurrentPosition {
+    public CellDoomstock CurrentPosition
+    {
         get { return _currentPosition; }
-        set {
+        set
+        {
             _currentPosition = value;
         }
     }
 
     private BuildingData _currenTarget;
-    public BuildingData CurrentTarget {
+    public BuildingData CurrentTarget
+    {
         get { return _currenTarget; }
-        set {
+        set
+        {
             _currenTarget = value;
-            if (_currenTarget != null) {
+            if (_currenTarget != null)
+            {
                 List<INode> pathNodes = this.FindPath(CurrentPosition, _currenTarget.Cell, pathFindingSettings);
                 CurrentPath = pathNodes;
                 currentState = enemyState.MovingToTarget;
@@ -41,11 +48,14 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     }
 
     private List<INode> _currentPath = null;
-    public List<INode> CurrentPath {
+    public List<INode> CurrentPath
+    {
         get { return _currentPath; }
-        set {
+        set
+        {
             _currentPath = value;
-            if (_currentPath != null && _currentPath.Count > 0) {
+            if (_currentPath != null && _currentPath.Count > 0)
+            {
                 CurrentNodeIndex = 0;
                 AttackNextStep();
                 this.DoMoveToCurrentPathStep();
@@ -53,7 +63,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         }
     }
 
-    public int CurrentNodeIndex {
+    public int CurrentNodeIndex
+    {
         get;
 
         set;
@@ -70,10 +81,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     /// </summary>
     /// <param name="node"></param>
     /// <returns></returns>
-    public List<INode> GetNeighboursStar(INode node) {
+    public List<INode> GetNeighboursStar(INode node)
+    {
         List<CellDoomstock> neighbours = grid.GetNeighboursStar(node as CellDoomstock);
         List<INode> returnInterfaceList = new List<INode>();
-        foreach (var n in neighbours) {
+        foreach (var n in neighbours)
+        {
             returnInterfaceList.Add(n);
         }
         return returnInterfaceList;
@@ -86,7 +99,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     /// Identfica il buildingTarget secondo le regole prestabilite
     /// </summary>
     /// <returns></returns>
-    public BuildingData FindTarget() {
+    public BuildingData FindTarget()
+    {
 
         // reset old paths
         CurrentPath = null;
@@ -94,23 +108,37 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         List<BuildingData> targetTypeList = new List<BuildingData>();
         ////controlla nel suo raggio se è presente una priorità 1.
         targetTypeList = FindPrioritiesInRange(Priority1);
-        if (targetTypeList.Count > 0) {
+        if (targetTypeList.Count > 0)
+        {
             return NearestBuildingPriority(targetTypeList);
         }
         ////controlla nel suo raggio se è presente una priorità 2.
+       
+        int randomindex = UnityEngine.Random.Range(0, Priorities2.Count);
+        Priority2 = Priorities2[randomindex];
         targetTypeList = FindPrioritiesInRange(Priority2);
-        if (targetTypeList.Count > 0) {
+        if (targetTypeList.Count > 0)
+        {
             return NearestBuildingPriority(targetTypeList);
         }
+        
         //controllare edifici nella mappa di Priority1
-        foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene()) {
-            if (item.Data.ID == Priority1.ID) {
+        foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene())
+        {
+            if (item.Data.ID == Priority1.ID)
+            {
+                if (item.Data.CanBeAttacked())
+                    targetTypeList.Add(item.Data);
+            }
+            else if(item.Data.ID == Priority2.ID)
+            {
                 if (item.Data.CanBeAttacked())
                     targetTypeList.Add(item.Data);
             }
 
         }
-        if (targetTypeList.Count > 0) {
+        if (targetTypeList.Count > 0)
+        {
             return NearestBuildingPriority(targetTypeList.Where(b => b.CanBeAttacked() == true).ToList());
         }
 
@@ -124,12 +152,15 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     /// </summary>
     /// <param name="_building"></param>
     /// <returns></returns>
-    public List<BuildingData> FindPrioritiesInRange(BuildingData _building) {
+    public List<BuildingData> FindPrioritiesInRange(BuildingData _building)
+    {
         List<BuildingData> returnList = new List<BuildingData>();
         List<CellDoomstock> neightbours = GameManager.I.gridController.GetNeighboursStar(CurrentPosition, RangeView);
-        foreach (CellDoomstock item in neightbours) {
+        foreach (CellDoomstock item in neightbours)
+        {
             if (item.building != null)
-                if (item.building.ID == _building.ID) {
+                if (item.building.ID == _building.ID)
+                {
                     if (item.building.CanBeAttacked())
                         returnList.Add(item.building);
                 }
@@ -140,16 +171,20 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     /// <summary>
     /// Passo la lista di building e ricevo il building piu vicino a me.
     /// </summary>
-    public BuildingData NearestBuildingPriority(List<BuildingData> _buildings) {
+    public BuildingData NearestBuildingPriority(List<BuildingData> _buildings)
+    {
 
         int lowerDistance = 100000000;
         BuildingData closestBuilding = null;
-        switch (Type) {
+        switch (Type)
+        {
             case enemyType.Tank:
-                foreach (var _building in _buildings) {
+                foreach (var _building in _buildings)
+                {
                     //CurrentPosition = GameManager.I.gridController.Cells[0, 0];
                     int distance = IPathFindingExtension.GetDistance(CurrentPosition, _building.Cell, pathFindingSettings);
-                    if (distance < lowerDistance) {
+                    if (distance < lowerDistance)
+                    {
                         lowerDistance = distance;
                         closestBuilding = _building;
                     }
@@ -157,9 +192,11 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                 return closestBuilding;
 
             case enemyType.Combattenti:
-                foreach (var _building in _buildings) {
+                foreach (var _building in _buildings)
+                {
                     int distance = IPathFindingExtension.GetDistance(CurrentPosition, _building.Cell, pathFindingSettings);
-                    if (distance < lowerDistance) {
+                    if (distance < lowerDistance)
+                    {
                         lowerDistance = distance;
                         closestBuilding = _building;
                     }
@@ -180,24 +217,39 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
     #region Abilities
 
-    public void DoMoveStep(INode _step) {
-        transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() => {
+    public void DoMoveStep(INode _step)
+    {
+        transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() =>
+        {
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
-            if (CurrentNodeIndex > lastNode) {
+            if (CurrentNodeIndex > lastNode)
+            {
                 // ha raggiunto l'obbiettivo, attacca
-                if (Attack(CurrentTarget)) {
-                    currentState = enemyState.Searching;
-                    resetTarget();
-                } else
+                if (Attack(CurrentTarget))
+                {
+                    if (CurrentTarget.BuildingLife <= 0)
+                    {
+                        currentState = enemyState.Searching;
+                        resetTarget();
+                    }
+                    else
+                    {
+                        Attack(CurrentTarget);
+                    }
+                }
+                else
                     currentState = enemyState.Attack;
 
-            } else {
+
+            }
+            else
+            {
                 AttackNextStep();
-                if (currentState ==enemyState.MovingToTarget)
-                // prossimo step di movimento
-                this.DoMoveToCurrentPathStep();
+                if (currentState == enemyState.MovingToTarget)
+                    // prossimo step di movimento
+                    this.DoMoveToCurrentPathStep();
             }
 
         });
@@ -206,32 +258,52 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     /// <summary>
     /// Attacca il prossimo step se è presente un building.
     /// </summary>
-    void AttackNextStep() {
+    void AttackNextStep()
+    {
         CellDoomstock nextStep = CurrentPath[CurrentNodeIndex] as CellDoomstock;
-        if (Type == enemyType.Tank) {
+        if (Type == enemyType.Tank)
+        {
 
-            if (nextStep.isTraversable == false) {
+            if (nextStep.isTraversable == false)
+            {
                 Attack(nextStep.building);
             }
-        } else {
-            if (nextStep.isTraversable == false) {
+        }
+        else
+        {
+            if (nextStep.isTraversable == false)
+            {
                 resetTarget();
                 currentState = enemyState.Searching;
             }
         }
     }
-    public bool Attack(BuildingData target) {
+    public bool Attack(BuildingData target)
+    {
+        currentState = enemyState.Attack;
         // TODO: al momento l'attacco ditrugge immediatamente l'edificio.
-        GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
+        //GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
+
+        target.BuildingLife -= _attack;
+
+        if (target.BuildingLife <= 0)
+        {
+            GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
+            currentState = enemyState.Searching;
+            return false;
+        }
+
         return true;
     }
 
     #endregion
 
     #region Lifecycle
-    public void Init(CellDoomstock _startPos) {
+    public void Init(CellDoomstock _startPos)
+    {
 
-        switch (Type) {
+        switch (Type)
+        {
             case enemyType.Tank:
                 pathFindingSettings = PathFindingSettings.Tank;
                 break;
@@ -240,7 +312,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                 break;
         }
 
-        transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() => {
+        transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() =>
+        {
             CurrentPosition = _startPos;
         });
 
@@ -265,19 +338,25 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
     float waitTimeToFindTarget = 0;
     float waitTimeToAttackTarget = 0;
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (CurrentPosition != null && CurrentTarget == null) {
-                BuildingData findedBuilding = FindTarget();
-                CurrentTarget = findedBuilding;
-            }
-        }
+    void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    if (CurrentPosition != null && CurrentTarget == null)
+        //    {
+        //        BuildingData findedBuilding = FindTarget();
+        //        CurrentTarget = findedBuilding;
+        //    }
+        //}
 
-        switch (currentState) {
+        switch (currentState)
+        {
             case enemyState.Searching:
                 waitTimeToFindTarget -= Time.deltaTime;
-                if (waitTimeToFindTarget < 0) {
-                    if (CurrentTarget == null) {
+                if (waitTimeToFindTarget < 0)
+                {
+                    if (CurrentTarget == null)
+                    {
                         CurrentTarget = FindTarget();
                     }
                     waitTimeToFindTarget = 0.5f;
@@ -285,13 +364,16 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
                 break;
             case enemyState.Attack:
                 waitTimeToAttackTarget -= Time.deltaTime;
-                if (waitTimeToAttackTarget < 0) {
-                    if (CurrentTarget == null) {
-                        if (Attack(CurrentTarget)) {
+                if (waitTimeToAttackTarget < 0)
+                {
+                   // if (CurrentTarget == null)
+                    //{
+                        if (!Attack(CurrentTarget))
+                        {
                             currentState = enemyState.Searching;
                             resetTarget();
                         }
-                    }
+                    //}
                     waitTimeToAttackTarget = AttackSpeed;
                 }
                 break;
@@ -303,13 +385,15 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
 
     }
 
-    void resetTarget() {
+    void resetTarget()
+    {
         CurrentPath = null;
         CurrentTarget = null;
         CurrentNodeIndex = 0;
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Vector3 gizmoDimension = new Vector3(0.5f, 0.5f, 0.5f);
         if (this.CurrentPath == null || this.CurrentPath.Count < 2)
             return;
@@ -318,7 +402,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(CurrentTarget.Cell.GetWorldPosition(), gizmoDimension);
         Gizmos.color = Color.yellow;
-        foreach (var item in CurrentPath) {
+        foreach (var item in CurrentPath)
+        {
             Gizmos.DrawCube(item.GetWorldPosition() + new Vector3(0f, 0.5f, 0f), gizmoDimension);
         }
         Gizmos.color = Color.black;

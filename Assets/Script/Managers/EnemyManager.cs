@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyManager : MonoBehaviour {
 
@@ -17,22 +18,33 @@ public class EnemyManager : MonoBehaviour {
 
         if (_eventData.ID == "EnemySpawn")
         {
-            RandomSpawnPosition();
+          
             for (int i = 0; i < TankToSpawn; i++)
             {
-                Instantiate(TankPrefab,GameManager.I.gridController.GetCellWorldPosition((int)StartPosition.GetGridPosition().x, (int)StartPosition.GetGridPosition().y), TankPrefab.transform.rotation).Init(StartPosition); 
+                CellDoomstock pos = RandomSpawnPosition();
+                Enemy tank = Instantiate(TankPrefab,GameManager.I.gridController.GetCellWorldPosition((int)pos.GetGridPosition().x, (int)pos.GetGridPosition().y), TankPrefab.transform.rotation);
+                
+                tank.Init(pos);
+                
             }
-            //for (int i = 0; i < CombattentiToSpawn; i++)
-            //{
-            //    Instantiate(CombattentiPrefab, StartPosition, CombattentiPrefab.transform.rotation).Init(GameManager.I.gridController.Cells[(int)StartPosition.x, (int)StartPosition.y]);
-            //}
-            
+            for (int i = 0; i < CombattentiToSpawn; i++)
+            {
+                CellDoomstock pos = RandomSpawnPosition();
+                Enemy tank = Instantiate(TankPrefab, GameManager.I.gridController.GetCellWorldPosition((int)pos.GetGridPosition().x, (int)pos.GetGridPosition().y), TankPrefab.transform.rotation);
+
+                tank.Init(pos);
+            }
+
         }
     }
 
-    public void RandomSpawnPosition()
+    public CellDoomstock RandomSpawnPosition()
     {
-        StartPosition = GameManager.I.gridController.Cells[3, 3];
+        int randomX = Random.Range(0, 5);
+        int randomY = Random.Range(0, 5);
+        CellDoomstock randomPos =  GameManager.I.gridController.Cells[randomX, randomY]; ;
+      
+        return randomPos;
 
     }
     private void OnEnable()
