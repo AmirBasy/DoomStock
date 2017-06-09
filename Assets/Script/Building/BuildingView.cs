@@ -161,6 +161,8 @@ public class BuildingView : MonoBehaviour
                 });
                 break;
             case BuildingState.Built:
+                if (Data.Population.Count < 1)
+                    AnimationStop(Data);
                 if (Data.ID == "Foresta")
                     CurrentMesh.mesh = Pino;
                 break;
@@ -229,15 +231,16 @@ public class BuildingView : MonoBehaviour
     }
     public void AnimationStop(BuildingData _building) {
         StartCoroutine(StopAnimation(2));
-        if (animation != null)
-        {
-            animation.Stop();
-        }
+       
     }
 
     IEnumerator StopAnimation(float waitTime) {
         
         yield return new WaitForSeconds(waitTime);
+        if (animation != null)
+        {
+            animation.Stop();
+        }
     }
     #endregion
 

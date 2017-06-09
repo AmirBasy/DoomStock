@@ -578,7 +578,8 @@ public class Player : PlayerBase
                 
         }
         GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStart(building);
-        //GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
+        
+        GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
     }
 
     void Ability(CellDoomstock cell)
