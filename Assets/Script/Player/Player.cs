@@ -503,8 +503,7 @@ public class Player : PlayerBase
         BuildingView.OnRemoveDebris += OnBuildingDebrisRemove;
     }
 
-    void AddingPeople() {
-    }
+  
     void OnBuildingDebrisRemove(BuildingView _buildingView)
     {
         if (BuildingsInScene.Contains(_buildingView))
@@ -517,7 +516,11 @@ public class Player : PlayerBase
     }
     #endregion
 
-
+    /// <summary>
+    /// aggiunge risorsa all'edificio cliccato
+    /// </summary>
+    /// <param name="building"></param>
+    /// <param name="cell"></param>
     void AddResourceOnClick(BuildingData building, CellDoomstock cell)
     {
 
@@ -579,9 +582,13 @@ public class Player : PlayerBase
         }
         GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStart(building);
         
-        GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
+       GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
     }
 
+    /// <summary>
+    /// abilità dei player
+    /// </summary>
+    /// <param name="cell"></param>
     void Ability(CellDoomstock cell)
     {
         switch (ID)
@@ -620,16 +627,21 @@ public class Player : PlayerBase
                 break;
         }
     }
+
+    #region cooldown
+    public float Cooldown_Click;
     float time;
     bool CanClick()
     {
-        if (time >= 1.0f) {
+        if (time >= Cooldown_Click)
+        {
             time = 0;
             return true;
         }
         return false;
-    }
-    
+    } 
+    #endregion
+
 }
 
 
