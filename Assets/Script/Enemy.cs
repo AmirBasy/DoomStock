@@ -284,7 +284,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         // TODO: al momento l'attacco ditrugge immediatamente l'edificio.
         //GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
 
-        target.BuildingLife -= _attack;
+        if (target)
+        {
+            target.BuildingLife -= _attack; 
+        }
 
         if (target.BuildingLife <= 0)
         {
@@ -340,14 +343,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    if (CurrentPosition != null && CurrentTarget == null)
-        //    {
-        //        BuildingData findedBuilding = FindTarget();
-        //        CurrentTarget = findedBuilding;
-        //    }
-        //}
+        
 
         switch (currentState)
         {
@@ -366,14 +362,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 waitTimeToAttackTarget -= Time.deltaTime;
                 if (waitTimeToAttackTarget < 0)
                 {
-                   // if (CurrentTarget == null)
-                    //{
+                   
                         if (!Attack(CurrentTarget))
                         {
                             currentState = enemyState.Searching;
                             resetTarget();
                         }
-                    //}
+                    
                     waitTimeToAttackTarget = AttackSpeed;
                 }
                 break;

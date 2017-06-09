@@ -136,10 +136,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Life: 0
-  _attack: 0
+  _attack: 1
   RangeView: 3
-  AttackSpeed: 0
+  AttackSpeed: 2
   MovementSpeed: 2
   Priority1: {fileID: 11400000, guid: 6c52c0e700f90d7428c57a26b219b471, type: 2}
   Priority2: {fileID: 0}
-  Priorities2: []
+  Priorities2:
+  - {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0, type: 2}
+  - {fileID: 11400000, guid: 6c52c0e700f90d7428c57a26b219b471, type: 2}
+  - {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
+  - {fileID: 11400000, guid: f2d3e403e65a12145978bb9fe77f1fd6, type: 2}

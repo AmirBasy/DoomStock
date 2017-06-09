@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimedEvents: []
   BuildingResources: []
-  ProductionCounter: 0
-  CounterLimit: 10
+  Delay: 0
+  CounterLimit: 30
   AttackRange: {x: 0, y: 0}
   BuildingTime: 0
   ID: Foresta
