@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     #region Runtime properties and variables
     enemyState currentState = enemyState.Searching;
-
+    CellDoomstock lastPos;
     private CellDoomstock _currentPosition;
     public CellDoomstock CurrentPosition
     {
@@ -28,6 +28,14 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         set
         {
             _currentPosition = value;
+            _currentPosition.SetStatus(CellDoomstock.CellStatus.Filled);
+            if (_currentPosition != value)
+            {
+                lastPos = _currentPosition;
+                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+            }
+               
+
         }
     }
 
