@@ -93,7 +93,7 @@ public class UiInformation : MonoBehaviour {
                 break;
             case MessageLableType.LimitFood:
                 ColorUtility.TryParseHtmlString(MessagesManager.FoodColor, out backgroundColor);
-                IconString = "Food";
+                IconString = "grano";
                 break;
             case MessageLableType.LimitSpirit:
                 ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
