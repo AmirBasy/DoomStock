@@ -580,9 +580,12 @@ public class Player : PlayerBase
                 break;
                 
         }
-        GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStart(building);
-        
-       GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
+        if (cell.building.Population.Count == 0)
+        {
+            GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStart(building);
+
+            GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building); 
+        }
     }
 
     /// <summary>
