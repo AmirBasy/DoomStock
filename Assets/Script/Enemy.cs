@@ -288,7 +288,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
         if (target)
         {
-            target.BuildingLife -= _attack; 
+            target.BuildingLife -= _attack;
+            target.GetParticlesEffect();
         }
 
         if (target.BuildingLife <= 0)

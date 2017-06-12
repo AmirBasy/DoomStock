@@ -11,7 +11,7 @@ public class ParticlesController : MonoBehaviour {
     
     #region API
     public void Init() {
-        Destruction.Stop();
+        //Destruction.Stop();
         SmallFire.Stop();
         BigFire.Stop();
         Smoke.Stop();

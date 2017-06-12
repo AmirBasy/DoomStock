@@ -267,7 +267,7 @@ public class BuildingData : ScriptableObject, ISelectable
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
         NameLable = ID + " (" + UniqueID + ")";
         IconToGet = Icon;
-       
+        GameManager.I.particlesController.Init();
     } 
 
     public void Init()
