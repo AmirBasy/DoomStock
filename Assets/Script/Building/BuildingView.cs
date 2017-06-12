@@ -218,15 +218,14 @@ public class BuildingView : MonoBehaviour
 
     public void AnimationStart(BuildingData _building) {
 
-            if (animation != null)
-            {
-                animation = GetComponent<Animation>();
-                animation.Play();
-            }
-            foreach (AnimationState state in animation)
-            {
+        if (animation != null) {
+            animation = GetComponent<Animation>();
+            animation.Play();
+
+            foreach (AnimationState state in animation) {
                 state.speed = 0.3f;
-            }  
+            }
+        } 
 
     }
     public void AnimationStop(BuildingData _building) {

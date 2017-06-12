@@ -958,5 +958,5 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: a01fd0cc12551de4ca9550a3eefc18b0, type: 2}
   Pino: {fileID: 0}
   Ceppo: {fileID: 0}
-  Macerie: {fileID: 0}
+  Macerie: {fileID: 4300000, guid: 0d43820d598e9364aa51f0fb68a59459, type: 3}
   animation: {fileID: 111228285263021392}
