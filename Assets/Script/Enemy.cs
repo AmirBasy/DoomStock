@@ -417,6 +417,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     public enum enemyState { Searching, MovingToTarget, Attack }
 
     #endregion
+
 }
 
 public enum enemyType { Tank, Combattenti }

@@ -55,6 +55,7 @@ MonoBehaviour:
   InitialFood: 200
   InitialWood: 700
   InitialStone: 700
+  InitialFaith: 100
   forestInScene: []
   gridController: {fileID: 0}
   timeEventManager: {fileID: 0}
@@ -63,13 +64,15 @@ MonoBehaviour:
   resourcesManager: {fileID: 0}
   uiManager: {fileID: 0}
   messagesManager: {fileID: 0}
+  soundManager: {fileID: 0}
+  particlesController: {fileID: 0}
   Players:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   PlayerPrefab: {fileID: 0}
   forest: {fileID: 0}
-  GridWidth: 20
-  GridHeight: 20
+  GridWidth: 15
+  GridHeight: 15
   CellSize: 0.8
   resources: []

@@ -38,12 +38,23 @@ public class BuildingView : MonoBehaviour
     public Mesh Ceppo;
     public Mesh Macerie;
     public Animation animation;
+
+    //private int buildingLife;
+
+    //public int BuildingLife {
+    //    get { return buildingLife; }
+    //    set { buildingLife = value;
+    //        GetParticlesEffect();
+    //    }
+    //}
+
     #endregion
 
     #region LifeCycle
     private void Start()
     {
         Data.Init();
+       // BuildingLife = Data.BuildingLife;
         if (barretta != null)
             barretta.fillAmount = 0;
         
@@ -73,6 +84,9 @@ public class BuildingView : MonoBehaviour
     #endregion
 
     #region API
+
+
+
 
     /// <summary>
     /// Distrugge il building.

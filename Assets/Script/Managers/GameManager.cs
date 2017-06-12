@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour {
     public UIManager uiManager;
     public MessagesManager messagesManager;
     public SoundManager soundManager;
+    public ParticlesController particlesController;
     #endregion
 
     #region Players

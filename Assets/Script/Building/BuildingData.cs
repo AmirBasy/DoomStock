@@ -134,6 +134,24 @@ public class BuildingData : ScriptableObject, ISelectable
     #endregion
 
     #region API
+    /// <summary>
+    /// Attiva gli effetti particellari
+    /// </summary>
+    public void GetParticlesEffect() {
+        if (BuildingLife == InitialLife - 1) {
+            GameManager.I.particlesController.PlayParticles(ParticlesType._smoke);
+        }
+        if (BuildingLife == InitialLife / 2) {
+            GameManager.I.particlesController.StopParticles(ParticlesType._smoke);
+            GameManager.I.particlesController.PlayParticles(ParticlesType._smallFire);
+        }
+        if (BuildingLife == InitialLife / 3) {
+            GameManager.I.particlesController.StopParticles(ParticlesType._smallFire);
+            GameManager.I.particlesController.PlayParticles(ParticlesType._bigFire);
+        }
+    }
+
+
 
     /// <summary>
     /// Restituisce la posizione sulla griglia.
