@@ -28,14 +28,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         set
         {
             _currentPosition = value;
-            _currentPosition.SetStatus(CellDoomstock.CellStatus.Filled);
-            if (_currentPosition != value)
-            {
-                lastPos = _currentPosition;
-                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
-            }
-               
-
+            
         }
     }
 
@@ -276,6 +269,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             {
                 Attack(nextStep.building);
             }
+            
         }
         else
         {
