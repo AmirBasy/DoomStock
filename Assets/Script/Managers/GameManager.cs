@@ -8,6 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    #region Events declaration
+    public delegate void GameEvent();
+    //eventi base del gioco.
+    public event GameEvent OnGetStone, OnGetFood, OnGetWood,OnGameStart, OnConstruction, OnOpenMenu,OnBackMenu, OnGetDebris, OnWoodProducing;
+    #endregion
+
     /// <summary>
     /// se è vera si vede la mappa
     /// </summary>
@@ -27,6 +33,7 @@ public class GameManager : MonoBehaviour {
     public ResourcesManager resourcesManager;
     public UIManager uiManager;
     public MessagesManager messagesManager;
+    public SoundManager soundManager;
     #endregion
 
     #region Players
@@ -258,7 +265,7 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     #region Eventi
-    public delegate void GameEvent();
+
 
     public static GameEvent OnGridCreated;
     #endregion
