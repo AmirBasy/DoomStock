@@ -99,6 +99,8 @@ public interface ISelectable {
     /// Nome visualizzato nella UI.
     /// </summary>
     string NameLable { get; set; }
+
+    Sprite IconToGet { get; set; }
 }
 
 public enum MenuTypes {

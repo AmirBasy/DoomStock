@@ -8,6 +8,8 @@ using System.Linq;
 
 public class BuildingData : ScriptableObject, ISelectable
 {
+    public Sprite Icon;
+
     #region Liste
 
 
@@ -218,6 +220,8 @@ public class BuildingData : ScriptableObject, ISelectable
     }
     #endregion
 
+
+
     private BuildingState _currentState = BuildingState.Construction;
     /// <summary>
     /// 
@@ -229,6 +233,12 @@ public class BuildingData : ScriptableObject, ISelectable
         }
     }
 
+    public Sprite IconToGet {
+        get;
+
+        set;
+    }
+
 
 
     #region Setup
@@ -238,7 +248,7 @@ public class BuildingData : ScriptableObject, ISelectable
             return;
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
         NameLable = ID + " (" + UniqueID + ")";
-
+        IconToGet = Icon;
        
     } 
 

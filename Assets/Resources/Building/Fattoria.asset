@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Fattoria
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 689a8ee7309556c48bf5ca01b89a8bcc, type: 3}
   TimedEvents: []
   BuildingResources: []
-  ProductionCounter: 0
+  Delay: 0
   CounterLimit: 10
   AttackRange: {x: 0, y: 0}
   BuildingTime: 3

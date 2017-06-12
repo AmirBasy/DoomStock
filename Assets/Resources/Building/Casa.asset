@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Casa
   m_EditorClassIdentifier: 
+  Icon: {fileID: 0}
   TimedEvents: []
   BuildingResources: []
   Delay: 0
@@ -23,7 +24,8 @@ MonoBehaviour:
   StoneToBuild: 0
   StoneActualValue: 0
   WoodActualValue: 0
-  BuildPrefab: {fileID: 0}
+  BuildPrefab: {fileID: 114662218469904674, guid: 1290a03d8100bc7449a093b0860643f3,
+    type: 2}
   EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0

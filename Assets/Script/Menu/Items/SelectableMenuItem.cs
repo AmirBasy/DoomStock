@@ -5,13 +5,22 @@ using UnityEngine.UI;
 
 public class SelectableMenuItem : MonoBehaviour {
 
+    public Image IconData;
     public Text Lable;
     public ISelectable SelectionData;
 
     public void SetData(ISelectable data) {
-        
+
         SelectionData = data;
-        Lable.text = data.NameLable; 
+        if (data.IconToGet == null)
+            Lable.text = data.NameLable;
+        else {
+            Lable.text = "";   
+        }
+        if (data.IconToGet) {
+            IconData.sprite = data.IconToGet;
+
+        }
     }
 
     public void Select(bool _isSelected) {
@@ -21,5 +30,5 @@ public class SelectableMenuItem : MonoBehaviour {
             Lable.color = Color.black;
 
     }
-    
+
 }

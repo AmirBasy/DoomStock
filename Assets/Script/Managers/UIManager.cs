@@ -180,4 +180,6 @@ public class Selector : ISelectable
 {
     public string UniqueID { get; set; }
     public string NameLable { get; set; }
+    public Sprite IconToGet { get; set; }
+
 }
