@@ -121,6 +121,8 @@ GameObject:
   - component: {fileID: 47707501}
   - component: {fileID: 47707500}
   - component: {fileID: 47707499}
+  - component: {fileID: 47707504}
+  - component: {fileID: 47707505}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -198,6 +200,107 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 38, y: 40, z: -2.5}
+--- !u!114 &47707504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 47707498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb0fff0c4ad92a4d8d2f3e78b524ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGameStart: {fileID: 8300000, guid: 837ce4cf2ca714b4ea944b35b0462dfb, type: 3}
+  GetStone: {fileID: 8300000, guid: 41d010664c2122046934b4cd23faadd5, type: 3}
+  GetFood: {fileID: 0}
+  GetWood: {fileID: 8300000, guid: c04d19bf0f8d5fa41b83849ca2906fae, type: 3}
+  Construction: {fileID: 8300000, guid: 51997e25619e78c41a95f5409b55f3c5, type: 3}
+  OpenMenu: {fileID: 8300000, guid: 4c07608809befce41a4fda635b71927f, type: 3}
+  BackMenu: {fileID: 8300000, guid: 773ef991a8f661e4b86bc3d443985532, type: 3}
+  Debris: {fileID: 8300000, guid: 85a767d7d609f4b4fb2aaa28a037a0c8, type: 3}
+  WoodProducing: {fileID: 8300000, guid: 12af91ad69e1d7c4bbcc15c91fffdfbc, type: 3}
+  DefaultSound: 3
+--- !u!82 &47707505
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 47707498}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 837ce4cf2ca714b4ea944b35b0462dfb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &70281649
 Prefab:
   m_ObjectHideFlags: 0
@@ -668,6 +771,11 @@ Prefab:
       propertyPath: InitialFaith
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114253417510468250, guid: d06943b41fccfed4bacc425ada983a50,
+        type: 2}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 47707504}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d06943b41fccfed4bacc425ada983a50, type: 2}
   m_IsPrefabParent: 0
@@ -1278,6 +1386,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114471144765665204, guid: 2acaa43a67287ad48ae8c110837ac6df,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 28bc1d90241f6e540a9294d93e199a45,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2acaa43a67287ad48ae8c110837ac6df, type: 2}
   m_IsPrefabParent: 0

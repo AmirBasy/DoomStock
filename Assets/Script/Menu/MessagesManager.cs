@@ -8,7 +8,7 @@ public class MessagesManager : MonoBehaviour
 {
     #region Colors
     public static string RemovePopulationColor = "#FF0000FF";
-    public static string PopulationColor = "#F0C513FF";
+    public static string PopulationColor = "#EC9718FF";
     public static string FoodColor = "#0AAE19FF";
     public static string WoodColor = "#DF5C21FF";
     public static string StoneColor = "#8D8D8DFF";

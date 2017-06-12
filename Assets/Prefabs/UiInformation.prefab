@@ -143,6 +143,7 @@ MonoBehaviour:
   CellWorldPosition: {x: 0, y: 0, z: 0}
   BackgroundColor: {fileID: 212667668200400086}
   Icon: {fileID: 212851599555280972}
+  MessageType: 
 --- !u!212 &212667668200400086
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -176,7 +177,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.8018361, g: 0.43647274, b: 0.8602941, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.91724133, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -216,7 +217,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0c62e66e6e480b04f81526c3cc98b663, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
