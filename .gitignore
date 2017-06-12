@@ -28,3 +28,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/TextMesh Pro/Plugins/TextMeshPro.dll.meta
+Assets/TextMesh Pro/Plugins/Runtime DLL/TextMeshPro.dll.meta
+Assets/TextMesh Pro/Plugins/Editor/TextMeshPro-Editor.dll.meta
+Assets/Scenes/particerllari.unity.meta
+Assets/Scenes/particerllari.unity
