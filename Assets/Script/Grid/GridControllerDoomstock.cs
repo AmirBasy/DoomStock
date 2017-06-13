@@ -74,7 +74,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
                     cell.SetType(CellDoomstock.CellType.Roccia);
                     break;
                 default:
-                    Debug.Log("colore non trovato " + colorRGB);
+                    //Debug.Log("colore non trovato " + colorRGB);
                     break;
                     
             }

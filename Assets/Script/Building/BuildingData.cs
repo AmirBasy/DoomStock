@@ -9,7 +9,7 @@ using System.Linq;
 public class BuildingData : ScriptableObject, ISelectable
 {
     public Sprite Icon;
-
+    public ParticlesController _particleController;
     #region Liste
 
 
@@ -137,22 +137,23 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Attiva gli effetti particellari
     /// </summary>
-    public void GetParticlesEffect() {
-        if (BuildingLife == InitialLife - 1) {
-            GameManager.I.particlesController.PlayParticles(ParticlesType._smoke);
+    public void GetParticlesEffect()
+    {
+        if (BuildingLife == InitialLife - 1)
+        {
+            _particleController.PlayParticles(ParticlesType._smoke);
         }
-        if (BuildingLife == InitialLife / 2) {
-            GameManager.I.particlesController.StopParticles(ParticlesType._smoke);
-            GameManager.I.particlesController.PlayParticles(ParticlesType._smallFire);
+        if (BuildingLife == InitialLife / 2)
+        {
+            _particleController.StopParticles(ParticlesType._smoke);
+            _particleController.PlayParticles(ParticlesType._smallFire);
         }
-        if (BuildingLife == InitialLife / 3) {
-            GameManager.I.particlesController.StopParticles(ParticlesType._smallFire);
-            GameManager.I.particlesController.PlayParticles(ParticlesType._bigFire);
+        if (BuildingLife == InitialLife / 3)
+        {
+            _particleController.StopParticles(ParticlesType._smallFire);
+            _particleController.PlayParticles(ParticlesType._bigFire);
         }
     }
-
-
-
     /// <summary>
     /// Restituisce la posizione sulla griglia.
     /// </summary>
@@ -267,7 +268,7 @@ public class BuildingData : ScriptableObject, ISelectable
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
         NameLable = ID + " (" + UniqueID + ")";
         IconToGet = Icon;
-        GameManager.I.particlesController.Init();
+
     } 
 
     public void Init()
@@ -292,6 +293,7 @@ public class BuildingData : ScriptableObject, ISelectable
             default:
                 break;
         }
+        
     }
     #endregion
 }

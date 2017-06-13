@@ -38,15 +38,9 @@ public class BuildingView : MonoBehaviour
     public Mesh Ceppo;
     public Mesh Macerie;
     public Animation animation;
+    ParticlesController _particle;
 
-    //private int buildingLife;
 
-    //public int BuildingLife {
-    //    get { return buildingLife; }
-    //    set { buildingLife = value;
-    //        GetParticlesEffect();
-    //    }
-    //}
 
     #endregion
 
@@ -54,7 +48,12 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         Data.Init();
-       // BuildingLife = Data.BuildingLife;
+        if (_particle)
+        {
+            _particle = Data._particleController;
+            _particle.Init();
+        }
+        
         if (barretta != null)
             barretta.fillAmount = 0;
         
@@ -73,18 +72,15 @@ public class BuildingView : MonoBehaviour
 
     private void OnEnable()
     {
-       // BuildingView.OnAddingPeople += AnimationStart;
     }
     private void OnDisable()
     {
         TimeEventManager.OnEvent -= OnUnitEvent;
-       // BuildingView.OnAddingPeople -= AnimationStart;
 
     }
     #endregion
 
     #region API
-
 
 
 
@@ -97,33 +93,19 @@ public class BuildingView : MonoBehaviour
             OnDestroy(this);
         CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
         cell.SetStatus(CellDoomstock.CellStatus.Debris, cell.building);
-        //GameManager.I.messagesManager.ShowBuildingMessage(this, BuildingMessageType.Debis);
-        //toglie tutti i popolani dall'edificio e le rimette in POZZA
         if (Data.ID != "Casa")
             Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         SetBuildingStatus(BuildingState.Destroyed);
-        //if (gameObject.GetComponent<MeshFilter>() != null)
-        //{
         List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
         myobject.Remove(transform);
         foreach (Transform go in myobject)
         {
-            //Destroy(go.gameObject.GetComponent<MeshFilter>());
             go.gameObject.SetActive(false);
-
         }
         CurrentMesh.mesh = Macerie;
-        //} 
         gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         transform.eulerAngles = new Vector3(90, 20, 0);
-        //gameObject.transform.rotation = new Quaternion(transform.rotation.x - 180, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-        //Data.CurrentState = BuildingState.Destroyed;
-        //transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
-        //{
-        //    //UpdateAspect();
-        //});
-
     }
 
     /// <summary>
@@ -151,7 +133,7 @@ public class BuildingView : MonoBehaviour
 
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
-
+       // ActiveParticle = Data.ActualParticle;
     }
 
     public void SetBuildingStatus(BuildingState _status)
@@ -230,31 +212,51 @@ public class BuildingView : MonoBehaviour
         }
     }
 
-    public void AnimationStart(BuildingData _building) {
+    public void LimitReached(BaseResourceData res)
+    {
+        if (res.Value >= res.Limit)
+        {
+            res.Value = 0;
+            SetBuildingStatus(BuildingState.Ready);
 
-        if (animation != null) {
+        }
+    }
+
+
+    #region Animation
+    public void AnimationStart(BuildingData _building)
+    {
+
+        if (animation != null)
+        {
             animation = GetComponent<Animation>();
             animation.Play();
 
-            foreach (AnimationState state in animation) {
+            foreach (AnimationState state in animation)
+            {
                 state.speed = 0.3f;
             }
-        } 
+        }
 
     }
-    public void AnimationStop(BuildingData _building) {
+    public void AnimationStop(BuildingData _building)
+    {
         StartCoroutine(StopAnimation(2));
-       
+
     }
 
-    IEnumerator StopAnimation(float waitTime) {
-        
+    IEnumerator StopAnimation(float waitTime)
+    {
+
         yield return new WaitForSeconds(waitTime);
         if (animation != null)
         {
             animation.Stop();
         }
-    }
+    } 
+    #endregion
+
+
     #endregion
 
     #region Events
@@ -344,15 +346,6 @@ public class BuildingView : MonoBehaviour
 
     #endregion
 
-    public void LimitReached(BaseResourceData res)
-    {
-        if (res.Value >= res.Limit)
-        {
-            res.Value = 0;
-            SetBuildingStatus(BuildingState.Ready);
-
-        }
-    }
 
     public void BarrettaSetColor()
     {
