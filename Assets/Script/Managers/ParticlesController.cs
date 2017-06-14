@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticlesController : MonoBehaviour {
+public class ParticlesController : MonoBehaviour
+{
 
     public ParticleSystem Destruction;
     public ParticleSystem SmallFire;
     public ParticleSystem BigFire;
     public ParticleSystem Smoke;
-    
+
     #region API
-    public void Init() {
-        //Destruction.Stop();
+    public void Init()
+    {
+        Destruction.Stop();
         SmallFire.Stop();
         BigFire.Stop();
         Smoke.Stop();
@@ -20,8 +22,10 @@ public class ParticlesController : MonoBehaviour {
     /// <summary>
     /// Play the Particles effect
     /// </summary>
-    public void PlayParticles(ParticlesType _type) {
-        switch (_type) {
+    public void PlayParticles(ParticlesType _type)
+    {
+        switch (_type)
+        {
             case ParticlesType._destruction:
                 if (Destruction.isPlaying)
                     Destruction.Stop();
@@ -33,14 +37,14 @@ public class ParticlesController : MonoBehaviour {
                 SmallFire.Play();
                 break;
             case ParticlesType._bigFire:
-                if (!BigFire.isPlaying)
-                    BigFire.Play();
+                if (BigFire.isPlaying)
+                    BigFire.Stop();
+                BigFire.Play();
                 break;
             case ParticlesType._smoke:
-                //if (Smoke.isPlaying)
-                //    Smoke.Stop();
+                if (Smoke.isPlaying)
+                    Smoke.Stop();
                 Smoke.Play();
-                Debug.Log(Smoke.isPlaying);
                 break;
             default:
                 break;
@@ -50,8 +54,10 @@ public class ParticlesController : MonoBehaviour {
     /// <summary>
     /// Stop the particles effect
     /// </summary>
-    public void StopParticles(ParticlesType _type) {
-        switch (_type) {
+    public void StopParticles(ParticlesType _type)
+    {
+        switch (_type)
+        {
             case ParticlesType._destruction:
                 Destruction.Stop();
                 break;
@@ -70,9 +76,10 @@ public class ParticlesController : MonoBehaviour {
     }
     #endregion
 
-   
+
 }
-public enum ParticlesType {
+public enum ParticlesType
+{
     _destruction,
     _smallFire,
     _bigFire,

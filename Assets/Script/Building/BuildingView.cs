@@ -9,20 +9,20 @@ using System.Linq;
 public class BuildingView : MonoBehaviour
 {
     #region Barretta
-    [Header("Barretta")]
-    public Image barretta;
-    private float barrettaGrow;
+    //[Header("Barretta")]
+    //public Image barretta;
+    //private float barrettaGrow;
 
-    public float BarrettaGrow
-    {
-        get { return barrettaGrow; }
-        set
-        {
-            barrettaGrow = value;
-            barretta.fillAmount = BarrettaGrow;
-            BarrettaSetColor();
-        }
-    }
+    //public float BarrettaGrow
+    //{
+    //    get { return barrettaGrow; }
+    //    set
+    //    {
+    //        barrettaGrow = value;
+    //        barretta.fillAmount = BarrettaGrow;
+    //        BarrettaSetColor();
+    //    }
+    //}
     #endregion
 
     #region Proprietà
@@ -48,14 +48,15 @@ public class BuildingView : MonoBehaviour
     private void Start()
     {
         Data.Init();
-        if (_particle)
+        if (Data.ID != "Foresta")
         {
+            Data._particleController = GetComponentInChildren<ParticlesController>();
             _particle = Data._particleController;
-            _particle.Init();
+            _particle.Init(); 
         }
         
-        if (barretta != null)
-            barretta.fillAmount = 0;
+        //if (barretta != null)
+        //    barretta.fillAmount = 0;
         
         if (Data.ID != "Foresta")
         {
@@ -97,6 +98,7 @@ public class BuildingView : MonoBehaviour
             Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         SetBuildingStatus(BuildingState.Destroyed);
+        _particle.PlayParticles(ParticlesType._destruction);
         List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
         myobject.Remove(transform);
         foreach (Transform go in myobject)
@@ -347,20 +349,20 @@ public class BuildingView : MonoBehaviour
     #endregion
 
 
-    public void BarrettaSetColor()
-    {
-        if (BarrettaGrow <= 0.25)
-        {
-            barretta.color = Color.red;
-        }
-        if (BarrettaGrow >= 0.25 && BarrettaGrow <= 0.75)
-        {
-            barretta.color = Color.yellow;
-        }
-        if (BarrettaGrow >= 0.75)
-        {
-            barretta.color = Color.green;
-            BarrettaGrow = 1;
-        }
-    }
+    //public void BarrettaSetColor()
+    //{
+    //    if (BarrettaGrow <= 0.25)
+    //    {
+    //        barretta.color = Color.red;
+    //    }
+    //    if (BarrettaGrow >= 0.25 && BarrettaGrow <= 0.75)
+    //    {
+    //        barretta.color = Color.yellow;
+    //    }
+    //    if (BarrettaGrow >= 0.75)
+    //    {
+    //        barretta.color = Color.green;
+    //        BarrettaGrow = 1;
+    //    }
+    //}
 }

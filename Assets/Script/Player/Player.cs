@@ -566,7 +566,7 @@ public class Player : PlayerBase
                 foreach (var res in building.BuildingResources)
                 {
                     res.Value += ProdModifiers.Muro;
-                    GameManager.I.buildingManager.GetBuildingView(building.UniqueID).BarrettaGrow += 0.5f;
+                    //GameManager.I.buildingManager.GetBuildingView(building.UniqueID).BarrettaGrow += 0.5f;
                 }
 
                 break;

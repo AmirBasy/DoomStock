@@ -145,6 +145,7 @@ public class BuildingData : ScriptableObject, ISelectable
         }
         if (BuildingLife == InitialLife / 2 && BuildingLife >= InitialLife / 3)
         {
+
             _particleController.StopParticles(ParticlesType._smoke);
             _particleController.PlayParticles(ParticlesType._smallFire);
         }
@@ -152,6 +153,11 @@ public class BuildingData : ScriptableObject, ISelectable
         {
             _particleController.StopParticles(ParticlesType._smallFire);
             _particleController.PlayParticles(ParticlesType._bigFire);
+        }
+        if (BuildingLife <= 1)
+        {
+            _particleController.StopParticles(ParticlesType._bigFire);
+            _particleController.PlayParticles(ParticlesType._destruction);
         }
     }
     /// <summary>
