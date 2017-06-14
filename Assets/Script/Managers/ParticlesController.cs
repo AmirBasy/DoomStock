@@ -37,8 +37,10 @@ public class ParticlesController : MonoBehaviour {
                     BigFire.Play();
                 break;
             case ParticlesType._smoke:
-                if (!Smoke.isPlaying)
-                    Smoke.Play();
+                //if (Smoke.isPlaying)
+                //    Smoke.Stop();
+                Smoke.Play();
+                Debug.Log(Smoke.isPlaying);
                 break;
             default:
                 break;

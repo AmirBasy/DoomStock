@@ -143,12 +143,12 @@ public class BuildingData : ScriptableObject, ISelectable
         {
             _particleController.PlayParticles(ParticlesType._smoke);
         }
-        if (BuildingLife == InitialLife / 2)
+        if (BuildingLife == InitialLife / 2 && BuildingLife >= InitialLife / 3)
         {
             _particleController.StopParticles(ParticlesType._smoke);
             _particleController.PlayParticles(ParticlesType._smallFire);
         }
-        if (BuildingLife == InitialLife / 3)
+        if (BuildingLife <= InitialLife / 3)
         {
             _particleController.StopParticles(ParticlesType._smallFire);
             _particleController.PlayParticles(ParticlesType._bigFire);
@@ -238,7 +238,6 @@ public class BuildingData : ScriptableObject, ISelectable
         }
     }
     #endregion
-
 
 
     private BuildingState _currentState = BuildingState.Construction;
