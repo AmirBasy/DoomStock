@@ -98,7 +98,7 @@ public class BuildingView : MonoBehaviour
             Data.RemoveAllPopulationFromBuilding();
         TimeEventManager.OnEvent -= OnUnitEvent;
         SetBuildingStatus(BuildingState.Destroyed);
-        _particle.PlayParticles(ParticlesType._destruction);
+
         List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
         myobject.Remove(transform);
         foreach (Transform go in myobject)
@@ -132,10 +132,8 @@ public class BuildingView : MonoBehaviour
     /// <param name="_buildingData"></param>
     public void Init(BuildingData _buildingData)
     {
-
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
-       // ActiveParticle = Data.ActualParticle;
     }
 
     public void SetBuildingStatus(BuildingState _status)
@@ -152,6 +150,7 @@ public class BuildingView : MonoBehaviour
         switch (Data.CurrentState)
         {
             case BuildingState.Construction:
+                GameManager.I.soundManager.GetCostructionSound();
                 CurrentMesh = GetComponent<MeshFilter>();
                 transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() =>
                 {

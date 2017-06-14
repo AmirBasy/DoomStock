@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour {
         GameManager.I.OnConstruction += GetCostructionSound;
         GameManager.I.OnOpenMenu += GetOpenMenuSound;
         GameManager.I.OnGetDebris += GetDebrisSound;
-        GameManager.I.OnBackMenu += SetBackMenuSound;
+        GameManager.I.OnBackMenu += BackMenuSound;
         GameManager.I.OnWoodProducing += AddWoodOnClickSound;
 
     }
@@ -32,37 +32,37 @@ public class SoundManager : MonoBehaviour {
         GameManager.I.OnConstruction -= GetCostructionSound;
         GameManager.I.OnOpenMenu -= GetOpenMenuSound;
         GameManager.I.OnGetDebris -= GetDebrisSound;
-        GameManager.I.OnBackMenu -= SetBackMenuSound;
+        GameManager.I.OnBackMenu -= BackMenuSound;
         GameManager.I.OnWoodProducing -= AddWoodOnClickSound;
     }
 
     #region Api
 
-    void GetStoneSound() {
+    public void GetStoneSound() {//fatto
         PlaySound(Sounds._getStone);
     }
-    void GetFoodSound() {
+    public void GetFoodSound() {//fatto
         PlaySound(Sounds._getFood);
     }
-    void GetWoodSound() {
+    public void GetWoodSound() {//fatto
         PlaySound(Sounds._getWood);
     }
-    void AmbienceSound() {
+    public void AmbienceSound() { //fatto
         PlaySound(Sounds._ambience);
     }
-    void GetCostructionSound() {
+    public void GetCostructionSound() { //fatto
         PlaySound(Sounds._construction);
     }
-    void GetOpenMenuSound() {
+    public void GetOpenMenuSound() {//fatto
         PlaySound(Sounds._openMenu);
     }
-    void GetDebrisSound() {
+    public void GetDebrisSound() {//fatto
         PlaySound(Sounds._debris);
     }
-    void SetBackMenuSound() {
+    public void BackMenuSound() {//fatto
         PlaySound(Sounds._backMenu);
     }
-    void AddWoodOnClickSound() {
+    public void AddWoodOnClickSound() {//fatto
         PlaySound(Sounds._woodOnClick);
     }
     #endregion
@@ -77,6 +77,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     public void PlaySound(Sounds _soundToPlay) {
+        AudioSource audioTemp = gameObject.AddComponent<AudioSource>();
         switch (_soundToPlay) {
             case Sounds._getStone:
                 audioSource.clip = GetStone;
@@ -89,6 +90,7 @@ public class SoundManager : MonoBehaviour {
                 break;
             case Sounds._ambience:
                 audioSource.clip = OnGameStart;
+                audioSource.loop = true;
                 break;
             case Sounds._construction:
                 audioSource.clip = Construction;
@@ -98,6 +100,7 @@ public class SoundManager : MonoBehaviour {
                 break;
             case Sounds._debris:
                 audioSource.clip = Debris;
+                audioSource.loop = false;
                 break;
             case Sounds._backMenu:
                 audioSource.clip = BackMenu;
@@ -106,11 +109,12 @@ public class SoundManager : MonoBehaviour {
                 audioSource.clip = WoodProducing;
                 break;
         }
-
+        audioTemp = audioSource;
         audioSource.Play();
     }
 }
 public enum Sounds {
+    _null,
     _getStone,
     _getFood,
     _getWood,
