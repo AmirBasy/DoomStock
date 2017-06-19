@@ -50,6 +50,7 @@ public class PlayerInputData {
     public KeyCode Confirm;
     public KeyCode PlayerPower;
     public KeyCode RemovePopulation;
+    public KeyCode Pause;
 
 }
 

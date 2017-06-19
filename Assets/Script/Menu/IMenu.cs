@@ -106,5 +106,6 @@ public interface ISelectable {
 public enum MenuTypes {
     PopulationMenu,
     Player,
+    Pause,
 
 }

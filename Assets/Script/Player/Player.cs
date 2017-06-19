@@ -49,6 +49,15 @@ public class Player : PlayerBase
             return null;
         return GameManager.I.uiManager.ShowMenu(MenuTypes.PopulationMenu, this);
     }
+    /// <summary>
+    /// Apre il menu della popolazione libera
+    /// </summary>
+    IMenu OpenPauseMenu()
+    {
+        if (!GameManager.I.gridController.CanUseMenu(this))
+            return null;
+        return GameManager.I.uiManager.ShowMenu(MenuTypes.Pause, this);
+    }
 
     /// <summary>
     /// Apre il Menu del Player
@@ -419,6 +428,14 @@ public class Player : PlayerBase
                     if (currentMenu.PossibiliScelteAttuali.Count < 1)
                         currentMenu.Close();
                 }
+            }
+            if (_inputStatus.Start == ButtonState.Pressed)
+            {
+                GameManager.I.soundManager.GetOpenMenuSound();
+                currentMenu = OpenPauseMenu();
+                Time.timeScale = 0.00000000001f;
+                if (currentMenu.PossibiliScelteAttuali.Count < 1)
+                    currentMenu.Close();
             }
 
             if (_inputStatus.RightShoulder == ButtonState.Pressed) // ADD POPULATION 

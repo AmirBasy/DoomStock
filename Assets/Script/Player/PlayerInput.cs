@@ -116,6 +116,11 @@ public class PlayerInput
             // right
             inputStatus.DPadRight = ButtonState.Pressed;
         }
+        if (prevState.Buttons.Start == XInputDotNetPure.ButtonState.Released && state.Buttons.Start == XInputDotNetPure.ButtonState.Pressed)
+        {
+            // go back
+            inputStatus.Start = ButtonState.Pressed;
+        }
 
         return inputStatus;
     }
@@ -133,6 +138,11 @@ public class PlayerInput
         {
             case PlayerIndex.One:
                 #region Player One Input
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    // PauseMenu
+                    inputStatus.Start = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
                     // Confirm
@@ -187,6 +197,11 @@ public class PlayerInput
                 break;
             case PlayerIndex.Two:
                 #region Player Two Input
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    // PauseMenu
+                    inputStatus.Start = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.N))
                 {
                     // Confirm
@@ -242,6 +257,11 @@ public class PlayerInput
                 break;
             case PlayerIndex.Three:
                 #region Player Three Input
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    // PauseMenu
+                    inputStatus.Start = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.Home))
                 {
                     // Confirm

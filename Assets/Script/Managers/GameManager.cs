@@ -62,9 +62,8 @@ public class GameManager : MonoBehaviour {
                     AddPopulationUnit = KeyCode.X,
                     GoBack = KeyCode.E,
                     PlayerPower = KeyCode.Q,
-                    RemovePopulation = KeyCode.C
-                    
-                    
+                    RemovePopulation = KeyCode.C,
+                    Pause = KeyCode.Escape
 
                 });
 
@@ -82,8 +81,9 @@ public class GameManager : MonoBehaviour {
                 AddPopulationUnit = KeyCode.U,
                 GoBack = KeyCode.O,
                 PlayerPower = KeyCode.P,
-                RemovePopulation = KeyCode.M
-                
+                RemovePopulation = KeyCode.M,
+                Pause = KeyCode.Escape
+
             });
             
             Players[1].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y + 1, CellSize);
@@ -100,7 +100,8 @@ public class GameManager : MonoBehaviour {
                 AddPopulationUnit = KeyCode.PageUp,
                 GoBack = KeyCode.PageDown,
                 PlayerPower = KeyCode.Insert,
-                RemovePopulation = KeyCode.Keypad0
+                RemovePopulation = KeyCode.Keypad0,
+                Pause = KeyCode.Escape
 
             });
             

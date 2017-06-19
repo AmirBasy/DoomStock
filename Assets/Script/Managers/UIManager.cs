@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P1_Menu;
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;
+    public PauseMenu PauseMenu;
    
     #endregion
 
@@ -80,6 +81,18 @@ public class UIManager : MonoBehaviour
             case MenuTypes.PopulationMenu:
                 _menuBase.Init(_player);
                 return _menuBase;
+            case MenuTypes.Pause:
+                
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Back", NameLable = "Back" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Resume", NameLable = "Resume" } as ISelectable);
+                PauseMenu.Init(_player, FirstLevelSelectables);
+                return PauseMenu;
             case MenuTypes.Player:
 
                 CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];

@@ -571,15 +571,15 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224863641797479314}
-  - component: {fileID: 114432373496537430}
   - component: {fileID: 222934730542711194}
+  - component: {fileID: 114633330448758032}
   m_Layer: 5
-  m_Name: MenuPopulation
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1417235386135980
 GameObject:
   m_ObjectHideFlags: 1
@@ -2954,20 +2954,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114432373496537430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377914029518374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3302ca9b37f2ee48b8d700d99a554f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonPrefab: {fileID: 1438228900236034, guid: 8024579f8f2598443abab71f6c9dc4be,
-    type: 2}
-  MenuItemsContainer: {fileID: 224507191129249626}
 --- !u!114 &114448172412468614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3171,10 +3157,11 @@ MonoBehaviour:
   FaithText: {fileID: 114338834497924290}
   SpiritText: {fileID: 114306064244456138}
   logger: {fileID: 0}
-  _menuBase: {fileID: 114432373496537430}
+  _menuBase: {fileID: 0}
   P1_Menu: {fileID: 114796621104760998}
   P2_Menu: {fileID: 114706276703286602}
   P3_Menu: {fileID: 114760896457957166}
+  PauseMenu: {fileID: 114633330448758032}
 --- !u!114 &114515394683998190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3566,6 +3553,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114633330448758032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377914029518374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e009b665a283b44daf6c3c505ad1682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonPrefab: {fileID: 1438228900236034, guid: 8024579f8f2598443abab71f6c9dc4be,
+    type: 2}
+  MenuItemsContainer: {fileID: 224507191129249626}
 --- !u!114 &114644262908025270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3973,7 +3974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13743511, g: 0.60294116, b: 0.4873673, a: 0.259}
+  m_Color: {r: 0.24805364, g: 0.774445, b: 0.9117647, a: 0.259}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6161,7 +6162,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 479, y: 300}
+  m_SizeDelta: {x: 714, y: 623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224514458501529624
 RectTransform:
@@ -6757,8 +6758,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: 34.5}
-  m_SizeDelta: {x: 479, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 714, y: 623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224901355366370992
 RectTransform:

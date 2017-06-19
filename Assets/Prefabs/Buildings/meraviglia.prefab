@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 33815878225305870}
   - component: {fileID: 23741848770342470}
   m_Layer: 0
-  m_Name: Meraviglia
+  m_Name: meraviglia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

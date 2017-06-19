@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopulationMenuComponent : MenuBase
+public class PauseMenu : MenuBase
 {
 
     public override void LoadSelections()
@@ -13,21 +13,30 @@ public class PopulationMenuComponent : MenuBase
         switch (ScelteFatte.Count)
         {
             case 0:
-                Time.timeScale = 0.1f;
-                foreach (var p in GameManager.I.populationManager.GetAllFreePeople())
+                if (firstLevelSelections != null)
                 {
-                    PossibiliScelteAttuali.Add(p);
+                    foreach (ISelectable selectable in firstLevelSelections)
+                    {
+                        PossibiliScelteAttuali.Add(selectable);
+                    }
                 }
                 break;
             case 1:
-                foreach (var bView in CurrentPlayer.BuildingsInScene)
+                Time.timeScale = 0.00000000001f;
+                switch (ScelteFatte[0].UniqueID)
                 {
-                    //if (bView.Data.currentState != BuildingData.BuildingState.Debris)
-                    //{
-                    //    PossibiliScelteAttuali.Add(bView.Data);
-                    //}
+                    case "Restart":
+                        break;
+                    case "Back To Menu":
+                        break;
+                    case "Exit":
+                        break;
+                    case "Resume":
+                        break;
+                    default:
+                        break;
                 }
-                    break;
+                break;
             case 2:
                 DoAction();
                 return;
@@ -38,14 +47,21 @@ public class PopulationMenuComponent : MenuBase
 
     public override void DoAction()
     {
-
-
-
-        CurrentPlayer.AddPopulation(ScelteFatte[1] as BuildingData, ScelteFatte[0].UniqueID);
+        switch (ScelteFatte[0].UniqueID)
+        {
+            case "Restart":
+                break;
+            case "Back":
+                break;
+            case "Exit":
+                break;
+            case "Resume":
+                break;
+            default:
+                break;
+        }
         ScelteFatte.Clear();
         Show(false);
-
-
     }
 
     #region event subscriptions
