@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MenuBase
 {
@@ -22,22 +23,19 @@ public class PauseMenu : MenuBase
                 }
                 break;
             case 1:
-                Time.timeScale = 0.00000000001f;
-                switch (ScelteFatte[0].UniqueID)
-                {
-                    case "Restart":
-                        break;
-                    case "Back To Menu":
-                        break;
-                    case "Exit":
-                        break;
-                    case "Resume":
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2:
+                //switch (ScelteFatte[0].UniqueID)
+                //{
+                //    case "Restart":
+                //        break;
+                //    case "Back To Menu":
+                //        break;
+                //    case "Exit":
+                //        break;
+                //    case "Resume":
+                //        break;
+                //    default:
+                //        break;
+                //}
                 DoAction();
                 return;
         }
@@ -50,12 +48,16 @@ public class PauseMenu : MenuBase
         switch (ScelteFatte[0].UniqueID)
         {
             case "Restart":
+                SceneManager.LoadScene("TestPlayerScene");
                 break;
-            case "Back":
+            case "Back To Menu":
+                SceneManager.LoadScene("MainMenuScene");
                 break;
             case "Exit":
+                Application.Quit();
                 break;
             case "Resume":
+                GameManager.I.NormalTime();
                 break;
             default:
                 break;

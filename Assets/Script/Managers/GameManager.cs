@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.O,
                 PlayerPower = KeyCode.P,
                 RemovePopulation = KeyCode.M,
-                Pause = KeyCode.Escape
+                Pause = KeyCode.F5
 
             });
             
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour {
                 GoBack = KeyCode.PageDown,
                 PlayerPower = KeyCode.Insert,
                 RemovePopulation = KeyCode.Keypad0,
-                Pause = KeyCode.Escape
+                Pause = KeyCode.Keypad0
 
             });
             
@@ -263,6 +263,9 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
+    public void NormalTime() {
+        Time.timeScale = 1.0f;
+    }
     #endregion
 
     #region Eventi

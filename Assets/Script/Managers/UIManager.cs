@@ -82,15 +82,15 @@ public class UIManager : MonoBehaviour
                 _menuBase.Init(_player);
                 return _menuBase;
             case MenuTypes.Pause:
-                
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Resume", NameLable = "Resume" } as ISelectable);
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
                 FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "Back", NameLable = "Back" } as ISelectable);
+                                      new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
-                FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "Resume", NameLable = "Resume" } as ISelectable);
+                
                 PauseMenu.Init(_player, FirstLevelSelectables);
                 return PauseMenu;
             case MenuTypes.Player:

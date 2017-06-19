@@ -514,6 +514,7 @@ public class Player : PlayerBase
             {
                 GameManager.I.soundManager.BackMenuSound();
                 currentMenu.GoBack();
+                
             }
         }
 

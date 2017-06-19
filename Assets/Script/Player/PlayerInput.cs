@@ -197,7 +197,7 @@ public class PlayerInput
                 break;
             case PlayerIndex.Two:
                 #region Player Two Input
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.F5))
                 {
                     // PauseMenu
                     inputStatus.Start = ButtonState.Pressed;
@@ -257,7 +257,7 @@ public class PlayerInput
                 break;
             case PlayerIndex.Three:
                 #region Player Three Input
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Keypad0))
                 {
                     // PauseMenu
                     inputStatus.Start = ButtonState.Pressed;
