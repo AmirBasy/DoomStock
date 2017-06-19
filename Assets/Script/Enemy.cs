@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         set
         {
             _currentPosition = value;
-            
+           
         }
     }
 
@@ -283,8 +283,6 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     public bool Attack(BuildingData target)
     {
         currentState = enemyState.Attack;
-        // TODO: al momento l'attacco ditrugge immediatamente l'edificio.
-        //GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
 
         if (target)
         {
@@ -321,6 +319,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
             CurrentPosition = _startPos;
+            
         });
 
 

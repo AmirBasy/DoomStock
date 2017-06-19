@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Cava
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 0a58ac719728c3844ac7052bf4b84e54, type: 3}
+  _particleController: {fileID: 0}
   TimedEvents: []
   BuildingResources: []
   Delay: 0
@@ -25,7 +27,6 @@ MonoBehaviour:
   WoodActualValue: 0
   BuildPrefab: {fileID: 114738394615572112, guid: 1a6c3f3d07238404394dec7bc49084ac,
     type: 2}
-  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0

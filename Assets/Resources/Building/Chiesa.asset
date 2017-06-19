@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Chiesa
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3cf96f81f5d71094e8036bde74cc9595, type: 3}
+  _particleController: {fileID: 0}
   TimedEvents: []
   BuildingResources: []
-  ProductionCounter: 0
   Delay: 10
+  CounterLimit: 0
   AttackRange: {x: 0, y: 0}
   BuildingTime: 15
   ID: Chiesa
@@ -25,7 +27,6 @@ MonoBehaviour:
   WoodActualValue: 0
   BuildPrefab: {fileID: 114996123228490774, guid: d5353da13de4bc34cab74b510fe96b48,
     type: 2}
-  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0

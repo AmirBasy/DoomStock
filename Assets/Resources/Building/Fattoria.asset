@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Fattoria
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 689a8ee7309556c48bf5ca01b89a8bcc, type: 3}
+  Icon: {fileID: 21300000, guid: ec41c73ae0242954d8af4de84c78615b, type: 3}
+  _particleController: {fileID: 0}
   TimedEvents: []
   BuildingResources: []
   Delay: 0
@@ -26,7 +27,6 @@ MonoBehaviour:
   WoodActualValue: 0
   BuildPrefab: {fileID: 114682099603519146, guid: f98e6d2c826e3c44fbe56ed5a21de46a,
     type: 2}
-  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
   DamageResistance: 0

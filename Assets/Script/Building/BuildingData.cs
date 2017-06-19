@@ -88,8 +88,14 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Target Enemy
     /// </summary>
-    public Enemy EnemyTarget;
-
+    private Enemy enemyTarget;
+    public Enemy EnemyTarget
+    {
+        get { return EnemyTarget; }
+        set { EnemyTarget = value;
+            //GetEnemyInCell();
+        }
+    }
     /// <summary>
     /// Variabile che indica la potenza di "fuoco" dell'edificio
     /// </summary>
@@ -133,7 +139,23 @@ public class BuildingData : ScriptableObject, ISelectable
     }
     #endregion
 
+
+
     #region API
+
+
+    //public void GetEnemyInCell() {
+    //    if (EnemyTarget == null)
+    //    {
+    //        foreach (CellDoomstock item in GameManager.I.gridController.GetNeighboursStar(Cell,1))
+    //        {
+    //            EnemyTarget.CurrentPosition = item;
+
+    //        }
+    //    }
+    //}
+
+
     /// <summary>
     /// Attiva gli effetti particellari
     /// </summary>

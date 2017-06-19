@@ -40,8 +40,6 @@ public class BuildingView : MonoBehaviour
     public Animation animation;
     ParticlesController _particle;
 
-
-
     #endregion
 
     #region LifeCycle
