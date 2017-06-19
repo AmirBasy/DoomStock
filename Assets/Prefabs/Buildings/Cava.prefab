@@ -453,7 +453,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971166284845916}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4973382360861506}
@@ -467,7 +467,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1495520135707854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.064, z: 0}
+  m_LocalPosition: {x: 0, y: 0.064, z: -172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4391358931400086}
@@ -506,13 +506,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1821189771462130}
-  m_LocalRotation: {x: 0.7071068, y: -0.00000002980233, z: -0.00000002980233, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.227, y: 0, z: 0}
   m_LocalScale: {x: 1.0000004, y: 0.7408569, z: 0.68067646}
   m_Children: []
   m_Father: {fileID: 4192235981190192}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 270, y: 90.00001, z: -90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!4 &4512576608491746
 Transform:
   m_ObjectHideFlags: 1
@@ -571,13 +571,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823043216667584}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000004, y: 0.7408569, z: 0.68067646}
   m_Children: []
   m_Father: {fileID: 4192235981190192}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4730880217793374
 Transform:
   m_ObjectHideFlags: 1
@@ -610,13 +610,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557424068292562}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.50000006, y: -0.5, z: 0.50000006, w: 0.5}
+  m_LocalPosition: {x: 0.045, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4192235981190192}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 90.00001}
 --- !u!4 &4973382360861506
 Transform:
   m_ObjectHideFlags: 1
@@ -1196,12 +1196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3ec0db2d80efb47b25d738077f1fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Destruction: {fileID: 198673588458693582, guid: 6f1e22f75da5f2440858ddbf8dcbce89,
-    type: 2}
-  SmallFire: {fileID: 198184375906991152, guid: f98e6d2c826e3c44fbe56ed5a21de46a,
-    type: 2}
-  BigFire: {fileID: 198576950307604696, guid: f98e6d2c826e3c44fbe56ed5a21de46a, type: 2}
-  Smoke: {fileID: 198611103615894700, guid: f98e6d2c826e3c44fbe56ed5a21de46a, type: 2}
+  Destruction: {fileID: 198474489306807812}
+  SmallFire: {fileID: 198001439207037012}
+  BigFire: {fileID: 198326569165555686}
+  Smoke: {fileID: 198490563609347410}
 --- !u!198 &198001439207037012
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1259,7 +1257,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1425010367
+  randomSeed: -126438709
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7511,7 +7509,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -99499210
+  randomSeed: -1246021427
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13679,7 +13677,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -402787062
+  randomSeed: 849197629
   InitialModule:
     serializedVersion: 3
     enabled: 1
