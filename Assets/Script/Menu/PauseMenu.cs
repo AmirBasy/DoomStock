@@ -51,7 +51,7 @@ public class PauseMenu : MenuBase
                 SceneManager.LoadScene("TestPlayerScene");
                 break;
             case "Back To Menu":
-                SceneManager.LoadScene("MainMenuScene");
+                SceneManager.LoadScene("MainMenu");
                 break;
             case "Exit":
                 Application.Quit();
