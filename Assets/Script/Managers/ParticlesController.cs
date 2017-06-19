@@ -56,22 +56,25 @@ public class ParticlesController : MonoBehaviour
     /// </summary>
     public void StopParticles(ParticlesType _type)
     {
-        switch (_type)
+        if (_type != null)
         {
-            case ParticlesType._destruction:
-                Destruction.Stop();
-                break;
-            case ParticlesType._smallFire:
-                SmallFire.Stop();
-                break;
-            case ParticlesType._bigFire:
-                BigFire.Stop();
-                break;
-            case ParticlesType._smoke:
-                Smoke.Stop();
-                break;
-            default:
-                break;
+            switch (_type)
+            {
+                case ParticlesType._destruction:
+                    Destruction.Stop();
+                    break;
+                case ParticlesType._smallFire:
+                    SmallFire.Stop();
+                    break;
+                case ParticlesType._bigFire:
+                    BigFire.Stop();
+                    break;
+                case ParticlesType._smoke:
+                    Smoke.Stop();
+                    break;
+                default:
+                    break;
+            } 
         }
     }
     #endregion
