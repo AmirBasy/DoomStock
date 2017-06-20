@@ -106,6 +106,14 @@ public class UIManager : MonoBehaviour
                                        new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable); 
                         }
                         break;
+                    case CellDoomstock.CellStatus.Hole:
+
+                        if (cell.Type != CellDoomstock.CellType.Forest)
+                        {
+                            FirstLevelSelectables.Add(
+                                       new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
+                        }
+                        break;
                     case CellDoomstock.CellStatus.Filled:
                         if (cell.building.PlayerOwner == _player)
                         {
