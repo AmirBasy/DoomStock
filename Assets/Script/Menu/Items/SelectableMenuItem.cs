@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectableMenuItem : MonoBehaviour {
+public class SelectableMenuItem : MonoBehaviour
+{
 
     public Image IconData;
     public Text Lable;
     public ISelectable SelectionData;
 
-    public void SetData(ISelectable data) {
+    public void SetData(ISelectable data)
+    {
 
         SelectionData = data;
         if (data.IconToGet == null)
             Lable.text = data.NameLable;
-        else {
-            Lable.text = "";   
+        else
+        {
+            Lable.text = "";
         }
-        if (data.IconToGet) {
+        if (data.IconToGet)
+        {
             IconData.sprite = data.IconToGet;
 
         }
     }
 
-    public void Select(bool _isSelected) {
+    public void Select(bool _isSelected)
+    {
         if (_isSelected == true)
             IconData.color = Color.red;
         else
             IconData.color = Color.white;
-
     }
-
 }

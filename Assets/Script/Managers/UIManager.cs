@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
         WoodText.text = " = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
         FaithText.text = " = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
         SpiritText.text = " = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
- 
+
     }
 
     #endregion
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;
     public PauseMenu PauseMenu;
-   
+
     #endregion
 
     #endregion
@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
                                       new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
-                
+
                 PauseMenu.Init(_player, FirstLevelSelectables);
                 return PauseMenu;
             case MenuTypes.Player:
@@ -103,7 +103,7 @@ public class UIManager : MonoBehaviour
                         if (cell.Type != CellDoomstock.CellType.Forest)
                         {
                             FirstLevelSelectables.Add(
-                                       new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable); 
+                                       new Selector() { UniqueID = " + Building", NameLable = "Add Building" } as ISelectable);
                         }
                         break;
                     case CellDoomstock.CellStatus.Hole:
@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviour
                             //{
                             //    FirstLevelSelectables.Add(new Selector() { UniqueID = " + People", NameLable = "Add People" } as ISelectable);
                             //}
-                            if(cell.building.CurrentState == BuildingState.Ready)
+                            if (cell.building.CurrentState == BuildingState.Ready)
                             {
                                 FirstLevelSelectables.Add(new Selector() { UniqueID = " Prendi ", NameLable = " Prendi " } as ISelectable);
                             }
@@ -171,7 +171,7 @@ public class UIManager : MonoBehaviour
                         //    new Selector() { UniqueID = "Miracle", NameLable = "Miracle" } as ISelectable);
                         P3_Menu.Init(_player, FirstLevelSelectables);
                         return P3_Menu;
-                    
+
                     default:
                         break;
                 }
