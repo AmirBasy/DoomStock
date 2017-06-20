@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour {
     #region SETUP
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         if (I == null)
         {
             I = this;
@@ -142,7 +142,10 @@ public class GameManager : MonoBehaviour {
     public BuildingData forest;
     private void Start()
     {
-     
+        Init(); 
+    }
+
+    public void Init() {
         GridSetUp();
         foreach (var item in buildingManager.buildingsData)
         {
@@ -152,9 +155,7 @@ public class GameManager : MonoBehaviour {
         SetupForest(forest);
         SetupPlayers();
         SetupResources();
-
-        
-    } 
+    }
     #endregion
 
     #region GRID

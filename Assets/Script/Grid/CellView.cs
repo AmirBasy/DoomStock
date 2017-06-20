@@ -5,26 +5,26 @@ using UnityEngine;
 public class CellView : MonoBehaviour
 {
     CellDoomstock data = null;
-    Renderer rend;
-    public Material[] Color;
+    //Renderer rend;
+    //public Material[] Color;
 
     public void Init(CellDoomstock _data) {
         data = _data;
         data.OnDataChanged = null;
         data.OnDataChanged += OnDataChanged;
-        rend = GetComponentInChildren<Renderer>();
-        rend.enabled = true;
-        if (data.Status == CellDoomstock.CellStatus.Hole)
-        {
-            rend.material = Color[0];
-        }
-        //else if (data.Cost > 5) {
-        //    rend.material = Color[1];
+        //rend = GetComponentInChildren<Renderer>();
+        //rend.enabled = true;
+        //if (data.Status == CellDoomstock.CellStatus.Hole)
+        //{
+        //    rend.material = Color[0];
         //}
-        else
-        {
-            return;
-        }
+        ////else if (data.Cost > 5) {
+        ////    rend.material = Color[1];
+        ////}
+        //else
+        //{
+        //    return;
+        //}
 
     }
 

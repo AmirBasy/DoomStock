@@ -67,7 +67,7 @@ public class PopulationManager : MonoBehaviour
     void Awake()
     {
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
     }
 
