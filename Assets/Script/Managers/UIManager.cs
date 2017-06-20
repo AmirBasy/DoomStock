@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// testo visibile per ogni risorsa.
     /// </summary>
-    public Text FoodText, StoneText, WoodText, FaithText, SpiritText;
+    public Text FoodText, StoneText, WoodText, FaithText,PopulationText;
 
     #region Logger
 
-    public Logger logger;
+    [HideInInspector]public Logger logger;
 
     #endregion
 
@@ -28,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateGraphic();
+            UpdateGraphic();
     }
 
     private void UpdateGraphic()
@@ -37,7 +38,7 @@ public class UIManager : MonoBehaviour
         StoneText.text = " = " + GameManager.I.GetResourceDataByID("Stone").Value.ToString();
         WoodText.text = " = " + GameManager.I.GetResourceDataByID("Wood").Value.ToString();
         FaithText.text = " = " + GameManager.I.GetResourceDataByID("Faith").Value.ToString();
-        SpiritText.text = " = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
+        //SpiritText.text = " = " + GameManager.I.GetResourceDataByID("Spirit").Value.ToString();
 
     }
 
@@ -48,7 +49,7 @@ public class UIManager : MonoBehaviour
     #region Menu
 
     [Header("All Menu")]
-    public MenuBase _menuBase;
+    [HideInInspector]public MenuBase _menuBase;//Populatio menu
     public PlayerMenuComponent P1_Menu;
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;

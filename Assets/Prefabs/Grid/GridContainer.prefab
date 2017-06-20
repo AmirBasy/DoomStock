@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4497645643453024}
   - component: {fileID: 114579272899063886}
   m_Layer: 0
-  m_Name: GridContainer 1
+  m_Name: GridContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,6 +64,6 @@ MonoBehaviour:
   - {x: 0, y: 2}
   - {x: 0, y: 3}
   - {x: 0, y: 4}
-  heightmap: {fileID: 2800000, guid: 4a0a9935b86a7aa4e9e3ce3799e9db44, type: 3}
-  heightmapTerreinType: {fileID: 2800000, guid: a3a27f6a080dde2489a7ba8ac7af8664,
+  heightmap: {fileID: 2800000, guid: b05eb8924e752a44483c0ccee67a29a5, type: 3}
+  heightmapTerreinType: {fileID: 2800000, guid: 3d22cc581a585a64286cd79f1cbcd3e9,
     type: 3}

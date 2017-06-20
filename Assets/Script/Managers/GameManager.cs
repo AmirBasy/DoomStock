@@ -24,16 +24,27 @@ public class GameManager : MonoBehaviour {
     public int InitialFood, InitialWood, InitialStone, InitialFaith;
 
     public List<BuildingView> forestInScene;
-    
+
+    public GameObject GridControllerPrefab;
+    public GameObject BuildingManagerPrefab;
+    public GameObject PopulationmanagerPrefab;
+    public GameObject TimeEventManagerPrefab;
+    public GameObject ResourcesManagerPrefab;
+    public GameObject UiMangerPrefab;
+    public GameObject MessageManagerPrefab;
+    public GameObject SoundMangerPrefab;
+    public GameObject Enemymanager;
+
     #region Managers
-    public GridControllerDoomstock gridController;
-    public TimeEventManager timeEventManager;
-    public PopulationManager populationManager;
-    public BuildingManager buildingManager;
-    public ResourcesManager resourcesManager;
-    public UIManager uiManager;
-    public MessagesManager messagesManager;
-    public SoundManager soundManager;
+    [HideInInspector] public GridControllerDoomstock gridController;
+    [HideInInspector] public TimeEventManager timeEventManager;
+    [HideInInspector] public PopulationManager populationManager;
+    [HideInInspector] public BuildingManager buildingManager;
+    [HideInInspector] public ResourcesManager resourcesManager;
+    [HideInInspector] public UIManager uiManager;
+    [HideInInspector] public MessagesManager messagesManager;
+    [HideInInspector] public SoundManager soundManager;
+    [HideInInspector] public EnemyManager enemymanager;
     #endregion
 
     #region Players
@@ -41,15 +52,21 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Lista dei player.
     /// </summary>
-    public List<Player> Players;
+    public List<GameObject> PlayersPrefab;
 
-    /// <summary>
-    /// cursore
-    /// </summary>
-    public GameObject PlayerPrefab;
+    [HideInInspector]public List<Player> Players;
 
     public void SetupPlayers() {
+        
         CellDoomstock hole = gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole);
+        for (int i = 0; i < PlayersPrefab.Count; i++)
+        {   
+           Player tempPlayer =  Instantiate(PlayersPrefab[i],transform).GetComponent<Player>();
+            Players.Add(tempPlayer);
+            tempPlayer.currentMenu = null;
+            Debug.Log(Players.Count);
+        }
+        
         if (Players[0] != null) {
             Players[0].SetupInput(
                 new PlayerInputData()
@@ -85,7 +102,7 @@ public class GameManager : MonoBehaviour {
                 Pause = KeyCode.F5
 
             });
-            
+
             Players[1].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y + 1, CellSize);
         }
 
@@ -104,7 +121,7 @@ public class GameManager : MonoBehaviour {
                 Pause = KeyCode.Keypad0
 
             });
-            
+
             Players[2].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y + 1, CellSize);
         }
 
@@ -132,20 +149,49 @@ public class GameManager : MonoBehaviour {
     #region SETUP
     void Awake()
     {
-        //DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
         if (I == null)
         {
             I = this;
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
     }
     public BuildingData forest;
-    private void Start()
+
+    public void ExitGamePlay()
     {
-        Init(); 
+        foreach (Player item in Players)
+        {
+            Destroy(item.gameObject);
+        }
+        Players.Clear();
+        Destroy(gridController.gameObject);
+        Destroy(timeEventManager.gameObject);
+        Destroy(populationManager.gameObject);
+        Destroy(buildingManager.gameObject);
+        Destroy(resourcesManager.gameObject);
+        Destroy(uiManager.gameObject);
+        Destroy(messagesManager.gameObject);
+        Destroy(soundManager.gameObject);
+    }
+
+    public void InstantiateManagers() {
+        gridController = Instantiate(GridControllerPrefab,transform).GetComponent<GridControllerDoomstock>();
+        timeEventManager = Instantiate(TimeEventManagerPrefab, transform).GetComponent<TimeEventManager>();
+        populationManager = Instantiate(PopulationmanagerPrefab, transform).GetComponent<PopulationManager>();
+        buildingManager = Instantiate(BuildingManagerPrefab, transform).GetComponent<BuildingManager>();
+        resourcesManager = Instantiate(ResourcesManagerPrefab, transform).GetComponent<ResourcesManager>();
+        uiManager = Instantiate(UiMangerPrefab, transform).GetComponent<UIManager>();
+        messagesManager = Instantiate(MessageManagerPrefab, transform).GetComponent<MessagesManager>();
+        soundManager = Instantiate(SoundMangerPrefab, transform).GetComponent<SoundManager>();
     }
 
     public void Init() {
+        InstantiateManagers();
         GridSetUp();
         foreach (var item in buildingManager.buildingsData)
         {
@@ -153,7 +199,9 @@ public class GameManager : MonoBehaviour {
                 forest = item;
         }
         SetupForest(forest);
-        SetupPlayers();
+        
+        SetupPlayers(); 
+
         SetupResources();
     }
     #endregion
@@ -219,8 +267,10 @@ public class GameManager : MonoBehaviour {
                 CurrentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) +0.5f, item.WorldPosition.y - (CellSize / 2) -0.30f , item.WorldPosition.z+0.5f );
                 forestInScene.Add(CurrentBuildView);
                 item.SetStatus(CellDoomstock.CellStatus.Filled, CurrentBuildView.Data);
+                Debug.Log(CurrentBuildView.Data.ID);
             }
         }
+        
         
     }
 

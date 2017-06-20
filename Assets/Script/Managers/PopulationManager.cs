@@ -67,7 +67,7 @@ public class PopulationManager : MonoBehaviour
     void Awake()
     {
 
-        //DontDestroyOnLoad(this.gameObject);
+       //DontDestroyOnLoad(this.gameObject);
 
     }
 
@@ -92,8 +92,9 @@ public class PopulationManager : MonoBehaviour
     /// <param name="_newText"></param>
     private void UpdateGraphic(string _newText)
     {
-        if (MainPeopleText)
-            MainPeopleText.text = _newText;
+        //if (MainPeopleText)
+            GameManager.I.uiManager.PopulationText.text = _newText;
+            //MainPeopleText.text = _newText;
     }
 
     /// <summary>

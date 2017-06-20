@@ -3107,7 +3107,7 @@ MonoBehaviour:
   StoneText: {fileID: 114530072989011272}
   WoodText: {fileID: 114966798404364226}
   FaithText: {fileID: 114338834497924290}
-  SpiritText: {fileID: 114306064244456138}
+  PopulationText: {fileID: 114175672110470492}
   logger: {fileID: 0}
   _menuBase: {fileID: 0}
   P1_Menu: {fileID: 114796621104760998}

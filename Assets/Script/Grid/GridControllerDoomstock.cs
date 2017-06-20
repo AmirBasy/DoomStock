@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Framework.Grid;
-public class GridControllerDoomstock : GridController<CellDoomstock> {
+public class GridControllerDoomstock : GridController<CellDoomstock>
+{
 
     /// <summary>
     /// Texture da cui prendere i dati.
@@ -14,17 +15,21 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     /// </summary>
     /// <param name="uniqueID"></param>
     /// <returns></returns>
-    public Vector2 GetBuildingPositionByUniqueID(string uniqueID) {
-        foreach (CellDoomstock item in Cells) {
-            if (item.building) {
+    public Vector2 GetBuildingPositionByUniqueID(string uniqueID)
+    {
+        foreach (CellDoomstock item in Cells)
+        {
+            if (item.building)
+            {
                 if (item.building.UniqueID == uniqueID)
-                    return item.GridPosition; 
+                    return item.GridPosition;
             }
         }
-        return new Vector2 (-1,-1);
+        return new Vector2(-1, -1);
     }
 
-    public CellDoomstock GetCellFromBuilding(BuildingData _building) {
+    public CellDoomstock GetCellFromBuilding(BuildingData _building)
+    {
         Vector2 pos = GetBuildingPositionByUniqueID(_building.UniqueID);
         //TODO: controllare se la cella esiste
         return Cells[(int)pos.x, (int)pos.y];
@@ -38,14 +43,15 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         int heightAmount = 5;
 
         base.GenerateMap(false);
-       
 
- 
+
+
 
         Color[,] terrainTypeColors = GetGridDataFromTexture(heightmapTerreinType, (int)GridSize.x, (int)GridSize.y);
         Color[,] heightValues = GetGridDataFromTexture(heightmap, (int)GridSize.x, (int)GridSize.y);
 
-        foreach (var cell in Cells) {
+        foreach (var cell in Cells)
+        {
             // Calcolo altezza
             float colorPixelValue = heightValues[(int)cell.GetGridPosition().x, (int)cell.GetGridPosition().y].grayscale;
             cell.WorldPosition += new Vector3(0, colorPixelValue * heightAmount, 0);
@@ -56,7 +62,8 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             //roccia: #0000ffff 
             //nullo: #ffffffff
             string colorRGB = ColorUtility.ToHtmlStringRGB(terrainTypeColors[(int)cell.GetGridPosition().x, (int)cell.GetGridPosition().y]);
-            switch (colorRGB) {
+            switch (colorRGB)
+            {
                 case "FFFFFF":
                     cell.SetType(CellDoomstock.CellType.Nullo);
                     cell.Cost = 10;
@@ -76,11 +83,12 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
                 default:
                     //Debug.Log("colore non trovato " + colorRGB);
                     break;
-                    
+
             }
 
             if (createView)
                 CreateGridTileView(cell.WorldPosition, cell);
+
             //cell.SetStatus(CellDoomstock.CellStatus.Empty);
             Cells[(int)(GridSize.x / 2), (int)(GridSize.y / 2)].SetStatus(CellDoomstock.CellStatus.Hole);
         }
@@ -94,13 +102,15 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     /// <param name="gridWidth"></param>
     /// <param name="gridHeight"></param>
     /// <returns></returns>
-    Color[,] GetGridDataFromTexture(Texture2D _texture, int gridWidth, int gridHeight) {
+    Color[,] GetGridDataFromTexture(Texture2D _texture, int gridWidth, int gridHeight)
+    {
         Color[,] returnColors = new Color[gridWidth, gridHeight];
 
         int cellWidth = _texture.width / gridWidth;
         int cellHeight = _texture.height / gridHeight;
 
-        foreach (CellDoomstock cell in Cells) {
+        foreach (CellDoomstock cell in Cells)
+        {
             int xPixelPosition = (int)(cell.GridPosition.x * cellWidth) + (cellWidth / 2);
             int yPixelPosition = (int)(cell.GridPosition.y * cellHeight) + (cellHeight / 2);
             Color resultColor = _texture.GetPixel(xPixelPosition, yPixelPosition);
@@ -123,6 +133,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
         GameObject returnCellView = base.CreateGridTileView(tilePosition, cellData);
         returnCellView.GetComponent<CellView>().Init(cellData as CellDoomstock);
         returnCellView.transform.GetChild(0).transform.localScale = new Vector3(returnCellView.transform.GetChild(0).transform.localScale.x * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.y * GameManager.I.CellSize, returnCellView.transform.GetChild(0).transform.localScale.z * GameManager.I.CellSize);
+
         return returnCellView;
     }
 
@@ -134,7 +145,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     /// <param name="_player"></param>
     public override void MoveToGridPosition(int Xnext, int Ynext, Player _player)
     {
-        int XOldPlayer = _player.XpositionOnGrid ;
+        int XOldPlayer = _player.XpositionOnGrid;
         int YOldPlayer = _player.YpositionOnGrid;
         if (Xnext < 0 || Ynext < 0 || Xnext > GridSize.x - 1 || Ynext > GridSize.y - 1)
             return;
@@ -142,7 +153,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             Cells[XOldPlayer, YOldPlayer].PlayersQueue.Remove(_player);
         base.MoveToGridPosition(Xnext, Ynext, _player);
         Cells[Xnext, Ynext].PlayersQueue.Add(_player);
-        
+
     }
 
     /// <summary>
@@ -162,14 +173,17 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     /// </summary>
     /// <param name="status"></param>
     /// <returns></returns>
-    public CellDoomstock GetCellPositionByStatus (CellDoomstock.CellStatus status) {
-        foreach (CellDoomstock item in Cells) {
+    public CellDoomstock GetCellPositionByStatus(CellDoomstock.CellStatus status)
+    {
+        foreach (CellDoomstock item in Cells)
+        {
             if (item.Status == status)
                 return item;
         }
         return null;
     }
-  
+
+
 }
 
 

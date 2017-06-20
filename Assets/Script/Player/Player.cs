@@ -32,7 +32,7 @@ public class Player : PlayerBase
 
     private void Start()
     {
-        playerInput = new PlayerInput(InputPlayerIndex);
+            playerInput = new PlayerInput(InputPlayerIndex); 
         LoadResourcesProductionModifiers();
     }
 
@@ -282,7 +282,7 @@ public class Player : PlayerBase
     bool isReleasedVertical = true;
 
     // TODO: rifattorizzare creando state machine player
-    IMenu currentMenu = null;
+    [HideInInspector]public IMenu currentMenu = null;
     /// <summary>
     /// costo di fede per la demolizione
     /// </summary>

@@ -52,8 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainPeopleText: {fileID: 0}
-  MinLife: 5
-  MaxLife: 6
   MinFoodRequirement: 1
   MaxFoodRequirement: 1
   Startpop: 0

@@ -105,8 +105,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986654954083166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 22.57}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.8, y: 1.5190394, z: 5.2000003}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4453924354568572}
   - {fileID: 4243997616232788}
@@ -328,8 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Sindaco
   MaxCellCost: 5
-  XpositionOnGrid: 0
-  YpositionOnGrid: 0
+  XpositionOnGrid: 6
+  YpositionOnGrid: 6
   BuildingsInScene: []
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: b1dc6edb3630063429fb1352fac608ff, type: 2}
@@ -347,6 +347,7 @@ MonoBehaviour:
   DemolitionCost: 0
   CleroAbilityCost: 0
   RiparationCost: 1
+  Cooldown_Click: 0
 --- !u!114 &114938300266112566
 MonoBehaviour:
   m_ObjectHideFlags: 1

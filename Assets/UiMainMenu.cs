@@ -14,6 +14,7 @@ public class UiMainMenu : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.A))
         {
             SceneManager.LoadScene("TestPlayerScene");
+            GameManager.I.Init();
         }
 	}
 }

@@ -102,8 +102,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481515458354618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 17.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.8, y: 1.6991372, z: 6.8}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4011634609873064}
   m_Father: {fileID: 0}
@@ -258,8 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Esercito
   MaxCellCost: 5
-  XpositionOnGrid: 0
-  YpositionOnGrid: 0
+  XpositionOnGrid: 6
+  YpositionOnGrid: 8
   BuildingsInScene: []
   BuildingsDataPrefabs:
   - {fileID: 11400000, guid: ca884cc5107499d4683bde1e3bb3b183, type: 2}
@@ -274,6 +274,10 @@ MonoBehaviour:
     Muro: 0
     Torretta: 0
   InputPlayerIndex: 1
+  DemolitionCost: 0
+  CleroAbilityCost: 0
+  RiparationCost: 0
+  Cooldown_Click: 0
 --- !u!114 &114943878919036380
 MonoBehaviour:
   m_ObjectHideFlags: 1
