@@ -53,10 +53,10 @@ public class UiInformation : MonoBehaviour {
                 ColorUtility.TryParseHtmlString(MessagesManager.RemovePopulationColor, out backgroundColor);
                 IconString = "rimozione_popolano";
                 break;
-            case MessageLableType.SpiritProduction:
-                ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
-                IconString = iconToGet;
-                break;
+            //case MessageLableType.SpiritProduction:
+            //    ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
+            //    IconString = iconToGet;
+            //    break;
             case MessageLableType.Reparing:
                 ColorUtility.TryParseHtmlString(MessagesManager.ReparingColor, out backgroundColor);
                 IconString = "accetta";

@@ -62,6 +62,7 @@ public class PauseMenu : MenuBase
             default:
                 break;
         }
+        Time.timeScale = 1;
         ScelteFatte.Clear();
         Show(false);
     }
