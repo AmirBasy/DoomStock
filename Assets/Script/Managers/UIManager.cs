@@ -90,6 +90,8 @@ public class UIManager : MonoBehaviour
                                       new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                     new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
 
                 PauseMenu.Init(_player, FirstLevelSelectables);
                 return PauseMenu;

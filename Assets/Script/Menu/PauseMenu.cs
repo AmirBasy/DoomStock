@@ -59,6 +59,9 @@ public class PauseMenu : MenuBase
             case "Resume":
                 GameManager.I.NormalTime();
                 break;
+            case "Credits":
+                SceneManager.LoadScene("Credits");
+                break;
             default:
                 break;
         }
