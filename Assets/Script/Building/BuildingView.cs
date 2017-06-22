@@ -28,7 +28,6 @@ public class BuildingView : MonoBehaviour
     #region Proprietà
     [Header("View")]
 
-
     /// <summary>
     /// Dato della view.
     /// </summary>

@@ -70,7 +70,8 @@ public class CellDoomstock : Cell, INode {
         Secco,
         Erba,
         Roccia,
-        Nullo
+        Nullo,
+        Meraviglia
     }
     public void SetStatus(CellStatus status, BuildingData _building = null) {
         Status = status;

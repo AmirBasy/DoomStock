@@ -73,6 +73,9 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
                 case "0000FF":
                     cell.SetType(CellDoomstock.CellType.Roccia);
                     break;
+                case "FFCC00":
+                    cell.SetType(CellDoomstock.CellType.Meraviglia);
+                    break;
                 default:
                     //Debug.Log("colore non trovato " + colorRGB);
                     break;
@@ -107,9 +110,7 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
             returnColors[(int)cell.GridPosition.x, (int)cell.GridPosition.y] = resultColor;
 
         }
-
         return returnColors;
-
     }
 
     /// <summary>

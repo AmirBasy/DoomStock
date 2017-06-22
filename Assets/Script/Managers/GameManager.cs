@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     #region Events declaration
     public delegate void GameEvent();
     //eventi base del gioco.
-    public event GameEvent OnGetStone, OnGetFood, OnGetWood,OnGameStart, OnConstruction, OnOpenMenu,OnBackMenu, OnGetDebris, OnWoodProducing;
+    public event GameEvent OnGetStone, OnGetFood, OnGetWood, OnGameStart, OnConstruction, OnOpenMenu, OnBackMenu, OnGetDebris, OnWoodProducing;
     #endregion
 
     /// <summary>
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
     public int InitialFood, InitialWood, InitialStone, InitialFaith;
 
     public List<BuildingView> forestInScene;
-    
+
     #region Managers
     public GridControllerDoomstock gridController;
     public TimeEventManager timeEventManager;
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
                 Pause = KeyCode.F5
 
             });
-            
+
             Players[1].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y + 1, CellSize);
         }
 
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour {
                 Pause = KeyCode.Keypad0
 
             });
-            
+
             Players[2].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y + 1, CellSize);
         }
 
@@ -140,9 +140,10 @@ public class GameManager : MonoBehaviour {
 
     }
     public BuildingData forest;
+    public BuildingData Meraviglia;
     private void Start()
     {
-        Init(); 
+        Init();
     }
 
     public void Init() {
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour {
                 forest = item;
         }
         SetupForest(forest);
+        SetupMeraviglia(Meraviglia);
         SetupPlayers();
         SetupResources();
     }
@@ -165,11 +167,11 @@ public class GameManager : MonoBehaviour {
     {
         gridController.CellSize = CellSize;
         gridController.CreateMap(GridWidth, GridHeight, DebugMode);
-       
+
 
         if (OnGridCreated != null)
             OnGridCreated();
-    } 
+    }
     #endregion
 
     #region Risorse
@@ -207,21 +209,40 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     void SetupForest(BuildingData forest)
-    {       
-       BuildingView CurrentBuildView;
-        
+    {
+        BuildingView CurrentBuildView;
+
         foreach (var item in gridController.Cells)
         {
             if (item.Type == CellDoomstock.CellType.Forest)
             {
                 CurrentBuildView = buildingManager.CreateBuild(forest);
                 CurrentBuildView.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                CurrentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) +0.5f, item.WorldPosition.y - (CellSize / 2) -0.30f , item.WorldPosition.z+0.5f );
+                CurrentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) + 0.5f, item.WorldPosition.y - (CellSize / 2) - 0.30f, item.WorldPosition.z + 0.5f);
                 forestInScene.Add(CurrentBuildView);
                 item.SetStatus(CellDoomstock.CellStatus.Filled, CurrentBuildView.Data);
             }
         }
-        
+
+    }
+
+    bool OneMeravigliaInGioco;
+    void SetupMeraviglia(BuildingData _meraviglia) {
+        BuildingView currentBuildView;
+        foreach (var item in gridController.Cells)
+        {
+            if (!OneMeravigliaInGioco)
+            {
+                if (item.Type == CellDoomstock.CellType.Meraviglia)
+                {
+                    currentBuildView = buildingManager.CreateBuild(Meraviglia);
+                    //currentBuildView.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2)  +1.05f, item.WorldPosition.y - (CellSize / 2) - 1.0f, item.WorldPosition.z + 1.2f);
+                    item.SetStatus(CellDoomstock.CellStatus.Filled, currentBuildView.Data);
+                    OneMeravigliaInGioco = true;
+                } 
+            }
+        }
     }
 
     #region API

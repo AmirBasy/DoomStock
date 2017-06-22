@@ -71,6 +71,10 @@ namespace Framework.Grid
                     newTile = Instantiate<GameObject>(TilePrefab[1], tilePosition, Quaternion.identity, this.transform);
                     newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
                     return newTile;
+                case CellDoomstock.CellType.Meraviglia:
+                    newTile = Instantiate<GameObject>(TilePrefab[1], tilePosition, Quaternion.identity, this.transform);
+                    newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
+                    return newTile;
 
                 default:
                     break;

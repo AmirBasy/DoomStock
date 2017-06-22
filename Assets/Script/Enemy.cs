@@ -7,6 +7,45 @@ using System.Linq;
 
 public class Enemy : MonoBehaviour, IPathFindingMover
 {
+    #region Animation
+    [Header("Animazioni")]
+    #region Property
+    Animator _animator;
+    AnimationType _animationType = AnimationType.Walking;
+    AnimationType animationType {
+        get { return _animationType; }
+        set
+        {
+            _animationType = value;
+            _animator.SetInteger("AnimationState", (int)animationType);
+        }
+    }
+
+    //public AnimationClip Camminata, Attacco, Morte;
+    #endregion
+
+    //#region API
+
+    //public void PlayAnimation(AnimationType _type)
+    //{
+    //    switch (_type)
+    //    {
+    //        case AnimationType.Camminata:
+    //            _animator.Play(1);
+    //            break;
+    //        case AnimationType.Attacco:
+    //            _animator.Play(2);
+    //            break;
+    //        case AnimationType.Morte:
+    //            _animator.Play(3);
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
+    //#endregion
+    #endregion
+
 
     #region settings
     public enemyType Type;
@@ -28,7 +67,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         set
         {
             _currentPosition = value;
-           
+
         }
     }
 
@@ -114,7 +153,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             return NearestBuildingPriority(targetTypeList);
         }
         ////controlla nel suo raggio se è presente una priorità 2.
-       
+
         int randomindex = UnityEngine.Random.Range(0, Priorities2.Count);
         Priority2 = Priorities2[randomindex];
         targetTypeList = FindPrioritiesInRange(Priority2);
@@ -122,7 +161,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         {
             return NearestBuildingPriority(targetTypeList);
         }
-        
+
         //controllare edifici nella mappa di Priority1
         foreach (var item in GameManager.I.buildingManager.GetAllBuildingInScene())
         {
@@ -131,7 +170,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 if (item.Data.CanBeAttacked())
                     targetTypeList.Add(item.Data);
             }
-            else if(item.Data.ID == Priority2.ID)
+            else if (item.Data.ID == Priority2.ID)
             {
                 if (item.Data.CanBeAttacked())
                     targetTypeList.Add(item.Data);
@@ -256,11 +295,27 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         });
     }
 
+    void StopAI() {
+        _attack = 0;
+        AttackSpeed = 0;
+        MovementSpeed = 0;
+    }
+
+    void OnDead() {
+        if (Life<=0)
+        {
+            StopAI();
+            animationType = AnimationType.Dead;
+            Destroy(gameObject);
+        }
+    }
+
     /// <summary>
     /// Attacca il prossimo step se è presente un building.
     /// </summary>
     void AttackNextStep()
-    {
+    {   
+        
         CellDoomstock nextStep = CurrentPath[CurrentNodeIndex] as CellDoomstock;
         if (Type == enemyType.Tank)
         {
@@ -269,7 +324,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             {
                 Attack(nextStep.building);
             }
-            
+
         }
         else
         {
@@ -283,7 +338,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     public bool Attack(BuildingData target)
     {
         currentState = enemyState.Attack;
-
+        animationType = AnimationType.Attack;
         if (target)
         {
             target.BuildingLife -= _attack;
@@ -305,7 +360,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     #region Lifecycle
     public void Init(CellDoomstock _startPos)
     {
-
+        _animator = GetComponent<Animator>();
         switch (Type)
         {
             case enemyType.Tank:
@@ -319,7 +374,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
             CurrentPosition = _startPos;
-            
+
         });
 
 
@@ -345,8 +400,6 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     void Update()
     {
-        
-
         switch (currentState)
         {
             case enemyState.Searching:
@@ -364,26 +417,22 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 waitTimeToAttackTarget -= Time.deltaTime;
                 if (waitTimeToAttackTarget < 0)
                 {
-                   
-                        if (!Attack(CurrentTarget))
-                        {
-                            currentState = enemyState.Searching;
-                            resetTarget();
-                        }
-                    
+
+                    if (!Attack(CurrentTarget))
+                    {
+                        currentState = enemyState.Searching;
+                        resetTarget();
+                    }
+
                     waitTimeToAttackTarget = AttackSpeed;
                 }
                 break;
         }
-
-
-
-
-
     }
 
     void resetTarget()
     {
+        animationType = AnimationType.Walking;
         CurrentPath = null;
         CurrentTarget = null;
         CurrentNodeIndex = 0;
@@ -416,3 +465,4 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
 public enum enemyType { Tank, Combattenti }
 
+public enum AnimationType { Walking = 0, Attack=1, Dead=2 }
