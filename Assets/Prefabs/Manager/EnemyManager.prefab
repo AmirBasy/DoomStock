@@ -51,10 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e176e3fd0332e4396d8657808c7f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TankPrefab: {fileID: 114255066937524336, guid: 6ea676351ce325a47b08cff907911ab4,
+  TankPrefab: {fileID: 0}
+  CombattentiPrefab: {fileID: 114827348727365894, guid: 23a823c8b971bc641be655dbdcefd25d,
     type: 2}
-  CombattentiPrefab: {fileID: 114480197192501274, guid: d02be787e88336342bb5f54f92a2f86a,
-    type: 2}
-  TankToSpawn: 2
-  CombattentiToSpawn: 2
-  StartPosition: {x: 3, y: 3, z: 0}
+  TankToSpawn: 0
+  CombattentiToSpawn: 1

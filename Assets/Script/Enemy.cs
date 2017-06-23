@@ -206,7 +206,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 {
                     if (item.building.CanBeAttacked())
                         returnList.Add(item.building);
+                    Debug.Log(item.building.UniqueID);
                 }
+
         }
         return returnList;
     }
@@ -273,12 +275,14 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         
         transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
             CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
             CurrentPosition.EnemiesInCell.Add(this);
-            
+           
+
             if (CurrentNodeIndex > lastNode)
             {
                 // ha raggiunto l'obbiettivo, attacca
@@ -292,6 +296,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                     else
                     {
                         Attack(CurrentTarget);
+                      
                     }
                 }
                 else
@@ -305,6 +310,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 if (currentState == enemyState.MovingToTarget)
                     // prossimo step di movimento
                     this.DoMoveToCurrentPathStep();
+
             }
             if (OnStep != null)
                 OnStep(this);
@@ -387,10 +393,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 pathFindingSettings = PathFindingSettings.Combattente;
                 break;
         }
-
+        
         transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
+            //TODO : da rimuovere tranfrm.pos
+            transform.position = new Vector3(transform.position.x, transform.position.y -0.5f, transform.position.z + 0.50f);
             CurrentPosition = _startPos;
+            
 
         });
 

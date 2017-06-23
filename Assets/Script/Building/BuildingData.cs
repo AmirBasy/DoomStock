@@ -54,10 +54,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public string NameLable { get; set; }
 
-    /// <summary>
-    /// Range di attacco della torretta
-    /// </summary>
-    public Vector2 AttackRange;
+
 
     /// <summary>
     /// Tempo di costruzione per l'edificio
@@ -97,7 +94,7 @@ public class BuildingData : ScriptableObject, ISelectable
             enemyTarget = value;
             if (Attack > 0)
             {
-                GetEnemyInCell();
+                //GetEnemyInCell();
                 AttackEnemy(enemyTarget);
             }
 
@@ -144,6 +141,7 @@ public class BuildingData : ScriptableObject, ISelectable
     {
         get { return GameManager.I.gridController.GetCellFromBuilding(this); }
 
+
     }
     #endregion
 
@@ -152,19 +150,7 @@ public class BuildingData : ScriptableObject, ISelectable
     #region API
 
 
-    public void GetEnemyInCell()
-    {
-        if (EnemyTarget == null)
-        {
-            foreach (CellDoomstock item in GameManager.I.gridController.GetNeighboursStar(Cell,1))
-            {
-                if (item.EnemiesInCell.Count > 0)
-                {
-                    EnemyTarget = item.EnemiesInCell.First<Enemy>();
-                }
-            }
-        }
-    }
+
 
     public void AttackEnemy(Enemy _target)
     {
@@ -311,13 +297,19 @@ public class BuildingData : ScriptableObject, ISelectable
 
 
     #region Setup
+    string uniqueIDvero;
     public void Awake()
     {
         if (!GameManager.I)
             return;
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
-        NameLable = ID + " (" + UniqueID + ")";
+        uniqueIDvero = UniqueID;
+       NameLable = ID + " (" + UniqueID + ")";
         IconToGet = Icon;
+        if (ID != "Foresta")
+        {
+            Debug.Log(UniqueID); 
+        }
 
     }
 
@@ -338,7 +330,7 @@ public class BuildingData : ScriptableObject, ISelectable
                 BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Faith"));
                 break;
             case "Torretta":
-                
+
                 BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Spirit"));
                 break;
             default:
@@ -347,17 +339,39 @@ public class BuildingData : ScriptableObject, ISelectable
 
     }
     #endregion
+    public Enemy GetEnemyInCell()
+    {
+
+        Debug.Log(uniqueIDvero);
+        CellDoomstock cell = GameManager.I.gridController.Cells[(int)GetGridPosition().x, (int)GetGridPosition().y];
+
+        foreach (CellDoomstock item in GameManager.I.gridController.GetNeighboursStar(cell, 2))
+        {
+
+            if (item.EnemiesInCell.Count > 0)
+            {
+                // EnemyTarget = item.EnemiesInCell.First<Enemy>();
+                return item.EnemiesInCell.First<Enemy>();
+            }
+        }
+
+        return null;
+    }
+
     private void OnEnable()
     {
         if (ID == "Torretta")
         {
-            Enemy.OnStep += OnCheckEnemy; 
+            Enemy.OnStep += OnCheckEnemy;
         }
     }
 
     private void OnCheckEnemy(Enemy enemy)
     {
-        GetEnemyInCell();
+        if (ID == "Torretta" && EnemyTarget == null)
+        {
+            EnemyTarget =GetEnemyInCell();
+        }
     }
     private void OnDisable()
     {

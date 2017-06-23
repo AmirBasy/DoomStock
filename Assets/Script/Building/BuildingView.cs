@@ -80,8 +80,7 @@ public class BuildingView : MonoBehaviour
 
     #region API
 
-
-
+  
     /// <summary>
     /// Distrugge il building.
     /// </summary>
