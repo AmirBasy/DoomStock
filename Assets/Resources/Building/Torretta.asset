@@ -27,7 +27,7 @@ MonoBehaviour:
   WoodActualValue: 0
   BuildPrefab: {fileID: 114469526126114690, guid: 6e9c2a9ab95a7154cbed485048a80097,
     type: 2}
-  Attack: 0
+  Attack: 10
   FireRateo: 0
   DamageResistance: 0
   IncreaseMaxPopulation: 0

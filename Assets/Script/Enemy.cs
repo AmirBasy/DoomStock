@@ -57,6 +57,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     public List<BuildingData> Priorities2;
     #endregion
 
+    public delegate void EnemyEvent(Enemy enemy);
+    public static EnemyEvent OnStep;
+
     #region Runtime properties and variables
     enemyState currentState = enemyState.Searching;
     CellDoomstock lastPos;
@@ -259,11 +262,23 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     public void DoMoveStep(INode _step)
     {
+        
+
+        if (lastPos!= null)
+        {
+            lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+            lastPos.EnemiesInCell.Remove(this);
+        }
+        lastPos = CurrentPosition;
+        
         transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
+            CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
+            CurrentPosition.EnemiesInCell.Add(this);
+            
             if (CurrentNodeIndex > lastNode)
             {
                 // ha raggiunto l'obbiettivo, attacca
@@ -291,8 +306,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                     // prossimo step di movimento
                     this.DoMoveToCurrentPathStep();
             }
-
+            if (OnStep != null)
+                OnStep(this);
         });
+        
     }
 
     void StopAI() {

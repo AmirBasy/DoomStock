@@ -27,7 +27,8 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
     public CellDoomstock GetCellFromBuilding(BuildingData _building) {
         Vector2 pos = GetBuildingPositionByUniqueID(_building.UniqueID);
         //TODO: controllare se la cella esiste
-        return Cells[(int)pos.x, (int)pos.y];
+            return Cells[(int)pos.x, (int)pos.y]; 
+
     }
     /// <summary>
     /// Genera la mappa leggendo i dati dalle texture.

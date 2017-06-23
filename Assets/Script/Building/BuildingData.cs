@@ -79,7 +79,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public int WoodToBuild, StoneToBuild;
 
-   public int StoneActualValue, WoodActualValue;
+    public int StoneActualValue, WoodActualValue;
 
     /// <summary>
     /// Oggetto prefab dell edificio
@@ -91,9 +91,16 @@ public class BuildingData : ScriptableObject, ISelectable
     private Enemy enemyTarget;
     public Enemy EnemyTarget
     {
-        get { return EnemyTarget; }
-        set { EnemyTarget = value;
-            //GetEnemyInCell();
+        get { return enemyTarget; }
+        set
+        {
+            enemyTarget = value;
+            if (Attack > 0)
+            {
+                GetEnemyInCell();
+                AttackEnemy(enemyTarget);
+            }
+
         }
     }
     /// <summary>
@@ -133,9 +140,10 @@ public class BuildingData : ScriptableObject, ISelectable
     public int DecreaseBuildingLife;
 
 
-    public CellDoomstock Cell {
-            get { return GameManager.I.gridController.GetCellFromBuilding(this); }
-        
+    public CellDoomstock Cell
+    {
+        get { return GameManager.I.gridController.GetCellFromBuilding(this); }
+
     }
     #endregion
 
@@ -144,16 +152,26 @@ public class BuildingData : ScriptableObject, ISelectable
     #region API
 
 
-    //public void GetEnemyInCell() {
-    //    if (EnemyTarget == null)
-    //    {
-    //        foreach (CellDoomstock item in GameManager.I.gridController.GetNeighboursStar(Cell,1))
-    //        {
-    //            EnemyTarget.CurrentPosition = item;
+    public void GetEnemyInCell()
+    {
+        if (EnemyTarget == null)
+        {
+            foreach (CellDoomstock item in GameManager.I.gridController.GetNeighboursStar(Cell,1))
+            {
+                if (item.EnemiesInCell.Count > 0)
+                {
+                    EnemyTarget = item.EnemiesInCell.First<Enemy>();
+                }
+            }
+        }
+    }
 
-    //        }
-    //    }
-    //}
+    public void AttackEnemy(Enemy _target)
+    {
+        Destroy(_target.gameObject);
+        EnemyTarget = null;
+        _target.CurrentPosition.EnemiesInCell.Remove(_target);
+    }
 
 
     /// <summary>
@@ -222,8 +240,10 @@ public class BuildingData : ScriptableObject, ISelectable
     /// True se l'edificio è in una condizione attaccabile dai nemici.
     /// </summary>
     /// <returns></returns>
-    public bool CanBeAttacked() {
-        switch (CurrentState) {
+    public bool CanBeAttacked()
+    {
+        switch (CurrentState)
+        {
             case BuildingState.Destroyed:
             case BuildingState.Construction:
                 return false;
@@ -235,18 +255,18 @@ public class BuildingData : ScriptableObject, ISelectable
 
     public int GetActualStoneValue()
     {
-        
+
         if (InitialLife > 0)
         {
             StoneActualValue = (int)(StoneToBuild * BuildingLife) / InitialLife;
             return StoneActualValue;
-            
+
         }
         else
         {
             StoneActualValue = 0;
             return StoneActualValue;
-            
+
         }
     }
     public int GetActualWoodValue()
@@ -256,13 +276,13 @@ public class BuildingData : ScriptableObject, ISelectable
         {
             WoodActualValue = (int)(WoodToBuild * BuildingLife) / InitialLife;
             return WoodActualValue;
-           
+
         }
         else
         {
             WoodActualValue = 0;
             return WoodActualValue;
-           
+
         }
     }
     #endregion
@@ -272,14 +292,17 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// 
     /// </summary>
-    public BuildingState CurrentState {
+    public BuildingState CurrentState
+    {
         get { return _currentState; }
-        set {
+        set
+        {
             _currentState = value;
         }
     }
 
-    public Sprite IconToGet {
+    public Sprite IconToGet
+    {
         get;
 
         set;
@@ -296,10 +319,10 @@ public class BuildingData : ScriptableObject, ISelectable
         NameLable = ID + " (" + UniqueID + ")";
         IconToGet = Icon;
 
-    } 
+    }
 
     public void Init()
-    {   
+    {
         switch (ID)
         {
             case "Fattoria":
@@ -315,14 +338,34 @@ public class BuildingData : ScriptableObject, ISelectable
                 BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Faith"));
                 break;
             case "Torretta":
+                
                 BuildingResources.Add(GameManager.I.GetNewInstanceOfResourceData("Spirit"));
                 break;
             default:
                 break;
         }
-        
+
     }
     #endregion
+    private void OnEnable()
+    {
+        if (ID == "Torretta")
+        {
+            Enemy.OnStep += OnCheckEnemy; 
+        }
+    }
+
+    private void OnCheckEnemy(Enemy enemy)
+    {
+        GetEnemyInCell();
+    }
+    private void OnDisable()
+    {
+        if (ID == "Torretta")
+        {
+            Enemy.OnStep -= OnCheckEnemy;
+        }
+    }
 }
 #region Stati edificio
 /// <summary>
@@ -333,7 +376,7 @@ public enum BuildingState
     Construction = 0,
     Built = 1,
     Producing = 2,
-    Ready = 3, 
+    Ready = 3,
     Destroyed = 4,
     Waiting = 5,
 }

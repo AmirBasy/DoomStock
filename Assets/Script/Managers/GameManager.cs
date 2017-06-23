@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     #region Events declaration
     public delegate void GameEvent();
+
     //eventi base del gioco.
     public event GameEvent OnGetStone, OnGetFood, OnGetWood, OnGameStart, OnConstruction, OnOpenMenu, OnBackMenu, OnGetDebris, OnWoodProducing;
     #endregion

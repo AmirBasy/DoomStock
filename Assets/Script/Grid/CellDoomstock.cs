@@ -9,6 +9,8 @@ public class CellDoomstock : Cell, INode {
     public CellStatus Status = CellStatus.Empty;
     public CellType Type = CellType.Erba;
     private List<Player> playersQueue = new List<Player>();
+    public List<Enemy> EnemiesInCell = new List<Enemy>();
+
 
     public List<Player> PlayersQueue {
         get { return playersQueue; }
@@ -62,6 +64,7 @@ public class CellDoomstock : Cell, INode {
         Filled,
         Hole,
         Debris,
+        Enemy
     }
 
     public enum CellType
