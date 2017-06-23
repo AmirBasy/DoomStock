@@ -270,7 +270,7 @@ public class BuildingView : MonoBehaviour
         {
             case "Production":
                 CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
-                if (Data.CurrentState == BuildingState.Producing && Data.ID != "Foresta")
+                if (Data.CurrentState == BuildingState.Producing && Data.ID != "Foresta" && Data.ID != "Meraviglia")
                 {
                     foreach (var res in Data.BuildingResources)
                     {

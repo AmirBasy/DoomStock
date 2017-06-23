@@ -31,6 +31,6 @@ MonoBehaviour:
   FireRateo: 0
   DamageResistance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 10
-  InitialLife: 10
+  BuildingLife: 2147483647
+  InitialLife: 2147483647
   DecreaseBuildingLife: 0

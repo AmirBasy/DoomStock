@@ -6,7 +6,8 @@ using UnityEngine.UI;
 using Framework.Grid;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     #region Events declaration
     public delegate void GameEvent();
@@ -48,9 +49,11 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public GameObject PlayerPrefab;
 
-    public void SetupPlayers() {
+    public void SetupPlayers()
+    {
         CellDoomstock hole = gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole);
-        if (Players[0] != null) {
+        if (Players[0] != null)
+        {
             Players[0].SetupInput(
                 new PlayerInputData()
                 {
@@ -70,9 +73,11 @@ public class GameManager : MonoBehaviour {
             Players[0].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y - 1, CellSize);
         }
 
-        if (Players[1] != null) {
+        if (Players[1] != null)
+        {
             Players[1].SetupInput(
-            new PlayerInputData() {
+            new PlayerInputData()
+            {
                 Up = KeyCode.I,
                 Left = KeyCode.J,
                 Down = KeyCode.K,
@@ -89,9 +94,11 @@ public class GameManager : MonoBehaviour {
             Players[1].SetUpPosition((int)hole.GridPosition.x - 1, (int)hole.GridPosition.y + 1, CellSize);
         }
 
-        if (Players[2] != null) {
+        if (Players[2] != null)
+        {
             Players[2].SetupInput(
-            new PlayerInputData() {
+            new PlayerInputData()
+            {
                 Up = KeyCode.UpArrow,
                 Left = KeyCode.LeftArrow,
                 Down = KeyCode.DownArrow,
@@ -146,7 +153,8 @@ public class GameManager : MonoBehaviour {
         Init();
     }
 
-    public void Init() {
+    public void Init()
+    {
         GridSetUp();
         foreach (var item in buildingManager.buildingsData)
         {
@@ -227,22 +235,31 @@ public class GameManager : MonoBehaviour {
     }
 
     bool OneMeravigliaInGioco;
-    void SetupMeraviglia(BuildingData _meraviglia) {
+    void SetupMeraviglia(BuildingData _meraviglia)
+    {
         BuildingView currentBuildView;
         foreach (var item in gridController.Cells)
         {
+
             if (!OneMeravigliaInGioco)
             {
                 if (item.Type == CellDoomstock.CellType.Meraviglia)
                 {
                     currentBuildView = buildingManager.CreateBuild(Meraviglia);
                     //currentBuildView.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                    currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2)  +1.05f, item.WorldPosition.y - (CellSize / 2) - 1.0f, item.WorldPosition.z + 1.2f);
-                    item.SetStatus(CellDoomstock.CellStatus.Filled, currentBuildView.Data);
+                    currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) + 1.05f, item.WorldPosition.y - (CellSize / 2) - 1.0f, item.WorldPosition.z + 1.2f);
                     OneMeravigliaInGioco = true;
-                } 
+                    item.SetStatus(CellDoomstock.CellStatus.Filled, currentBuildView.Data);
+                }
             }
+
+
+            if (item.Type == CellDoomstock.CellType.Meraviglia)
+                item.Cost = 100;
+            
         }
+        //TODO : da cancellare.
+
     }
 
     #region API
@@ -276,7 +293,8 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public BaseResourceData GetNewInstanceOfResourceData(string id) {
+    public BaseResourceData GetNewInstanceOfResourceData(string id)
+    {
         foreach (BaseResourceData item in Resources.LoadAll<BaseResourceData>("Risorse"))
         {
             if (item.ID == id)
@@ -285,7 +303,8 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
-    public void NormalTime() {
+    public void NormalTime()
+    {
         Time.timeScale = 1.0f;
     }
     #endregion

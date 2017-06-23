@@ -371,6 +371,26 @@ MonoBehaviour:
   InputPlayerIndex: 0
   InputPlayerIndex1: 1
   InputPlayerIndex2: 2
+--- !u!1 &1237030834 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1602127425156044, guid: 23a823c8b971bc641be655dbdcefd25d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2145731875}
+--- !u!111 &1237030835
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237030834}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ff41bc1d9ba7d49429dea3e9eaf2b64c, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: ff41bc1d9ba7d49429dea3e9eaf2b64c, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1487467444
 GameObject:
   m_ObjectHideFlags: 0
