@@ -159,10 +159,14 @@ public class BuildingView : MonoBehaviour
             case BuildingState.Construction:
                 GameManager.I.soundManager.GetCostructionSound();
                 CurrentMesh = GetComponent<MeshFilter>();
-                transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() =>
+                if (Data.ID != "Meraviglia")
                 {
-                    SetBuildingStatus(BuildingState.Built);
-                });
+                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime);//.OnComplete(() =>
+                    //        {
+                    //            SetBuildingStatus(BuildingState.Built);
+                    //        }); 
+                }
+                SetBuildingStatus(BuildingState.Built);
                 break;
             case BuildingState.Built:
                 if (Data.Population.Count < 1)

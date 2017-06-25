@@ -72,7 +72,7 @@ namespace Framework.Grid
                     newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
                     return newTile;
                 case CellDoomstock.CellType.Meraviglia:
-                    newTile = Instantiate<GameObject>(TilePrefab[1], tilePosition, Quaternion.identity, this.transform);
+                    newTile = Instantiate<GameObject>(TilePrefab[0], tilePosition, Quaternion.identity, this.transform);
                     newTile.name = "Cell[" + tilePosition.x + "," + tilePosition.y + "]";
                     return newTile;
 

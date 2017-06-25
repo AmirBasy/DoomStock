@@ -247,8 +247,7 @@ public class GameManager : MonoBehaviour
                 if (item.Type == CellDoomstock.CellType.Meraviglia)
                 {
                     currentBuildView = buildingManager.CreateBuild(Meraviglia);
-                    //currentBuildView.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                    currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) + 1.05f, item.WorldPosition.y - (CellSize / 2) - 1.0f, item.WorldPosition.z + 1.2f);
+                    currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) + 1.05f, item.WorldPosition.y - (CellSize / 2) - 0.26f, item.WorldPosition.z + 1.2f);
                     OneMeravigliaInGioco = true;
                     item.SetStatus(CellDoomstock.CellStatus.Filled, currentBuildView.Data);
                 }
@@ -259,8 +258,6 @@ public class GameManager : MonoBehaviour
                 item.Cost = 100;
             
         }
-        //TODO : da cancellare.
-
     }
 
     #region API
