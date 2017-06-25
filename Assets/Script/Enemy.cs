@@ -421,7 +421,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     #region debug
 
-    float waitTimeToFindTarget = 0;
+    float waitTimeToFindTarget = 2;
     float waitTimeToAttackTarget = 0;
 
     void Update()

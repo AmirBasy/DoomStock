@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public int InitialFood, InitialWood, InitialStone, InitialFaith;
 
     public List<BuildingView> forestInScene;
+    public List<BuildingView> MeravigliasInScene;
 
     #region Managers
     public GridControllerDoomstock gridController;
@@ -236,6 +237,7 @@ public class GameManager : MonoBehaviour
     }
 
     bool OneMeravigliaInGioco;
+
     void SetupMeraviglia(BuildingData _meraviglia)
     {
         BuildingView currentBuildView;
@@ -249,6 +251,7 @@ public class GameManager : MonoBehaviour
                     currentBuildView = buildingManager.CreateBuild(Meraviglia);
                     currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) + 1.05f, item.WorldPosition.y - (CellSize / 2) - 0.26f, item.WorldPosition.z + 1.2f);
                     OneMeravigliaInGioco = true;
+                    MeravigliasInScene.Add(currentBuildView);
                     item.SetStatus(CellDoomstock.CellStatus.Filled, currentBuildView.Data);
                 }
             }

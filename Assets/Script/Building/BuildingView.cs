@@ -283,9 +283,11 @@ public class BuildingView : MonoBehaviour
         switch (_eventData.ID)
         {
             case "Production":
-                CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
+                CellDoomstock cell = null;
+               
                 if (Data.CurrentState == BuildingState.Producing && Data.ID != "Foresta" && Data.ID != "Meraviglia")
                 {
+                    cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                     foreach (var res in Data.BuildingResources)
                     {
                         res.Value += (int)(Data.Population.Count * 1);
@@ -313,6 +315,7 @@ public class BuildingView : MonoBehaviour
                 }
                 else if (Data.CurrentState == BuildingState.Producing && Data.ID == "Foresta")
                 {
+                    cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
                     foreach (var res in Data.BuildingResources)
                     {
                         res.Value += 1;
@@ -325,6 +328,7 @@ public class BuildingView : MonoBehaviour
                 }
                 break;
             case "Delay":
+               
                 Data.Delay++;
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
