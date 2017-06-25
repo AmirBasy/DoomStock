@@ -107,5 +107,5 @@ public enum MenuTypes {
     PopulationMenu,
     Player,
     Pause,
-
+    EndGame,
 }

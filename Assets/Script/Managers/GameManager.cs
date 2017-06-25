@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public delegate void GameEvent();
 
     //eventi base del gioco.
-    public event GameEvent OnGetStone, OnGetFood, OnGetWood, OnGameStart, OnConstruction, OnOpenMenu, OnBackMenu, OnGetDebris, OnWoodProducing;
+    public event GameEvent OnGetStone, OnGetFood, OnGetWood, OnGameStart, OnConstruction, OnOpenMenu, OnBackMenu, OnGetDebris, OnWoodProducing;//Suoni
     #endregion
 
     /// <summary>
@@ -305,12 +305,26 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
     }
+    
+    /// <summary>
+    /// Fa un controllo sulla vita della Meraviglia, se 0 , scatena l'evento
+    /// </summary>
+    public void OnMeravigliaDestroyed()
+    {
+        if (Meraviglia.BuildingLife <= 0)
+        {
+            if (OnMeravigliaMorta!= null)
+            {
+                OnMeravigliaMorta();
+            }
+        }
+
+    }
     #endregion
 
     #region Eventi
-
-
     public static GameEvent OnGridCreated;
+    public static GameEvent OnMeravigliaMorta;
     #endregion
 
 }

@@ -5,15 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MenuBase
+public class EndGameMenu : MenuBase
 {
+    
 
     public override void LoadSelections()
     {
-        if (MenuImageToLoad!= null)
-        {
-            MenuImageToLoad.enabled = true; 
-        }
+        MenuImageToLoad.enabled = true;
         PossibiliScelteAttuali.Clear();
         switch (ScelteFatte.Count)
         {
@@ -68,10 +66,6 @@ public class PauseMenu : MenuBase
                 break;
             default:
                 break;
-        }
-        if (MenuImageToLoad.enabled == true )
-        {
-            MenuImageToLoad.enabled = false; 
         }
         Time.timeScale = 1;
         ScelteFatte.Clear();

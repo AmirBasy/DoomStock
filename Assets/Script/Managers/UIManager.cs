@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public Text FoodText, StoneText, WoodText, FaithText, SpiritText;
 
+    public GameObject EndGameMenuPrefab;
     #region Logger
 
     public Logger logger;
@@ -23,12 +24,19 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        EndGameMenuPrefab.active = false;
+        
+        //EndGameMenuPrefab = FindObjectOfType<EndGameMenu>();
         //DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
     {
         UpdateGraphic();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OpenEndMenu();
+        }
     }
 
     private void UpdateGraphic()
@@ -53,6 +61,7 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;
     public PauseMenu PauseMenu;
+    public EndGameMenu EndGameMenu;
 
     #endregion
 
@@ -84,6 +93,20 @@ public class UIManager : MonoBehaviour
             case MenuTypes.Pause:
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Resume", NameLable = "Resume" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                     new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
+
+                PauseMenu.Init(_player, FirstLevelSelectables);
+                return PauseMenu;
+            case MenuTypes.EndGame:
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
                 FirstLevelSelectables.Add(
@@ -196,6 +219,25 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Events
+
+    void OnEnable()
+    {
+        GameManager.OnMeravigliaMorta += OpenEndMenu;
+    }
+
+    void OnDisable()
+    {
+        GameManager.OnMeravigliaMorta -= OpenEndMenu;
+    }
+    #endregion
+
+    public void OpenEndMenu() {
+        Time.timeScale = 0.0000001f;
+        EndGameMenuPrefab.active = true;
+    }
+
 }
 
 

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
+using TMPro;
 
 public abstract class MenuBase : MonoBehaviour, IMenu {
 
@@ -59,6 +61,8 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
 
     public GameObject ButtonPrefab;
     public Transform MenuItemsContainer;
+    public Image MenuImageToLoad;
+    public TMP_Text YearText;
 
     /// <summary>
     /// Esegue il refresh della lista degli oggetti visibi del menù.
