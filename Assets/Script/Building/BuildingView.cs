@@ -49,12 +49,12 @@ public class BuildingView : MonoBehaviour
         {
             Data._particleController = GetComponentInChildren<ParticlesController>();
             _particle = Data._particleController;
-            _particle.Init(); 
+            _particle.Init();
         }
-        
+
         //if (barretta != null)
         //    barretta.fillAmount = 0;
-        
+
         if (Data.ID != "Foresta")
         {
             SetBuildingStatus(BuildingState.Construction);
@@ -81,7 +81,17 @@ public class BuildingView : MonoBehaviour
 
     #region API
 
-  
+    private void Update()
+    {
+        Data.StartingFireRateo = Data.FireRateo;
+        Data.FireRateo -= Time.deltaTime;
+        if (Data.StartingFireRateo == 0)
+        {
+            Data.AttackEnemy();
+            Data.StartingFireRateo = Data.FireRateo;
+        }
+
+    }
     /// <summary>
     /// Distrugge il building.
     /// </summary>
@@ -162,7 +172,7 @@ public class BuildingView : MonoBehaviour
                 break;
             case BuildingState.Producing:
                 AnimationStart(Data);
-                if (Data.ID != "Foresta");
+                if (Data.ID != "Foresta") ;
                 break;
             case BuildingState.Ready:
                 AnimationStop(Data);
@@ -251,7 +261,7 @@ public class BuildingView : MonoBehaviour
         {
             animation.Stop();
         }
-    } 
+    }
     #endregion
 
 
@@ -323,10 +333,10 @@ public class BuildingView : MonoBehaviour
                         //else
                         //{
 
-                            SetBuildingStatus(BuildingState.Built);
-                           
+                        SetBuildingStatus(BuildingState.Built);
 
-                      //  }
+
+                        //  }
                     }
                 }
                 break;

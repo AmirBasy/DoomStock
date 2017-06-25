@@ -109,6 +109,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// Variabile che indica ogni quanto l'deificio può attaccare
     /// </summary>
     public float FireRateo;
+    [HideInInspector]public float StartingFireRateo;
 
     /// <summary>
     /// Variabile che indica la resistenza al danno dei nemici
@@ -149,17 +150,30 @@ public class BuildingData : ScriptableObject, ISelectable
 
     #region API
 
-
-
+    //void Update()
+    //{
+    //    StartingFireRateo = FireRateo;
+    //    FireRateo -= Time.deltaTime;
+    //    if (StartingFireRateo == 0)
+    //    {
+    //        AttackEnemy();
+    //        StartingFireRateo = FireRateo;
+    //    }
+    //}
 
     public void AttackEnemy()
     {
+
         if (GetEnemyInCell())
         {
             Enemy target = GetEnemyInCell();
-            //TODO: non deve distruggere ma deve attaccare.
-            Destroy(target.gameObject);
-            target.CurrentPosition.EnemiesInCell.Remove(target);
+            target.Life -= Attack;
+            Debug.Log("Enemy Life = " + target.Life + "Torretta Attacco  = " + Attack);
+            if (target.Life <= 0)
+            {
+                Destroy(target.gameObject);
+                target.CurrentPosition.EnemiesInCell.Remove(target);
+            }
         }
 
     }
@@ -311,11 +325,10 @@ public class BuildingData : ScriptableObject, ISelectable
         uniqueIDvero = UniqueID;
         NameLable = ID + " (" + UniqueID + ")";
         IconToGet = Icon;
-        if (ID != "Foresta")
-        {
-            Debug.Log(UniqueID);
-        }
-
+        //if (ID != "Foresta")
+        //{
+        //    Debug.Log(UniqueID);
+        //}
     }
 
     public void Init()
@@ -361,17 +374,17 @@ public class BuildingData : ScriptableObject, ISelectable
                 {
                     if (item.EnemiesInCell.Count > 0)
                     {
-                        
-                            returnlist.Add(item.EnemiesInCell.First());
-                       
+
+                        returnlist.Add(item.EnemiesInCell.First());
+
                     }
 
                 }
-                if (returnlist.Count>0)
+                if (returnlist.Count > 0)
                 {
-                    return returnlist.First(); 
+                    return returnlist.First();
                 }
-                
+
 
             }
         }
@@ -388,7 +401,7 @@ public class BuildingData : ScriptableObject, ISelectable
 
     private void OnCheckEnemy(Enemy enemy)
     {
-    
+
         AttackEnemy();
     }
     private void OnDisable()

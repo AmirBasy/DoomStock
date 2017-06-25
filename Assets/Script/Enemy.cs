@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     #region Property
     Animator _animator;
     AnimationType _animationType = AnimationType.Walking;
-    AnimationType animationType {
+    AnimationType animationType
+    {
         get { return _animationType; }
         set
         {
@@ -206,7 +207,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 {
                     if (item.building.CanBeAttacked())
                         returnList.Add(item.building);
-                    Debug.Log(item.building.UniqueID);
+                    //Debug.Log(item.building.UniqueID);
                 }
 
         }
@@ -264,15 +265,15 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     public void DoMoveStep(INode _step)
     {
-        
 
-        if (lastPos!= null)
+
+        if (lastPos != null)
         {
             lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
             lastPos.EnemiesInCell.Remove(this);
         }
         lastPos = CurrentPosition;
-        
+
         transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
@@ -281,7 +282,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             CurrentPosition = _step as CellDoomstock;
             CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
             CurrentPosition.EnemiesInCell.Add(this);
-           
+
 
             if (CurrentNodeIndex > lastNode)
             {
@@ -296,7 +297,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                     else
                     {
                         Attack(CurrentTarget);
-                      
+
                     }
                 }
                 else
@@ -315,17 +316,19 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             if (OnStep != null)
                 OnStep(this);
         });
-        
+
     }
 
-    void StopAI() {
+    void StopAI()
+    {
         _attack = 0;
         AttackSpeed = 0;
         MovementSpeed = 0;
     }
 
-    void OnDead() {
-        if (Life<=0)
+    void OnDead()
+    {
+        if (Life <= 0)
         {
             StopAI();
             animationType = AnimationType.Dead;
@@ -337,8 +340,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     /// Attacca il prossimo step se è presente un building.
     /// </summary>
     void AttackNextStep()
-    {   
-        
+    {
+
         CellDoomstock nextStep = CurrentPath[CurrentNodeIndex] as CellDoomstock;
         if (Type == enemyType.Tank)
         {
@@ -393,13 +396,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 pathFindingSettings = PathFindingSettings.Combattente;
                 break;
         }
-        
+
         transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() =>
         {
             //TODO : da rimuovere tranfrm.pos
-            transform.position = new Vector3(transform.position.x, transform.position.y -0.5f, transform.position.z + 0.50f);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
             CurrentPosition = _startPos;
-            
+
 
         });
 
@@ -491,4 +494,4 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
 public enum enemyType { Tank, Combattenti }
 
-public enum AnimationType { Walking = 0, Attack=1, Dead=2 }
+public enum AnimationType { Walking = 0, Attack = 1, Dead = 2 }

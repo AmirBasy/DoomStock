@@ -746,6 +746,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1602127425156044, guid: 23a823c8b971bc641be655dbdcefd25d, type: 2}
+      propertyPath: m_Name
+      value: Gallina
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23a823c8b971bc641be655dbdcefd25d, type: 2}
   m_IsPrefabParent: 0

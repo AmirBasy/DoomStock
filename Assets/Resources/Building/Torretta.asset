@@ -17,7 +17,6 @@ MonoBehaviour:
   BuildingResources: []
   Delay: 10
   CounterLimit: 0
-  AttackRange: {x: 0, y: 0}
   BuildingTime: 10
   ID: Torretta
   PopulationLimit: 10
@@ -27,10 +26,11 @@ MonoBehaviour:
   WoodActualValue: 0
   BuildPrefab: {fileID: 114469526126114690, guid: 6e9c2a9ab95a7154cbed485048a80097,
     type: 2}
-  Attack: 10
-  FireRateo: 0
+  Attack: 2
+  FireRateo: 2
   DamageResistance: 0
   IncreaseMaxPopulation: 0
   BuildingLife: 10
   InitialLife: 10
   DecreaseBuildingLife: 2
+  uniqueIDvero: 
