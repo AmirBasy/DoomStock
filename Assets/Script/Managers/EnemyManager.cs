@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour {
         {
 
             CellDoomstock pos = RandomSpawnPosition();
-            Enemy tank = Instantiate(TankPrefab, GameManager.I.gridController.GetCellWorldPosition((int)pos.GetGridPosition().x, (int)pos.GetGridPosition().y ), TankPrefab.transform.rotation);
+            Enemy tank = Instantiate(TankPrefab, GameManager.I.gridController.GetCellWorldPosition((int)pos.GetGridPosition().x, (int)pos.GetGridPosition().y), TankPrefab.transform.rotation);
             tank.Init(pos);
 
             yield return new WaitForSeconds(waitTime);

@@ -274,9 +274,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         }
         lastPos = CurrentPosition;
 
-        transform.DOMove(_step.GetWorldPosition(), MovementSpeed).OnComplete(() =>
+        transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
+            //transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
@@ -386,6 +386,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     #region Lifecycle
     public void Init(CellDoomstock _startPos)
     {
+        //transform.position = new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y - 0.5f, _startPos.GetWorldPosition().z);
         _animator = GetComponent<Animator>();
         switch (Type)
         {
@@ -397,13 +398,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 break;
         }
 
-        transform.DOMove(_startPos.GetWorldPosition(), MovementSpeed).OnComplete(() =>
+        transform.DOMove(new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y-0.5f, _startPos.GetWorldPosition().z+0.4f), MovementSpeed).OnComplete(() =>
         {
-            //TODO : da rimuovere tranfrm.pos
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
             CurrentPosition = _startPos;
-
-
         });
 
 

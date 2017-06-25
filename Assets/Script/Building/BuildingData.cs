@@ -168,7 +168,7 @@ public class BuildingData : ScriptableObject, ISelectable
         {
             Enemy target = GetEnemyInCell();
             target.Life -= Attack;
-            Debug.Log("Enemy Life = " + target.Life + "Torretta Attacco  = " + Attack);
+            //Debug.Log("Enemy Life = " + target.Life + "Torretta Attacco  = " + Attack);
             if (target.Life <= 0)
             {
                 Destroy(target.gameObject);
