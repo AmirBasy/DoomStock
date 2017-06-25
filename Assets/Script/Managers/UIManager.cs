@@ -24,19 +24,12 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        EndGameMenuPrefab.active = false;
-        
-        //EndGameMenuPrefab = FindObjectOfType<EndGameMenu>();
-        //DontDestroyOnLoad(this.gameObject);
+        //EndGameMenuPrefab.active = false;
     }
 
     private void Update()
     {
         UpdateGraphic();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OpenEndMenu();
-        }
     }
 
     private void UpdateGraphic()
@@ -62,6 +55,7 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P3_Menu;
     public PauseMenu PauseMenu;
     public EndGameMenu EndGameMenu;
+    [HideInInspector] Player player = null;
 
     #endregion
 
@@ -84,6 +78,7 @@ public class UIManager : MonoBehaviour
 
     public IMenu ShowMenu(MenuTypes _type, Player _player)
     {
+        player = _player;
         FirstLevelSelectables.Clear();
         switch (_type)
         {
@@ -117,7 +112,8 @@ public class UIManager : MonoBehaviour
                                      new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
 
                 PauseMenu.Init(_player, FirstLevelSelectables);
-                return PauseMenu;
+                _player.currentMenu = EndGameMenu;
+                return EndGameMenu;
             case MenuTypes.Player:
 
                 CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
@@ -235,7 +231,8 @@ public class UIManager : MonoBehaviour
 
     public void OpenEndMenu() {
         Time.timeScale = 0.0000001f;
-        EndGameMenuPrefab.active = true;
+        player.currentMenu = EndGameMenu;
+        //EndGameMenuPrefab.active = true;
     }
 
 }

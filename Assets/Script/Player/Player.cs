@@ -68,6 +68,15 @@ public class Player : PlayerBase
             return null;
         return GameManager.I.uiManager.ShowMenu(MenuTypes.Player, this);
     }
+    /// <summary>
+    /// aper il Menu di EndGame
+    /// </summary>
+    /// <returns></returns>
+    IMenu OpenEndGameMenu() {
+        if (!GameManager.I.gridController.CanUseMenu(this))
+            return null;
+        return GameManager.I.uiManager.ShowMenu(MenuTypes.EndGame, this);
+    }
 
     /// <summary>
     /// Accade quando viene chiuso un menù.
@@ -282,7 +291,7 @@ public class Player : PlayerBase
     bool isReleasedVertical = true;
 
     // TODO: rifattorizzare creando state machine player
-    IMenu currentMenu = null;
+    [HideInInspector]public IMenu currentMenu = null;
     /// <summary>
     /// costo di fede per la demolizione
     /// </summary>

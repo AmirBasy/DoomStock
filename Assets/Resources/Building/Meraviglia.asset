@@ -17,7 +17,6 @@ MonoBehaviour:
   BuildingResources: []
   Delay: 10
   CounterLimit: 0
-  AttackRange: {x: 0, y: 0}
   BuildingTime: 10
   ID: Meraviglia
   PopulationLimit: 1
@@ -29,8 +28,10 @@ MonoBehaviour:
     type: 2}
   Attack: 0
   FireRateo: 0
+  StartingFireRateo: 0
   DamageResistance: 0
   IncreaseMaxPopulation: 0
-  BuildingLife: 2147483647
-  InitialLife: 2147483647
+  BuildingLife: 5
+  InitialLife: 5
   DecreaseBuildingLife: 0
+  uniqueIDvero: 
