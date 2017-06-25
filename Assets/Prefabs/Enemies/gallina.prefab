@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 114827348727365894}
   - component: {fileID: 111061827978790084}
   m_Layer: 0
-  m_Name: Gallina
+  m_Name: gallina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

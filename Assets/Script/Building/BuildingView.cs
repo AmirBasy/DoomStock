@@ -70,6 +70,7 @@ public class BuildingView : MonoBehaviour
 
     private void OnEnable()
     {
+        TimeEventManager.OnEvent += OnUnitEvent;
     }
     private void OnDisable()
     {

@@ -85,21 +85,21 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Target Enemy
     /// </summary>
-    private Enemy enemyTarget;
-    public Enemy EnemyTarget
-    {
-        get { return enemyTarget; }
-        set
-        {
-            enemyTarget = value;
-            if (Attack > 0)
-            {
-                //GetEnemyInCell();
-                AttackEnemy(enemyTarget);
-            }
+    //private Enemy enemyTarget;
+    //public Enemy EnemyTarget
+    //{
+    //    get { return enemyTarget; }
+    //    set
+    //    {
+    //        enemyTarget = value;
+    //        if (Attack > 0)
+    //        {
+    //            //GetEnemyInCell();
+    //            AttackEnemy(enemyTarget);
+    //        }
 
-        }
-    }
+    //    }
+    //}
     /// <summary>
     /// Variabile che indica la potenza di "fuoco" dell'edificio
     /// </summary>
@@ -152,11 +152,16 @@ public class BuildingData : ScriptableObject, ISelectable
 
 
 
-    public void AttackEnemy(Enemy _target)
+    public void AttackEnemy()
     {
-        Destroy(_target.gameObject);
-        EnemyTarget = null;
-        _target.CurrentPosition.EnemiesInCell.Remove(_target);
+        if (GetEnemyInCell())
+        {
+            Enemy target = GetEnemyInCell();
+            Destroy(target.gameObject);
+            //EnemyTarget = null;
+            target.CurrentPosition.EnemiesInCell.Remove(target);
+        }
+
     }
 
 
@@ -297,18 +302,18 @@ public class BuildingData : ScriptableObject, ISelectable
 
 
     #region Setup
-    string uniqueIDvero;
+    public string uniqueIDvero;
     public void Awake()
     {
         if (!GameManager.I)
             return;
         UniqueID = ID + GameManager.I.buildingManager.GetUniqueId();
         uniqueIDvero = UniqueID;
-       NameLable = ID + " (" + UniqueID + ")";
+        NameLable = ID + " (" + UniqueID + ")";
         IconToGet = Icon;
         if (ID != "Foresta")
         {
-            Debug.Log(UniqueID); 
+            Debug.Log(UniqueID);
         }
 
     }
@@ -341,20 +346,44 @@ public class BuildingData : ScriptableObject, ISelectable
     #endregion
     public Enemy GetEnemyInCell()
     {
-
-        Debug.Log(uniqueIDvero);
-        CellDoomstock cell = GameManager.I.gridController.Cells[(int)GetGridPosition().x, (int)GetGridPosition().y];
-
-        foreach (CellDoomstock item in GameManager.I.gridController.GetNeighboursStar(cell, 2))
+        if (this.UniqueID != "")
         {
 
-            if (item.EnemiesInCell.Count > 0)
+
+            // Debug.Log();
+
+            CellDoomstock cell = null;
+            if (GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).x != -1)
+                cell = GameManager.I.gridController.Cells[(int)GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).x, (int)GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).y];
+
+            if (cell != null)
             {
-                // EnemyTarget = item.EnemiesInCell.First<Enemy>();
-                return item.EnemiesInCell.First<Enemy>();
+                List<Enemy> returnlist = new List<Enemy>();
+                List<CellDoomstock> list = GameManager.I.gridController.GetNeighboursStar(cell);
+                foreach (var item in list)
+                {
+                    if (item.EnemiesInCell.Count > 0)
+                    {
+                        //if (item.EnemiesInCell.First())
+                            returnlist.Add(item.EnemiesInCell.First());
+                        //else continue;
+                    }
+
+                }
+                if (returnlist.Count>0)
+                {
+                    return returnlist.First(); 
+                }
+                //foreach (var item in list)
+                //{
+                //    if (item.EnemiesInCell.First())
+                //        returnlist.Add(item.EnemiesInCell.First());
+                //    else continue;
+                //}
+                //return returnlist.First();
+
             }
         }
-
         return null;
     }
 
@@ -368,10 +397,11 @@ public class BuildingData : ScriptableObject, ISelectable
 
     private void OnCheckEnemy(Enemy enemy)
     {
-        if (ID == "Torretta" && EnemyTarget == null)
-        {
-            EnemyTarget =GetEnemyInCell();
-        }
+        //if (ID == "Torretta" && EnemyTarget == null)
+        //{
+        //    EnemyTarget =GetEnemyInCell();
+        //}
+        AttackEnemy();
     }
     private void OnDisable()
     {
