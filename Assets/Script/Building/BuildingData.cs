@@ -157,8 +157,8 @@ public class BuildingData : ScriptableObject, ISelectable
         if (GetEnemyInCell())
         {
             Enemy target = GetEnemyInCell();
+            //TODO: non deve distruggere ma deve attaccare.
             Destroy(target.gameObject);
-            //EnemyTarget = null;
             target.CurrentPosition.EnemiesInCell.Remove(target);
         }
 
@@ -349,9 +349,6 @@ public class BuildingData : ScriptableObject, ISelectable
         if (this.UniqueID != "")
         {
 
-
-            // Debug.Log();
-
             CellDoomstock cell = null;
             if (GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).x != -1)
                 cell = GameManager.I.gridController.Cells[(int)GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).x, (int)GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).y];
@@ -364,9 +361,9 @@ public class BuildingData : ScriptableObject, ISelectable
                 {
                     if (item.EnemiesInCell.Count > 0)
                     {
-                        //if (item.EnemiesInCell.First())
+                        
                             returnlist.Add(item.EnemiesInCell.First());
-                        //else continue;
+                       
                     }
 
                 }
@@ -374,13 +371,7 @@ public class BuildingData : ScriptableObject, ISelectable
                 {
                     return returnlist.First(); 
                 }
-                //foreach (var item in list)
-                //{
-                //    if (item.EnemiesInCell.First())
-                //        returnlist.Add(item.EnemiesInCell.First());
-                //    else continue;
-                //}
-                //return returnlist.First();
+                
 
             }
         }
@@ -397,10 +388,7 @@ public class BuildingData : ScriptableObject, ISelectable
 
     private void OnCheckEnemy(Enemy enemy)
     {
-        //if (ID == "Torretta" && EnemyTarget == null)
-        //{
-        //    EnemyTarget =GetEnemyInCell();
-        //}
+    
         AttackEnemy();
     }
     private void OnDisable()
