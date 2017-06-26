@@ -273,7 +273,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             lastPos.EnemiesInCell.Remove(this);
         }
         lastPos = CurrentPosition;
-
+        transform.rotation = Quaternion.LookRotation(_step.GetWorldPosition());
         transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
         {
             //transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
