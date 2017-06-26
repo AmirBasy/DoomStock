@@ -108,6 +108,10 @@ public class BuildingView : MonoBehaviour
 
         List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
         myobject.Remove(transform);
+        if (Data.ID == "Meraviglia")
+        {
+          GameManager.I.OnMeravigliaDestroyed(); 
+        }
         foreach (Transform go in myobject)
         {
             go.gameObject.SetActive(false);

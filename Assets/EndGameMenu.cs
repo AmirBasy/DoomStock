@@ -11,7 +11,14 @@ public class EndGameMenu : MenuBase
 
     public override void LoadSelections()
     {
-        MenuImageToLoad.enabled = true;
+        if (MenuImageToLoad != null)
+        {
+            MenuImageToLoad.enabled = true;
+        }
+        foreach (TMPro.TMP_Text item in GetComponentsInChildren<TMPro.TMP_Text>())
+        {
+            item.enabled = true;
+        }
         PossibiliScelteAttuali.Clear();
         switch (ScelteFatte.Count)
         {
@@ -25,19 +32,6 @@ public class EndGameMenu : MenuBase
                 }
                 break;
             case 1:
-                //switch (ScelteFatte[0].UniqueID)
-                //{
-                //    case "Restart":
-                //        break;
-                //    case "Back To Menu":
-                //        break;
-                //    case "Exit":
-                //        break;
-                //    case "Resume":
-                //        break;
-                //    default:
-                //        break;
-                //}
                 DoAction();
                 return;
         }
@@ -63,6 +57,8 @@ public class EndGameMenu : MenuBase
                 break;
             case "Credits":
                 SceneManager.LoadScene("Credits");
+                break;
+            case "LeaderBoard":
                 break;
             default:
                 break;

@@ -66,6 +66,12 @@ public class PlayerInput
         inputStatus.LeftThumbSticksAxisX = state.ThumbSticks.Left.X;
         inputStatus.LeftThumbSticksAxisY = state.ThumbSticks.Left.Y;
 
+        if (prevState.Buttons.Y == XInputDotNetPure.ButtonState.Released && state.Buttons.A == XInputDotNetPure.ButtonState.Pressed)
+        {
+            // EndMenu
+            inputStatus.Y = ButtonState.Pressed;
+        }
+
         if (prevState.Buttons.A == XInputDotNetPure.ButtonState.Released && state.Buttons.A == XInputDotNetPure.ButtonState.Pressed)
         {
             // confirm/Open Menu
@@ -138,6 +144,11 @@ public class PlayerInput
         {
             case PlayerIndex.One:
                 #region Player One Input
+                if (Input.GetKeyDown(KeyCode.F1))
+                {
+                    // EndGame
+                    inputStatus.Y = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     // PauseMenu
@@ -197,6 +208,11 @@ public class PlayerInput
                 break;
             case PlayerIndex.Two:
                 #region Player Two Input
+                if (Input.GetKeyDown(KeyCode.F2))
+                {
+                    // EndGame
+                    inputStatus.Y = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.F5))
                 {
                     // PauseMenu
@@ -257,6 +273,11 @@ public class PlayerInput
                 break;
             case PlayerIndex.Three:
                 #region Player Three Input
+                if (Input.GetKeyDown(KeyCode.F3))
+                {
+                    // EndGame
+                    inputStatus.Y = ButtonState.Pressed;
+                }
                 if (Input.GetKeyDown(KeyCode.Keypad0))
                 {
                     // PauseMenu

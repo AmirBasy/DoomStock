@@ -62,7 +62,7 @@ public abstract class MenuBase : MonoBehaviour, IMenu {
     public GameObject ButtonPrefab;
     public Transform MenuItemsContainer;
     public Image MenuImageToLoad;
-    public TMP_Text YearText;
+    public TMP_Text YearText, GameOver, InfoText;
 
     /// <summary>
     /// Esegue il refresh della lista degli oggetti visibi del menù.

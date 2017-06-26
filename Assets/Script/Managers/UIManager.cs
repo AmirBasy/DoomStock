@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;
     public PauseMenu PauseMenu;
-    //public EndGameMenu EndGameMenu;
+    public EndGameMenu EndGameMenu;
     //[HideInInspector] Player player = null;
 
     #endregion
@@ -99,21 +99,21 @@ public class UIManager : MonoBehaviour
 
                 PauseMenu.Init(_player, FirstLevelSelectables);
                 return PauseMenu;
-            //case MenuTypes.EndGame:
-            //    FirstLevelSelectables.Add(
-            //                          new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
-            //    FirstLevelSelectables.Add(
-            //                          new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
-            //    FirstLevelSelectables.Add(
-            //                          new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
-            //    FirstLevelSelectables.Add(
-            //                          new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
-            //    FirstLevelSelectables.Add(
-            //                         new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
+            case MenuTypes.EndGame:
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                      new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
+                FirstLevelSelectables.Add(
+                                     new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
 
-            //    PauseMenu.Init(_player, FirstLevelSelectables);
-            //    _player.currentMenu = EndGameMenu;
-            //    return EndGameMenu;
+                EndGameMenu.Init(_player, FirstLevelSelectables);
+                // _player.currentMenu = EndGameMenu;
+                return EndGameMenu;
             case MenuTypes.Player:
 
                 CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
@@ -220,20 +220,27 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.OnMeravigliaMorta += OpenEndMenu;
+        //GameManager.OnMeravigliaMorta += OpenEndMenu;
     }
 
     void OnDisable()
     {
-        GameManager.OnMeravigliaMorta -= OpenEndMenu;
+        //GameManager.OnMeravigliaMorta -= OpenEndMenu;
     }
     #endregion
 
-    public void OpenEndMenu() {
-        //Time.timeScale = 0.0000001f;
-        //player.currentMenu = EndGameMenu;
-        ////EndGameMenuPrefab.active = true;
-    }
+    //public void OpenEndMenu()
+    //{
+    //    Time.timeScale = 0.0000001f;
+    //    //player.OpenEndGameMenu();
+    //    //foreach (Player p in GameManager.I.Players)
+    //    //        {
+    //    //            p.currentMenu = player.OpenEndGameMenu();
+    //    //        }
+    //    //player.currentMenu = player.OpenEndGameMenu();
+
+    //    //EndGameMenuPrefab.active = true;
+    //}
 
 }
 

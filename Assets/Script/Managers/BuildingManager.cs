@@ -27,9 +27,13 @@ public class BuildingManager : MonoBehaviour
         {
             newBuildingList.Add(item);
         }
-        foreach (var item in GameManager.I.MeravigliasInScene)
+        //foreach (var item in GameManager.I.MeravigliasInScene)
+        //{
+        //    newBuildingList.Add(item);
+        //}
+        if (GameManager.I.MeravigliasInScene != null)
         {
-            newBuildingList.Add(item);
+            newBuildingList.Add(GameManager.I.MeravigliasInScene);
         }
         return newBuildingList;
     }

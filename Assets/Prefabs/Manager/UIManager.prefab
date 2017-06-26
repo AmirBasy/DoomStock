@@ -1842,6 +1842,8 @@ MonoBehaviour:
   MenuItemsContainer: {fileID: 224718888909683088}
   MenuImageToLoad: {fileID: 0}
   YearText: {fileID: 0}
+  GameOver: {fileID: 0}
+  InfoText: {fileID: 0}
 --- !u!114 &114054826367927802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2982,7 +2984,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377914029518374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -3009,7 +3011,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1209128922974014}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: 
@@ -3331,14 +3333,13 @@ MonoBehaviour:
   WoodText: {fileID: 114966798404364226}
   FaithText: {fileID: 114338834497924290}
   SpiritText: {fileID: 114306064244456138}
-  EndGameMenuPrefab: {fileID: 1377914029518374}
   logger: {fileID: 0}
   _menuBase: {fileID: 0}
   P1_Menu: {fileID: 114796621104760998}
   P2_Menu: {fileID: 114706276703286602}
   P3_Menu: {fileID: 114760896457957166}
   PauseMenu: {fileID: 114868244104604666}
-  EndGameMenu: {fileID: 0}
+  EndGameMenu: {fileID: 114736842971781794}
 --- !u!114 &114515394683998190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3878,7 +3879,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361383762586750}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: 
@@ -4115,6 +4116,8 @@ MonoBehaviour:
   MenuItemsContainer: {fileID: 224994788619243230}
   MenuImageToLoad: {fileID: 0}
   YearText: {fileID: 0}
+  GameOver: {fileID: 0}
+  InfoText: {fileID: 0}
 --- !u!114 &114726745042090152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4181,7 +4184,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377914029518374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7855379bbd64446a3a449c4b865211, type: 3}
   m_Name: 
@@ -4191,6 +4194,8 @@ MonoBehaviour:
   MenuItemsContainer: {fileID: 224308998493653846}
   MenuImageToLoad: {fileID: 114394025093395622}
   YearText: {fileID: 114133672062508852}
+  GameOver: {fileID: 114650126958817468}
+  InfoText: {fileID: 114877884988270972}
 --- !u!114 &114738750140187994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4338,6 +4343,8 @@ MonoBehaviour:
   MenuItemsContainer: {fileID: 224932431548276750}
   MenuImageToLoad: {fileID: 0}
   YearText: {fileID: 0}
+  GameOver: {fileID: 0}
+  InfoText: {fileID: 0}
 --- !u!114 &114796621104760998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4354,6 +4361,8 @@ MonoBehaviour:
   MenuItemsContainer: {fileID: 224995993996098872}
   MenuImageToLoad: {fileID: 0}
   YearText: {fileID: 0}
+  GameOver: {fileID: 0}
+  InfoText: {fileID: 0}
 --- !u!114 &114806751850589948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4503,7 +4512,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1398027667390992}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e009b665a283b44daf6c3c505ad1682, type: 3}
   m_Name: 
@@ -4513,6 +4522,8 @@ MonoBehaviour:
   MenuItemsContainer: {fileID: 224979734836194544}
   MenuImageToLoad: {fileID: 114597452152256690}
   YearText: {fileID: 0}
+  GameOver: {fileID: 0}
+  InfoText: {fileID: 0}
 --- !u!114 &114870693225803016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4579,7 +4590,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066998939447100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: 

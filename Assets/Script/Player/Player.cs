@@ -72,11 +72,12 @@ public class Player : PlayerBase
     /// aper il Menu di EndGame
     /// </summary>
     /// <returns></returns>
-    //IMenu OpenEndGameMenu() {
-    //    if (!GameManager.I.gridController.CanUseMenu(this))
-    //        return null;
-    //    return GameManager.I.uiManager.ShowMenu(MenuTypes.EndGame, this);
-    //}
+    IMenu OpenEndGameMenu()
+    {
+        if (!GameManager.I.gridController.CanUseMenu(this))
+            return null;
+        return GameManager.I.uiManager.ShowMenu(MenuTypes.EndGame, this);
+    }
 
     /// <summary>
     /// Accade quando viene chiuso un menù.
@@ -291,7 +292,7 @@ public class Player : PlayerBase
     bool isReleasedVertical = true;
 
     // TODO: rifattorizzare creando state machine player
-    IMenu currentMenu = null;
+    [HideInInspector] public IMenu currentMenu = null;
     /// <summary>
     /// costo di fede per la demolizione
     /// </summary>
@@ -313,6 +314,13 @@ public class Player : PlayerBase
         if (currentMenu == null)
 
         {
+            if (_inputStatus.Y == ButtonState.Released && GameManager.I.OnMeravigliaDestroyed()== true)
+            {
+                currentMenu = OpenEndGameMenu();
+                Time.timeScale = 0.00000000001f;
+                if (currentMenu.PossibiliScelteAttuali.Count < 1)
+                    currentMenu.Close();
+            }
             CellDoomstock cell = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid];
             if (_inputStatus.X == ButtonState.Pressed)
             {
@@ -535,6 +543,7 @@ public class Player : PlayerBase
         // chiamata alla funzione che legge gli input
         CheckInputStatus(playerInput.GetPlayerInputStatus());
         time += Time.deltaTime;
+
 
     }
 

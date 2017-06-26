@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public int InitialFood, InitialWood, InitialStone, InitialFaith;
 
     public List<BuildingView> forestInScene;
-    public List<BuildingView> MeravigliasInScene;
+    public BuildingView MeravigliasInScene;
 
     #region Managers
     public GridControllerDoomstock gridController;
@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
                     GoBack = KeyCode.E,
                     PlayerPower = KeyCode.Q,
                     RemovePopulation = KeyCode.C,
-                    Pause = KeyCode.Escape
+                    Pause = KeyCode.Escape,
+                    EndGame = KeyCode.F1
 
                 });
 
@@ -89,7 +90,8 @@ public class GameManager : MonoBehaviour
                 GoBack = KeyCode.O,
                 PlayerPower = KeyCode.P,
                 RemovePopulation = KeyCode.M,
-                Pause = KeyCode.F5
+                Pause = KeyCode.F5,
+                EndGame = KeyCode.F2
 
             });
 
@@ -110,7 +112,8 @@ public class GameManager : MonoBehaviour
                 GoBack = KeyCode.PageDown,
                 PlayerPower = KeyCode.Insert,
                 RemovePopulation = KeyCode.Keypad0,
-                Pause = KeyCode.Keypad0
+                Pause = KeyCode.Keypad0,
+                EndGame = KeyCode.F3
 
             });
 
@@ -141,12 +144,12 @@ public class GameManager : MonoBehaviour
     #region SETUP
     void Awake()
     {
-        //DontDestroyOnLoad(this.gameObject);
+       
         if (I == null)
         {
             I = this;
         }
-
+        //DontDestroyOnLoad(this.gameObject);
     }
     public BuildingData forest;
     public BuildingData Meraviglia;
@@ -251,7 +254,7 @@ public class GameManager : MonoBehaviour
                     currentBuildView = buildingManager.CreateBuild(Meraviglia);
                     currentBuildView.transform.position = new Vector3(item.WorldPosition.x - (CellSize / 2) + 1.05f, item.WorldPosition.y - (CellSize / 2) - 0.26f, item.WorldPosition.z + 1.2f);
                     OneMeravigliaInGioco = true;
-                    MeravigliasInScene.Add(currentBuildView);
+                    MeravigliasInScene = currentBuildView;
                     item.SetStatus(CellDoomstock.CellStatus.Filled, currentBuildView.Data);
                 }
             }
@@ -312,22 +315,23 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Fa un controllo sulla vita della Meraviglia, se 0 , scatena l'evento
     /// </summary>
-    public void OnMeravigliaDestroyed()
+    public bool OnMeravigliaDestroyed()
     {
-        if (Meraviglia.BuildingLife <= 0)
+        if (MeravigliasInScene.Data.BuildingLife <= 0)
         {
-            if (OnMeravigliaMorta!= null)
-            {
-                OnMeravigliaMorta();
-            }
+            //if (OnMeravigliaMorta!= null)
+            //{
+                return true;
+                //OnMeravigliaMorta();
+            //}
         }
-
+        return false;
     }
     #endregion
 
     #region Eventi
     public static GameEvent OnGridCreated;
-    public static GameEvent OnMeravigliaMorta;
+    //public static GameEvent OnMeravigliaMorta;
     #endregion
 
 }

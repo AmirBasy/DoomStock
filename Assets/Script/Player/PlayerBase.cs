@@ -51,6 +51,7 @@ public class PlayerInputData {
     public KeyCode PlayerPower;
     public KeyCode RemovePopulation;
     public KeyCode Pause;
+    public KeyCode EndGame;
 
 }
 
