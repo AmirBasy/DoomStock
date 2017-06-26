@@ -25,26 +25,6 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     //public AnimationClip Camminata, Attacco, Morte;
     #endregion
 
-    //#region API
-
-    //public void PlayAnimation(AnimationType _type)
-    //{
-    //    switch (_type)
-    //    {
-    //        case AnimationType.Camminata:
-    //            _animator.Play(1);
-    //            break;
-    //        case AnimationType.Attacco:
-    //            _animator.Play(2);
-    //            break;
-    //        case AnimationType.Morte:
-    //            _animator.Play(3);
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
-    //#endregion
     #endregion
 
 
@@ -273,7 +253,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             lastPos.EnemiesInCell.Remove(this);
         }
         lastPos = CurrentPosition;
-        transform.rotation = Quaternion.LookRotation(_step.GetWorldPosition());
+        //transform.DORotate(_step.GetWorldPosition(), 1);
+        transform.DOLookAt(_step.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
+        //transform.rotation = Quaternion.LookRotation(_step.GetWorldPosition());
         transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
         {
             //transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
@@ -363,6 +345,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     }
     public bool Attack(BuildingData target)
     {
+        //transform.rotation = Quaternion.LookRotation(target.Cell.GetWorldPosition());
+        transform.DOLookAt(target.Cell.GetWorldPosition(),MovementSpeed,AxisConstraint.Y);
         currentState = enemyState.Attack;
         animationType = AnimationType.Attack;
         if (target)
@@ -398,25 +382,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 break;
         }
 
-        transform.DOMove(new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y-0.5f, _startPos.GetWorldPosition().z+0.4f), MovementSpeed).OnComplete(() =>
+        transform.DOMove(new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y-0.5f, _startPos.GetWorldPosition().z-0.4f), MovementSpeed).OnComplete(() =>
         {
             CurrentPosition = _startPos;
         });
 
 
     }
-
-    //void OnEnable() {
-    //    GameManager.OnGridCreated += GridCreated;
-    //}
-
-    //private void GridCreated() {
-    //    Init(GameManager.I.gridController.Cells[3, 3]);
-    //}
-
-    //void OnDisable() {
-    //    GameManager.OnGridCreated -= GridCreated;
-    //}
     #endregion
 
     #region debug

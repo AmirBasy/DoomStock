@@ -70,7 +70,7 @@ public class EndGameMenu : MenuBase
         Time.timeScale = 1;
         ScelteFatte.Clear();
         Show(false);
-        CurrentPlayer.currentMenu = null;
+        //  CurrentPlayer.currentMenu = null;
     }
 
     #region event subscriptions

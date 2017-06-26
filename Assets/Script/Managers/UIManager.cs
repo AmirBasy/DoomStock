@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public Text FoodText, StoneText, WoodText, FaithText, SpiritText;
 
-    public GameObject EndGameMenuPrefab;
+    //public GameObject EndGameMenuPrefab;
     #region Logger
 
     public Logger logger;
@@ -54,8 +54,8 @@ public class UIManager : MonoBehaviour
     public PlayerMenuComponent P2_Menu;
     public PlayerMenuComponent P3_Menu;
     public PauseMenu PauseMenu;
-    public EndGameMenu EndGameMenu;
-    [HideInInspector] Player player = null;
+    //public EndGameMenu EndGameMenu;
+    //[HideInInspector] Player player = null;
 
     #endregion
 
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
 
     public IMenu ShowMenu(MenuTypes _type, Player _player)
     {
-        player = _player;
+        //player = _player;
         FirstLevelSelectables.Clear();
         switch (_type)
         {
@@ -99,21 +99,21 @@ public class UIManager : MonoBehaviour
 
                 PauseMenu.Init(_player, FirstLevelSelectables);
                 return PauseMenu;
-            case MenuTypes.EndGame:
-                FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
-                FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
-                FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
-                FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
-                FirstLevelSelectables.Add(
-                                     new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
+            //case MenuTypes.EndGame:
+            //    FirstLevelSelectables.Add(
+            //                          new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
+            //    FirstLevelSelectables.Add(
+            //                          new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
+            //    FirstLevelSelectables.Add(
+            //                          new Selector() { UniqueID = "Back To Menu", NameLable = "Back To Menu" } as ISelectable);
+            //    FirstLevelSelectables.Add(
+            //                          new Selector() { UniqueID = "Exit", NameLable = "Exit" } as ISelectable);
+            //    FirstLevelSelectables.Add(
+            //                         new Selector() { UniqueID = "Credits", NameLable = "Credits" } as ISelectable);
 
-                PauseMenu.Init(_player, FirstLevelSelectables);
-                _player.currentMenu = EndGameMenu;
-                return EndGameMenu;
+            //    PauseMenu.Init(_player, FirstLevelSelectables);
+            //    _player.currentMenu = EndGameMenu;
+            //    return EndGameMenu;
             case MenuTypes.Player:
 
                 CellDoomstock cell = GameManager.I.gridController.Cells[_player.XpositionOnGrid, _player.YpositionOnGrid];
@@ -230,9 +230,9 @@ public class UIManager : MonoBehaviour
     #endregion
 
     public void OpenEndMenu() {
-        Time.timeScale = 0.0000001f;
-        player.currentMenu = EndGameMenu;
-        //EndGameMenuPrefab.active = true;
+        //Time.timeScale = 0.0000001f;
+        //player.currentMenu = EndGameMenu;
+        ////EndGameMenuPrefab.active = true;
     }
 
 }

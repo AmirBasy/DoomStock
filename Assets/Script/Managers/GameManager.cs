@@ -236,7 +236,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    bool OneMeravigliaInGioco;
+    [HideInInspector]public bool OneMeravigliaInGioco;
 
     void SetupMeraviglia(BuildingData _meraviglia)
     {

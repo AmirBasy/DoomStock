@@ -10,9 +10,9 @@ public class PauseMenu : MenuBase
 
     public override void LoadSelections()
     {
-        if (MenuImageToLoad!= null)
+        if (MenuImageToLoad != null)
         {
-            MenuImageToLoad.enabled = true; 
+            MenuImageToLoad.enabled = true;
         }
         PossibiliScelteAttuali.Clear();
         switch (ScelteFatte.Count)
@@ -81,7 +81,7 @@ public class PauseMenu : MenuBase
     #region event subscriptions
     private void OnEnable()
     {
-        BuildingView.OnDestroy += RefreshList;
+        //BuildingView.OnDestroy += RefreshList;
         PopulationManager.OnFreePopulationChanged += RefreshList2;
     }
 
@@ -104,7 +104,7 @@ public class PauseMenu : MenuBase
 
     private void OnDisable()
     {
-        BuildingView.OnDestroy -= RefreshList;
+        //BuildingView.OnDestroy -= RefreshList;
         PopulationManager.OnFreePopulationChanged -= RefreshList2;
     }
     #endregion
