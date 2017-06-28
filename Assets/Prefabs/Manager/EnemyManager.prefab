@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e176e3fd0332e4396d8657808c7f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TankPrefab: {fileID: 0}
+  TankPrefab: {fileID: 114970865333321388, guid: 1628342b35b6ca9469b1ffa9a27b57e7,
+    type: 2}
   CombattentiPrefab: {fileID: 114827348727365894, guid: 23a823c8b971bc641be655dbdcefd25d,
     type: 2}
-  TankToSpawn: 0
-  CombattentiToSpawn: 2
+  TankToSpawn: 1
+  CombattentiToSpawn: 0

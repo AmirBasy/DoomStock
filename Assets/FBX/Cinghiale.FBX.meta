@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f0d628028cd7d4e46b0c68c767451063
-timeCreated: 1498656344
+guid: 9f6b7249235818946b90ec2cf28e35ea
+timeCreated: 1498663923
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -60,9 +60,9 @@ ModelImporter:
     4300000: corna_LP
     4300002: Object001
     4300004: Object002
-    7400000: Cinghiale Walking
-    7400002: Cinghiale Attacco
-    7400004: Cinghiale Morto
+    7400000: CinghialeWalking
+    7400002: CinghialeAttack
+    7400004: CinghialeDead
     9500000: //RootNode
     13700000: corna_LP
   materials:
@@ -89,7 +89,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cinghiale Walking
+      name: CinghialeWalking
       takeName: Take 001
       firstFrame: 0
       lastFrame: 100
@@ -165,7 +165,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Cinghiale Attacco
+      name: CinghialeAttack
       takeName: Take 001
       firstFrame: 101
       lastFrame: 200
@@ -241,7 +241,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Cinghiale Morto
+      name: CinghialeDead
       takeName: Take 001
       firstFrame: 201
       lastFrame: 286
