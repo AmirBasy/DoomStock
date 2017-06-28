@@ -315,6 +315,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         {
             StopAI();
             animationType = AnimationType.Dead;
+            CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
             Destroy(gameObject);
         }
     }
