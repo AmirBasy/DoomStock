@@ -122,21 +122,24 @@ public class BuildingData : ScriptableObject, ISelectable
 
     public void AttackEnemy()
     {
-        isAttacking = true;
+
         if (GetEnemyInCell())
         {
+
             Enemy target = GetEnemyInCell();
+            isAttacking = true;
             target.Life -= Attack;
             if (target.Life <= 0)
             {
+                isAttacking = false;
+                GetParticlesEffect();
                 Destroy(target.gameObject);
                 target.CurrentPosition.EnemiesInCell.Remove(target);
+                target = null;
+                
             }
         }
-        if (GetEnemyInCell() == null)
-        {
-            isAttacking = false;
-        }
+
 
     }
 
@@ -367,7 +370,7 @@ public class BuildingData : ScriptableObject, ISelectable
             Enemy.OnStep += OnCheckEnemy;
         }
     }
-    bool isAttacking;
+    [HideInInspector] public bool isAttacking;
     private void OnCheckEnemy(Enemy enemy)
     {
         AttackEnemy();

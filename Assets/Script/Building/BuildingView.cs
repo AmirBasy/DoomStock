@@ -143,6 +143,7 @@ public class BuildingView : MonoBehaviour
     /// <param name="_buildingData"></param>
     public void Init(BuildingData _buildingData)
     {
+        Data.isAttacking = false;
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
         Data.StartingFireRateo = Data.FireRateo;
