@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ab8c0a70c92fe024d8e4b2f22715070f
+timeCreated: 1498643378
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Metamorphous
+  fontNames:
+  - Metamorphous
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

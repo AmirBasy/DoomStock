@@ -45,15 +45,11 @@ public class EndGameMenu : MenuBase
         {
             case "Restart":
                 SceneManager.LoadScene("TestPlayerScene");
+                Time.timeScale = 1;
                 break;
             case "Back To Menu":
                 SceneManager.LoadScene("MainMenu");
-                break;
-            case "Exit":
-                Application.Quit();
-                break;
-            case "Resume":
-                GameManager.I.NormalTime();
+                Time.timeScale = 1;
                 break;
             case "Credits":
                 SceneManager.LoadScene("Credits");

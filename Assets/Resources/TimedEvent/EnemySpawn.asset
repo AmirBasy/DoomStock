@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: EnemySpawn
   m_EditorClassIdentifier: 
   ID: EnemySpawn
-  TimeUnitsToInvoke: 15
-  CurrentTimeUnit: 1
+  TimeUnitsToInvoke: 1
+  CurrentTimeUnit: 15
   isRepeating: 1
