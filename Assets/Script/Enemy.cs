@@ -249,10 +249,11 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
         if (lastPos != null)
         {
+            lastPos = CurrentPosition;
             lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
             lastPos.EnemiesInCell.Remove(this);
         }
-        lastPos = CurrentPosition;
+       
         //transform.DORotate(_step.GetWorldPosition(), 1);
         transform.DOLookAt(_step.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
         //transform.rotation = Quaternion.LookRotation(_step.GetWorldPosition());
@@ -298,7 +299,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             if (OnStep != null)
                 OnStep(this);
         });
-
+        lastPos = CurrentPosition;
     }
 
     void StopAI()
