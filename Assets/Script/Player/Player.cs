@@ -355,7 +355,7 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed) // SELECT
             {
-                GameManager.I.soundManager.GetOpenMenuSound();
+               
                 if (cell.building)
                 {
                     switch (cell.building.CurrentState)
@@ -440,10 +440,14 @@ public class Player : PlayerBase
 
                 }
                 else
-                {   
-                    currentMenu = OpenMenuPlayerID();
-                    if (currentMenu.PossibiliScelteAttuali.Count < 1)
-                        currentMenu.Close();
+                {
+                    if (GameManager.I.gridController.CanUseMenu(this))
+                    {
+                        GameManager.I.soundManager.GetOpenMenuSound();
+                        currentMenu = OpenMenuPlayerID();
+                        if (currentMenu.PossibiliScelteAttuali.Count < 1)
+                            currentMenu.Close(); 
+                    }
                 }
             }
             if (_inputStatus.Start == ButtonState.Pressed)
