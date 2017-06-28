@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Food
   Value: 0
-  Limit: 10
+  Limit: 20
   HasNegativeValue: 0

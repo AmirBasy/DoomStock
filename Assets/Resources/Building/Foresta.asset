@@ -11,11 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733c21da0577f0646a8166a73ea0227f, type: 3}
   m_Name: Foresta
   m_EditorClassIdentifier: 
+  Icon: {fileID: 0}
+  _particleController: {fileID: 0}
+  Range: 0
   TimedEvents: []
   BuildingResources: []
   Delay: 0
-  CounterLimit: 30
-  AttackRange: {x: 0, y: 0}
+  DelayLimit: 5
   BuildingTime: 0
   ID: Foresta
   PopulationLimit: 0
@@ -25,11 +27,9 @@ MonoBehaviour:
   WoodActualValue: 0
   BuildPrefab: {fileID: 114827150790123896, guid: 73e93a7d4020d38468b5cd4f2dd43774,
     type: 2}
-  EnemyTarget: {fileID: 0}
   Attack: 0
   FireRateo: 0
-  DamageResistance: 0
-  IncreaseMaxPopulation: 0
-  BuildingLife: 10
-  InitialLife: 10
-  DecreaseBuildingLife: 1
+  StartingFireRateo: 0
+  BuildingLife: 0
+  InitialLife: 0
+  uniqueIDvero: 

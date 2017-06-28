@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8a6b6e00749c6064a8c014a87f07fd8b, type: 3}
   _particleController: {fileID: 0}
+  Range: 2
   TimedEvents: []
   BuildingResources: []
   Delay: 10
@@ -20,15 +21,15 @@ MonoBehaviour:
   BuildingTime: 10
   ID: Torretta
   PopulationLimit: 10
-  WoodToBuild: 50
-  StoneToBuild: 35
+  WoodToBuild: 20
+  StoneToBuild: 50
   StoneActualValue: 0
   WoodActualValue: 0
   BuildPrefab: {fileID: 114469526126114690, guid: 6e9c2a9ab95a7154cbed485048a80097,
     type: 2}
-  Attack: 2
+  Attack: 4
   FireRateo: 2
-  StartingFireRateo: 5
-  BuildingLife: 10
-  InitialLife: 20
+  StartingFireRateo: 2
+  BuildingLife: 25
+  InitialLife: 25
   uniqueIDvero: 

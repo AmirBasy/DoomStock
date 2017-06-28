@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Spirit
   m_EditorClassIdentifier: 
   ID: Spirit
-  Value: 5
-  Limit: -1
+  Value: 0
+  Limit: 20
   HasNegativeValue: 1
