@@ -738,7 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  Life: 10
+  Life: 15
   _attack: 1
   RangeView: 3
   AttackSpeed: 1

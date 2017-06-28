@@ -13,10 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
   _particleController: {fileID: 0}
+  Range: 0
   TimedEvents: []
   BuildingResources: []
   Delay: 10
-  CounterLimit: 0
+  DelayLimit: 0
   BuildingTime: 10
   ID: Meraviglia
   PopulationLimit: 1
@@ -29,9 +30,6 @@ MonoBehaviour:
   Attack: 0
   FireRateo: 0
   StartingFireRateo: 0
-  DamageResistance: 0
-  IncreaseMaxPopulation: 0
-  BuildingLife: 5
-  InitialLife: 5
-  DecreaseBuildingLife: 0
+  BuildingLife: 250
+  InitialLife: 250
   uniqueIDvero: 

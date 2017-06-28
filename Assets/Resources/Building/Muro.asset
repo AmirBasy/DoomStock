@@ -13,24 +13,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 28dda684cf999f2458aa9cd850a13306, type: 3}
   _particleController: {fileID: 0}
+  Range: 0
   TimedEvents: []
   BuildingResources: []
   Delay: 10
-  CounterLimit: 0
-  AttackRange: {x: 0, y: 0}
+  DelayLimit: 0
   BuildingTime: 10
   ID: Muro
   PopulationLimit: 2
-  WoodToBuild: 10
-  StoneToBuild: 10
+  WoodToBuild: 50
+  StoneToBuild: 20
   StoneActualValue: 0
   WoodActualValue: 0
   BuildPrefab: {fileID: 114022310690705468, guid: 480b557d356de5046a42d860b5ca9563,
     type: 2}
   Attack: 0
   FireRateo: 0
-  DamageResistance: 0
-  IncreaseMaxPopulation: 0
-  BuildingLife: 10
-  InitialLife: 10
-  DecreaseBuildingLife: 0
+  StartingFireRateo: 0
+  BuildingLife: 50
+  InitialLife: 50
+  uniqueIDvero: 

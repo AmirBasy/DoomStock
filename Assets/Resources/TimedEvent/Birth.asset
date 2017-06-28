@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Birth
   m_EditorClassIdentifier: 
   ID: Birth
-  TimeUnitsToInvoke: 10
+  TimeUnitsToInvoke: 5
   CurrentTimeUnit: 10
   isRepeating: 1
