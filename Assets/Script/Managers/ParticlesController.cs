@@ -48,9 +48,12 @@ public class ParticlesController : MonoBehaviour
                 Smoke.Play();
                 break;
             case ParticlesType._attackTorretta:
-                if (AttackTorretta.isPlaying)
-                    AttackTorretta.Stop();
-                AttackTorretta.Play();
+                if (AttackTorretta != null)
+                {
+                    if (AttackTorretta.isPlaying)
+                        AttackTorretta.Stop();
+                    AttackTorretta.Play(); 
+                }
                 break;
             default:
                 break;
@@ -79,7 +82,10 @@ public class ParticlesController : MonoBehaviour
                     Smoke.Stop();
                     break;
                 case ParticlesType._attackTorretta:
-                    AttackTorretta.Stop();
+                    if (AttackTorretta != null)
+                    {
+                        AttackTorretta.Stop(); 
+                    }
                     break;
                 default:
                     break;
