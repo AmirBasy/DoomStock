@@ -1304,6 +1304,7 @@ MonoBehaviour:
   InitialStone: 700
   InitialFaith: 100
   forestInScene: []
+  MeravigliasInScene: {fileID: 0}
   gridController: {fileID: 114917386949103246}
   timeEventManager: {fileID: 114987457646624572}
   populationManager: {fileID: 114345006049877550}
@@ -1317,11 +1318,13 @@ MonoBehaviour:
   - {fileID: 114078644323153342}
   - {fileID: 114644187818460778}
   PlayerPrefab: {fileID: 1184994944299084}
-  forest: {fileID: 0}
+  forest: {fileID: 11400000, guid: 92612a42ff1432243830c1f2c32a9dee, type: 2}
+  Meraviglia: {fileID: 11400000, guid: eedfd560196d7204eb13af8f4c5dbca8, type: 2}
   GridWidth: 15
   GridHeight: 15
   CellSize: 0.8
   resources: []
+  OneMeravigliaInGioco: 0
 --- !u!114 &114303948882771086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1814,7 +1817,7 @@ MonoBehaviour:
   CellSize: 0.3
   TilePrefab:
   - {fileID: 1157076348367308, guid: edf35065a7830fa4ebf6c80bbcc97dc5, type: 2}
-  - {fileID: 1267335651835680, guid: 5aaeb2f7e12af974da18b6e8eb5a04e5, type: 2}
+  - {fileID: 1206817174149386, guid: 66cf8ea1af898a5418170db2edcff8cf, type: 2}
   - {fileID: 1004780974669124, guid: b8761a8b28b787f4eb4d08dc81db029d, type: 2}
   - {fileID: 1595073235191474, guid: adb73111ca5c194439d84b2c9e2f4c7c, type: 2}
   - {fileID: 1323465541271624, guid: 42d31b23995a88743a0e5f0728d3b043, type: 2}
@@ -1841,13 +1844,12 @@ MonoBehaviour:
   EventsPrefab:
   - {fileID: 11400000, guid: 28b0c67df885226459907e42bbf90673, type: 2}
   - {fileID: 11400000, guid: 5b1a8218f3a292f449a869478b80e745, type: 2}
-  - {fileID: 11400000, guid: 85e1c033480b6a04ba5f4e44767f2282, type: 2}
+  - {fileID: 11400000, guid: 671c400d4c0611540905e8e2a3d99ae5, type: 2}
   - {fileID: 11400000, guid: 8b57b2eacd23ed04d8ffcc5f668a699c, type: 2}
   - {fileID: 11400000, guid: 365a1620cfaf0294295ec78489ae8703, type: 2}
   - {fileID: 11400000, guid: a2a49eacf3b51a145aac428f0c85a49a, type: 2}
   - {fileID: 11400000, guid: dc412b0faaf91c94bbc5da9bd21d1520, type: 2}
   - {fileID: 11400000, guid: a3e72f3cd5c20a2449600abeb6f55557, type: 2}
-  - {fileID: 11400000, guid: 671c400d4c0611540905e8e2a3d99ae5, type: 2}
   unitDuration: 1
 --- !u!212 &212150893900027580
 SpriteRenderer:
