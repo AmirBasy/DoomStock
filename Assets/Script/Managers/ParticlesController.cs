@@ -9,6 +9,7 @@ public class ParticlesController : MonoBehaviour
     public ParticleSystem SmallFire;
     public ParticleSystem BigFire;
     public ParticleSystem Smoke;
+    public ParticleSystem AttackTorretta;
 
     #region API
     public void Init()
@@ -46,6 +47,11 @@ public class ParticlesController : MonoBehaviour
                     Smoke.Stop();
                 Smoke.Play();
                 break;
+            case ParticlesType._attackTorretta:
+                if (AttackTorretta.isPlaying)
+                    AttackTorretta.Stop();
+                AttackTorretta.Play();
+                break;
             default:
                 break;
         }
@@ -72,9 +78,12 @@ public class ParticlesController : MonoBehaviour
                 case ParticlesType._smoke:
                     Smoke.Stop();
                     break;
+                case ParticlesType._attackTorretta:
+                    AttackTorretta.Stop();
+                    break;
                 default:
                     break;
-            } 
+            }
         }
     }
     #endregion
@@ -86,5 +95,6 @@ public enum ParticlesType
     _destruction,
     _smallFire,
     _bigFire,
-    _smoke
+    _smoke,
+    _attackTorretta
 }

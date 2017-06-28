@@ -86,24 +86,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// Oggetto prefab dell edificio
     /// </summary> 
     public BuildingView BuildPrefab;
-    /// <summary>
-    /// Target Enemy
-    /// </summary>
-    //private Enemy enemyTarget;
-    //public Enemy EnemyTarget
-    //{
-    //    get { return enemyTarget; }
-    //    set
-    //    {
-    //        enemyTarget = value;
-    //        if (Attack > 0)
-    //        {
-    //            //GetEnemyInCell();
-    //            AttackEnemy(enemyTarget);
-    //        }
 
-    //    }
-    //}
     /// <summary>
     /// Variabile che indica la potenza di "fuoco" dell'edificio
     /// </summary>
@@ -114,10 +97,8 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     [HideInInspector]
     public float FireRateo;
-    
-    public float StartingFireRateo;
 
-   
+    public float StartingFireRateo;
 
     /// <summary>
     /// Vita dell' edificio
@@ -126,8 +107,6 @@ public class BuildingData : ScriptableObject, ISelectable
     public int BuildingLife;
 
     public int InitialLife;
-   
-
 
     public CellDoomstock Cell
     {
@@ -143,17 +122,20 @@ public class BuildingData : ScriptableObject, ISelectable
 
     public void AttackEnemy()
     {
-
+        isAttacking = true;
         if (GetEnemyInCell())
         {
             Enemy target = GetEnemyInCell();
             target.Life -= Attack;
-            //Debug.Log("Enemy Life = " + target.Life + "Torretta Attacco  = " + Attack);
             if (target.Life <= 0)
             {
                 Destroy(target.gameObject);
                 target.CurrentPosition.EnemiesInCell.Remove(target);
             }
+        }
+        if (GetEnemyInCell() == null)
+        {
+            isAttacking = false;
         }
 
     }
@@ -184,6 +166,12 @@ public class BuildingData : ScriptableObject, ISelectable
             _particleController.StopParticles(ParticlesType._bigFire);
             _particleController.PlayParticles(ParticlesType._destruction);
         }
+        if (isAttacking)
+        {
+            _particleController.PlayParticles(ParticlesType._attackTorretta);
+        }
+        if (!isAttacking)
+            _particleController.StopParticles(ParticlesType._attackTorretta);
     }
     /// <summary>
     /// Restituisce la posizione sulla griglia.
@@ -379,10 +367,9 @@ public class BuildingData : ScriptableObject, ISelectable
             Enemy.OnStep += OnCheckEnemy;
         }
     }
-
+    bool isAttacking;
     private void OnCheckEnemy(Enemy enemy)
     {
-
         AttackEnemy();
     }
     private void OnDisable()
