@@ -100,8 +100,8 @@ public class UIManager : MonoBehaviour
                 PauseMenu.Init(_player, FirstLevelSelectables);
                 return PauseMenu;
             case MenuTypes.EndGame:
-                FirstLevelSelectables.Add(
-                                      new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
+                //FirstLevelSelectables.Add(
+                //                      new Selector() { UniqueID = "LeaderBoard", NameLable = "LeaderBoard" } as ISelectable);
                 FirstLevelSelectables.Add(
                                       new Selector() { UniqueID = "Restart", NameLable = "Restart" } as ISelectable);
                 FirstLevelSelectables.Add(

@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        NormalTime();
         GridSetUp();
         foreach (var item in buildingManager.buildingsData)
         {

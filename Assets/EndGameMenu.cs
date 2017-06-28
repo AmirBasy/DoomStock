@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EndGameMenu : MenuBase
 {
-    
+
 
     public override void LoadSelections()
     {
@@ -45,11 +45,9 @@ public class EndGameMenu : MenuBase
         {
             case "Restart":
                 SceneManager.LoadScene("TestPlayerScene");
-                Time.timeScale = 1;
                 break;
             case "Back To Menu":
                 SceneManager.LoadScene("MainMenu");
-                Time.timeScale = 1;
                 break;
             case "Credits":
                 SceneManager.LoadScene("Credits");
