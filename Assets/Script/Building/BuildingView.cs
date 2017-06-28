@@ -83,12 +83,12 @@ public class BuildingView : MonoBehaviour
 
     private void Update()
     {
-        Data.StartingFireRateo = Data.FireRateo;
+       
         Data.FireRateo -= Time.deltaTime;
-        if (Data.StartingFireRateo == 0)
+        if (Data.FireRateo <= 0)
         {
             Data.AttackEnemy();
-            Data.StartingFireRateo = Data.FireRateo;
+            Data.FireRateo = Data.StartingFireRateo;
         }
 
     }
@@ -145,6 +145,7 @@ public class BuildingView : MonoBehaviour
     {
         Data = _buildingData;
         TimeEventManager.OnEvent += OnUnitEvent;
+        Data.StartingFireRateo = Data.FireRateo;
     }
 
     public void SetBuildingStatus(BuildingState _status)
@@ -173,6 +174,7 @@ public class BuildingView : MonoBehaviour
                 SetBuildingStatus(BuildingState.Built);
                 break;
             case BuildingState.Built:
+                Data.Delay = 0;
                 if (Data.Population.Count < 1)
                     AnimationStop(Data);
                 if (Data.ID == "Foresta")
@@ -215,7 +217,7 @@ public class BuildingView : MonoBehaviour
                 break;
             case BuildingState.Waiting:
 
-                Data.Delay = 0;
+               
                 if (Data.ID == "Foresta")
                     CurrentMesh.mesh = Ceppo;
 
@@ -332,13 +334,14 @@ public class BuildingView : MonoBehaviour
                 }
                 break;
             case "Delay":
-               
-                Data.Delay++;
+
+             
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
+                    Data.Delay++;
                     if (Data.Population.Count > 0)
                         SetBuildingStatus(BuildingState.Producing);
-                    if (Data.Delay >= Data.CounterLimit)
+                    if (Data.Delay >= Data.DelayLimit)
                     {
                         //if (Data.ID == "Foresta")
                         //    SetBuildingStatus(BuildingState.Producing);

@@ -311,6 +311,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114208383613482244, guid: 8f5ea6656d628474faf2dd42b639363e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f5ea6656d628474faf2dd42b639363e, type: 2}
   m_IsPrefabParent: 0
@@ -821,6 +826,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114987457646624572, guid: d06943b41fccfed4bacc425ada983a50,
+        type: 2}
+      propertyPath: EventsPrefab.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4508600395486368, guid: d06943b41fccfed4bacc425ada983a50, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -929,6 +939,23 @@ Prefab:
       propertyPath: Meraviglia
       value: 
       objectReference: {fileID: 11400000, guid: eedfd560196d7204eb13af8f4c5dbca8,
+        type: 2}
+    - target: {fileID: 114987457646624572, guid: d06943b41fccfed4bacc425ada983a50,
+        type: 2}
+      propertyPath: unitDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114987457646624572, guid: d06943b41fccfed4bacc425ada983a50,
+        type: 2}
+      propertyPath: EventsPrefab.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 671c400d4c0611540905e8e2a3d99ae5,
+        type: 2}
+    - target: {fileID: 114987457646624572, guid: d06943b41fccfed4bacc425ada983a50,
+        type: 2}
+      propertyPath: EventsPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 671c400d4c0611540905e8e2a3d99ae5,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d06943b41fccfed4bacc425ada983a50, type: 2}

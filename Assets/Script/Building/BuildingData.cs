@@ -16,11 +16,14 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Lista degli eventi a cui questo edificio risponde.
     /// </summary>
+    [HideInInspector]
     public List<TimedEventData> TimedEvents;
 
     /// <summary>
     /// Lista di Risorse che l'edifico puo creare.
     /// </summary>
+
+    [HideInInspector]
     public List<BaseResourceData> BuildingResources;
 
     /// <summary>
@@ -42,8 +45,9 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Counter per far ripartire la produzione
     /// </summary>
+    [HideInInspector]
     public float Delay;
-    public float CounterLimit;
+    public float DelayLimit;
     /// <summary>
     /// ID unico
     /// </summary>
@@ -75,7 +79,7 @@ public class BuildingData : ScriptableObject, ISelectable
     /// Elenco di risorse necessarie per costruire l'edificio
     /// </summary>
     public int WoodToBuild, StoneToBuild;
-
+    [HideInInspector]
     public int StoneActualValue, WoodActualValue;
 
     /// <summary>
@@ -108,34 +112,21 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <summary>
     /// Variabile che indica ogni quanto l'deificio può attaccare
     /// </summary>
+    [HideInInspector]
     public float FireRateo;
-    [HideInInspector]public float StartingFireRateo;
+    
+    public float StartingFireRateo;
 
-    /// <summary>
-    /// Variabile che indica la resistenza al danno dei nemici
-    /// </summary>
-    public int DamageResistance;
-
-    /// <summary>
-    /// Variabile che indica il costo di Manuntenzione
-    /// </summary>
-    //public int Maintenance;
-
-    /// <summary>
-    /// Aumenta il LimiteMassimo della Popolazione
-    /// </summary>
-    public int IncreaseMaxPopulation;
+   
 
     /// <summary>
     /// Vita dell' edificio
     /// </summary>
+    [HideInInspector]
     public int BuildingLife;
 
     public int InitialLife;
-    /// <summary>
-    /// Variabile utilizzata per il Degrado
-    /// </summary>
-    public int DecreaseBuildingLife;
+   
 
 
     public CellDoomstock Cell
@@ -149,17 +140,6 @@ public class BuildingData : ScriptableObject, ISelectable
 
 
     #region API
-
-    //void Update()
-    //{
-    //    StartingFireRateo = FireRateo;
-    //    FireRateo -= Time.deltaTime;
-    //    if (StartingFireRateo == 0)
-    //    {
-    //        AttackEnemy();
-    //        StartingFireRateo = FireRateo;
-    //    }
-    //}
 
     public void AttackEnemy()
     {
@@ -316,6 +296,7 @@ public class BuildingData : ScriptableObject, ISelectable
 
 
     #region Setup
+    [HideInInspector]
     public string uniqueIDvero;
     public void Awake()
     {

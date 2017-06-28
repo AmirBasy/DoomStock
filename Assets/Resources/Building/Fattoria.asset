@@ -16,8 +16,7 @@ MonoBehaviour:
   TimedEvents: []
   BuildingResources: []
   Delay: 0
-  CounterLimit: 10
-  AttackRange: {x: 0, y: 0}
+  DelayLimit: 10
   BuildingTime: 3
   ID: Fattoria
   PopulationLimit: 50
@@ -29,8 +28,7 @@ MonoBehaviour:
     type: 2}
   Attack: 0
   FireRateo: 0
-  DamageResistance: 0
-  IncreaseMaxPopulation: 0
+  StartingFireRateo: 0
   BuildingLife: 10
   InitialLife: 10
-  DecreaseBuildingLife: 1
+  uniqueIDvero: 

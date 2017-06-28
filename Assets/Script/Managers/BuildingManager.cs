@@ -66,14 +66,6 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// toglie vita all'edificio.
-    /// </summary>
-    /// <param name="_buildingView"></param>
-    public void RemoveLife(BuildingView _buildingView)
-    {
-        _buildingView.Data.BuildingLife -= _buildingView.Data.DecreaseBuildingLife;
-    }
 
     /// <summary>
     /// Restituisce il totale degli edifici in scena.

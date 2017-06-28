@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: Delay
   m_EditorClassIdentifier: 
   ID: Delay
-  TimeUnitsToInvoke: 1
-  CurrentTimeUnit: 0
+  TimeUnitsToInvoke: 2
+  CurrentTimeUnit: 1
   isRepeating: 1

@@ -96,19 +96,7 @@ public class PopulationManager : MonoBehaviour
             MainPeopleText.text = _newText;
     }
 
-    /// <summary>
-    /// Aumenta la MaxPopulation per ogni edificio istanziato
-    /// </summary>
-    public void IncreaseMaxPopulation()
-    {
-        foreach (BuildingView building in GameManager.I.buildingManager.GetAllBuildingInScene())
-        {
-            if (building.Data.IncreaseMaxPopulation > 0)
-            {
-                // MainPopulation += building.Data.IncreaseMaxPopulation;
-            }
-        }
-    }
+ 
 
     /// <summary>
     /// genera un'unità di populationData
