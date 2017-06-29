@@ -247,8 +247,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     {
         if (lastPos != null)
         {
+            /*lastPos.Status != CellDoomstock.CellStatus.Filled && */
             lastPos = CurrentPosition;
-            if (/*lastPos.Status != CellDoomstock.CellStatus.Filled && */lastPos.Type != CellDoomstock.CellType.Forest)
+            if (lastPos.Type != CellDoomstock.CellType.Forest)
             {
                 lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
                 Debug.Log(lastPos.Type);
@@ -313,7 +314,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         {
             AnimationDead();
             StopAI();
-            CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
+            if (lastPos.Type != CellDoomstock.CellType.Forest)
+                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+            if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
+                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
         }
     }
 
@@ -340,6 +344,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             if (nextStep.isTraversable == false)
             {
                 Attack(nextStep.building);
+                currentState = enemyState.Attack;
             }
         }
         else
