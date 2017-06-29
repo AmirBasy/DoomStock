@@ -8,23 +8,6 @@ using System.Linq;
 
 public class BuildingView : MonoBehaviour
 {
-    #region Barretta
-    //[Header("Barretta")]
-    //public Image barretta;
-    //private float barrettaGrow;
-
-    //public float BarrettaGrow
-    //{
-    //    get { return barrettaGrow; }
-    //    set
-    //    {
-    //        barrettaGrow = value;
-    //        barretta.fillAmount = BarrettaGrow;
-    //        BarrettaSetColor();
-    //    }
-    //}
-    #endregion
-
     #region Proprietà
     [Header("View")]
 
@@ -51,10 +34,6 @@ public class BuildingView : MonoBehaviour
             _particle = Data._particleController;
             _particle.Init();
         }
-
-        //if (barretta != null)
-        //    barretta.fillAmount = 0;
-
         if (Data.ID != "Foresta")
         {
             SetBuildingStatus(BuildingState.Construction);
@@ -65,7 +44,6 @@ public class BuildingView : MonoBehaviour
             SetBuildingStatus(BuildingState.Ready);
             CurrentMesh.mesh = Pino;
         }
-
     }
 
     private void OnEnable()
@@ -83,14 +61,12 @@ public class BuildingView : MonoBehaviour
 
     private void Update()
     {
-       
         Data.FireRateo -= Time.deltaTime;
         if (Data.FireRateo <= 0)
         {
             Data.AttackEnemy();
             Data.FireRateo = Data.StartingFireRateo;
         }
-
     }
     /// <summary>
     /// Distrugge il building.
@@ -110,7 +86,7 @@ public class BuildingView : MonoBehaviour
         myobject.Remove(transform);
         if (Data.ID == "Meraviglia")
         {
-          GameManager.I.OnMeravigliaDestroyed(); 
+            GameManager.I.OnMeravigliaDestroyed();
         }
         foreach (Transform go in myobject)
         {
@@ -126,14 +102,11 @@ public class BuildingView : MonoBehaviour
     /// </summary>
     public void RemoveDebris()
     {
-
         GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y].SetStatus(CellDoomstock.CellStatus.Empty);
-
         GameManager.I.GetResourceDataByID("Wood").Value += Data.GetActualWoodValue();
         GameManager.I.GetResourceDataByID("Stone").Value += Data.GetActualWoodValue();
         if (OnRemoveDebris != null)
             OnRemoveDebris(this);
-
         Destroy(gameObject);
     }
 
@@ -151,7 +124,6 @@ public class BuildingView : MonoBehaviour
 
     public void SetBuildingStatus(BuildingState _status)
     {
-
         Data.CurrentState = _status;
         OnStatusChanged();
     }
@@ -167,10 +139,7 @@ public class BuildingView : MonoBehaviour
                 CurrentMesh = GetComponent<MeshFilter>();
                 if (Data.ID != "Meraviglia")
                 {
-                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime);//.OnComplete(() =>
-                    //        {
-                    //            SetBuildingStatus(BuildingState.Built);
-                    //        }); 
+                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime);
                 }
                 SetBuildingStatus(BuildingState.Built);
                 break;
@@ -209,16 +178,13 @@ public class BuildingView : MonoBehaviour
                     case "Torretta":
                         GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitSpirit, cell);
                         break;
-                    case "Casa":
-                        // GameManager.I.messagesManager.ShowiInformation(MessageLableType.LimitPopulation, this.transform.position);
-                        break;
                     default:
                         break;
                 }
                 break;
             case BuildingState.Waiting:
 
-               
+
                 if (Data.ID == "Foresta")
                     CurrentMesh.mesh = Ceppo;
 
@@ -291,7 +257,6 @@ public class BuildingView : MonoBehaviour
         {
             case "Production":
                 CellDoomstock cell = null;
-               
                 if (Data.CurrentState == BuildingState.Producing && Data.ID != "Foresta" && Data.ID != "Meraviglia")
                 {
                     cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
@@ -304,12 +269,8 @@ public class BuildingView : MonoBehaviour
                             case "Faith":
                                 GameManager.I.messagesManager.ShowiInformation(MessageLableType.FaithProduction, cell, true, "1");
                                 break;
-
                             case "Stone":
                                 GameManager.I.messagesManager.ShowiInformation(MessageLableType.StoneProduction, cell, true, "1");
-                                break;
-                            case "Spirit":
-                                GameManager.I.messagesManager.ShowiInformation(MessageLableType.SpiritProduction, cell, true, "1");
                                 break;
                             case "Food":
                                 GameManager.I.messagesManager.ShowiInformation(MessageLableType.FoodProduction, cell, true, "1");
@@ -318,7 +279,6 @@ public class BuildingView : MonoBehaviour
                                 break;
                         }
                     }
-
                 }
                 else if (Data.CurrentState == BuildingState.Producing && Data.ID == "Foresta")
                 {
@@ -335,8 +295,6 @@ public class BuildingView : MonoBehaviour
                 }
                 break;
             case "Delay":
-
-             
                 if (Data.CurrentState == BuildingState.Waiting)
                 {
                     Data.Delay++;
@@ -344,28 +302,13 @@ public class BuildingView : MonoBehaviour
                         SetBuildingStatus(BuildingState.Producing);
                     if (Data.Delay >= Data.DelayLimit)
                     {
-                        //if (Data.ID == "Foresta")
-                        //    SetBuildingStatus(BuildingState.Producing);
-                        //else
-                        //{
-
                         SetBuildingStatus(BuildingState.Built);
-
-
-                        //  }
                     }
                 }
                 break;
-
             default:
                 break;
         }
-        //if (Data.Population.Count <= 0)
-        //    if (Data.ID != "Foresta")
-        //    {
-        //        Data.SetBuildingStatus(BuildingData.BuildingState.Built);
-        //    }
-
     }
 
     #endregion

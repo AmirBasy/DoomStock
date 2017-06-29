@@ -174,7 +174,7 @@ public class Player : PlayerBase
             CurrentBuildView.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - (GameManager.I.CellSize / 2) - 0.5f, this.transform.position.z + 0.1f);
             GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].SetStatus(CellDoomstock.CellStatus.Filled, newInstanceOfView.Data);
             BuildingsInScene.Add(newInstanceOfView);
-            
+
         }
         CurrentBuildView = null;
     }
@@ -314,7 +314,7 @@ public class Player : PlayerBase
         if (currentMenu == null)
 
         {
-            if (_inputStatus.Y == ButtonState.Released && GameManager.I.OnMeravigliaDestroyed()== true)
+            if (_inputStatus.Y == ButtonState.Released && GameManager.I.OnMeravigliaDestroyed() == true)
             {
                 currentMenu = OpenEndGameMenu();
                 Time.timeScale = 0.00000000001f;
@@ -355,7 +355,7 @@ public class Player : PlayerBase
             }
             if (_inputStatus.A == ButtonState.Pressed) // SELECT
             {
-               
+
                 if (cell.building)
                 {
                     switch (cell.building.CurrentState)
@@ -394,7 +394,7 @@ public class Player : PlayerBase
                                             GameManager.I.soundManager.GetWoodSound();
                                             break;
                                         case "Faith":
-                                            
+
                                             break;
                                         case "Stone":
                                             GameManager.I.soundManager.GetStoneSound();
@@ -446,7 +446,7 @@ public class Player : PlayerBase
                         GameManager.I.soundManager.GetOpenMenuSound();
                         currentMenu = OpenMenuPlayerID();
                         if (currentMenu.PossibiliScelteAttuali.Count < 1)
-                            currentMenu.Close(); 
+                            currentMenu.Close();
                     }
                 }
             }
@@ -535,7 +535,7 @@ public class Player : PlayerBase
             {
                 GameManager.I.soundManager.BackMenuSound();
                 currentMenu.GoBack();
-                
+
             }
         }
 
@@ -642,7 +642,6 @@ public class Player : PlayerBase
         if (cell.building.Population.Count == 0)
         {
             GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStart(building);
-
             GameManager.I.buildingManager.GetBuildingView(building.UniqueID).AnimationStop(building);
         }
     }
@@ -660,8 +659,7 @@ public class Player : PlayerBase
                 {
                     GameManager.I.GetResourceDataByID("Faith").Value -= RiparationCost;
                     cell.building.BuildingLife = cell.building.InitialLife;
-                    //GameManager.I.GetResourceDataByID("Wood").Value += cell.building.GetActualWoodValue();
-                    //GameManager.I.GetResourceDataByID("Stone").Value += cell.building.GetActualStoneValue();
+                    cell.building.GetParticlesEffect();
                     GameManager.I.messagesManager.ShowiInformation(MessageLableType.Reparing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
                 }
                 break;
@@ -671,7 +669,6 @@ public class Player : PlayerBase
                     DestroyBuilding(cell.building.UniqueID);
                     GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
                     GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
-                    // GameManager.I.messagesManager.ShowiInformation(MessageLableType.GetMacerie, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid]);
                 }
                 break;
             case "Clero":
@@ -683,6 +680,7 @@ public class Player : PlayerBase
                         item.Value = item.Limit;
                         GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Ready);
                     }
+                    GameManager.I.messagesManager.ShowiInformation(MessageLableType.Miracle, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);
                 }
                 break;
             default:

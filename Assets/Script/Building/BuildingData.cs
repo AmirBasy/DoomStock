@@ -133,7 +133,7 @@ public class BuildingData : ScriptableObject, ISelectable
             {
                 isAttacking = false;
                 GetParticlesEffect();
-                Destroy(target.gameObject);
+                target.OnDead();
                 target.CurrentPosition.EnemiesInCell.Remove(target);
                 target = null;
                 
@@ -149,13 +149,18 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public void GetParticlesEffect()
     {
+        if (BuildingLife == InitialLife)
+        {
+            _particleController.StopParticles(ParticlesType._smoke);
+            _particleController.StopParticles(ParticlesType._smallFire);
+            _particleController.StopParticles(ParticlesType._bigFire);
+        }
         if (BuildingLife == InitialLife - 1)
         {
             _particleController.PlayParticles(ParticlesType._smoke);
         }
         if (BuildingLife == InitialLife / 2 && BuildingLife >= InitialLife / 3)
         {
-
             _particleController.StopParticles(ParticlesType._smoke);
             _particleController.PlayParticles(ParticlesType._smallFire);
         }
@@ -182,7 +187,6 @@ public class BuildingData : ScriptableObject, ISelectable
     /// <returns></returns>
     public Vector2 GetGridPosition()
     {
-
         return GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID);
     }
 
@@ -196,9 +200,7 @@ public class BuildingData : ScriptableObject, ISelectable
             GameManager.I.populationManager.AddPopulation(item);
             //GameManager.I.messagesManager.ShowMessage(item, PopulationMessageType.BackToHole);
         }
-
         Population.RemoveAll(p => p.UniqueID == _unitToRemoveID);
-
     }
 
     /// <summary>
@@ -231,7 +233,6 @@ public class BuildingData : ScriptableObject, ISelectable
 
     public int GetActualStoneValue()
     {
-
         if (InitialLife > 0)
         {
             StoneActualValue = (int)(StoneToBuild * BuildingLife) / InitialLife;
@@ -284,8 +285,6 @@ public class BuildingData : ScriptableObject, ISelectable
         set;
     }
 
-
-
     #region Setup
     [HideInInspector]
     public string uniqueIDvero;
@@ -333,11 +332,9 @@ public class BuildingData : ScriptableObject, ISelectable
     {
         if (this.UniqueID != "")
         {
-
             CellDoomstock cell = null;
             if (GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).x != -1)
                 cell = GameManager.I.gridController.Cells[(int)GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).x, (int)GameManager.I.gridController.GetBuildingPositionByUniqueID(UniqueID).y];
-
             if (cell != null)
             {
                 List<Enemy> returnlist = new List<Enemy>();
@@ -346,18 +343,13 @@ public class BuildingData : ScriptableObject, ISelectable
                 {
                     if (item.EnemiesInCell.Count > 0)
                     {
-
                         returnlist.Add(item.EnemiesInCell.First());
-
                     }
-
                 }
                 if (returnlist.Count > 0)
                 {
                     return returnlist.First();
                 }
-
-
             }
         }
         return null;

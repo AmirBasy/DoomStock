@@ -14,8 +14,6 @@ public class UiInformation : MonoBehaviour {
     public string MessageType;
     
     public void ShowMessagePop_up(MessageLableType _message, string iconToGet) {
-       
-
         Color iconColor = new Color(0, 0, 0, 0);
         Color backgroundColor = new Color(0,0,0,0);
         string IconString = "";
@@ -53,19 +51,18 @@ public class UiInformation : MonoBehaviour {
                 ColorUtility.TryParseHtmlString(MessagesManager.RemovePopulationColor, out backgroundColor);
                 IconString = "rimozione_popolano";
                 break;
-            //case MessageLableType.SpiritProduction:
-            //    ColorUtility.TryParseHtmlString(MessagesManager.SpiritColor, out backgroundColor);
-            //    IconString = iconToGet;
-            //    break;
             case MessageLableType.Reparing:
                 ColorUtility.TryParseHtmlString(MessagesManager.ReparingColor, out backgroundColor);
-                IconString = "accetta";
+                IconString = "PotereRepair";
                 break;
             case MessageLableType.Destroing:
                 ColorUtility.TryParseHtmlString(MessagesManager.DestroingColor, out backgroundColor);
-                IconString = "piccone";
+                IconString = "PotereDestroy";
                 break;
-            
+            case MessageLableType.Miracle:
+                ColorUtility.TryParseHtmlString(MessagesManager.DestroingColor, out backgroundColor);
+                IconString = "PotereMiracolo";
+                break;
             default:
                 break;
         }
@@ -79,7 +76,6 @@ public class UiInformation : MonoBehaviour {
         transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 0.5f, 1).OnComplete(() => {Destroy(this.gameObject);
         });
         BackgroundColor.color = backgroundColor;
-
     }
 
     public void ShowMessageStuck(MessageLableType _message) {
@@ -121,9 +117,7 @@ public class UiInformation : MonoBehaviour {
             Icon.gameObject.SetActive(false);
         }
         transform.DOShakeScale(3);
-        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 0.5f, 1).OnComplete(() => {
-
-        });
+        transform.DOMoveY(transform.position.y + GameManager.I.gridController.CellSize * 0.5f, 1);
         BackgroundColor.color = backgroundColor;    
     }
 }

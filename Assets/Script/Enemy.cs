@@ -245,21 +245,19 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     public void DoMoveStep(INode _step)
     {
-
-
         if (lastPos != null)
         {
             lastPos = CurrentPosition;
-            lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+            if (/*lastPos.Status != CellDoomstock.CellStatus.Filled && */lastPos.Type != CellDoomstock.CellType.Forest)
+            {
+                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+                Debug.Log(lastPos.Type);
+            }
             lastPos.EnemiesInCell.Remove(this);
         }
-       
-        //transform.DORotate(_step.GetWorldPosition(), 1);
         transform.DOLookAt(_step.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
-        //transform.rotation = Quaternion.LookRotation(_step.GetWorldPosition());
         transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
         {
-            //transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z + 0.50f);
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
@@ -309,15 +307,26 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         MovementSpeed = 0;
     }
 
-    void OnDead()
+    public void OnDead()
     {
         if (Life <= 0)
         {
+            AnimationDead();
             StopAI();
-            animationType = AnimationType.Dead;
             CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
-            Destroy(gameObject);
         }
+    }
+
+    public void AnimationDead()
+    {
+        animationType = AnimationType.Dead;
+        StartCoroutine(CorourineAnimationDead(4));
+    }
+
+    IEnumerator CorourineAnimationDead(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -325,16 +334,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     /// </summary>
     void AttackNextStep()
     {
-
         CellDoomstock nextStep = CurrentPath[CurrentNodeIndex] as CellDoomstock;
         if (Type == enemyType.Tank)
         {
-
             if (nextStep.isTraversable == false)
             {
                 Attack(nextStep.building);
             }
-
         }
         else
         {
@@ -347,8 +353,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     }
     public bool Attack(BuildingData target)
     {
-        //transform.rotation = Quaternion.LookRotation(target.Cell.GetWorldPosition());
-        transform.DOLookAt(target.Cell.GetWorldPosition(),MovementSpeed,AxisConstraint.Y);
+        transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
         currentState = enemyState.Attack;
         animationType = AnimationType.Attack;
         if (target)
@@ -356,14 +361,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             target.BuildingLife -= _attack;
             target.GetParticlesEffect();
         }
-
         if (target.BuildingLife <= 0)
         {
             GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
             currentState = enemyState.Searching;
             return false;
         }
-
         return true;
     }
 
@@ -383,13 +386,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 pathFindingSettings = PathFindingSettings.Combattente;
                 break;
         }
-
-        transform.DOMove(new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y-0.5f, _startPos.GetWorldPosition().z-0.4f), MovementSpeed).OnComplete(() =>
-        {
-            CurrentPosition = _startPos;
-        });
-
-
+        transform.DOMove(new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y - 0.5f, _startPos.GetWorldPosition().z - 0.4f), MovementSpeed).OnComplete(() =>
+            {
+                CurrentPosition = _startPos;
+            });
     }
     #endregion
 
@@ -417,13 +417,11 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 waitTimeToAttackTarget -= Time.deltaTime;
                 if (waitTimeToAttackTarget < 0)
                 {
-
                     if (!Attack(CurrentTarget))
                     {
                         currentState = enemyState.Searching;
                         resetTarget();
                     }
-
                     waitTimeToAttackTarget = AttackSpeed;
                 }
                 break;

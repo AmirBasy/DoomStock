@@ -14,10 +14,10 @@ public class MessagesManager : MonoBehaviour
     public static string StoneColor = "#8D8D8DFF";
     public static string FaithColor = "#C700FFFF";
     public static string SpiritColor = "#00FF80FF";
-    public static string MajorColor = "#FF0000FF";
     public static string UndefinedColor = "#FF0079FF";
     public static string ReparingColor = "#FBFF00FF";
-    public static string DestroingColor = "00FFEAFF";
+    public static string DestroingColor = "#00FFEAFF";
+    public static string MiracleColor = "#EE6060";
     #endregion
 
     public UiInformation uiInformationPrefab;
@@ -35,7 +35,7 @@ public class MessagesManager : MonoBehaviour
             delay = Random.Range(MinRange, MaxRange);
             ;
         }
-        StartCoroutine(ShowMessage(delay, _message, _worldPosition,  iconToGet));
+        StartCoroutine(ShowMessage(delay, _message, _worldPosition, iconToGet));
 
     }
 
@@ -44,11 +44,10 @@ public class MessagesManager : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
         UiInformation info = Instantiate(uiInformationPrefab,
-            new Vector3 (_worldPosition.GetWorldPosition().x,
+            new Vector3(_worldPosition.GetWorldPosition().x,
             _worldPosition.GetWorldPosition().y,
             _worldPosition.GetWorldPosition().z + 0.5f), this.transform.rotation);
         info.cell = _worldPosition;
-        //info.cell = GameManager.I.gridController.Cells[(int)_worldPosition.GetWorldPosition().x, (int)_worldPosition.GetWorldPosition().y];
         switch (_message)
         {
             case MessageLableType.FoodProduction:
@@ -62,6 +61,7 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.AddPopulation:
             case MessageLableType.Reparing:
             case MessageLableType.Destroing:
+            case MessageLableType.Miracle:
                 info.ShowMessagePop_up(_message, iconToGet);
                 info.MessageType = "PopUp";
                 break;
@@ -74,7 +74,6 @@ public class MessagesManager : MonoBehaviour
             case MessageLableType.GetMacerie:
                 info.ShowMessageStuck(_message);
                 info.MessageType = "Stuck";
-                // info.CellWorldPosition = _worldPosition;
                 break;
             default:
                 break;
@@ -97,53 +96,4 @@ public class MessagesManager : MonoBehaviour
             }
         }
     }
-    //public void ShowMessage(PopulationData unit, PopulationMessageType _type, BuildingView building = null)
-    //{
-    //    MessageLable message;
-    //    switch (_type)
-    //    {
-    //        case PopulationMessageType.Birth:
-    //            //message = Instantiate(uiInformationPrefab, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition, transform.rotation);
-    //            message.Show(unit, _type);
-    //            break;
-    //        case PopulationMessageType.Death:
-    //            message = Instantiate(uiInformationPrefab, GameManager.I.buildingManager.GetBuildingContainingUnit(unit),Quaternion.Euler(45, 30f, -3f));//transform.rotation.x + 45, transform.rotation.y+30, transform.rotation.z-3);
-    //            message.Show(unit, _type);
-    //            break;
-    //        case PopulationMessageType.AddToBuilding:
-    //            message = Instantiate(uiInformationPrefab, GameManager.I.gridController.GetCellPositionByStatus(CellDoomstock.CellStatus.Hole).WorldPosition, transform.rotation);
-    //            message.Show(unit, _type, building);
-    //            break;
-    //        case PopulationMessageType.BackToHole:
-    //            message = Instantiate(uiInformationPrefab, GameManager.I.buildingManager.GetBuildingContainingUnit(unit), transform.rotation);
-    //            message.Show(unit, _type);
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
-    //public void ShowBuildingMessage(BuildingView _building, BuildingMessageType _type, PopulationData _population = null)
-    //{
-    //    MessageLable message;
-    //    message = Instantiate(uiInformationPrefab, _building.transform.position, transform.rotation);
-    //    message.ShowBuilding(_building.Data, _type);
-    //}
 }
-
-//public enum PopulationMessageType
-//{
-//    Birth,
-//    Death,
-//    AddToBuilding,
-//    BackToHole
-//}
-
-//public enum BuildingMessageType
-//{
-//    Construction,
-//    Builded,
-//    Debris,
-//    PeopleAdded,
-//    PeopleRemoved,
-//    Ready
-//}

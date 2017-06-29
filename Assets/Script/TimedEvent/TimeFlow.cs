@@ -64,8 +64,7 @@ public class TimeFlow : MonoBehaviour
     public void IncreaseYear()
     {
         yearCounter++;
-        YearText.text = yearCounter.ToString();
-        
+        YearText.text = yearCounter.ToString();   
     }
 
     /// <summary>
