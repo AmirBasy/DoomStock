@@ -151,9 +151,12 @@ public class BuildingData : ScriptableObject, ISelectable
     {
         if (BuildingLife == InitialLife)
         {
-            _particleController.StopParticles(ParticlesType._smoke);
-            _particleController.StopParticles(ParticlesType._smallFire);
-            _particleController.StopParticles(ParticlesType._bigFire);
+            if (_particleController)
+            {
+                _particleController.StopParticles(ParticlesType._smoke);
+                _particleController.StopParticles(ParticlesType._smallFire);
+                _particleController.StopParticles(ParticlesType._bigFire); 
+            }
         }
         if (BuildingLife == InitialLife - 1)
         {

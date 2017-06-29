@@ -248,13 +248,16 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         if (lastPos != null)
         {
             /*lastPos.Status != CellDoomstock.CellStatus.Filled && */
-            lastPos = CurrentPosition;
+
             if (lastPos.Type != CellDoomstock.CellType.Forest)
             {
                 lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
                 Debug.Log(lastPos.Type);
+                lastPos.EnemiesInCell.Remove(this);
             }
-            lastPos.EnemiesInCell.Remove(this);
+
+
+            lastPos = CurrentPosition;
         }
         transform.DOLookAt(_step.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
         transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
@@ -262,8 +265,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
-            CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
-            CurrentPosition.EnemiesInCell.Add(this);
+            if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
+            {
+                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
+                CurrentPosition.EnemiesInCell.Add(this);
+            }
+
 
 
             if (CurrentNodeIndex > lastNode)
@@ -312,12 +319,21 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     {
         if (Life <= 0)
         {
+
+            if (lastPos.Type != CellDoomstock.CellType.Forest)
+            {
+                lastPos.EnemiesInCell.Remove(this);
+                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+            }
+
+            if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
+            {
+                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
+                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
+            }
+
             AnimationDead();
             StopAI();
-            if (lastPos.Type != CellDoomstock.CellType.Forest)
-                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
-            if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
-                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
         }
     }
 
@@ -343,7 +359,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         {
             if (nextStep.isTraversable == false)
             {
-                Attack(nextStep.building);
+                if (nextStep.building)
+                {
+                    Attack(nextStep.building);
+                }
                 currentState = enemyState.Attack;
             }
         }
@@ -358,7 +377,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     }
     public bool Attack(BuildingData target)
     {
-        transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
+        if (target.Cell.GetWorldPosition().x != -1 && target.Cell.GetWorldPosition().y != -1)
+        {
+            transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
+        }
         currentState = enemyState.Attack;
         animationType = AnimationType.Attack;
         if (target)
