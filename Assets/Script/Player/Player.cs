@@ -361,7 +361,8 @@ public class Player : PlayerBase
                     switch (cell.building.CurrentState)
                     {
                         case BuildingState.Construction:
-                            break;
+                            Debug.Log("non lo devo fare");
+                            return;
                         case BuildingState.Built:
                         case BuildingState.Producing:
                             if (CanClick())
@@ -464,7 +465,7 @@ public class Player : PlayerBase
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
                     BuildingData _building = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building;
-                    if (_building && _building.ID != "Casa" && _building.ID != "Muro")
+                    if (_building && _building.ID != "Casa" && _building.ID != "Muro" && _building.ID != "Torretta")
                     {
                         if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
                         {

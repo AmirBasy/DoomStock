@@ -139,9 +139,9 @@ public class BuildingView : MonoBehaviour
                 CurrentMesh = GetComponent<MeshFilter>();
                 if (Data.ID != "Meraviglia")
                 {
-                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime);
+                    transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { SetBuildingStatus(BuildingState.Built); });
                 }
-                SetBuildingStatus(BuildingState.Built);
+                
                 break;
             case BuildingState.Built:
                 Data.Delay = 0;

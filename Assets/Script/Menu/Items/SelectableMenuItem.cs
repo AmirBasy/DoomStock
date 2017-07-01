@@ -29,9 +29,13 @@ public class SelectableMenuItem : MonoBehaviour
 
     public void Select(bool _isSelected)
     {
-        if (_isSelected == true)
-            IconData.color = Color.red;
-        else
-            IconData.color = Color.white;
+        if (IconData)
+        {
+
+            if (_isSelected == true)
+                IconData.color = Color.red;
+            else
+                IconData.color = Color.white; 
+        }
     }
 }

@@ -9,7 +9,7 @@ public class TimeFlow : MonoBehaviour
     public TMP_Text YearText;
     public Image[] MonthImage;
 
-    private int yearCounter;
+    [HideInInspector]public int yearCounter;
     private int monthCounter;
 
     public int MonthCounter

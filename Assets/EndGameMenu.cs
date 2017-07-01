@@ -15,6 +15,7 @@ public class EndGameMenu : MenuBase
         {
             MenuImageToLoad.enabled = true;
         }
+        YearText.text = GameManager.I._timeFlow.yearCounter.ToString();
         foreach (TMPro.TMP_Text item in GetComponentsInChildren<TMPro.TMP_Text>())
         {
             item.enabled = true;
@@ -60,7 +61,6 @@ public class EndGameMenu : MenuBase
         Time.timeScale = 1;
         ScelteFatte.Clear();
         Show(false);
-        //  CurrentPlayer.currentMenu = null;
     }
 
     #region event subscriptions

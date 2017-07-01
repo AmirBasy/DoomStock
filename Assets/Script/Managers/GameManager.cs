@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public MessagesManager messagesManager;
     public SoundManager soundManager;
+    public TimeFlow _timeFlow;
     #endregion
 
     #region Players
@@ -291,6 +292,11 @@ public class GameManager : MonoBehaviour
     {
         GetResourceDataByID("Wood").Value -= data.WoodToBuild;
         GetResourceDataByID("Stone").Value -= data.StoneToBuild;
+        if (GetResourceDataByID("Wood").Value <= 0)
+            GetResourceDataByID("Wood").Value = 0;
+        if (GetResourceDataByID("Stone").Value <= 0)
+            GetResourceDataByID("Stone").Value = 0;
+
     }
 
     /// <summary>

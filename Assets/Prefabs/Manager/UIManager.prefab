@@ -247,6 +247,8 @@ GameObject:
   - component: {fileID: 114260317636282194}
   - component: {fileID: 114854763314292766}
   - component: {fileID: 114515093037204592}
+  - component: {fileID: 222365527993968170}
+  - component: {fileID: 114476973873413242}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1826,6 +1828,7 @@ MonoBehaviour:
   - {fileID: 114871576120339368}
   - {fileID: 114602307351055410}
   - {fileID: 114914467575590158}
+  yearCounter: 0
 --- !u!114 &114051102094222596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3173,6 +3176,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114476973873413242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1153800874396192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d481599c7b862d74c8c5950012a645b2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114485945176763286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3336,7 +3366,6 @@ MonoBehaviour:
   FaithText: {fileID: 114338834497924290}
   SpiritText: {fileID: 114306064244456138}
   logger: {fileID: 0}
-  _menuBase: {fileID: 0}
   P1_Menu: {fileID: 114796621104760998}
   P2_Menu: {fileID: 114706276703286602}
   P3_Menu: {fileID: 114760896457957166}
@@ -4194,7 +4223,7 @@ MonoBehaviour:
   ButtonPrefab: {fileID: 0}
   MenuItemsContainer: {fileID: 224308998493653846}
   MenuImageToLoad: {fileID: 114394025093395622}
-  YearText: {fileID: 114133672062508852}
+  YearText: {fileID: 114394422283305148}
   GameOver: {fileID: 114650126958817468}
   InfoText: {fileID: 114877884988270972}
 --- !u!114 &114738750140187994
@@ -5218,6 +5247,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649293804980606}
+--- !u!222 &222365527993968170
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1153800874396192}
 --- !u!222 &222371238622552668
 CanvasRenderer:
   m_ObjectHideFlags: 1
