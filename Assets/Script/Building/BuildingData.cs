@@ -136,7 +136,7 @@ public class BuildingData : ScriptableObject, ISelectable
                 target.OnDead();
                 target.CurrentPosition.EnemiesInCell.Remove(target);
                 target = null;
-                
+
             }
         }
 
@@ -149,40 +149,45 @@ public class BuildingData : ScriptableObject, ISelectable
     /// </summary>
     public void GetParticlesEffect()
     {
-        if (BuildingLife == InitialLife)
+        if (_particleController)
         {
-            if (_particleController)
+            if (BuildingLife == InitialLife)
+            {
+
+                _particleController.StopParticles(ParticlesType._smoke);
+                _particleController.StopParticles(ParticlesType._smallFire);
+                _particleController.StopParticles(ParticlesType._bigFire);
+
+            }
+            if (BuildingLife == InitialLife - 1)
+            {
+                _particleController.PlayParticles(ParticlesType._smoke);
+            }
+            if (BuildingLife == InitialLife / 2 && BuildingLife >= InitialLife / 3)
+            {
+                _particleController.StopParticles(ParticlesType._smoke);
+                _particleController.PlayParticles(ParticlesType._smallFire);
+            }
+            if (BuildingLife <= InitialLife / 3)
             {
                 _particleController.StopParticles(ParticlesType._smoke);
                 _particleController.StopParticles(ParticlesType._smallFire);
-                _particleController.StopParticles(ParticlesType._bigFire); 
+                _particleController.PlayParticles(ParticlesType._bigFire);
             }
+            if (BuildingLife <= 1)
+            {
+                _particleController.StopParticles(ParticlesType._smoke);
+                _particleController.StopParticles(ParticlesType._smallFire);
+                _particleController.StopParticles(ParticlesType._bigFire);
+                _particleController.PlayParticles(ParticlesType._destruction);
+            }
+            if (isAttacking)
+            {
+                _particleController.PlayParticles(ParticlesType._attackTorretta);
+            }
+            if (!isAttacking)
+                _particleController.StopParticles(ParticlesType._attackTorretta);
         }
-        if (BuildingLife == InitialLife - 1)
-        {
-            _particleController.PlayParticles(ParticlesType._smoke);
-        }
-        if (BuildingLife == InitialLife / 2 && BuildingLife >= InitialLife / 3)
-        {
-            _particleController.StopParticles(ParticlesType._smoke);
-            _particleController.PlayParticles(ParticlesType._smallFire);
-        }
-        if (BuildingLife <= InitialLife / 3)
-        {
-            _particleController.StopParticles(ParticlesType._smallFire);
-            _particleController.PlayParticles(ParticlesType._bigFire);
-        }
-        if (BuildingLife <= 1)
-        {
-            _particleController.StopParticles(ParticlesType._bigFire);
-            _particleController.PlayParticles(ParticlesType._destruction);
-        }
-        if (isAttacking)
-        {
-            _particleController.PlayParticles(ParticlesType._attackTorretta);
-        }
-        if (!isAttacking)
-            _particleController.StopParticles(ParticlesType._attackTorretta);
     }
     /// <summary>
     /// Restituisce la posizione sulla griglia.

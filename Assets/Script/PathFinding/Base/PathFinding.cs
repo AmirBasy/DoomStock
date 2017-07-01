@@ -199,8 +199,11 @@ public static class IPathFindingExtension {
 
     public static void DoMoveToCurrentPathStep(this IPathFindingMover _this) {
 
-        if (_this.CurrentPath.Count >= _this.CurrentNodeIndex)
-            _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex]);
+        if (_this.CurrentPath!= null)
+        {
+            if (_this.CurrentPath.Count >= _this.CurrentNodeIndex)
+                _this.DoMoveStep(_this.CurrentPath[_this.CurrentNodeIndex]); 
+        }
         
     }
 

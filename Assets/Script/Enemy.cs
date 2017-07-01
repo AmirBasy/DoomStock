@@ -245,17 +245,16 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     public void DoMoveStep(INode _step)
     {
+
         if (lastPos != null)
         {
-            /*lastPos.Status != CellDoomstock.CellStatus.Filled && */
-
             if (lastPos.Type != CellDoomstock.CellType.Forest)
             {
                 if (lastPos.Status == CellDoomstock.CellStatus.Enemy)
                 {
                     lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
                     Debug.Log(lastPos.Type);
-                    lastPos.EnemiesInCell.Remove(this); 
+                    lastPos.EnemiesInCell.Remove(this);
                 }
             }
 
@@ -263,54 +262,57 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             lastPos = CurrentPosition;
         }
         transform.DOLookAt(_step.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
-        transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
+        if (CurrentPath != null)
         {
-            CurrentNodeIndex++;
-            int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
-            CurrentPosition = _step as CellDoomstock;
-            lastPos = CurrentPosition;
-            if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
-            {
-                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
-                CurrentPosition.EnemiesInCell.Add(this);
-            }
+            transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
+           {
+               CurrentNodeIndex++;
+               int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
+               CurrentPosition = _step as CellDoomstock;
+               lastPos = CurrentPosition;
+               if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
+               {
+                   CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
+                   CurrentPosition.EnemiesInCell.Add(this);
+               }
 
 
 
-            if (CurrentNodeIndex > lastNode)
-            {
-                // ha raggiunto l'obbiettivo, attacca
-                if (Attack(CurrentTarget))
-                {
-                    if (CurrentTarget.BuildingLife <= 0)
-                    {
-                        currentState = enemyState.Searching;
-                        resetTarget();
-                    }
-                    else
-                    {
-                        Attack(CurrentTarget);
+               if (CurrentNodeIndex > lastNode)
+               {
+                   // ha raggiunto l'obbiettivo, attacca
+                   if (Attack(CurrentTarget))
+                   {
+                       if (CurrentTarget.BuildingLife <= 0)
+                       {
+                           currentState = enemyState.Searching;
+                           resetTarget();
+                       }
+                       else
+                       {
+                           Attack(CurrentTarget);
 
-                    }
-                }
-                else
-                    currentState = enemyState.Attack;
+                       }
+                   }
+                   else
+                       currentState = enemyState.Attack;
 
 
-            }
-            else
-            {
-                AttackNextStep();
-                if (currentState == enemyState.MovingToTarget)
-                    // prossimo step di movimento
-                    this.DoMoveToCurrentPathStep();
+               }
+               else
+               {
+                   AttackNextStep();
+                   if (currentState == enemyState.MovingToTarget)
+                       // prossimo step di movimento
+                       this.DoMoveToCurrentPathStep();
 
-            }
-            if (OnStep != null)
-                OnStep(this);
-            
-        });
-       
+               }
+               if (OnStep != null)
+                   OnStep(this);
+
+           });
+        }
+
     }
 
     void StopAI()
@@ -324,7 +326,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     {
         if (Life <= 0)
         {
-
+            currentState = enemyState.Dead;
             if (lastPos.Type != CellDoomstock.CellType.Forest)
             {
                 lastPos.EnemiesInCell.Remove(this);
@@ -333,7 +335,6 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
             if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
             {
-                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
                 CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
             }
 
@@ -354,6 +355,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         Destroy(gameObject);
     }
 
+
     /// <summary>
     /// Attacca il prossimo step se è presente un building.
     /// </summary>
@@ -373,10 +375,22 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         }
         else
         {
+            //if (CurrentPath != null)
+            //{
+            //    foreach (CellDoomstock item in CurrentPath)
+            //    {
+            //        if (item.Status != CellDoomstock.CellStatus.Empty)
+            //        {
+            //            currentState = enemyState.Searching;
+            //        }
+            //    }
+            //}
             if (nextStep.isTraversable == false)
             {
                 resetTarget();
                 currentState = enemyState.Searching;
+
+               
             }
         }
     }
@@ -388,10 +402,14 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         }
         currentState = enemyState.Attack;
         animationType = AnimationType.Attack;
-        if (target)
+        if (target && target.CurrentState != BuildingState.Destroyed)
         {
             target.BuildingLife -= _attack;
             target.GetParticlesEffect();
+        }
+        else
+        {
+            currentState = enemyState.Searching;
         }
         if (target.BuildingLife <= 0)
         {
@@ -482,12 +500,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         {
             Gizmos.DrawCube(item.GetWorldPosition() + new Vector3(0f, 0.5f, 0f), gizmoDimension);
         }
-       
+
         Gizmos.DrawCube(CurrentPosition.GetWorldPosition() + new Vector3(0f, 1f, 0f), gizmoDimension);
         Gizmos.color = Color.black;
     }
 
-    public enum enemyState { Searching, MovingToTarget, Attack }
+    public enum enemyState { Searching, MovingToTarget, Attack, Dead }
 
     #endregion
 

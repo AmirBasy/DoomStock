@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 
             Players[2].SetUpPosition((int)hole.GridPosition.x + 1, (int)hole.GridPosition.y + 1, CellSize);
         }
-
+        hole.SetStatus(CellDoomstock.CellStatus.Empty);
         #region Quarto player commento
         //if (Players[3] != null) {
         //    Players[3].SetupInput(
