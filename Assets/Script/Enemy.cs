@@ -268,6 +268,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             CurrentNodeIndex++;
             int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
             CurrentPosition = _step as CellDoomstock;
+            lastPos = CurrentPosition;
             if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
             {
                 CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
@@ -307,8 +308,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             }
             if (OnStep != null)
                 OnStep(this);
+            
         });
-        lastPos = CurrentPosition;
+       
     }
 
     void StopAI()
@@ -480,9 +482,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         {
             Gizmos.DrawCube(item.GetWorldPosition() + new Vector3(0f, 0.5f, 0f), gizmoDimension);
         }
-        Gizmos.color = Color.black;
+       
         Gizmos.DrawCube(CurrentPosition.GetWorldPosition() + new Vector3(0f, 1f, 0f), gizmoDimension);
-
+        Gizmos.color = Color.black;
     }
 
     public enum enemyState { Searching, MovingToTarget, Attack }
