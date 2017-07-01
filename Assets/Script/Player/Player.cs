@@ -465,7 +465,7 @@ public class Player : PlayerBase
                 if (GameManager.I.populationManager.GetAllFreePeople().Count > 0)
                 {
                     BuildingData _building = GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building;
-                    if (_building && _building.ID != "Casa" && _building.ID != "Muro" && _building.ID != "Torretta")
+                    if (_building && _building.ID != "Casa" && _building.ID != "Muro" && _building.ID != "Torretta" && _building.CurrentState != BuildingState.Construction)
                     {
                         if (GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.PopulationLimit > GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid].building.Population.Count)
                         {

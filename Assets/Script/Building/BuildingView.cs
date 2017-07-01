@@ -141,7 +141,10 @@ public class BuildingView : MonoBehaviour
                 {
                     transform.DOMoveY(transform.position.y + 1, Data.BuildingTime).OnComplete(() => { SetBuildingStatus(BuildingState.Built); });
                 }
-                
+                else
+                {
+                    SetBuildingStatus(BuildingState.Built);
+                }
                 break;
             case BuildingState.Built:
                 Data.Delay = 0;
