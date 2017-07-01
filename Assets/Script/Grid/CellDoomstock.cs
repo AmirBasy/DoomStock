@@ -25,7 +25,7 @@ public class CellDoomstock : Cell, INode {
     public INode parent { get; set; }
     public bool isTraversable {
         get {
-            if (Status == CellStatus.Empty )
+            if (Status == CellStatus.Empty || Status == CellStatus.Enemy )
             {
                 return true;
 
