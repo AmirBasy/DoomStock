@@ -141,7 +141,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         int randomindex = UnityEngine.Random.Range(0, Priorities2.Count);
         Priority2 = Priorities2[randomindex];
         targetTypeList = FindPrioritiesInRange(Priority2);
-        if (targetTypeList.Count > 0)
+        if (targetTypeList.Count > 0 )
         {
             return NearestBuildingPriority(targetTypeList);
         }
@@ -248,6 +248,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
         if (lastPos != null)
         {
+            
             if (lastPos.Type != CellDoomstock.CellType.Forest)
             {
                 if (lastPos.Status == CellDoomstock.CellStatus.Enemy)
@@ -312,7 +313,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
            });
         }
-
+        
     }
 
     void StopAI()
@@ -362,7 +363,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     void AttackNextStep()
     {
         CellDoomstock nextStep = CurrentPath[CurrentNodeIndex] as CellDoomstock;
-        if (Type == enemyType.Tank)
+        if (Type == enemyType.Tank || Type == enemyType.Combattenti)
         {
             if (nextStep.isTraversable == false)
             {
@@ -373,33 +374,24 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 currentState = enemyState.Attack;
             }
         }
-        else
-        {
-            //if (CurrentPath != null)
-            //{
-            //    foreach (CellDoomstock item in CurrentPath)
-            //    {
-            //        if (item.Status != CellDoomstock.CellStatus.Empty)
-            //        {
-            //            currentState = enemyState.Searching;
-            //        }
-            //    }
-            //}
-            if (nextStep.isTraversable == false)
-            {
-                resetTarget();
-                currentState = enemyState.Searching;
+        //else
+        //{
+       
+        //    if (nextStep.isTraversable == false)
+        //    {
+        //        resetTarget();
+        //        currentState = enemyState.Searching;
 
-               
-            }
-        }
+
+        //    }
+        //}
     }
     public bool Attack(BuildingData target)
     {
-        if (target.Cell.GetWorldPosition().x != -1 && target.Cell.GetWorldPosition().y != -1)
-        {
-            transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
-        }
+        //if (target.Cell.GetWorldPosition().x != -1 && target.Cell.GetWorldPosition().y != -1)
+        //{
+        //    transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
+        //}
         currentState = enemyState.Attack;
         animationType = AnimationType.Attack;
         if (target && target.CurrentState != BuildingState.Destroyed)
@@ -413,7 +405,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         }
         if (target.BuildingLife <= 0)
         {
-            GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
+            if (target)
+            {
+                GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe(); 
+            }
             currentState = enemyState.Searching;
             return false;
         }
@@ -433,7 +428,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 pathFindingSettings = PathFindingSettings.Tank;
                 break;
             case enemyType.Combattenti:
-                pathFindingSettings = PathFindingSettings.Combattente;
+                pathFindingSettings = PathFindingSettings.Tank;
                 break;
         }
         transform.DOMove(new Vector3(_startPos.GetWorldPosition().x, _startPos.GetWorldPosition().y - 0.5f, _startPos.GetWorldPosition().z - 0.4f), MovementSpeed).OnComplete(() =>
@@ -453,6 +448,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         switch (currentState)
         {
             case enemyState.Searching:
+
                 waitTimeToFindTarget -= Time.deltaTime;
                 if (waitTimeToFindTarget < 0)
                 {
@@ -460,6 +456,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                     {
                         CurrentTarget = FindTarget();
                     }
+
+
                     waitTimeToFindTarget = 0.5f;
                 }
                 break;
@@ -475,6 +473,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                     waitTimeToAttackTarget = AttackSpeed;
                 }
                 break;
+           
         }
     }
 
@@ -509,6 +508,17 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     #endregion
 
+    public bool IsReachable() {
+        if (CurrentPath != null)
+        {
+            foreach (CellDoomstock item in CurrentPath)
+            {
+                if (item.Status != CellDoomstock.CellStatus.Empty)
+                    return false;
+            } 
+        }
+        return true;
+    }
 }
 
 public enum enemyType { Tank, Combattenti }

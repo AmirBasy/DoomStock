@@ -110,7 +110,13 @@ public class BuildingData : ScriptableObject, ISelectable
 
     public CellDoomstock Cell
     {
-        get { return GameManager.I.gridController.GetCellFromBuilding(this); }
+        get {
+            if (GameManager.I.gridController.GetCellFromBuilding(this).GetGridPosition().x >= 0)
+            {
+                return GameManager.I.gridController.GetCellFromBuilding(this); 
+            }
+            return GameManager.I.gridController.Cells[-1, -1];
+        }
 
 
     }

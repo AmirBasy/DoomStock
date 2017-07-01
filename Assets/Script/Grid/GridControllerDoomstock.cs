@@ -21,13 +21,14 @@ public class GridControllerDoomstock : GridController<CellDoomstock> {
                     return item.GridPosition; 
             }
         }
+        Debug.Log(uniqueID);
         return new Vector2 (-1,-1);
     }
 
     public CellDoomstock GetCellFromBuilding(BuildingData _building) {
-        Vector2 pos = GetBuildingPositionByUniqueID(_building.uniqueIDvero);
+        Vector2 pos = GetBuildingPositionByUniqueID(_building.UniqueID);
         //TODO: controllare se la cella esiste
-        if(Cells[(int)pos.x, (int)pos.y] != null)
+        if(pos.x >= 0)
             return Cells[(int)pos.x, (int)pos.y];
         return Cells[-1, -1];
     }
