@@ -370,8 +370,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 if (nextStep.building)
                 {
                     Attack(nextStep.building);
+                    currentState = enemyState.Attack;
                 }
-                currentState = enemyState.Attack;
+                
             }
         }
         //else
