@@ -55,6 +55,8 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         }
     }
 
+    private BuildingData NearTarget;
+
     private BuildingData _currenTarget;
     public BuildingData CurrentTarget
     {
@@ -289,14 +291,9 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                            currentState = enemyState.Searching;
                            resetTarget();
                        }
-                       else
-                       {
-                           Attack(CurrentTarget);
-
-                       }
                    }
-                   else
-                       currentState = enemyState.Attack;
+                   //else
+                   //    currentState = enemyState.Attack;
 
 
                }
@@ -369,8 +366,10 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             {
                 if (nextStep.building)
                 {
+                    CurrentTarget = null;
+                    NearTarget = nextStep.building;
                     Attack(nextStep.building);
-                    currentState = enemyState.Attack;
+
                 }
                 
             }
@@ -391,7 +390,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     {
         //if (target.Cell.GetWorldPosition().x != -1 && target.Cell.GetWorldPosition().y != -1)
         //{
-        //    transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
+            transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
         //}
         currentState = enemyState.Attack;
         animationType = AnimationType.Attack;
@@ -403,6 +402,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         else
         {
             currentState = enemyState.Searching;
+            return false;
         }
         if (target.BuildingLife <= 0)
         {
@@ -466,10 +466,22 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 waitTimeToAttackTarget -= Time.deltaTime;
                 if (waitTimeToAttackTarget < 0)
                 {
-                    if (!Attack(CurrentTarget))
+                    if (CurrentTarget)
                     {
-                        currentState = enemyState.Searching;
-                        resetTarget();
+                        if (!Attack(CurrentTarget))
+                        {
+                            currentState = enemyState.Searching;
+                            resetTarget();
+                        } 
+                    }
+                    else
+                    {
+                        if (!Attack(NearTarget))
+                        {
+                            currentState = enemyState.Searching;
+                            resetTarget();
+                            
+                        }
                     }
                     waitTimeToAttackTarget = AttackSpeed;
                 }
@@ -483,27 +495,28 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         animationType = AnimationType.Walking;
         CurrentPath = null;
         CurrentTarget = null;
+        NearTarget = null;
         CurrentNodeIndex = 0;
     }
 
-    private void OnDrawGizmos()
-    {
-        Vector3 gizmoDimension = new Vector3(0.5f, 0.5f, 0.5f);
-        if (this.CurrentPath == null || this.CurrentPath.Count < 2)
-            return;
-        Gizmos.color = Color.green;
-        Gizmos.DrawCube(CurrentPath[0].GetWorldPosition(), gizmoDimension);
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(CurrentTarget.Cell.GetWorldPosition(), gizmoDimension);
-        Gizmos.color = Color.yellow;
-        foreach (var item in CurrentPath)
-        {
-            Gizmos.DrawCube(item.GetWorldPosition() + new Vector3(0f, 0.5f, 0f), gizmoDimension);
-        }
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 gizmoDimension = new Vector3(0.5f, 0.5f, 0.5f);
+    //    if (this.CurrentPath == null || this.CurrentPath.Count < 2)
+    //        return;
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawCube(CurrentPath[0].GetWorldPosition(), gizmoDimension);
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawCube(CurrentTarget.Cell.GetWorldPosition(), gizmoDimension);
+    //    Gizmos.color = Color.yellow;
+    //    foreach (var item in CurrentPath)
+    //    {
+    //        Gizmos.DrawCube(item.GetWorldPosition() + new Vector3(0f, 0.5f, 0f), gizmoDimension);
+    //    }
 
-        Gizmos.DrawCube(CurrentPosition.GetWorldPosition() + new Vector3(0f, 1f, 0f), gizmoDimension);
-        Gizmos.color = Color.black;
-    }
+    //    Gizmos.DrawCube(CurrentPosition.GetWorldPosition() + new Vector3(0f, 1f, 0f), gizmoDimension);
+    //    Gizmos.color = Color.black;
+    //}
 
     public enum enemyState { Searching, MovingToTarget, Attack, Dead }
 
