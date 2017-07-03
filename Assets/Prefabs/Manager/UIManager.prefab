@@ -4220,7 +4220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7855379bbd64446a3a449c4b865211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonPrefab: {fileID: 0}
+  ButtonPrefab: {fileID: 1108150735684662, guid: 474fd2fd12ca6af47a0f9eae466f80fd,
+    type: 2}
   MenuItemsContainer: {fileID: 224308998493653846}
   MenuImageToLoad: {fileID: 114394025093395622}
   YearText: {fileID: 114394422283305148}
