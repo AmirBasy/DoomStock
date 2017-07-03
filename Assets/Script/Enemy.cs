@@ -256,7 +256,6 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 if (lastPos.Status == CellDoomstock.CellStatus.Enemy)
                 {
                     lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
-                    Debug.Log(lastPos.Type);
                     lastPos.EnemiesInCell.Remove(this);
                 }
             }

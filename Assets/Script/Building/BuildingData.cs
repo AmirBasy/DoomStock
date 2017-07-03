@@ -129,7 +129,7 @@ public class BuildingData : ScriptableObject, ISelectable
     public void AttackEnemy()
     {
 
-        if (GetEnemyInCell())
+        if (GetEnemyInCell() && CurrentState == BuildingState.Built)
         {
 
             Enemy target = GetEnemyInCell();

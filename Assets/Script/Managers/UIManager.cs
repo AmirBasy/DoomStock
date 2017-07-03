@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateGraphic();
+        UpdateGraphic();       
     }
 
     private void UpdateGraphic()
@@ -56,18 +56,72 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region API
+    private void Start()
+    {
+        SetResourcesTextColor();
+        SetFaithTextColor();
+    }
+    
     /// <summary>
     /// Modifica il colore del Text se la risorsa è bassa
     /// </summary>
-    public void SetFoodTextColor()
-    {
+    public void SetResourcesTextColor()
+    {   
+        #region Population
         if (GameManager.I.populationManager.IsFoodEnough() == false)
         {
             FoodText.color = Color.yellow;
         }
         else
         {
-            FoodText.color = Color.white;
+            FoodText.color = Color.green;
+        }
+        #endregion
+        #endregion
+        #region Stone
+        if (GameManager.I.GetResourceDataByID("Stone").Value >= GameManager.I.InitialStone)
+        {
+            StoneText.color = Color.green;
+        }
+        if (GameManager.I.GetResourceDataByID("Stone").Value < GameManager.I.InitialStone / 2)
+        {
+            StoneText.color = Color.yellow;
+        }
+        if (GameManager.I.GetResourceDataByID("Stone").Value < GameManager.I.InitialStone / 3)
+        {
+            StoneText.color = Color.red;
+        }
+        #endregion
+        #region Wood
+        if (GameManager.I.GetResourceDataByID("Wood").Value >= GameManager.I.InitialWood)
+        {
+            WoodText.color = Color.green;
+        }
+        if (GameManager.I.GetResourceDataByID("Wood").Value < GameManager.I.InitialWood /2)
+        {
+            WoodText.color = Color.yellow;
+        }
+        if (GameManager.I.GetResourceDataByID("Wood").Value < GameManager.I.InitialWood/3)
+        {
+            WoodText.color = Color.red;
+        }
+        
+        #endregion
+    }
+
+    public void SetFaithTextColor() {
+        #region Faith
+        if (GameManager.I.GetResourceDataByID("Faith").Value >= GameManager.I.InitialFaith)
+        {
+            FaithText.color = Color.green;
+        }
+        if (GameManager.I.GetResourceDataByID("Faith").Value < GameManager.I.InitialFaith / 2)
+        {
+            FaithText.color = Color.yellow;
+        }
+        if (GameManager.I.GetResourceDataByID("Faith").Value < GameManager.I.InitialFaith / 3)
+        {
+            FaithText.color = Color.red;
         }
     }
 

@@ -21,12 +21,48 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public bool DebugMode = false;
 
+    #region Variables
     public static GameManager I;
 
     public int InitialFood, InitialWood, InitialStone, InitialFaith;
 
     public List<BuildingView> forestInScene;
     public BuildingView MeravigliasInScene;
+
+    //#region Property
+    //private int woodRequirement;
+    //public int WoodRequirement
+    //{
+    //    get { return woodRequirement; }
+    //    set
+    //    {
+    //        woodRequirement = value;
+    //        GameManager.I.uiManager.SetResourcesTextColor();
+    //    }
+    //}
+    //private int stoneRequirement;
+    //public int StoneRequirement
+    //{
+    //    get { return stoneRequirement; }
+    //    set
+    //    {
+    //        stoneRequirement = value;
+    //        GameManager.I.uiManager.SetResourcesTextColor();
+    //    }
+    //}
+    //private int faithRequirement;
+    //public int FaithRequirement
+    //{
+    //    get { return faithRequirement; }
+    //    set
+    //    {
+    //        faithRequirement = value;
+    //        GameManager.I.uiManager.SetResourcesTextColor();
+    //    }
+    //}
+    //#endregion
+
+    #endregion
 
     #region Managers
     public GridControllerDoomstock gridController;
@@ -145,7 +181,7 @@ public class GameManager : MonoBehaviour
     #region SETUP
     void Awake()
     {
-       
+
         if (I == null)
         {
             I = this;
@@ -196,8 +232,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public List<BaseResourceData> resources;
 
-
-
     /// <summary>
     /// Riempie la lista resources di nuove istanze di BaseResouceData.
     /// </summary>
@@ -223,6 +257,13 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+
+
+    #region API
+    /// <summary>
+    /// Istanzia le Foreste nella mappa
+    /// </summary>
+    /// <param name="forest"></param>
     void SetupForest(BuildingData forest)
     {
         BuildingView CurrentBuildView;
@@ -241,8 +282,11 @@ public class GameManager : MonoBehaviour
 
     }
 
-    [HideInInspector]public bool OneMeravigliaInGioco;
-
+    [HideInInspector] public bool OneMeravigliaInGioco;
+    /// <summary>
+    /// Istanzia la Meraviglia nella Mappa
+    /// </summary>
+    /// <param name="_meraviglia"></param>
     void SetupMeraviglia(BuildingData _meraviglia)
     {
         BuildingView currentBuildView;
@@ -264,11 +308,9 @@ public class GameManager : MonoBehaviour
 
             if (item.Type == CellDoomstock.CellType.Meraviglia)
                 item.Cost = 100;
-            
+
         }
     }
-
-    #region API
 
     /// <summary>
     /// Restituisce la risorsa se gli si passa la stringa
@@ -318,7 +360,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
     }
-    
+
     /// <summary>
     /// Fa un controllo sulla vita della Meraviglia, se 0 , scatena l'evento
     /// </summary>
@@ -326,14 +368,11 @@ public class GameManager : MonoBehaviour
     {
         if (MeravigliasInScene.Data.BuildingLife <= 0)
         {
-            //if (OnMeravigliaMorta!= null)
-            //{
-                return true;
-                //OnMeravigliaMorta();
-            //}
+            return true;
         }
         return false;
     }
+
     #endregion
 
     #region Eventi

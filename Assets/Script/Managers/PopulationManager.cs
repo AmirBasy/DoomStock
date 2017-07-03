@@ -28,9 +28,12 @@ public class PopulationManager : MonoBehaviour
         set
         {
             foodRequirement = value;
-            GameManager.I.uiManager.SetFoodTextColor();
+            GameManager.I.uiManager.SetResourcesTextColor();
         }
     }
+
+
+
 
     #endregion
 
