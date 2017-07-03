@@ -670,9 +670,13 @@ public class Player : PlayerBase
                 {
                     if (cell.building.BuildingLife == cell.building.InitialLife)
                     {
-                        DestroyBuilding(cell.building.UniqueID);
-                        GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
-                        GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true); 
+                        if (cell.building.CurrentState != BuildingState.Construction)
+                        {
+
+                            DestroyBuilding(cell.building.UniqueID);
+                            GameManager.I.GetResourceDataByID("Faith").Value -= DemolitionCost;
+                            GameManager.I.messagesManager.ShowiInformation(MessageLableType.Destroing, GameManager.I.gridController.Cells[XpositionOnGrid, YpositionOnGrid], true);  
+                        }
                     }
                 }
                 break;
