@@ -61,40 +61,50 @@ public class BuildingView : MonoBehaviour
 
     private void Update()
     {
-        Data.FireRateo -= Time.deltaTime;
-        if (Data.FireRateo <= 0)
+        if (Data.Attack > 0)
         {
-            Data.AttackEnemy();
-            Data.FireRateo = Data.StartingFireRateo;
+            Data.FireRateo -= Time.deltaTime;
+            if (Data.FireRateo <= 0)
+            {
+                Data.AttackEnemy();
+                Data.FireRateo = Data.StartingFireRateo;
+            } 
         }
     }
+
+    bool isAlive = true;
+
     /// <summary>
     /// Distrugge il building.
     /// </summary>
     public void destroyMe()
     {
-        if (OnDestroy != null)
-            OnDestroy(this);
-        CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
-        cell.SetStatus(CellDoomstock.CellStatus.Debris, cell.building);
-        if (Data.ID != "Casa")
-            Data.RemoveAllPopulationFromBuilding();
-        TimeEventManager.OnEvent -= OnUnitEvent;
-        SetBuildingStatus(BuildingState.Destroyed);
+        if (isAlive)
+        {
+            isAlive = false;
+            if (OnDestroy != null)
+                OnDestroy(this);
+            CellDoomstock cell = GameManager.I.gridController.Cells[(int)Data.GetGridPosition().x, (int)Data.GetGridPosition().y];
+            cell.SetStatus(CellDoomstock.CellStatus.Debris, cell.building);
+            if (Data.ID != "Casa")
+                Data.RemoveAllPopulationFromBuilding();
+            TimeEventManager.OnEvent -= OnUnitEvent;
+            SetBuildingStatus(BuildingState.Destroyed);
 
-        List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
-        myobject.Remove(transform);
-        if (Data.ID == "Meraviglia")
-        {
-            GameManager.I.OnMeravigliaDestroyed();
+            List<Transform> myobject = gameObject.GetComponentsInChildren<Transform>().ToList();
+            myobject.Remove(transform);
+            if (Data.ID == "Meraviglia")
+            {
+                GameManager.I.OnMeravigliaDestroyed();
+            }
+            foreach (Transform go in myobject)
+            {
+                go.gameObject.SetActive(false);
+            }
+            CurrentMesh.mesh = Macerie;
+            gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            transform.eulerAngles = new Vector3(90, 20, 0); 
         }
-        foreach (Transform go in myobject)
-        {
-            go.gameObject.SetActive(false);
-        }
-        CurrentMesh.mesh = Macerie;
-        gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        transform.eulerAngles = new Vector3(90, 20, 0);
     }
 
     /// <summary>
