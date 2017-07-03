@@ -72,7 +72,7 @@ public class BuildingView : MonoBehaviour
         }
     }
 
-    bool isAlive = true;
+    public bool isAlive = true;
 
     /// <summary>
     /// Distrugge il building.
