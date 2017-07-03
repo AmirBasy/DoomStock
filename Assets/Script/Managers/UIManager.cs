@@ -74,14 +74,14 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            FoodText.color = Color.green;
+            FoodText.color = Color.black;
         }
         #endregion
         #endregion
         #region Stone
         if (GameManager.I.GetResourceDataByID("Stone").Value >= GameManager.I.InitialStone)
         {
-            StoneText.color = Color.green;
+            StoneText.color = Color.black;
         }
         if (GameManager.I.GetResourceDataByID("Stone").Value < GameManager.I.InitialStone / 2)
         {
@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
         #region Wood
         if (GameManager.I.GetResourceDataByID("Wood").Value >= GameManager.I.InitialWood)
         {
-            WoodText.color = Color.green;
+            WoodText.color = Color.black;
         }
         if (GameManager.I.GetResourceDataByID("Wood").Value < GameManager.I.InitialWood /2)
         {
@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
         #region Faith
         if (GameManager.I.GetResourceDataByID("Faith").Value >= GameManager.I.InitialFaith)
         {
-            FaithText.color = Color.green;
+            FaithText.color = Color.black;
         }
         if (GameManager.I.GetResourceDataByID("Faith").Value < GameManager.I.InitialFaith / 2)
         {

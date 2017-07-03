@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
         int randomindex = UnityEngine.Random.Range(0, Priorities2.Count);
         Priority2 = Priorities2[randomindex];
         targetTypeList = FindPrioritiesInRange(Priority2);
-        if (targetTypeList.Count > 0)
+        if (targetTypeList.Count > 0 )
         {
             return NearestBuildingPriority(targetTypeList);
         }
@@ -250,7 +250,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
         if (lastPos != null)
         {
-
+            
             if (lastPos.Type != CellDoomstock.CellType.Forest)
             {
                 if (lastPos.Status == CellDoomstock.CellStatus.Enemy)
@@ -272,15 +272,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
                CurrentPosition = _step as CellDoomstock;
                lastPos = CurrentPosition;
-
                if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
                {
-                   if (CurrentPosition.Status != CellDoomstock.CellStatus.Debris)
-                   {
-                       CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
-                       CurrentPosition.EnemiesInCell.Add(this);
-                   }
+                   CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
+                   CurrentPosition.EnemiesInCell.Add(this);
                }
+
 
 
                if (CurrentNodeIndex > lastNode)
@@ -312,7 +309,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
            });
         }
-
+        
     }
 
     void StopAI()
@@ -324,24 +321,23 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     public void OnDead()
     {
-        //if (Life <= 0)
-        //{
-        currentState = enemyState.Dead;
-        if (lastPos.Type != CellDoomstock.CellType.Forest)
+        if (Life <= 0)
         {
-            lastPos.EnemiesInCell.Remove(this);
-            lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
-        }
+            currentState = enemyState.Dead;
+            if (lastPos.Type != CellDoomstock.CellType.Forest)
+            {
+                lastPos.EnemiesInCell.Remove(this);
+                lastPos.SetStatus(CellDoomstock.CellStatus.Empty);
+            }
 
-        if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
-        {
-            CurrentPosition.EnemiesInCell.Remove(this);
-            CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
-        }
+            if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
+            {
+                CurrentPosition.SetStatus(CellDoomstock.CellStatus.Empty);
+            }
 
-        AnimationDead();
-        StopAI();
-        // }
+            AnimationDead();
+            StopAI();
+        }
     }
 
     public void AnimationDead()
@@ -374,12 +370,12 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                     Attack(nextStep.building);
 
                 }
-
+                
             }
         }
         //else
         //{
-
+       
         //    if (nextStep.isTraversable == false)
         //    {
         //        resetTarget();
@@ -393,26 +389,41 @@ public class Enemy : MonoBehaviour, IPathFindingMover
     {
         //if (target.Cell.GetWorldPosition().x != -1 && target.Cell.GetWorldPosition().y != -1)
         //{
-        transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
+           // transform.DOLookAt(target.Cell.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
         //}
         currentState = enemyState.Attack;
-        animationType = AnimationType.Attack;
+        if (animationType != AnimationType.Attack)
+        {
+            animationType = AnimationType.Attack; 
+        }
         if (target && target.CurrentState != BuildingState.Destroyed)
         {
             target.BuildingLife -= _attack;
             target.GetParticlesEffect();
         }
-        else if (!target)
+        else
         {
             currentState = enemyState.Searching;
             return false;
         }
         if (target.BuildingLife <= 0)
         {
-            //if (target)
-            //{
+            // if (target)
+            // {
+            if (NearTarget)
+            {
+                NearTarget = null;
+            }
             GameManager.I.buildingManager.GetBuildingView(target.UniqueID).destroyMe();
-            // }
+            foreach (var item in GameManager.I.gridController.GetNeighboursStar(CurrentPosition))
+            {
+                CurrentTarget = null;
+                NearTarget = item.building;
+                Attack(item.building);
+                return true;
+            }
+                
+            //}
             currentState = enemyState.Searching;
             return false;
         }
@@ -449,14 +460,6 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     void Update()
     {
-        if (CurrentTarget)
-        {
-            if (CurrentTarget.CurrentState == BuildingState.Destroyed)
-            {
-                currentState = enemyState.Searching;
-                resetTarget();
-            }
-        }
         switch (currentState)
         {
             case enemyState.Searching:
@@ -479,13 +482,11 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 {
                     if (CurrentTarget)
                     {
-
                         if (!Attack(CurrentTarget))
                         {
                             currentState = enemyState.Searching;
                             resetTarget();
-                        }
-
+                        } 
                     }
                     else
                     {
@@ -493,13 +494,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                         {
                             currentState = enemyState.Searching;
                             resetTarget();
-
+                            
                         }
                     }
                     waitTimeToAttackTarget = AttackSpeed;
                 }
                 break;
-
+           
         }
     }
 
@@ -535,15 +536,14 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     #endregion
 
-    public bool IsReachable()
-    {
+    public bool IsReachable() {
         if (CurrentPath != null)
         {
             foreach (CellDoomstock item in CurrentPath)
             {
                 if (item.Status != CellDoomstock.CellStatus.Empty)
                     return false;
-            }
+            } 
         }
         return true;
     }
