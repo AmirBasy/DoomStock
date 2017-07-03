@@ -277,8 +277,11 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                {
                    if (CurrentPosition.Status != CellDoomstock.CellStatus.Debris)
                    {
-                       CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
-                       CurrentPosition.EnemiesInCell.Add(this);
+                       if (CurrentPosition.Status != CellDoomstock.CellStatus.Filled)
+                       {
+                           CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
+                           CurrentPosition.EnemiesInCell.Add(this); 
+                       }
                    }
                }
 
