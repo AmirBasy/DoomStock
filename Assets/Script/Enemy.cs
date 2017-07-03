@@ -264,57 +264,59 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             lastPos = CurrentPosition;
         }
         transform.DOLookAt(_step.GetWorldPosition(), MovementSpeed, AxisConstraint.Y);
-        if (CurrentPath != null)
-        {
-            transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
-           {
-               CurrentNodeIndex++;
-               int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
-               CurrentPosition = _step as CellDoomstock;
-               lastPos = CurrentPosition;
-
-               if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
+       
+            if (CurrentPath != null)
+            {
+                transform.DOMove((new Vector3(_step.GetWorldPosition().x, _step.GetWorldPosition().y - 0.8f, _step.GetWorldPosition().z + 0.4f)), MovementSpeed).OnComplete(() =>
                {
-                   if (CurrentPosition.Status != CellDoomstock.CellStatus.Debris)
+                   CurrentNodeIndex++;
+                   int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
+                   CurrentPosition = _step as CellDoomstock;
+                   lastPos = CurrentPosition;
+
+                   if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
                    {
-                       if (CurrentPosition.Status != CellDoomstock.CellStatus.Filled)
+                       if (CurrentPosition.Status != CellDoomstock.CellStatus.Debris)
                        {
-                           CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
-                           CurrentPosition.EnemiesInCell.Add(this); 
+                           if (CurrentPosition.Status != CellDoomstock.CellStatus.Filled)
+                           {
+                               CurrentPosition.SetStatus(CellDoomstock.CellStatus.Enemy);
+                               CurrentPosition.EnemiesInCell.Add(this);
+                           }
                        }
                    }
-               }
 
 
-               if (CurrentNodeIndex > lastNode)
-               {
+                   if (CurrentNodeIndex > lastNode)
+                   {
                    // ha raggiunto l'obbiettivo, attacca
                    if (Attack(CurrentTarget))
-                   {
-                       if (CurrentTarget.BuildingLife <= 0)
                        {
-                           currentState = enemyState.Searching;
-                           resetTarget();
+                           if (CurrentTarget.BuildingLife <= 0)
+                           {
+                               currentState = enemyState.Searching;
+                               resetTarget();
+                           }
                        }
-                   }
                    //else
                    //    currentState = enemyState.Attack;
 
 
                }
-               else
-               {
-                   AttackNextStep();
-                   if (currentState == enemyState.MovingToTarget)
+                   else
+                   {
+                       AttackNextStep();
+                       if (currentState == enemyState.MovingToTarget)
                        // prossimo step di movimento
                        this.DoMoveToCurrentPathStep();
 
-               }
-               if (OnStep != null)
-                   OnStep(this);
+                   }
+                   if (OnStep != null)
+                       OnStep(this);
 
-           });
-        }
+               });
+            } 
+        
 
     }
 
@@ -549,6 +551,18 @@ public class Enemy : MonoBehaviour, IPathFindingMover
             }
         }
         return true;
+    }
+
+    public bool CanMoveNextStep()
+    {
+        foreach (var item in GameManager.I.gridController.GetNeighboursStar(CurrentPosition))
+        {
+            if (item.building && item.building.ID != "Foresta")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
