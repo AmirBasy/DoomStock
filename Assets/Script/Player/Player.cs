@@ -362,7 +362,6 @@ public class Player : PlayerBase
                     switch (cell.building.CurrentState)
                     {
                         case BuildingState.Construction:
-                            Debug.Log("non lo devo fare");
                             return;
                         case BuildingState.Built:
                         case BuildingState.Producing:
@@ -404,6 +403,7 @@ public class Player : PlayerBase
                                         default:
                                             break;
                                     }
+
                                     item.Value = 0;
 
                                     if (cell.building.Population.Count > 0)
@@ -413,18 +413,7 @@ public class Player : PlayerBase
                                     }
                                     else
                                     {
-                                        //if (cell.building.ID != "Foresta")
-                                        //{
                                         GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Waiting);
-
-                                        //}
-                                        //else if (cell.building.ID == "Foresta")
-                                        //{
-                                        //    GameManager.I.buildingManager.GetBuildingView(cell.building.UniqueID).SetBuildingStatus(BuildingState.Waiting);
-
-
-                                        //}
-
                                     }
                                 }
                             }
@@ -452,6 +441,8 @@ public class Player : PlayerBase
                     }
                 }
             }
+            GameManager.I.uiManager.SetResourcesTextColor();
+            GameManager.I.uiManager.SetFaithTextColor();
             if (_inputStatus.Start == ButtonState.Pressed)
             {
                 GameManager.I.soundManager.GetOpenMenuSound();
