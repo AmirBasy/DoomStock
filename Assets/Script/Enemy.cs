@@ -273,8 +273,7 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                int lastNode = pathFindingSettings.MoveToLastButOne ? CurrentPath.Count - 2 : CurrentPath.Count - 1;
                CurrentPosition = _step as CellDoomstock;
                lastPos = CurrentPosition;
-               //if (CurrentPosition.Status == CellDoomstock.CellStatus.Debris)
-               //    Debug.Log("sono sulle macerie");
+
                if (CurrentPosition.Type != CellDoomstock.CellType.Forest)
                {
                    if (CurrentPosition.Status != CellDoomstock.CellStatus.Debris)
@@ -450,6 +449,14 @@ public class Enemy : MonoBehaviour, IPathFindingMover
 
     void Update()
     {
+        if (CurrentTarget)
+        {
+            if (CurrentTarget.CurrentState == BuildingState.Destroyed)
+            {
+                currentState = enemyState.Searching;
+                resetTarget();
+            } 
+        }
         switch (currentState)
         {
             case enemyState.Searching:
@@ -472,11 +479,13 @@ public class Enemy : MonoBehaviour, IPathFindingMover
                 {
                     if (CurrentTarget)
                     {
+                       
                         if (!Attack(CurrentTarget))
                         {
                             currentState = enemyState.Searching;
                             resetTarget();
                         } 
+                        
                     }
                     else
                     {
